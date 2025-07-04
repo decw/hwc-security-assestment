@@ -4,7 +4,7 @@ huaweicloudsdkcore>=3.1.60
 # SDKs específicos (podés agregar más según necesidad)
 huaweicloudsdkecs        # Elastic Cloud Server
 huaweicloudsdkevs        # Elastic Volume Service
-huaweicloudsdkobs>=3.1.0        # Object Storage Service
+huaweicloudsdkobs        # Object Storage Service
 huaweicloudsdkvpc        # Virtual Private Cloud
 huaweicloudsdkims        # Identity and Management Service
 huaweicloudsdkcts        # Cloud Trace Service
@@ -13,16 +13,17 @@ huaweicloudsdkces        # Cloud Eye (monitoring)
 huaweicloudsdkconfig     # Config & compliance
 huaweicloudsdkiam        # IAM Service
 huaweicloudsdklts        # Log Tank Service
-huaweicloudsdksfsturbo        # Log Tank Service
+huaweicloudsdksfsturbo   # SFS Turbo (file storage)
+huaweicloudsdkrds        # Relational Database Service
 
 #agregado dcabral
 huaweicloudsdkcbr       # cloud backup  & recovery
 huaweicloudsdkhss       # Host security Service
 huaweicloudsdkiamaccessanalyzer
-huaweicloudsdkcts      # Cloud trace service
+huaweicloudsdkcts       # Cloud trace service
 huaweicloudsdkcce       # cloud container engine
-
-
+huaweicloudsdkelb       # Elastic Load Balancer
+huaweicloudsdksmn       # Simple Message Notification
 # Async support
 asyncio>=3.4.3
 aiohttp>=3.8.0

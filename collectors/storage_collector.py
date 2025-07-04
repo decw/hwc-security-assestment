@@ -11,25 +11,32 @@ from huaweicloudsdkevs.v2 import *
 
 # Importar OBS con manejo de errores
 try:
-    from huaweicloudsdkobs.v3 import ObsClient
+    # Opción 1: SDK oficial más nuevo
+    from huaweicloudsdkobs import ObsClient, ListBucketsRequest
+    OBS_SDK_TYPE = "official"
+    print("✅ Usando OBS SDK oficial")
 except ImportError:
     try:
-        # Intentar importación alternativa
-        from obs import ObsClient
+        # Opción 2: SDK legacy obs
+        import obs
+        OBS_SDK_TYPE = "legacy"
+        print("✅ Usando OBS SDK legacy")
     except ImportError:
-        ObsClient = None
-        print("WARNING: OBS SDK no disponible. Funcionalidad OBS limitada.")
+        obs = None
+        OBS_SDK_TYPE = None
+        print("⚠️ OBS SDK no disponible")
 
-# Importar otros servicios opcionales
+# Importar otros servicios de backup y recuperación
 try:
-    from huaweicloudsdkcsbs.v1 import *
-    CSBS_AVAILABLE = True
+    from huaweicloudsdkcbr.v1 import *
+    CBR_AVAILABLE = True
+    print("✅ CBR SDK disponible")
 except ImportError:
-    CSBS_AVAILABLE = False
-    print("WARNING: CSBS SDK no disponible.")
+    CBR_AVAILABLE = False
+    print("⚠️ CBR SDK no disponible")
 
 try:
-    from huaweicloudsdksfs.v2 import *
+    from huaweicloudsdksfsturbo import *
     SFS_AVAILABLE = True
 except ImportError:
     SFS_AVAILABLE = False
@@ -62,21 +69,43 @@ class StorageCollector:
             .build()
     
     def _get_obs_client(self):
-        """Obtener cliente OBS"""
-        if ObsClient is None:
+        """Obtener cliente OBS - CORREGIDO"""
+        if OBS_SDK_TYPE == "official":
+            try:
+                return ObsClient.new_builder() \
+                    .with_credentials(self.credentials) \
+                    .with_region('la-south-2') \
+                    .build()
+            except Exception as e:
+                self.logger.error(f"Error creando cliente OBS oficial: {str(e)}")
+                return None
+        elif OBS_SDK_TYPE == "legacy":
+            try:
+                return obs.ObsClient(
+                    access_key_id=HUAWEI_ACCESS_KEY,
+                    secret_access_key=HUAWEI_SECRET_KEY,
+                    server='https://obs.la-south-2.myhuaweicloud.com'
+                )
+            except Exception as e:
+                self.logger.error(f"Error creando cliente OBS legacy: {str(e)}")
+                return None
+        else:
             self.logger.warning("OBS Client no disponible")
             return None
-            
-        try:
-            return ObsClient(
-                access_key_id=HUAWEI_ACCESS_KEY,
-                secret_access_key=HUAWEI_SECRET_KEY,
-                server='obs.sa-brazil-1.myhuaweicloud.com'
-            )
-        except Exception as e:
-            self.logger.error(f"Error creando cliente OBS: {str(e)}")
-            return None
     
+    def _get_cbr_client(self, region: str):
+        """Obtener cliente CBR (reemplaza CSBS)"""
+        if not CBR_AVAILABLE:
+            return None
+        try:
+            return CbrClient.new_builder() \
+                .with_credentials(self.credentials) \
+                .with_region(CbrRegion.value_of(region)) \
+                .build()
+        except Exception as e:
+            self.logger.error(f"Error creando cliente CBR: {str(e)}")
+            return None
+
     async def collect_all(self) -> Dict[str, Any]:
         """Recolectar todos los datos de almacenamiento"""
         self.logger.info("Iniciando recolección de datos de almacenamiento")
@@ -188,48 +217,59 @@ class StorageCollector:
         return volumes
     
     async def _collect_obs_buckets(self) -> List[Dict]:
-        """Recolectar información de buckets OBS"""
+        """Recolectar información de buckets OBS - CORREGIDO"""
         buckets = []
         
-        if ObsClient is None:
-            self.logger.warning("Saltando recolección OBS - SDK no disponible")
+        client = self._get_obs_client()
+        if client is None:
+            self.logger.warning("Saltando recolección OBS - Cliente no disponible")
             return buckets
             
         try:
-            client = self._get_obs_client()
-            if client is None:
-                return buckets
-                
-            response = client.listBuckets()
+            if OBS_SDK_TYPE == "official":
+                # Usar SDK oficial
+                request = ListBucketsRequest()
+                response = client.list_buckets(request)
+                bucket_list = response.buckets
+            else:
+                # Usar SDK legacy
+                response = client.listBuckets()
+                if response.status < 300:
+                    bucket_list = response.body.buckets
+                else:
+                    self.logger.error(f"Error listando buckets: {response.status}")
+                    return buckets
             
-            if response.status < 300:
-                for bucket in response.body.buckets:
-                    bucket_info = {
-                        'name': bucket.name,
-                        'creation_date': bucket.create_date,
-                        'location': bucket.location,
-                        'acl': None,
-                        'encryption': None,
-                        'versioning': None,
-                        'lifecycle': None,
-                        'tags': {},
-                        'public_access': False,
-                        'size_bytes': 0,
-                        'object_count': 0
-                    }
-                    
-                    # Obtener configuración detallada
+            for bucket in bucket_list:
+                bucket_info = {
+                    'name': getattr(bucket, 'name', 'unknown'),
+                    'creation_date': getattr(bucket, 'creation_date', None) or getattr(bucket, 'create_date', None),
+                    'location': getattr(bucket, 'location', 'unknown'),
+                    'acl': None,
+                    'encryption': {'enabled': False},
+                    'versioning': 'Disabled',
+                    'lifecycle': False,
+                    'tags': {},
+                    'public_access': False,
+                    'size_bytes': 0,
+                    'object_count': 0
+                }
+                
+                # Obtener detalles adicionales
+                try:
                     bucket_info.update(await self._get_bucket_details(client, bucket.name))
-                    
-                    # Verificar problemas de seguridad
-                    self._analyze_bucket_security(bucket_info)
-                    
-                    buckets.append(bucket_info)
-                    
+                except Exception as e:
+                    self.logger.debug(f"Error obteniendo detalles de bucket {bucket.name}: {str(e)}")
+                
+                # Analizar seguridad
+                self._analyze_bucket_security(bucket_info)
+                buckets.append(bucket_info)
+                
         except Exception as e:
             self.logger.error(f"Error recolectando buckets OBS: {str(e)}")
             
         return buckets
+        
     
     async def _get_bucket_details(self, client: Any, bucket_name: str) -> Dict:
         """Obtener detalles de configuración de un bucket"""
@@ -293,33 +333,150 @@ class StorageCollector:
         """Recolectar información de backups"""
         backups = []
         
-        if not CSBS_AVAILABLE:
-            self.logger.warning(f"Saltando recolección de backups en {region} - CSBS SDK no disponible")
-            return backups
-            
         try:
-            # Cliente CSBS o VBS según disponibilidad
-            # Implementar según API de Huawei Cloud
-            pass
+            # Intentar con Cloud Server Backup Service (CSBS)
+            if CSBS_AVAILABLE:
+                # Implementación para CSBS
+                pass
+            
+            # Intentar con Volume Backup Service (VBS) 
+            try:
+                from huaweicloudsdkvbs.v2 import VbsClient, ListBackupsRequest
+                from huaweicloudsdkvbs.v2.region.vbs_region import VbsRegion
+                
+                # Mapear región
+                region_code = self._get_region_code(region)
+                
+                vbs_client = VbsClient.new_builder() \
+                    .with_credentials(self.credentials) \
+                    .with_region(VbsRegion.value_of(region_code)) \
+                    .build()
+                
+                request = ListBackupsRequest()
+                response = vbs_client.list_backups(request)
+                
+                for backup in response.backups:
+                    backup_info = {
+                        'id': backup.id,
+                        'name': backup.name,
+                        'status': backup.status,
+                        'volume_id': backup.volume_id,
+                        'size': backup.size,
+                        'created_at': backup.created_at,
+                        'description': backup.description
+                    }
+                    backups.append(backup_info)
+                    
+            except ImportError:
+                self.logger.warning(f"VBS SDK no disponible para región {region}")
+            except Exception as e:
+                self.logger.error(f"Error recolectando VBS backups en {region}: {str(e)}")
+            
+            # Si no se encontraron backups, buscar en CSBS
+            if not backups:
+                try:
+                    # Intentar con CSBS si está disponible
+                    if hasattr(self, '_collect_csbs_backups'):
+                        csbs_backups = await self._collect_csbs_backups(region)
+                        backups.extend(csbs_backups)
+                except Exception as e:
+                    self.logger.warning(f"Error con CSBS en {region}: {str(e)}")
+            
+            # Verificar si hay recursos sin backup
+            if len(backups) == 0:
+                self._add_finding(
+                    'STO-009',
+                    'HIGH',
+                    f'No se encontraron backups configurados en región {region}',
+                    {'region': region, 'backup_count': 0}
+                )
+                    
         except Exception as e:
             self.logger.error(f"Error recolectando backups en {region}: {str(e)}")
             
         return backups
-    
+
+    def _get_region_code(self, region_name: str) -> str:
+        """Convertir nombre de región del inventario a código API"""
+        region_mapping = {
+            'LA-Santiago': 'la-south-2',
+            'LA-Buenos Aires1': 'sa-argentina-1', 
+            'CN-Hong Kong': 'ap-southeast-1',
+            'AP-Bangkok': 'ap-southeast-2',
+            'AP-Singapore': 'ap-southeast-3'
+        }
+        return region_mapping.get(region_name, region_name)
+    # Inicializar variables globales si no existen
+    def init_storage_collector_globals():
+        """Inicializar variables globales para storage collector"""
+        global CSBS_AVAILABLE, SFS_AVAILABLE
+        
+        try:
+            import huaweicloudsdkcsbs
+            CSBS_AVAILABLE = True
+        except ImportError:
+            CSBS_AVAILABLE = False
+        
+        try:
+            import huaweicloudsdksfs
+            SFS_AVAILABLE = True
+        except ImportError:
+            SFS_AVAILABLE = False
+        
+        return CSBS_AVAILABLE, SFS_AVAILABLE
+        
     async def _collect_sfs_shares(self, region: str) -> List[Dict]:
         """Recolectar información de SFS shares"""
         shares = []
         
-        if not SFS_AVAILABLE:
-            self.logger.warning(f"Saltando recolección SFS en {region} - SFS SDK no disponible")
-            return shares
-            
         try:
-            # Cliente SFS
-            # Implementar según API de Huawei Cloud
-            pass
+            if SFS_AVAILABLE:
+                # Implementación para SFS
+                try:
+                    from huaweicloudsdksfs.v2 import SfsClient, ListSharesRequest
+                    from huaweicloudsdksfs.v2.region.sfs_region import SfsRegion
+                    
+                    region_code = self._get_region_code(region)
+                    
+                    sfs_client = SfsClient.new_builder() \
+                        .with_credentials(self.credentials) \
+                        .with_region(SfsRegion.value_of(region_code)) \
+                        .build()
+                    
+                    request = ListSharesRequest()
+                    response = sfs_client.list_shares(request)
+                    
+                    for share in response.shares:
+                        share_info = {
+                            'id': share.id,
+                            'name': share.name,
+                            'size': share.size,
+                            'status': share.status,
+                            'share_type': share.share_type,
+                            'availability_zone': share.availability_zone,
+                            'created_at': share.created_at
+                        }
+                        
+                        # Verificar configuración de seguridad
+                        if not share.is_public:
+                            self._add_finding(
+                                'STO-010',
+                                'LOW',
+                                f'SFS share sin acceso público configurado: {share.name}',
+                                {'share_id': share.id, 'region': region}
+                            )
+                        
+                        shares.append(share_info)
+                        
+                except ImportError:
+                    self.logger.warning(f"SFS SDK específico no disponible para región {region}")
+                except Exception as e:
+                    self.logger.error(f"Error recolectando SFS shares en {region}: {str(e)}")
+            else:
+                self.logger.warning(f"Saltando recolección SFS en {region} - SFS SDK no disponible")
+                
         except Exception as e:
-            self.logger.error(f"Error recolectando SFS shares en {region}: {str(e)}")
+            self.logger.error(f"Error general recolectando SFS shares en {region}: {str(e)}")
             
         return shares
     
@@ -349,9 +506,6 @@ class StorageCollector:
                     'object_count': bucket.get('object_count', 0)
                 }
             )
-            self.results['encryption_status']['obs']['unencrypted'] += 1
-        else:
-            self.results['encryption_status']['obs']['encrypted'] += 1
         
         # Verificar versionado para buckets importantes
         if self._is_critical_bucket(bucket) and bucket.get('versioning') != 'Enabled':

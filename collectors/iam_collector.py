@@ -17,6 +17,8 @@ from config.settings import (
     HUAWEI_DOMAIN_ID, API_TIMEOUT
 )
 from config.constants import PASSWORD_POLICY, MFA_REQUIREMENTS
+import pytz
+from dateutil import parser
 
 class IAMCollector:
     """Colector de configuraciones y vulnerabilidades IAM"""
@@ -30,7 +32,26 @@ class IAMCollector:
         )
         self.client = self._init_client()
         self.findings = []
-        
+
+    def _convert_to_serializable(self, obj) -> Any:
+        """Convertir objetos de Huawei Cloud a formato serializable"""
+        if hasattr(obj, '__dict__'):
+            # Convertir objeto a diccionario
+            result = {}
+            for key, value in obj.__dict__.items():
+                if not key.startswith('_'):  # Ignorar atributos privados
+                    result[key] = self._convert_to_serializable(value)
+            return result
+        elif isinstance(obj, list):
+            return [self._convert_to_serializable(item) for item in obj]
+        elif isinstance(obj, dict):
+            return {k: self._convert_to_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, datetime):
+            return obj.isoformat()
+        else:
+            # Para tipos básicos (str, int, float, bool, None)
+            return obj
+
     def _init_client(self):
         """Inicializar cliente IAM"""
         try:
@@ -67,6 +88,37 @@ class IAMCollector:
                 self.logger.error(f"Error con configuración alternativa: {str(e2)}")
                 raise
     
+    def _parse_datetime_safe(self, date_str) -> datetime:
+        """Parsear datetime de manera segura manejando timezone"""
+        if not date_str:
+            return datetime.now(timezone.utc)
+        
+        try:
+            # Si ya es datetime, convertir a UTC si es necesario
+            if isinstance(date_str, datetime):
+                if date_str.tzinfo is None:
+                    return date_str.replace(tzinfo=timezone.utc)
+                return date_str
+            
+            # Si es string, intentar parsear
+            if isinstance(date_str, str):
+                # Remover milisegundos si están presentes
+                if '.' in date_str:
+                    date_str = date_str.split('.')[0] + 'Z'
+                
+                # Agregar timezone si no está presente
+                if not date_str.endswith('Z') and '+' not in date_str:
+                    date_str += 'Z'
+                
+                # Parsear con timezone UTC
+                return datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+            
+        except Exception as e:
+            self.logger.debug(f"Error parsing datetime {date_str}: {str(e)}")
+            return datetime.now(timezone.utc)
+        
+        return datetime.now(timezone.utc)            
+
     async def collect_all(self) -> Dict[str, Any]:
         """Recolectar todos los datos IAM"""
         self.logger.info("Iniciando recolección de datos IAM")
@@ -162,19 +214,42 @@ class IAMCollector:
         return groups
     
     async def _collect_roles(self) -> List[Dict]:
-        """Recolectar información de roles"""
+        """Recolectar información de roles - CORREGIDO nombres de clases"""
         roles = []
         try:
-            request = KeystoneListAllProjectsPermissionsForAgencyRequest()
-            # Implementar lógica específica según la API de Huawei
-            pass
+            # Corregir el nombre de la clase
+            request = KeystoneListRolesRequest()
+            response = self.client.keystone_list_roles(request)
+            
+            for role in response.roles:
+                role_info = {
+                    'id': getattr(role, 'id', 'unknown'),
+                    'name': getattr(role, 'name', 'unknown'),
+                    'domain_id': getattr(role, 'domain_id', ''),
+                    'description': getattr(role, 'description', ''),
+                    'type': getattr(role, 'type', 'unknown')
+                }
+                roles.append(role_info)
+                
         except Exception as e:
             self.logger.error(f"Error recolectando roles: {str(e)}")
+            # Intentar método alternativo
+            try:
+                # Si el método anterior falla, intentar con otro approach
+                request = ListRolesRequest()
+                response = self.client.list_roles(request)
+                
+                for role in response.roles:
+                    role_info = self._convert_to_serializable(role)
+                    roles.append(role_info)
+                    
+            except Exception as e2:
+                self.logger.error(f"Error con método alternativo de roles: {str(e2)}")
             
         return roles
     
     async def _collect_policies(self) -> List[Dict]:
-        """Recolectar políticas IAM"""
+        """Recolectar políticas IAM - CORREGIDO"""
         policies = []
         try:
             # Obtener políticas custom
@@ -182,21 +257,25 @@ class IAMCollector:
             response = self.client.list_custom_policies(request)
             
             for policy in response.roles:
+                # Convertir a formato serializable
                 policy_info = {
-                    'id': policy.id,
-                    'name': policy.display_name,
-                    'type': policy.type,
-                    'description': policy.description,
-                    'policy': policy.policy
+                    'id': getattr(policy, 'id', 'unknown'),
+                    'name': getattr(policy, 'display_name', 'unknown'),
+                    'type': getattr(policy, 'type', 'unknown'),
+                    'description': getattr(policy, 'description', ''),
+                    'policy': self._convert_to_serializable(getattr(policy, 'policy', {}))
                 }
                 
                 # Analizar política para detectar permisos excesivos
-                if self._check_excessive_permissions(policy.policy):
+                if self._check_excessive_permissions(policy_info['policy']):
                     self._add_finding(
                         'IAM-003',
                         'HIGH',
-                        f'Política con permisos excesivos: {policy.display_name}',
-                        {'policy_id': policy.id, 'policy_name': policy.display_name}
+                        f'Política con permisos excesivos: {policy_info["name"]}',
+                        {
+                            'policy_id': policy_info['id'], 
+                            'policy_name': policy_info['name']
+                        }
                     )
                 
                 policies.append(policy_info)
@@ -207,7 +286,7 @@ class IAMCollector:
         return policies
     
     async def _collect_access_keys(self) -> List[Dict]:
-        """Recolectar información de access keys"""
+        """Recolectar información de access keys - CORREGIDO"""
         access_keys = []
         users = await self._collect_users()
         
@@ -218,14 +297,37 @@ class IAMCollector:
                 response = self.client.list_permanent_access_keys(request)
                 
                 for key in response.credentials:
-                    key_age = (datetime.now() - datetime.fromisoformat(key.create_time)).days
+                    # CORREGIDO: Manejo seguro de fechas
+                    created_at = key.create_time
+                    if created_at:
+                        try:
+                            # Intentar parsear la fecha de diferentes formas
+                            if isinstance(created_at, str):
+                                # Si es string, parsearlo
+                                created_date = parser.parse(created_at)
+                            else:
+                                # Si ya es datetime, usarlo directamente
+                                created_date = created_at
+                            
+                            # Asegurar que tiene timezone
+                            if created_date.tzinfo is None:
+                                created_date = created_date.replace(tzinfo=timezone.utc)
+                            
+                            # Calcular edad
+                            now = datetime.now(timezone.utc)
+                            key_age = (now - created_date).days
+                        except Exception as date_error:
+                            self.logger.warning(f"Error parseando fecha {created_at}: {date_error}")
+                            key_age = 0
+                    else:
+                        key_age = 0
                     
                     key_info = {
                         'access_key_id': key.access,
                         'user_id': user['id'],
                         'user_name': user['name'],
                         'status': key.status,
-                        'created_at': key.create_time,
+                        'created_at': str(created_at) if created_at else None,
                         'age_days': key_age,
                         'last_used': getattr(key, 'last_use_time', None)
                     }
@@ -247,16 +349,63 @@ class IAMCollector:
                     
             except Exception as e:
                 self.logger.error(f"Error recolectando access keys para usuario {user['id']}: {str(e)}")
+                # CORREGIDO: Continuar con el siguiente usuario en lugar de fallar
+                continue
                 
         return access_keys
     
+    # Función helper para manejo seguro de fechas
+    def safe_date_parse(date_input):
+        """Parsear fechas de manera segura"""
+        if not date_input:
+            return None
+        
+        try:
+            if isinstance(date_input, str):
+                # Intentar diferentes formatos
+                try:
+                    return datetime.fromisoformat(date_input.replace('Z', '+00:00'))
+                except:
+                    return parser.parse(date_input)
+            elif isinstance(date_input, datetime):
+                return date_input
+            else:
+                return datetime.fromtimestamp(float(date_input), tz=timezone.utc)
+        except Exception as e:
+            print(f"Error parseando fecha {date_input}: {e}")
+            return None
+
+    # Función para calcular edad de manera segura
+    def calculate_age_days(created_date, reference_date=None):
+        """Calcular edad en días de manera segura"""
+        if not created_date:
+            return 0
+        
+        if reference_date is None:
+            reference_date = datetime.now(timezone.utc)
+        
+        try:
+            if isinstance(created_date, str):
+                created_date = safe_date_parse(created_date)
+            
+            if created_date and created_date.tzinfo is None:
+                created_date = created_date.replace(tzinfo=timezone.utc)
+            
+            if created_date:
+                return (reference_date - created_date).days
+        except Exception as e:
+            print(f"Error calculando edad: {e}")
+        
+        return 0
+
     async def _collect_mfa_status(self) -> Dict[str, Any]:
-        """Verificar estado de MFA para todos los usuarios"""
+        """Verificar estado de MFA para todos los usuarios - MEJORADO"""
         mfa_status = {
             'total_users': 0,
             'mfa_enabled': 0,
             'mfa_disabled': 0,
-            'users_without_mfa': []
+            'users_without_mfa': [],
+            'mfa_devices': []
         }
         
         users = await self._collect_users()
@@ -268,7 +417,17 @@ class IAMCollector:
                 request.user_id = user['id']
                 response = self.client.show_user_mfa_device(request)
                 
-                if not response.virtual_mfa_device:
+                has_mfa = False
+                if hasattr(response, 'virtual_mfa_device') and response.virtual_mfa_device:
+                    has_mfa = True
+                    mfa_status['mfa_enabled'] += 1
+                    mfa_status['mfa_devices'].append({
+                        'user_id': user['id'],
+                        'user_name': user['name'],
+                        'device_serial': getattr(response.virtual_mfa_device, 'serial_number', 'unknown')
+                    })
+                
+                if not has_mfa:
                     mfa_status['mfa_disabled'] += 1
                     mfa_status['users_without_mfa'].append({
                         'user_id': user['id'],
@@ -283,29 +442,38 @@ class IAMCollector:
                             f'Usuario administrativo sin MFA: {user["name"]}',
                             {'user_id': user['id'], 'user_name': user['name']}
                         )
-                else:
-                    mfa_status['mfa_enabled'] += 1
                     
             except Exception as e:
-                self.logger.debug(f"No se pudo verificar MFA para usuario {user['id']}")
+                self.logger.debug(f"No se pudo verificar MFA para usuario {user['id']}: {str(e)}")
+                # Asumir que no tiene MFA si no se puede verificar
+                mfa_status['mfa_disabled'] += 1
+                mfa_status['users_without_mfa'].append({
+                    'user_id': user['id'],
+                    'user_name': user['name']
+                })
                 
         return mfa_status
     
     async def _collect_password_policy(self) -> Dict[str, Any]:
-        """Recolectar política de contraseñas"""
+        """Recolectar política de contraseñas - CORREGIDO atributos"""
         policy = {}
         try:
             request = ShowDomainPasswordPolicyRequest()
             request.domain_id = HUAWEI_DOMAIN_ID
             response = self.client.show_domain_password_policy(request)
             
+            # Acceder correctamente a los atributos
+            pwd_policy = response.password_policy
+            
             policy = {
-                'minimum_length': response.password_policy.minimum_length,
-                'require_uppercase': response.password_policy.uppercase_requirements,
-                'require_lowercase': response.password_policy.lowercase_requirements,
-                'require_numbers': response.password_policy.number_requirements,
-                'require_special': response.password_policy.special_character_requirements,
-                'password_validity_period': response.password_policy.password_validity_period
+                'minimum_length': getattr(pwd_policy, 'minimum_password_length', 8),
+                'require_uppercase': getattr(pwd_policy, 'minimum_password_uppercase', 0) > 0,
+                'require_lowercase': getattr(pwd_policy, 'minimum_password_lowercase', 0) > 0,
+                'require_numbers': getattr(pwd_policy, 'minimum_password_number', 0) > 0,
+                'require_special': getattr(pwd_policy, 'minimum_password_special_char', 0) > 0,
+                'password_validity_period': getattr(pwd_policy, 'password_validity_period', 0),
+                'password_char_combination': getattr(pwd_policy, 'password_char_combination', 0),
+                'password_not_username_or_invert': getattr(pwd_policy, 'password_not_username_or_invert', False)
             }
             
             # Verificar cumplimiento con política mínima
@@ -314,12 +482,15 @@ class IAMCollector:
                     'IAM-005',
                     'MEDIUM',
                     f'Política de contraseñas débil: longitud mínima {policy["minimum_length"]}',
-                    {'current_length': policy['minimum_length'], 
-                     'required_length': PASSWORD_POLICY['min_length']}
+                    {
+                        'current_length': policy['minimum_length'], 
+                        'required_length': PASSWORD_POLICY['min_length']
+                    }
                 )
                 
         except Exception as e:
             self.logger.error(f"Error recolectando política de contraseñas: {str(e)}")
+            self.logger.debug(f"Detalles del error: {type(e).__name__}")
             
         return policy
     
@@ -333,21 +504,24 @@ class IAMCollector:
         except:
             return False
     
+    # Método para verificar permisos excesivos - mejorado
     def _check_excessive_permissions(self, policy: dict) -> bool:
         """Verificar si una política tiene permisos excesivos"""
         if not policy:
             return False
             
-        # Buscar patrones de permisos excesivos
-        excessive_patterns = [
-            '"Action": ["*"]',
-            '"Resource": ["*"]',
-            'AdministratorAccess',
-            '"Effect": "Allow".*"Action": "\\*"'
+        policy_str = str(policy).lower()
+        
+        # Patrones peligrosos
+        dangerous_patterns = [
+            '*:*:*',
+            '"action": "*"',
+            '"resource": "*"',
+            'administratoraccess',
+            '"effect": "allow"' and '"action": "*"'
         ]
         
-        policy_str = str(policy)
-        return any(pattern in policy_str for pattern in excessive_patterns)
+        return any(pattern in policy_str for pattern in dangerous_patterns)
     
     def _add_finding(self, finding_id: str, severity: str, message: str, details: dict):
         """Agregar un hallazgo de seguridad"""

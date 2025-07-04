@@ -31,7 +31,7 @@ class ComplianceCollector:
         self.logger.info("Iniciando evaluación de cumplimiento")
         
         results = {
-            'frameworks': {},
+            'frameworks': {},  # CORREGIDO: Inicializar frameworks
             'overall_compliance': 0,
             'findings': self.findings,
             'recommendations': [],
@@ -44,12 +44,17 @@ class ComplianceCollector:
         for framework in COMPLIANCE_FRAMEWORKS:
             self.logger.info(f"Evaluando cumplimiento con {framework}")
             
-            if framework == 'CIS_Huawei_Cloud_1.1':
-                results['frameworks'][framework] = await self._evaluate_cis()
-            elif framework == 'ISO_27001_2022':
-                results['frameworks'][framework] = await self._evaluate_iso27001()
-            elif framework == 'NIST_CSF_2.0':
-                results['frameworks'][framework] = await self._evaluate_nist_csf()
+            try:
+                if framework == 'CIS_Huawei_Cloud_1.1':
+                    results['frameworks'][framework] = await self._evaluate_cis()
+                elif framework == 'ISO_27001_2022':
+                    results['frameworks'][framework] = await self._evaluate_iso27001()
+                elif framework == 'NIST_CSF_2.0':
+                    results['frameworks'][framework] = await self._evaluate_nist_csf()
+            except Exception as e:
+                self.logger.error(f"Error evaluando framework {framework}: {str(e)}")
+                # Continuar con el siguiente framework
+                results['frameworks'][framework] = {'error': str(e), 'compliance_percentage': 0}
         
         # Calcular cumplimiento general
         results['overall_compliance'] = self._calculate_overall_compliance(results['frameworks'])
@@ -773,11 +778,12 @@ class ComplianceCollector:
     
     def _calculate_maturity_level(self, results: dict) -> float:
         """Calcular nivel de madurez (1-5)"""
-        # Basado en NIST CSF
-        nist_maturity = results['frameworks'].get('NIST_CSF_2.0', {}).get('overall_maturity', 0)
+        # CORREGIDO: Verificar que 'frameworks' existe
+        frameworks = results.get('frameworks', {})
+        nist_maturity = frameworks.get('NIST_CSF_2.0', {}).get('overall_maturity', 0)
         
         # Ajustar con otros factores
-        compliance_factor = results['overall_compliance'] / 100
+        compliance_factor = results.get('overall_compliance', 0) / 100
         
         # Fórmula ponderada
         maturity = (nist_maturity * 0.6) + (compliance_factor * 5 * 0.4)
@@ -800,26 +806,26 @@ class ComplianceCollector:
                 'impact': 'Muy Alto'
             })
         
-        # Recomendaciones generales basadas en madurez
-        maturity = self._calculate_maturity_level({'overall_compliance': 0})
+        # CORREGIDO: No llamar _calculate_maturity_level con argumentos incorrectos
+        # Simplificar la lógica o usar self.results si está disponible
         
-        if maturity < 3:
-            recommendations.extend([
-                {
-                    'priority': 'HIGH',
-                    'title': 'Implementar programa de seguridad formal',
-                    'description': 'Establecer políticas, procedimientos y responsabilidades',
-                    'effort': 'Alto',
-                    'impact': 'Transformacional'
-                },
-                {
-                    'priority': 'HIGH',
-                    'title': 'Automatizar controles de seguridad',
-                    'description': 'Implementar Infrastructure as Code y políticas automatizadas',
-                    'effort': 'Medio',
-                    'impact': 'Alto'
-                }
-            ])
+        # Recomendaciones generales por defecto
+        recommendations.extend([
+            {
+                'priority': 'HIGH',
+                'title': 'Implementar programa de seguridad formal',
+                'description': 'Establecer políticas, procedimientos y responsabilidades',
+                'effort': 'Alto',
+                'impact': 'Transformacional'
+            },
+            {
+                'priority': 'HIGH',
+                'title': 'Automatizar controles de seguridad',
+                'description': 'Implementar Infrastructure as Code y políticas automatizadas',
+                'effort': 'Medio',
+                'impact': 'Alto'
+            }
+        ])
         
         return recommendations
     
