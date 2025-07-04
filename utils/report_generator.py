@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_pdf import PdfPages
 import pandas as pd
+import numpy as np
 
 from config.settings import REPORTS_DIR, CLIENT_NAME, REPORT_TIMESTAMP
 from config.constants import SEVERITY_MAPPING

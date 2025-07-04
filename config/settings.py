@@ -25,27 +25,50 @@ if not all([HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY]):
     print("WARNING: Credenciales de Huawei Cloud no configuradas.")
     print("Por favor, configure las variables en el archivo .env")
 
-'''
-# Regiones a evaluar
-REGIONS = [
-    'la-south-2',      # Santiago
-    'sa-argentina-1',  # Buenos Aires
-    'ap-southeast-1',  # Hong Kong
-    'ap-southeast-2',  # Bangkok
-    'ap-southeast-3',  # Singapore
-]
-'''
-REGIONS = [
-    'LA-Santiago',      # Santiago
-    'LA-Buenos Aires1',     # Buenos Aires  
-    'CN-Hong Kong',      # Hong Kong
-    'AP-Bangkok',  # Bangkok
-    'AP-Singapore',  # Singapore
-]
-				
 
-# Región principal
-#PRIMARY_REGION = os.getenv('HUAWEI_PRIMARY_REGION', 'sa-argentina-1')
+
+# Mapeo exacto de regiones según el inventario de CAMUZZI
+REGION_PROJECT_MAPPING = {
+    'ap-southeast-2': '07c695df5880251f2f9cc01383f48cb3',  # AP-Bangkok
+    'ap-southeast-3': '07c695df700026022f20c013b5a9f7bb',  # AP-Singapore
+    'cn-east-3': '07c695df268010fe2f56c013e33fa1d1',      # CN East-Shanghai1
+    'cn-north-4': '07c695df17000f082fffc0131753d0c1',     # CN North-Beijing4
+    'ap-southeast-1': '07c695df4d0026fe2f59c0131f659a3b',  # CN-Hong Kong
+    'sa-argentina-1': '4b941a5dca294bedab5e907bd7f2bd08',  # LA-Buenos Aires1
+    'la-south-2': '07c695df6c0025232fe4c013d2eb1218',      # LA-Santiago
+    'sa-brazil-1': '07c695df5b8010fd2f83c013996e3277'      # LA-Sao Paulo1
+}
+
+
+
+# Regiones a evaluar (basado en el inventario donde hay recursos)
+REGIONS_TO_ASSESS = [
+    'la-south-2',      # LA-Santiago (50 recursos)
+    'sa-argentina-1',  # LA-Buenos Aires1 (369 recursos)
+    'ap-southeast-1',  # CN-Hong Kong (6 recursos)
+    'ap-southeast-3',  # AP-Singapore (2 recursos)
+    'ap-southeast-2'   # AP-Bangkok (4 recursos)
+]
+
+
+# Nombres descriptivos de regiones para reportes
+REGION_DISPLAY_NAMES = {
+    'ap-southeast-2': 'AP-Bangkok',
+    'ap-southeast-3': 'AP-Singapore',
+    'cn-east-3': 'CN East-Shanghai1',
+    'cn-north-4': 'CN North-Beijing4',
+    'ap-southeast-1': 'CN-Hong Kong',
+    'sa-argentina-1': 'LA-Buenos Aires1',
+    'la-south-2': 'LA-Santiago',
+    'sa-brazil-1': 'LA-Sao Paulo1'
+}	
+
+
+# Usar REGIONS_TO_ASSESS como REGIONS principal
+REGIONS = REGIONS_TO_ASSESS
+
+
+# Región principal (Buenos Aires tiene más recursos)
 PRIMARY_REGION = os.getenv('HUAWEI_PRIMARY_REGION', 'sa-argentina-1')
 
 # Directorios
@@ -99,6 +122,6 @@ NOTIFICATION_WEBHOOK = os.getenv('NOTIFICATION_WEBHOOK')
 NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL')
 
 # Cliente info
-CLIENT_NAME = "Camuzzi Gas Pampeana S.A."
+CLIENT_NAME = "CCGP S.A."
 ASSESSMENT_VERSION = "1.0"
 ASSESSMENT_DATE = datetime.now().strftime('%Y-%m-%d')

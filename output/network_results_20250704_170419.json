@@ -1,0 +1,47 @@
+{
+  "vpcs": {
+    "la-south-2": [],
+    "sa-argentina-1": [],
+    "ap-southeast-1": [],
+    "ap-southeast-3": [],
+    "ap-southeast-2": []
+  },
+  "subnets": {
+    "la-south-2": [],
+    "sa-argentina-1": [],
+    "ap-southeast-1": [],
+    "ap-southeast-3": [],
+    "ap-southeast-2": []
+  },
+  "security_groups": {
+    "la-south-2": [],
+    "sa-argentina-1": [],
+    "ap-southeast-1": [],
+    "ap-southeast-3": [],
+    "ap-southeast-2": []
+  },
+  "network_acls": {},
+  "elastic_ips": {},
+  "nat_gateways": {},
+  "vpn_connections": {},
+  "exposed_resources": [],
+  "security_group_analysis": {},
+  "findings": [],
+  "statistics": {
+    "total_vpcs": 0,
+    "total_subnets": 0,
+    "total_security_groups": 0,
+    "total_elastic_ips": 0,
+    "exposed_resources": 0,
+    "critical_ports_exposed": 0,
+    "unused_elastic_ips": 0,
+    "overly_permissive_rules": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "timestamp": "2025-07-04T17:04:41.267257"
+}

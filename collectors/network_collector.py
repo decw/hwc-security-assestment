@@ -10,14 +10,16 @@ import ipaddress
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 from huaweicloudsdkvpc.v2 import *
 from huaweicloudsdkecs.v2 import *
+from huaweicloudsdkcore.region.region import Region
 from utils.logger import SecurityLogger
 from config.settings import (
     HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY,
     HUAWEI_PROJECT_ID, REGIONS
 )
 from config.constants import CRITICAL_PORTS
+from utils.multi_region_client import MultiRegionClient
 
-class NetworkCollector:
+class NetworkCollector(MultiRegionClient):
     """Colector de configuraciones de seguridad de red"""
     
     def __init__(self):
@@ -31,15 +33,19 @@ class NetworkCollector:
         
     def _get_vpc_client(self, region: str):
         """Obtener cliente VPC para una región"""
+        credentials = self.get_credentials_for_region(region)
+        
         return VpcClient.new_builder() \
-            .with_credentials(self.credentials) \
+            .with_credentials(credentials) \
             .with_region(VpcRegion.value_of(region)) \
             .build()
     
     def _get_ecs_client(self, region: str):
         """Obtener cliente ECS para una región"""
+        credentials = self.get_credentials_for_region(region)
+        
         return EcsClient.new_builder() \
-            .with_credentials(self.credentials) \
+            .with_credentials(credentials) \
             .with_region(EcsRegion.value_of(region)) \
             .build()
     
@@ -56,6 +62,7 @@ class NetworkCollector:
             'nat_gateways': {},
             'vpn_connections': {},
             'exposed_resources': [],
+            'security_group_analysis': {},
             'findings': self.findings,
             'statistics': {},
             'timestamp': datetime.now().isoformat()
@@ -63,16 +70,36 @@ class NetworkCollector:
         
         # Recolectar datos por región
         for region in REGIONS:
-            self.logger.info(f"Analizando región: {region}")
+            region_name = self.get_region_display_name(region)
+            self.logger.info(f"Analizando región: {region_name} ({region})")
+            
             try:
                 results['vpcs'][region] = await self._collect_vpcs(region)
                 results['subnets'][region] = await self._collect_subnets(region)
                 results['security_groups'][region] = await self._collect_security_groups(region)
+                results['security_group_analysis'][region] = await self._analyze_security_groups_usage(region)
                 results['network_acls'][region] = await self._collect_network_acls(region)
                 results['elastic_ips'][region] = await self._collect_elastic_ips(region)
                 results['exposed_resources'].extend(await self._analyze_exposed_resources(region))
+                
+                # Log de éxito
+                self.logger.info(f"✓ Región {region_name} analizada exitosamente")
+                
             except Exception as e:
-                self.logger.error(f"Error en región {region}: {str(e)}")
+                self.logger.error(f"Error en región {region_name}: {str(e)}")
+                
+                # Si es error de autenticación/proyecto, agregarlo como finding
+                if "does not match with the project" in str(e) or "401" in str(e):
+                    self._add_finding(
+                        'NET-010',
+                        'INFO',
+                        f'No se pudo acceder a la región {region_name}',
+                        {
+                            'region': region,
+                            'error': 'Posible falta de permisos o región no habilitada',
+                            'recommendation': 'Verificar permisos IAM para esta región'
+                        }
+                    )
         
         # Calcular estadísticas
         results['statistics'] = self._calculate_statistics(results)
@@ -217,39 +244,74 @@ class NetworkCollector:
     async def _collect_elastic_ips(self, region: str) -> List[Dict]:
         """Recolectar Elastic IPs"""
         eips = []
+        
         try:
-            client = self._get_vpc_client(region)
-            request = ListPublicipsRequest()
-            response = client.list_publicips(request)
+            # Intentar con el cliente EIP si está disponible
+            try:
+                from huaweicloudsdkeip.v2 import (
+                    EipClient, ListPublicipsRequest, EipRegion
+                )
+                
+                credentials = self.get_credentials_for_region(region)
+                eip_client = EipClient.new_builder() \
+                    .with_credentials(credentials) \
+                    .with_region(EipRegion.value_of(region)) \
+                    .build()
+                
+                request = ListPublicipsRequest()
+                response = eip_client.list_publicips(request)
+                publicips = response.publicips
+                
+            except ImportError:
+                # Si no está disponible el módulo EIP, usar VPC
+                self.logger.warning(f"Módulo EIP no disponible, usando método alternativo para {region}")
+                vpc_client = self._get_vpc_client(region)
+                
+                # Intentar con el método de VPC v2
+                from huaweicloudsdkvpc.v2 import ListPublicipsRequest as VpcListPublicipsRequest
+                
+                request = VpcListPublicipsRequest()
+                response = vpc_client.list_publicips(request)
+                publicips = response.publicips
             
-            for eip in response.publicips:
+            # Procesar las IPs públicas
+            for eip in publicips:
                 eip_info = {
-                    'id': eip.id,
-                    'public_ip_address': eip.public_ip_address,
-                    'private_ip_address': eip.private_ip_address,
-                    'status': eip.status,
-                    'bandwidth_id': eip.bandwidth_id,
-                    'bandwidth_size': eip.bandwidth_size,
-                    'bandwidth_share_type': eip.bandwidth_share_type,
-                    'created_at': eip.created_at,
-                    'tenant_id': eip.tenant_id,
-                    'type': eip.type,
-                    'port_id': getattr(eip, 'port_id', None)
+                    'id': getattr(eip, 'id', 'unknown'),
+                    'public_ip_address': getattr(eip, 'public_ip_address', 'unknown'),
+                    'private_ip_address': getattr(eip, 'private_ip_address', None),
+                    'status': getattr(eip, 'status', 'unknown'),
+                    'bandwidth_id': getattr(eip, 'bandwidth_id', None),
+                    'bandwidth_size': getattr(eip, 'bandwidth_size', None),
+                    'created_at': getattr(eip, 'create_time', getattr(eip, 'created_at', None)),
+                    'type': getattr(eip, 'type', None),
+                    'port_id': getattr(eip, 'port_id', None),
+                    'instance_type': getattr(eip, 'instance_type', None),
+                    'instance_id': getattr(eip, 'instance_id', None)
                 }
                 
                 # Verificar IPs sin uso
-                if eip.status == 'DOWN' or not eip.port_id:
+                if eip_info['status'] == 'DOWN' or not eip_info['port_id']:
                     self._add_finding(
                         'NET-005',
                         'LOW',
-                        f'Elastic IP sin utilizar: {eip.public_ip_address}',
-                        {'eip_id': eip.id, 'ip': eip.public_ip_address, 'region': region}
+                        f'Elastic IP sin utilizar: {eip_info["public_ip_address"]}',
+                        {
+                            'eip_id': eip_info['id'],
+                            'ip': eip_info['public_ip_address'],
+                            'region': self.get_region_display_name(region),
+                            'cost_estimate': '$5-10/mes desperdiciados'
+                        }
                     )
                 
                 eips.append(eip_info)
                 
         except Exception as e:
-            self.logger.error(f"Error recolectando EIPs en {region}: {str(e)}")
+            self.logger.error(f"Error recolectando EIPs en {self.get_region_display_name(region)}: {str(e)}")
+            
+            # Si es un error de importación o método no encontrado, log pero continuar
+            if "ListPublicipsRequest" in str(e) or "has no attribute" in str(e):
+                self.logger.info(f"API de EIP no disponible en {region}, continuando sin EIPs")
             
         return eips
     

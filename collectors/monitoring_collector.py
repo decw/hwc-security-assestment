@@ -32,24 +32,61 @@ class MonitoringCollector:
     
     def _get_ces_client(self, region: str):
         """Obtener cliente Cloud Eye (CES)"""
-        return CesClient.new_builder() \
-            .with_credentials(self.credentials) \
-            .with_region(CesRegion.value_of(region)) \
-            .build()
+        try:
+            # Mapeo de endpoints CES por región
+            ces_endpoints = {
+                'la-south-2': 'https://ces.la-south-2.myhuaweicloud.com',
+                'sa-argentina-1': 'https://ces.sa-argentina-1.myhuaweicloud.com',
+                'ap-southeast-1': 'https://ces.ap-southeast-1.myhuaweicloud.com',
+                'ap-southeast-2': 'https://ces.ap-southeast-2.myhuaweicloud.com',
+                'ap-southeast-3': 'https://ces.ap-southeast-3.myhuaweicloud.com'
+            }
+            
+            endpoint = ces_endpoints.get(region, f'https://ces.{region}.myhuaweicloud.com')
+            
+            return CesClient.new_builder() \
+                .with_credentials(self.credentials) \
+                .with_endpoint(endpoint) \
+                .build()
+        except Exception as e:
+            self.logger.error(f"Error creando cliente CES para {region}: {str(e)}")
+            raise
     
     def _get_cts_client(self):
         """Obtener cliente Cloud Trace Service (CTS)"""
-        return CtsClient.new_builder() \
-            .with_credentials(self.credentials) \
-            .with_region(CtsRegion.value_of(PRIMARY_REGION)) \
-            .build()
+        try:
+            # CTS es global, usar región primaria
+            endpoint = 'https://cts.myhuaweicloud.com'
+            
+            return CtsClient.new_builder() \
+                .with_credentials(self.credentials) \
+                .with_endpoint(endpoint) \
+                .build()
+        except Exception as e:
+            self.logger.error(f"Error creando cliente CTS: {str(e)}")
+            raise
     
     def _get_lts_client(self, region: str):
         """Obtener cliente Log Tank Service (LTS)"""
-        return LtsClient.new_builder() \
-            .with_credentials(self.credentials) \
-            .with_region(LtsRegion.value_of(region)) \
-            .build()
+        try:
+            # Mapeo de endpoints LTS por región
+            lts_endpoints = {
+                'la-south-2': 'https://lts.la-south-2.myhuaweicloud.com',
+                'sa-argentina-1': 'https://lts.sa-argentina-1.myhuaweicloud.com',
+                'ap-southeast-1': 'https://lts.ap-southeast-1.myhuaweicloud.com',
+                'ap-southeast-2': 'https://lts.ap-southeast-2.myhuaweicloud.com',
+                'ap-southeast-3': 'https://lts.ap-southeast-3.myhuaweicloud.com'
+            }
+            
+            endpoint = lts_endpoints.get(region, f'https://lts.{region}.myhuaweicloud.com')
+            
+            return LtsClient.new_builder() \
+                .with_credentials(self.credentials) \
+                .with_endpoint(endpoint) \
+                .build()
+        except Exception as e:
+            self.logger.error(f"Error creando cliente LTS para {region}: {str(e)}")
+            raise
     
     async def collect_all(self) -> Dict[str, Any]:
         """Recolectar todos los datos de monitoreo"""

@@ -8,6 +8,7 @@ from datetime import datetime
 from typing import Dict, List, Any
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 from huaweicloudsdkevs.v2 import *
+from utils.multi_region_client import MultiRegionClient
 
 # Importar OBS con manejo de errores
 try:
@@ -49,7 +50,7 @@ from config.settings import (
 )
 from config.constants import DATA_CLASSIFICATION_TAGS
 
-class StorageCollector:
+class StorageCollector(MultiRegionClient):
     """Colector de configuraciones de almacenamiento y backup"""
     
     def __init__(self):
@@ -63,8 +64,10 @@ class StorageCollector:
     
     def _get_evs_client(self, region: str):
         """Obtener cliente EVS para una región"""
+        credentials = self.get_credentials_for_region(region)
+        
         return EvsClient.new_builder() \
-            .with_credentials(self.credentials) \
+            .with_credentials(credentials) \
             .with_region(EvsRegion.value_of(region)) \
             .build()
     

@@ -1,0 +1,1356 @@
+{
+  "users": [
+    {
+      "id": "7621b455711f48daa3d404bba883f1fe",
+      "name": "Christian Vazquez",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "2d5502377631460c9601244670a8aa1c",
+      "name": "ConectorCloud",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Conector nube movistar",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": true,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "cd50c85ce40f42edb375edba41193bb0",
+      "name": "dcabral",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Consultor Iplan",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [
+        {
+          "access_key_id": "HPUATA****",
+          "status": "active",
+          "created_at": "2025-06-25T19:16:02.901000Z",
+          "age_days": 8,
+          "description": "Assesment",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 6,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente",
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "08450e873d00f5051fefc01364c4b18b",
+      "name": "diegogarone",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Diego Garone",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [
+        {
+          "access_key_id": "DTTDJ5****",
+          "status": "active",
+          "created_at": "2023-05-31T18:21:10.744000Z",
+          "age_days": 764,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        },
+        {
+          "access_key_id": "6OSBSO****",
+          "status": "active",
+          "created_at": "2020-04-02T11:50:42.992264Z",
+          "age_days": 1918,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 14,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado",
+          "Access key sin rotar por 764 días",
+          "Access key creada pero nunca utilizada",
+          "Access key sin rotar por 1918 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente",
+          "Eliminar access keys no utilizadas",
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "CRITICAL"
+      }
+    },
+    {
+      "id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "name": "emilianosilva",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": true,
+      "access_keys": [
+        {
+          "access_key_id": "9ZZKXL****",
+          "status": "active",
+          "created_at": "2019-06-14T17:39:49.805492Z",
+          "age_days": 2211,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 5,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Access key sin rotar por 2211 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "e84771c7285a47939e6895479962ddd0",
+      "name": "Florencia Pavon",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Seguridad Informatica",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": true,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "5ade0315e9ba4045b063df938541c286",
+      "name": "globo",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "0563f1d7034343cfa595eeb58b633b99",
+      "name": "Julian Vazzano",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "7b342f3b84144b048b37ade414729bf7",
+      "name": "Nicolas Alcorta",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Seguridad Informatica",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "0e3c90608486441a87cfd710156eab73",
+      "name": "Nicolas Villafane",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Nicolas Villafañe",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": true,
+      "access_keys": [
+        {
+          "access_key_id": "Y5TODM****",
+          "status": "active",
+          "created_at": "2022-03-07T14:11:18.493000Z",
+          "age_days": 1214,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 5,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Access key sin rotar por 1214 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "220c0d60592f4f24bf773beee71891ad",
+      "name": "prueba.iis",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [
+        {
+          "access_key_id": "K5SVL5****",
+          "status": "active",
+          "created_at": "2024-08-05T13:51:57.465000Z",
+          "age_days": 332,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 9,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado",
+          "Access key sin rotar por 332 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente",
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "HIGH"
+      }
+    },
+    {
+      "id": "922791f34b45408cbea7f83c440a2293",
+      "name": "Ricardo Huberman",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "4348314e44b4494ab54f1ce26e1731aa",
+      "name": "rsuarez",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Consultor Iplan",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "8cb2fc59f63a4af3ab47710e48b5b551",
+      "name": "SManoni",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Seguridad Informatica",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [],
+      "has_programmatic_access": false,
+      "security_issues": {
+        "risk_score": 4,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente"
+        ],
+        "risk_level": "MEDIUM"
+      }
+    },
+    {
+      "id": "6b31f9905d88499985c003f0db251a05",
+      "name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": null,
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": true,
+      "access_keys": [
+        {
+          "access_key_id": "1UEKCR****",
+          "status": "active",
+          "created_at": "2019-04-01T15:29:04.986228Z",
+          "age_days": 2285,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        },
+        {
+          "access_key_id": "F4QI79****",
+          "status": "active",
+          "created_at": "2019-05-14T14:19:05.421316Z",
+          "age_days": 2242,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 10,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Access key sin rotar por 2285 días",
+          "Access key creada pero nunca utilizada",
+          "Access key sin rotar por 2242 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Eliminar access keys no utilizadas",
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "CRITICAL"
+      }
+    },
+    {
+      "id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "name": "VeeamBackup_Huawei",
+      "enabled": true,
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Usuario para conexion consola Veeam con repositorio OBS",
+      "password_expires_at": null,
+      "last_login_time": null,
+      "created_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "mfa_enabled": false,
+      "access_keys": [
+        {
+          "access_key_id": "PBQPK4****",
+          "status": "active",
+          "created_at": "2023-08-25T14:18:53.045000Z",
+          "age_days": 678,
+          "description": "",
+          "last_used": null,
+          "last_used_days_ago": null,
+          "last_used_service": null,
+          "ever_used": false
+        }
+      ],
+      "has_programmatic_access": true,
+      "security_issues": {
+        "risk_score": 9,
+        "issues": [
+          "Usuario nunca ha iniciado sesión",
+          "Sin MFA habilitado",
+          "Access key sin rotar por 678 días",
+          "Access key creada pero nunca utilizada"
+        ],
+        "recommendations": [
+          "Habilitar MFA inmediatamente",
+          "Eliminar access keys no utilizadas"
+        ],
+        "risk_level": "HIGH"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "b777482458f54983916a2a3ff3aa40b0",
+      "name": "Iplan",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Usuarios para realizar assessment",
+      "create_time": 1748533008864
+    },
+    {
+      "id": "e00dd7600d014367af0858c8ffef5081",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS",
+      "create_time": 1743089378106
+    },
+    {
+      "id": "8d3a120cb9ca4350abaf6513a526df09",
+      "name": "Cloud-Eye-Lectura",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Acceso de lectura a la consola Cloud Eye",
+      "create_time": 1722865248998
+    },
+    {
+      "id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+      "name": "power_user",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "powerGroupDes",
+      "create_time": 1552043962922
+    },
+    {
+      "id": "be61248cddbf441e9446e8bc5a2bf26f",
+      "name": "admin",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "adminGroupDes",
+      "create_time": 1552043962867
+    }
+  ],
+  "roles": [
+    {
+      "id": "44189681f4b44de7b5ac4035cfe39b7d",
+      "name": "policy6nylu4",
+      "type": "custom",
+      "description": "",
+      "created_at": null
+    },
+    {
+      "id": "62cf836d73b64e79862d21eb4ff430a8",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "type": "custom",
+      "description": "Permisos para listar, visualizar, iniciar, reiniciar, detener y acceso remoto en los ECS",
+      "created_at": null
+    },
+    {
+      "id": "fa03e33be7094553a66d0911d5faafa0",
+      "name": "CloudEye-Lectura",
+      "type": "custom",
+      "description": "",
+      "created_at": null
+    }
+  ],
+  "policies": [],
+  "access_keys": [
+    {
+      "access_key_id": "HPUATAOSB6KOM8ET3RJR",
+      "user_id": "cd50c85ce40f42edb375edba41193bb0",
+      "user_name": "dcabral",
+      "status": "active",
+      "created_at": "2025-06-25T19:16:02.901000Z",
+      "age_days": 8,
+      "last_used": null
+    },
+    {
+      "access_key_id": "DTTDJ53RF38UNUVFZTUY",
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "status": "active",
+      "created_at": "2023-05-31T18:21:10.744000Z",
+      "age_days": 764,
+      "last_used": null
+    },
+    {
+      "access_key_id": "6OSBSOSYOO4KXDP8X8TY",
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "status": "active",
+      "created_at": "2020-04-02T11:50:42.992264Z",
+      "age_days": 1918,
+      "last_used": null
+    },
+    {
+      "access_key_id": "9ZZKXLTWBONX8R9AEVG6",
+      "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "user_name": "emilianosilva",
+      "status": "active",
+      "created_at": "2019-06-14T17:39:49.805492Z",
+      "age_days": 2211,
+      "last_used": null
+    },
+    {
+      "access_key_id": "Y5TODMRNO9WVPHBTKOLA",
+      "user_id": "0e3c90608486441a87cfd710156eab73",
+      "user_name": "Nicolas Villafane",
+      "status": "active",
+      "created_at": "2022-03-07T14:11:18.493000Z",
+      "age_days": 1214,
+      "last_used": null
+    },
+    {
+      "access_key_id": "K5SVL53RUWR6NGZUTFZ8",
+      "user_id": "220c0d60592f4f24bf773beee71891ad",
+      "user_name": "prueba.iis",
+      "status": "active",
+      "created_at": "2024-08-05T13:51:57.465000Z",
+      "age_days": 332,
+      "last_used": null
+    },
+    {
+      "access_key_id": "1UEKCRVMLT4E1NIXXEHI",
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "status": "active",
+      "created_at": "2019-04-01T15:29:04.986228Z",
+      "age_days": 2285,
+      "last_used": null
+    },
+    {
+      "access_key_id": "F4QI79CBBNLUS3ZRUHLF",
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "status": "active",
+      "created_at": "2019-05-14T14:19:05.421316Z",
+      "age_days": 2242,
+      "last_used": null
+    },
+    {
+      "access_key_id": "PBQPK4AZ7CYQRD5HO0FM",
+      "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "user_name": "VeeamBackup_Huawei",
+      "status": "active",
+      "created_at": "2023-08-25T14:18:53.045000Z",
+      "age_days": 678,
+      "last_used": null
+    }
+  ],
+  "mfa_status": {
+    "total_users": 16,
+    "mfa_enabled": 3,
+    "mfa_disabled": 13,
+    "users_without_mfa": [
+      {
+        "user_id": "7621b455711f48daa3d404bba883f1fe",
+        "user_name": "Christian Vazquez"
+      },
+      {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud"
+      },
+      {
+        "user_id": "cd50c85ce40f42edb375edba41193bb0",
+        "user_name": "dcabral"
+      },
+      {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone"
+      },
+      {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon"
+      },
+      {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo"
+      },
+      {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano"
+      },
+      {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta"
+      },
+      {
+        "user_id": "220c0d60592f4f24bf773beee71891ad",
+        "user_name": "prueba.iis"
+      },
+      {
+        "user_id": "922791f34b45408cbea7f83c440a2293",
+        "user_name": "Ricardo Huberman"
+      },
+      {
+        "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+        "user_name": "rsuarez"
+      },
+      {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni"
+      },
+      {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei"
+      }
+    ],
+    "mfa_devices": [
+      {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "device_serial": "iam:77aed4ae1ffc40e4a7ae7e98604569a7:mfa/ab66dc6fc98745bfa87f539d8e64aca2"
+      },
+      {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "device_serial": "iam:77aed4ae1ffc40e4a7ae7e98604569a7:mfa/0e3c90608486441a87cfd710156eab73"
+      },
+      {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "device_serial": "iam/mfa/6b31f9905d88499985c003f0db251a05"
+      }
+    ]
+  },
+  "password_policy": {
+    "minimum_length": 6,
+    "require_uppercase": false,
+    "require_lowercase": false,
+    "require_numbers": false,
+    "require_special": false,
+    "password_validity_period": 0,
+    "password_char_combination": 2,
+    "password_not_username_or_invert": true
+  },
+  "findings": [
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Christian Vazquez",
+      "details": {
+        "user_id": "7621b455711f48daa3d404bba883f1fe",
+        "user_name": "Christian Vazquez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:39.570449"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:40.388991"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: dcabral",
+      "details": {
+        "user_id": "cd50c85ce40f42edb375edba41193bb0",
+        "user_name": "dcabral",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:41.094237"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:41.915229"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:43.566533"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:44.264125"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:44.970965"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:45.672819"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: prueba.iis",
+      "details": {
+        "user_id": "220c0d60592f4f24bf773beee71891ad",
+        "user_name": "prueba.iis",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:47.067143"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Ricardo Huberman",
+      "details": {
+        "user_id": "922791f34b45408cbea7f83c440a2293",
+        "user_name": "Ricardo Huberman",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:47.773670"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: rsuarez",
+      "details": {
+        "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+        "user_name": "rsuarez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:48.508101"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:49.210899"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:50.598992"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Christian Vazquez",
+      "details": {
+        "user_id": "7621b455711f48daa3d404bba883f1fe",
+        "user_name": "Christian Vazquez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:52.892861"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:53.592031"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: dcabral",
+      "details": {
+        "user_id": "cd50c85ce40f42edb375edba41193bb0",
+        "user_name": "dcabral",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:54.289453"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:54.998771"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:56.441699"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:57.140308"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:57.842621"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:39:58.555184"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: prueba.iis",
+      "details": {
+        "user_id": "220c0d60592f4f24bf773beee71891ad",
+        "user_name": "prueba.iis",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:39:59.968817"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Ricardo Huberman",
+      "details": {
+        "user_id": "922791f34b45408cbea7f83c440a2293",
+        "user_name": "Ricardo Huberman",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:00.669209"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: rsuarez",
+      "details": {
+        "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+        "user_name": "rsuarez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:01.369206"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:02.104328"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:40:03.509286"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 764 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "DTTDJ53RF3****",
+        "age_days": 764
+      },
+      "timestamp": "2025-07-04T04:40:05.017773"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1918 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "6OSBSOSYOO****",
+        "age_days": 1918
+      },
+      "timestamp": "2025-07-04T04:40:05.018159"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2211 días",
+      "details": {
+        "user_name": "emilianosilva",
+        "access_key_id": "9ZZKXLTWBO****",
+        "age_days": 2211
+      },
+      "timestamp": "2025-07-04T04:40:05.362696"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1214 días",
+      "details": {
+        "user_name": "Nicolas Villafane",
+        "access_key_id": "Y5TODMRNO9****",
+        "age_days": 1214
+      },
+      "timestamp": "2025-07-04T04:40:07.109701"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 332 días",
+      "details": {
+        "user_name": "prueba.iis",
+        "access_key_id": "K5SVL53RUW****",
+        "age_days": 332
+      },
+      "timestamp": "2025-07-04T04:40:07.457039"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2285 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "1UEKCRVMLT****",
+        "age_days": 2285
+      },
+      "timestamp": "2025-07-04T04:40:08.966438"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2242 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "F4QI79CBBN****",
+        "age_days": 2242
+      },
+      "timestamp": "2025-07-04T04:40:08.966767"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 678 días",
+      "details": {
+        "user_name": "VeeamBackup_Huawei",
+        "access_key_id": "PBQPK4AZ7C****",
+        "age_days": 678
+      },
+      "timestamp": "2025-07-04T04:40:09.311460"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Christian Vazquez",
+      "details": {
+        "user_id": "7621b455711f48daa3d404bba883f1fe",
+        "user_name": "Christian Vazquez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:10.311603"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:11.004402"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: dcabral",
+      "details": {
+        "user_id": "cd50c85ce40f42edb375edba41193bb0",
+        "user_name": "dcabral",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:40:11.811256"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:40:12.639116"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:14.130371"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:14.843282"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:15.545434"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:16.382638"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: prueba.iis",
+      "details": {
+        "user_id": "220c0d60592f4f24bf773beee71891ad",
+        "user_name": "prueba.iis",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:40:17.786147"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: Ricardo Huberman",
+      "details": {
+        "user_id": "922791f34b45408cbea7f83c440a2293",
+        "user_name": "Ricardo Huberman",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:18.491906"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: rsuarez",
+      "details": {
+        "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+        "user_name": "rsuarez",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:19.192709"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "has_access_keys": false
+      },
+      "timestamp": "2025-07-04T04:40:19.888023"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "HIGH",
+      "message": "Usuario sin MFA habilitado: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "has_access_keys": true
+      },
+      "timestamp": "2025-07-04T04:40:21.278366"
+    },
+    {
+      "id": "IAM-005",
+      "severity": "MEDIUM",
+      "message": "Política de contraseñas débil: longitud mínima 6",
+      "details": {
+        "current_length": 6,
+        "required_length": 12
+      },
+      "timestamp": "2025-07-04T04:40:27.279487"
+    }
+  ],
+  "statistics": {
+    "total_users": 16,
+    "total_groups": 5,
+    "total_policies": 0,
+    "total_access_keys": 9,
+    "users_without_mfa": 13,
+    "mfa_compliance_rate": 18.75,
+    "old_access_keys": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 47,
+      "MEDIUM": 1,
+      "LOW": 0
+    },
+    "user_access_summary": {
+      "console_only": 0,
+      "programmatic_only": 7,
+      "both_access": 0,
+      "no_access": 9
+    },
+    "user_activity": {
+      "never_logged_in": 0,
+      "inactive_90_days": 0,
+      "inactive_30_days": 0,
+      "active_users": 16
+    },
+    "password_security": {
+      "passwords_older_90_days": 0,
+      "passwords_older_180_days": 0,
+      "no_password_expiry": 16
+    },
+    "access_key_security": {
+      "active_keys": 9,
+      "inactive_keys": 0,
+      "never_used_keys": 0,
+      "keys_unused_90_days": 0,
+      "keys_older_90_days": 0,
+      "keys_older_180_days": 8
+    },
+    "privileged_users": {
+      "total_admins": 0,
+      "admins_without_mfa": 0,
+      "admins_inactive": 0
+    },
+    "risk_summary": {
+      "critical_risks": 0,
+      "high_priority_issues": 8,
+      "compliance_score": 35.0
+    }
+  },
+  "timestamp": "2025-07-04T04:40:27.279689"
+}
