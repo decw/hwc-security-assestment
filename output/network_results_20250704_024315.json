@@ -1,0 +1,58 @@
+{
+  "vpcs": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "subnets": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "security_groups": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "network_acls": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "elastic_ips": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "nat_gateways": {},
+  "vpn_connections": {},
+  "exposed_resources": [],
+  "findings": [],
+  "statistics": {
+    "total_vpcs": 0,
+    "total_subnets": 0,
+    "total_security_groups": 0,
+    "total_elastic_ips": 0,
+    "exposed_resources": 0,
+    "critical_ports_exposed": 0,
+    "unused_elastic_ips": 0,
+    "overly_permissive_rules": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "timestamp": "2025-07-04T02:43:35.308874"
+}

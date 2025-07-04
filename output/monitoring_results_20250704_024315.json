@@ -1,0 +1,204 @@
+{
+  "cloud_eye": {
+    "LA-Santiago": {
+      "metrics": [],
+      "monitored_resources": [],
+      "custom_metrics": []
+    },
+    "LA-Buenos Aires1": {
+      "metrics": [],
+      "monitored_resources": [],
+      "custom_metrics": []
+    },
+    "CN-Hong Kong": {
+      "metrics": [],
+      "monitored_resources": [],
+      "custom_metrics": []
+    },
+    "AP-Bangkok": {
+      "metrics": [],
+      "monitored_resources": [],
+      "custom_metrics": []
+    },
+    "AP-Singapore": {
+      "metrics": [],
+      "monitored_resources": [],
+      "custom_metrics": []
+    }
+  },
+  "cloud_trace": {
+    "trackers": [],
+    "retention_days": 7,
+    "obs_bucket": null,
+    "encryption": false,
+    "key_events_enabled": false
+  },
+  "log_tank": {
+    "LA-Santiago": {
+      "log_groups": [],
+      "log_streams": [],
+      "log_transfers": []
+    },
+    "LA-Buenos Aires1": {
+      "log_groups": [],
+      "log_streams": [],
+      "log_transfers": []
+    },
+    "CN-Hong Kong": {
+      "log_groups": [],
+      "log_streams": [],
+      "log_transfers": []
+    },
+    "AP-Bangkok": {
+      "log_groups": [],
+      "log_streams": [],
+      "log_transfers": []
+    },
+    "AP-Singapore": {
+      "log_groups": [],
+      "log_streams": [],
+      "log_transfers": []
+    }
+  },
+  "alarms": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "metrics_coverage": {
+    "LA-Santiago": {
+      "ecs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "evs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "rds": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "elb": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      }
+    },
+    "LA-Buenos Aires1": {
+      "ecs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "evs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "rds": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "elb": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      }
+    },
+    "CN-Hong Kong": {
+      "ecs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "evs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "rds": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "elb": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      }
+    },
+    "AP-Bangkok": {
+      "ecs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "evs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "rds": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "elb": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      }
+    },
+    "AP-Singapore": {
+      "ecs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "evs": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "rds": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      },
+      "elb": {
+        "total": 0,
+        "monitored": 0,
+        "percentage": 0
+      }
+    }
+  },
+  "log_retention": {},
+  "audit_trails": [],
+  "findings": [],
+  "statistics": {
+    "total_alarms": 0,
+    "total_log_groups": 0,
+    "cts_enabled": false,
+    "average_log_retention": 0,
+    "metrics_coverage": {
+      "high": 0,
+      "medium": 0,
+      "low": 20
+    },
+    "critical_alarms": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "timestamp": "2025-07-04T02:43:35.318989"
+}

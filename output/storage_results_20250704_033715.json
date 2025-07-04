@@ -1,0 +1,57 @@
+{
+  "evs_volumes": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "obs_buckets": [],
+  "backups": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "sfs_shares": {
+    "LA-Santiago": [],
+    "LA-Buenos Aires1": [],
+    "CN-Hong Kong": [],
+    "AP-Bangkok": [],
+    "AP-Singapore": []
+  },
+  "encryption_status": {
+    "evs": {
+      "encrypted": 0,
+      "unencrypted": 0
+    },
+    "obs": {
+      "encrypted": 0,
+      "unencrypted": 0
+    }
+  },
+  "findings": [],
+  "statistics": {
+    "total_evs_volumes": 0,
+    "total_obs_buckets": 0,
+    "total_backups": 0,
+    "encryption_compliance": {
+      "evs": 0,
+      "obs": 0,
+      "overall": 0
+    },
+    "unattached_volumes": 0,
+    "public_buckets": 0,
+    "buckets_without_versioning": 0,
+    "resources_without_classification": 0,
+    "total_storage_gb": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "timestamp": "2025-07-04T03:38:15.655091"
+}

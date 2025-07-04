@@ -7,9 +7,12 @@ Configuración central para Huawei Cloud Security Assessment
 import os
 from datetime import datetime
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    # dotenv es opcional; continuar si no está disponible
+    pass
 
 # Credenciales - NUNCA hardcodear valores reales
 HUAWEI_ACCESS_KEY = os.getenv('HUAWEI_ACCESS_KEY')

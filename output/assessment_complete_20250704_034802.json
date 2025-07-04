@@ -1,0 +1,1382 @@
+{
+  "client": "Camuzzi Gas Pampeana S.A.",
+  "assessment_date": "2025-07-04T03:48:11.746025",
+  "version": "1.0",
+  "modules": {
+    "iam": {
+      "users": [
+        {
+          "id": "7621b455711f48daa3d404bba883f1fe",
+          "name": "Christian Vazquez",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "2d5502377631460c9601244670a8aa1c",
+          "name": "ConectorCloud",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Conector nube movistar",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "cd50c85ce40f42edb375edba41193bb0",
+          "name": "dcabral",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Consultor Iplan",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "08450e873d00f5051fefc01364c4b18b",
+          "name": "diegogarone",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Diego Garone",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "ab66dc6fc98745bfa87f539d8e64aca2",
+          "name": "emilianosilva",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "e84771c7285a47939e6895479962ddd0",
+          "name": "Florencia Pavon",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Seguridad Informatica",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "5ade0315e9ba4045b063df938541c286",
+          "name": "globo",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "0563f1d7034343cfa595eeb58b633b99",
+          "name": "Julian Vazzano",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "7b342f3b84144b048b37ade414729bf7",
+          "name": "Nicolas Alcorta",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Seguridad Informatica",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "0e3c90608486441a87cfd710156eab73",
+          "name": "Nicolas Villafane",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Nicolas Villafañe",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "220c0d60592f4f24bf773beee71891ad",
+          "name": "prueba.iis",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "922791f34b45408cbea7f83c440a2293",
+          "name": "Ricardo Huberman",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "4348314e44b4494ab54f1ce26e1731aa",
+          "name": "rsuarez",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Consultor Iplan",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "8cb2fc59f63a4af3ab47710e48b5b551",
+          "name": "SManoni",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Seguridad Informatica",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "6b31f9905d88499985c003f0db251a05",
+          "name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": null,
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        },
+        {
+          "id": "affb4d6b5a13438a869b0d5ab6df958d",
+          "name": "VeeamBackup_Huawei",
+          "enabled": true,
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Usuario para conexion consola Veeam con repositorio OBS",
+          "password_expires_at": null,
+          "last_login": null,
+          "created_at": null
+        }
+      ],
+      "groups": [
+        {
+          "id": "b777482458f54983916a2a3ff3aa40b0",
+          "name": "Iplan",
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Usuarios para realizar assessment",
+          "create_time": 1748533008864
+        },
+        {
+          "id": "e00dd7600d014367af0858c8ffef5081",
+          "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS",
+          "create_time": 1743089378106
+        },
+        {
+          "id": "8d3a120cb9ca4350abaf6513a526df09",
+          "name": "Cloud-Eye-Lectura",
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "Acceso de lectura a la consola Cloud Eye",
+          "create_time": 1722865248998
+        },
+        {
+          "id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+          "name": "power_user",
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "powerGroupDes",
+          "create_time": 1552043962922
+        },
+        {
+          "id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "name": "admin",
+          "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+          "description": "adminGroupDes",
+          "create_time": 1552043962867
+        }
+      ],
+      "roles": [],
+      "policies": [],
+      "access_keys": [
+        {
+          "access_key_id": "HPUATAOSB6KOM8ET3RJR",
+          "user_id": "cd50c85ce40f42edb375edba41193bb0",
+          "user_name": "dcabral",
+          "status": "active",
+          "created_at": "2025-06-25T19:16:02.901000Z",
+          "age_days": 8,
+          "last_used": null
+        },
+        {
+          "access_key_id": "DTTDJ53RF38UNUVFZTUY",
+          "user_id": "08450e873d00f5051fefc01364c4b18b",
+          "user_name": "diegogarone",
+          "status": "active",
+          "created_at": "2023-05-31T18:21:10.744000Z",
+          "age_days": 764,
+          "last_used": null
+        },
+        {
+          "access_key_id": "6OSBSOSYOO4KXDP8X8TY",
+          "user_id": "08450e873d00f5051fefc01364c4b18b",
+          "user_name": "diegogarone",
+          "status": "active",
+          "created_at": "2020-04-02T11:50:42.992264Z",
+          "age_days": 1918,
+          "last_used": null
+        },
+        {
+          "access_key_id": "9ZZKXLTWBONX8R9AEVG6",
+          "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+          "user_name": "emilianosilva",
+          "status": "active",
+          "created_at": "2019-06-14T17:39:49.805492Z",
+          "age_days": 2211,
+          "last_used": null
+        },
+        {
+          "access_key_id": "Y5TODMRNO9WVPHBTKOLA",
+          "user_id": "0e3c90608486441a87cfd710156eab73",
+          "user_name": "Nicolas Villafane",
+          "status": "active",
+          "created_at": "2022-03-07T14:11:18.493000Z",
+          "age_days": 1214,
+          "last_used": null
+        },
+        {
+          "access_key_id": "K5SVL53RUWR6NGZUTFZ8",
+          "user_id": "220c0d60592f4f24bf773beee71891ad",
+          "user_name": "prueba.iis",
+          "status": "active",
+          "created_at": "2024-08-05T13:51:57.465000Z",
+          "age_days": 332,
+          "last_used": null
+        },
+        {
+          "access_key_id": "1UEKCRVMLT4E1NIXXEHI",
+          "user_id": "6b31f9905d88499985c003f0db251a05",
+          "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+          "status": "active",
+          "created_at": "2019-04-01T15:29:04.986228Z",
+          "age_days": 2285,
+          "last_used": null
+        },
+        {
+          "access_key_id": "F4QI79CBBNLUS3ZRUHLF",
+          "user_id": "6b31f9905d88499985c003f0db251a05",
+          "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+          "status": "active",
+          "created_at": "2019-05-14T14:19:05.421316Z",
+          "age_days": 2242,
+          "last_used": null
+        },
+        {
+          "access_key_id": "PBQPK4AZ7CYQRD5HO0FM",
+          "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+          "user_name": "VeeamBackup_Huawei",
+          "status": "active",
+          "created_at": "2023-08-25T14:18:53.045000Z",
+          "age_days": 678,
+          "last_used": null
+        }
+      ],
+      "mfa_status": {
+        "total_users": 16,
+        "mfa_enabled": 3,
+        "mfa_disabled": 13,
+        "users_without_mfa": [
+          {
+            "user_id": "7621b455711f48daa3d404bba883f1fe",
+            "user_name": "Christian Vazquez"
+          },
+          {
+            "user_id": "2d5502377631460c9601244670a8aa1c",
+            "user_name": "ConectorCloud"
+          },
+          {
+            "user_id": "cd50c85ce40f42edb375edba41193bb0",
+            "user_name": "dcabral"
+          },
+          {
+            "user_id": "08450e873d00f5051fefc01364c4b18b",
+            "user_name": "diegogarone"
+          },
+          {
+            "user_id": "e84771c7285a47939e6895479962ddd0",
+            "user_name": "Florencia Pavon"
+          },
+          {
+            "user_id": "5ade0315e9ba4045b063df938541c286",
+            "user_name": "globo"
+          },
+          {
+            "user_id": "0563f1d7034343cfa595eeb58b633b99",
+            "user_name": "Julian Vazzano"
+          },
+          {
+            "user_id": "7b342f3b84144b048b37ade414729bf7",
+            "user_name": "Nicolas Alcorta"
+          },
+          {
+            "user_id": "220c0d60592f4f24bf773beee71891ad",
+            "user_name": "prueba.iis"
+          },
+          {
+            "user_id": "922791f34b45408cbea7f83c440a2293",
+            "user_name": "Ricardo Huberman"
+          },
+          {
+            "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+            "user_name": "rsuarez"
+          },
+          {
+            "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+            "user_name": "SManoni"
+          },
+          {
+            "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+            "user_name": "VeeamBackup_Huawei"
+          }
+        ],
+        "mfa_devices": [
+          {
+            "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+            "user_name": "emilianosilva",
+            "device_serial": "iam:77aed4ae1ffc40e4a7ae7e98604569a7:mfa/ab66dc6fc98745bfa87f539d8e64aca2"
+          },
+          {
+            "user_id": "0e3c90608486441a87cfd710156eab73",
+            "user_name": "Nicolas Villafane",
+            "device_serial": "iam:77aed4ae1ffc40e4a7ae7e98604569a7:mfa/0e3c90608486441a87cfd710156eab73"
+          },
+          {
+            "user_id": "6b31f9905d88499985c003f0db251a05",
+            "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "device_serial": "iam/mfa/6b31f9905d88499985c003f0db251a05"
+          }
+        ]
+      },
+      "password_policy": {
+        "minimum_length": 6,
+        "require_uppercase": false,
+        "require_lowercase": false,
+        "require_numbers": false,
+        "require_special": false,
+        "password_validity_period": 0,
+        "password_char_combination": 2,
+        "password_not_username_or_invert": true
+      },
+      "findings": [
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 764 días",
+          "details": {
+            "user_name": "diegogarone",
+            "access_key_id": "DTTDJ53RF3****",
+            "age_days": 764
+          },
+          "timestamp": "2025-07-04T03:48:16.112207",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 1918 días",
+          "details": {
+            "user_name": "diegogarone",
+            "access_key_id": "6OSBSOSYOO****",
+            "age_days": 1918
+          },
+          "timestamp": "2025-07-04T03:48:16.112484",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 2211 días",
+          "details": {
+            "user_name": "emilianosilva",
+            "access_key_id": "9ZZKXLTWBO****",
+            "age_days": 2211
+          },
+          "timestamp": "2025-07-04T03:48:16.572210",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 1214 días",
+          "details": {
+            "user_name": "Nicolas Villafane",
+            "access_key_id": "Y5TODMRNO9****",
+            "age_days": 1214
+          },
+          "timestamp": "2025-07-04T03:48:18.443676",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 332 días",
+          "details": {
+            "user_name": "prueba.iis",
+            "access_key_id": "K5SVL53RUW****",
+            "age_days": 332
+          },
+          "timestamp": "2025-07-04T03:48:18.793137",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 2285 días",
+          "details": {
+            "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "access_key_id": "1UEKCRVMLT****",
+            "age_days": 2285
+          },
+          "timestamp": "2025-07-04T03:48:20.183391",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 2242 días",
+          "details": {
+            "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "access_key_id": "F4QI79CBBN****",
+            "age_days": 2242
+          },
+          "timestamp": "2025-07-04T03:48:20.183749",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-004",
+          "severity": "HIGH",
+          "message": "Access Key sin rotación por 678 días",
+          "details": {
+            "user_name": "VeeamBackup_Huawei",
+            "access_key_id": "PBQPK4AZ7C****",
+            "age_days": 678
+          },
+          "timestamp": "2025-07-04T03:48:20.526697",
+          "module": "iam"
+        },
+        {
+          "id": "IAM-005",
+          "severity": "MEDIUM",
+          "message": "Política de contraseñas débil: longitud mínima 6",
+          "details": {
+            "current_length": 6,
+            "required_length": 12
+          },
+          "timestamp": "2025-07-04T03:48:26.819669",
+          "module": "iam"
+        }
+      ],
+      "statistics": {
+        "total_users": 16,
+        "total_groups": 5,
+        "total_policies": 0,
+        "total_access_keys": 9,
+        "users_without_mfa": 13,
+        "mfa_compliance_rate": 18.75,
+        "old_access_keys": 8,
+        "findings_by_severity": {
+          "CRITICAL": 0,
+          "HIGH": 8,
+          "MEDIUM": 1,
+          "LOW": 0
+        }
+      },
+      "timestamp": "2025-07-04T03:48:26.819870"
+    },
+    "network": {
+      "vpcs": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "subnets": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "security_groups": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "network_acls": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "elastic_ips": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "nat_gateways": {},
+      "vpn_connections": {},
+      "exposed_resources": [],
+      "findings": [],
+      "statistics": {
+        "total_vpcs": 0,
+        "total_subnets": 0,
+        "total_security_groups": 0,
+        "total_elastic_ips": 0,
+        "exposed_resources": 0,
+        "critical_ports_exposed": 0,
+        "unused_elastic_ips": 0,
+        "overly_permissive_rules": 0,
+        "findings_by_severity": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "timestamp": "2025-07-04T03:48:26.821394"
+    },
+    "storage": {
+      "evs_volumes": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "obs_buckets": [],
+      "backups": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "sfs_shares": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "encryption_status": {
+        "evs": {
+          "encrypted": 0,
+          "unencrypted": 0
+        },
+        "obs": {
+          "encrypted": 0,
+          "unencrypted": 0
+        }
+      },
+      "findings": [],
+      "statistics": {
+        "total_evs_volumes": 0,
+        "total_obs_buckets": 0,
+        "total_backups": 0,
+        "encryption_compliance": {
+          "evs": 0,
+          "obs": 0,
+          "overall": 0
+        },
+        "unattached_volumes": 0,
+        "public_buckets": 0,
+        "buckets_without_versioning": 0,
+        "resources_without_classification": 0,
+        "total_storage_gb": 0,
+        "findings_by_severity": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "timestamp": "2025-07-04T03:48:26.833422"
+    },
+    "monitoring": {
+      "cloud_eye": {
+        "LA-Santiago": {
+          "metrics": [],
+          "monitored_resources": [],
+          "custom_metrics": []
+        },
+        "LA-Buenos Aires1": {
+          "metrics": [],
+          "monitored_resources": [],
+          "custom_metrics": []
+        },
+        "CN-Hong Kong": {
+          "metrics": [],
+          "monitored_resources": [],
+          "custom_metrics": []
+        },
+        "AP-Bangkok": {
+          "metrics": [],
+          "monitored_resources": [],
+          "custom_metrics": []
+        },
+        "AP-Singapore": {
+          "metrics": [],
+          "monitored_resources": [],
+          "custom_metrics": []
+        }
+      },
+      "cloud_trace": {
+        "trackers": [],
+        "retention_days": 7,
+        "obs_bucket": null,
+        "encryption": false,
+        "key_events_enabled": false
+      },
+      "log_tank": {
+        "LA-Santiago": {
+          "log_groups": [],
+          "log_streams": [],
+          "log_transfers": []
+        },
+        "LA-Buenos Aires1": {
+          "log_groups": [],
+          "log_streams": [],
+          "log_transfers": []
+        },
+        "CN-Hong Kong": {
+          "log_groups": [],
+          "log_streams": [],
+          "log_transfers": []
+        },
+        "AP-Bangkok": {
+          "log_groups": [],
+          "log_streams": [],
+          "log_transfers": []
+        },
+        "AP-Singapore": {
+          "log_groups": [],
+          "log_streams": [],
+          "log_transfers": []
+        }
+      },
+      "alarms": {
+        "LA-Santiago": [],
+        "LA-Buenos Aires1": [],
+        "CN-Hong Kong": [],
+        "AP-Bangkok": [],
+        "AP-Singapore": []
+      },
+      "metrics_coverage": {
+        "LA-Santiago": {
+          "ecs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "evs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "rds": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "elb": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          }
+        },
+        "LA-Buenos Aires1": {
+          "ecs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "evs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "rds": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "elb": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          }
+        },
+        "CN-Hong Kong": {
+          "ecs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "evs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "rds": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "elb": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          }
+        },
+        "AP-Bangkok": {
+          "ecs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "evs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "rds": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "elb": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          }
+        },
+        "AP-Singapore": {
+          "ecs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "evs": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "rds": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          },
+          "elb": {
+            "total": 0,
+            "monitored": 0,
+            "percentage": 0
+          }
+        }
+      },
+      "log_retention": {},
+      "audit_trails": [],
+      "findings": [],
+      "statistics": {
+        "total_alarms": 0,
+        "total_log_groups": 0,
+        "cts_enabled": false,
+        "average_log_retention": 0,
+        "metrics_coverage": {
+          "high": 0,
+          "medium": 0,
+          "low": 20
+        },
+        "critical_alarms": 0,
+        "findings_by_severity": {
+          "CRITICAL": 0,
+          "HIGH": 0,
+          "MEDIUM": 0,
+          "LOW": 0
+        }
+      },
+      "timestamp": "2025-07-04T03:48:26.836988"
+    },
+    "compliance": {
+      "frameworks": {
+        "CIS_Huawei_Cloud_1.1": {
+          "version": "1.1",
+          "sections": {
+            "1_iam": {
+              "title": "Identity and Access Management",
+              "controls": [
+                {
+                  "control_id": "1.1",
+                  "title": "Avoid the use of the root account",
+                  "status": "PASS",
+                  "evidence": "No recent root account activity detected",
+                  "recommendation": "Continue avoiding root account usage"
+                },
+                {
+                  "control_id": "1.2",
+                  "title": "Ensure MFA is enabled for all IAM users with console password",
+                  "status": "PASS",
+                  "evidence": "0 admin users without MFA",
+                  "recommendation": "Enable MFA for all privileged users immediately"
+                },
+                {
+                  "control_id": "1.3",
+                  "title": "Ensure credentials unused for 90 days or greater are disabled",
+                  "status": "FAIL",
+                  "evidence": "8 keys older than 90 days",
+                  "recommendation": "Implement automatic key rotation policy"
+                },
+                {
+                  "control_id": "1.4",
+                  "title": "Ensure IAM password policy requires strong passwords",
+                  "status": "FAIL",
+                  "evidence": "3 policy issues found",
+                  "recommendation": "Strengthen password policy according to best practices"
+                }
+              ]
+            },
+            "2_logging": {
+              "title": "Logging",
+              "controls": [
+                {
+                  "control_id": "2.1",
+                  "title": "Ensure CloudTrail is enabled",
+                  "status": "FAIL",
+                  "evidence": "0 trackers configured",
+                  "recommendation": "Enable CloudTrail for all regions"
+                },
+                {
+                  "control_id": "2.2",
+                  "title": "Ensure CloudTrail log file validation is enabled",
+                  "status": "PASS",
+                  "evidence": "0/0 trackers encrypted",
+                  "recommendation": "Enable encryption for all audit logs"
+                }
+              ]
+            },
+            "3_networking": {
+              "title": "Networking",
+              "controls": [
+                {
+                  "control_id": "3.1",
+                  "title": "Ensure no security groups allow ingress from 0.0.0.0/0",
+                  "status": "PASS",
+                  "evidence": "0 overly permissive rules found",
+                  "recommendation": "Restrict security group rules to specific IPs"
+                },
+                {
+                  "control_id": "3.2",
+                  "title": "Ensure no security groups allow ingress to admin ports",
+                  "status": "PASS",
+                  "evidence": "0 admin ports exposed",
+                  "recommendation": "Use bastion hosts for administrative access"
+                }
+              ]
+            },
+            "4_storage": {
+              "title": "Storage",
+              "controls": [
+                {
+                  "control_id": "4.1",
+                  "title": "Ensure data at rest is encrypted",
+                  "status": "PASS",
+                  "evidence": "0 unencrypted storage resources",
+                  "recommendation": "Enable encryption for all storage resources"
+                },
+                {
+                  "control_id": "4.2",
+                  "title": "Ensure S3 bucket access is not public",
+                  "status": "PASS",
+                  "evidence": "0 public buckets found",
+                  "recommendation": "Make all buckets private unless explicitly required"
+                }
+              ]
+            }
+          },
+          "total_controls": 10,
+          "passed_controls": 7,
+          "failed_controls": 3,
+          "not_applicable": 0,
+          "compliance_percentage": 70.0
+        },
+        "ISO_27001_2022": {
+          "version": "2022",
+          "domains": {
+            "A5": {
+              "title": "Organizational controls",
+              "controls": []
+            },
+            "A8": {
+              "title": "Asset management",
+              "controls": [
+                {
+                  "id": "A.8.1",
+                  "title": "Inventory of assets",
+                  "status": "IMPLEMENTED",
+                  "evidence": "Inventario de recursos documentado"
+                },
+                {
+                  "id": "A.8.2",
+                  "title": "Information classification",
+                  "status": "NOT_APPLICABLE",
+                  "evidence": "Tags de clasificación en recursos"
+                }
+              ]
+            },
+            "A9": {
+              "title": "Access control",
+              "controls": []
+            },
+            "A10": {
+              "title": "Cryptography",
+              "controls": []
+            },
+            "A12": {
+              "title": "Operations security",
+              "controls": []
+            }
+          },
+          "total_controls": 93,
+          "implemented": 1,
+          "partial": 0,
+          "not_implemented": 1,
+          "compliance_percentage": 50.0
+        },
+        "NIST_CSF_2.0": {
+          "version": "2.0",
+          "functions": {
+            "identify": {
+              "categories": [
+                {
+                  "id": "ID.AM",
+                  "name": "Asset Management",
+                  "score": 2.5,
+                  "subcategories": [
+                    {
+                      "id": "ID.AM-1",
+                      "desc": "Physical devices inventoried",
+                      "status": "N/A"
+                    },
+                    {
+                      "id": "ID.AM-2",
+                      "desc": "Software platforms inventoried",
+                      "status": "PASS"
+                    },
+                    {
+                      "id": "ID.AM-3",
+                      "desc": "Communication flows mapped",
+                      "status": "PARTIAL"
+                    },
+                    {
+                      "id": "ID.AM-5",
+                      "desc": "Resources prioritized",
+                      "status": "FAIL"
+                    }
+                  ]
+                }
+              ],
+              "maturity": 2.5
+            },
+            "protect": {
+              "categories": [
+                {
+                  "id": "PR.AC",
+                  "name": "Identity Management and Access Control",
+                  "score": 2.96875,
+                  "subcategories": [
+                    {
+                      "id": "PR.AC-1",
+                      "desc": "Identities and credentials managed",
+                      "status": "PARTIAL"
+                    },
+                    {
+                      "id": "PR.AC-4",
+                      "desc": "Access permissions managed",
+                      "status": "PARTIAL"
+                    },
+                    {
+                      "id": "PR.AC-7",
+                      "desc": "Users authenticated",
+                      "status": "PASS"
+                    }
+                  ]
+                },
+                {
+                  "id": "PR.DS",
+                  "name": "Data Security",
+                  "score": 2.5,
+                  "subcategories": [
+                    {
+                      "id": "PR.DS-1",
+                      "desc": "Data-at-rest protected",
+                      "status": "PARTIAL"
+                    },
+                    {
+                      "id": "PR.DS-2",
+                      "desc": "Data-in-transit protected",
+                      "status": "PASS"
+                    }
+                  ]
+                }
+              ],
+              "maturity": 2.73
+            },
+            "detect": {
+              "categories": [
+                {
+                  "id": "DE.CM",
+                  "name": "Security Continuous Monitoring",
+                  "score": 1.25
+                }
+              ],
+              "maturity": 1.25
+            },
+            "respond": {
+              "categories": [],
+              "maturity": 0
+            },
+            "recover": {
+              "categories": [],
+              "maturity": 0
+            }
+          },
+          "maturity_by_function": {
+            "identify": 2.5,
+            "protect": 2.73,
+            "detect": 1.25
+          },
+          "overall_maturity": 2.16
+        }
+      },
+      "overall_compliance": 60.0,
+      "findings": [
+        {
+          "id": "COMP-002",
+          "severity": "HIGH",
+          "message": "CIS 1.3 - 8 access keys sin rotar en 90+ días",
+          "details": {
+            "count": 8
+          },
+          "timestamp": "2025-07-04T03:48:26.840925",
+          "module": "compliance"
+        },
+        {
+          "id": "COMP-003",
+          "severity": "MEDIUM",
+          "message": "CIS 1.4 - Política de contraseñas débil",
+          "details": {
+            "issues": [
+              "Longitud mínima insuficiente",
+              "No requiere mayúsculas",
+              "No requiere números"
+            ]
+          },
+          "timestamp": "2025-07-04T03:48:26.841019",
+          "module": "compliance"
+        },
+        {
+          "id": "COMP-004",
+          "severity": "CRITICAL",
+          "message": "CIS 2.1 - Cloud Trace Service no configurado",
+          "details": {},
+          "timestamp": "2025-07-04T03:48:26.841100",
+          "module": "compliance"
+        }
+      ],
+      "recommendations": [
+        {
+          "priority": "CRITICAL",
+          "title": "Remediar: CIS 2.1 - Cloud Trace Service no configurado",
+          "description": "Finding COMP-004 requiere atención inmediata",
+          "effort": "Variable",
+          "impact": "Muy Alto"
+        },
+        {
+          "priority": "HIGH",
+          "title": "Implementar programa de seguridad formal",
+          "description": "Establecer políticas, procedimientos y responsabilidades",
+          "effort": "Alto",
+          "impact": "Transformacional"
+        },
+        {
+          "priority": "HIGH",
+          "title": "Automatizar controles de seguridad",
+          "description": "Implementar Infrastructure as Code y políticas automatizadas",
+          "effort": "Medio",
+          "impact": "Alto"
+        }
+      ],
+      "gap_analysis": {
+        "critical_gaps": [
+          {
+            "framework": "CIS",
+            "control": "2.1",
+            "title": "Ensure CloudTrail is enabled",
+            "recommendation": "Enable CloudTrail for all regions"
+          }
+        ],
+        "high_priority_gaps": [
+          {
+            "framework": "CIS",
+            "control": "1.3",
+            "title": "Ensure credentials unused for 90 days or greater are disabled",
+            "recommendation": "Implement automatic key rotation policy"
+          }
+        ],
+        "medium_priority_gaps": [
+          {
+            "framework": "CIS",
+            "control": "1.4",
+            "title": "Ensure IAM password policy requires strong passwords",
+            "recommendation": "Strengthen password policy according to best practices"
+          }
+        ],
+        "quick_wins": [
+          {
+            "action": "Habilitar MFA para todos los usuarios",
+            "impact": "Alto",
+            "effort": "Bajo",
+            "time": "1-2 días"
+          }
+        ]
+      },
+      "maturity_level": 2.5,
+      "timestamp": "2025-07-04T03:48:26.840817"
+    }
+  },
+  "consolidated_findings": [
+    {
+      "id": "COMP-004",
+      "severity": "CRITICAL",
+      "message": "CIS 2.1 - Cloud Trace Service no configurado",
+      "details": {},
+      "timestamp": "2025-07-04T03:48:26.841100",
+      "module": "compliance"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 764 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "DTTDJ53RF3****",
+        "age_days": 764
+      },
+      "timestamp": "2025-07-04T03:48:16.112207",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1918 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "6OSBSOSYOO****",
+        "age_days": 1918
+      },
+      "timestamp": "2025-07-04T03:48:16.112484",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2211 días",
+      "details": {
+        "user_name": "emilianosilva",
+        "access_key_id": "9ZZKXLTWBO****",
+        "age_days": 2211
+      },
+      "timestamp": "2025-07-04T03:48:16.572210",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1214 días",
+      "details": {
+        "user_name": "Nicolas Villafane",
+        "access_key_id": "Y5TODMRNO9****",
+        "age_days": 1214
+      },
+      "timestamp": "2025-07-04T03:48:18.443676",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 332 días",
+      "details": {
+        "user_name": "prueba.iis",
+        "access_key_id": "K5SVL53RUW****",
+        "age_days": 332
+      },
+      "timestamp": "2025-07-04T03:48:18.793137",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2285 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "1UEKCRVMLT****",
+        "age_days": 2285
+      },
+      "timestamp": "2025-07-04T03:48:20.183391",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2242 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "F4QI79CBBN****",
+        "age_days": 2242
+      },
+      "timestamp": "2025-07-04T03:48:20.183749",
+      "module": "iam"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 678 días",
+      "details": {
+        "user_name": "VeeamBackup_Huawei",
+        "access_key_id": "PBQPK4AZ7C****",
+        "age_days": 678
+      },
+      "timestamp": "2025-07-04T03:48:20.526697",
+      "module": "iam"
+    },
+    {
+      "id": "COMP-002",
+      "severity": "HIGH",
+      "message": "CIS 1.3 - 8 access keys sin rotar en 90+ días",
+      "details": {
+        "count": 8
+      },
+      "timestamp": "2025-07-04T03:48:26.840925",
+      "module": "compliance"
+    },
+    {
+      "id": "IAM-005",
+      "severity": "MEDIUM",
+      "message": "Política de contraseñas débil: longitud mínima 6",
+      "details": {
+        "current_length": 6,
+        "required_length": 12
+      },
+      "timestamp": "2025-07-04T03:48:26.819669",
+      "module": "iam"
+    },
+    {
+      "id": "COMP-003",
+      "severity": "MEDIUM",
+      "message": "CIS 1.4 - Política de contraseñas débil",
+      "details": {
+        "issues": [
+          "Longitud mínima insuficiente",
+          "No requiere mayúsculas",
+          "No requiere números"
+        ]
+      },
+      "timestamp": "2025-07-04T03:48:26.841019",
+      "module": "compliance"
+    }
+  ],
+  "findings_summary": {
+    "total": 12,
+    "by_severity": {
+      "CRITICAL": 1,
+      "HIGH": 9,
+      "MEDIUM": 2,
+      "LOW": 0
+    },
+    "by_module": {
+      "iam": 9,
+      "network": 0,
+      "storage": 0,
+      "monitoring": 0,
+      "compliance": 3
+    }
+  },
+  "risk_analysis": {
+    "total_risk_score": 59,
+    "normalized_security_score": 50.83,
+    "risk_level": "ALTO",
+    "maturity_level": 2.5
+  },
+  "executive_summary": {
+    "assessment_scope": {
+      "total_resources_analyzed": 21,
+      "regions_covered": 0,
+      "services_evaluated": 5
+    },
+    "key_findings": {
+      "critical_issues": 1,
+      "high_priority_issues": 9,
+      "total_findings": 12
+    },
+    "compliance_status": {
+      "overall_compliance": 60.0,
+      "maturity_level": 2.5,
+      "target_maturity": 3.0
+    },
+    "top_risks": [
+      {
+        "finding_id": "COMP-004",
+        "severity": "CRITICAL",
+        "message": "CIS 2.1 - Cloud Trace Service no configurado",
+        "module": "compliance"
+      },
+      {
+        "finding_id": "IAM-004",
+        "severity": "HIGH",
+        "message": "Access Key sin rotación por 764 días",
+        "module": "iam"
+      },
+      {
+        "finding_id": "IAM-004",
+        "severity": "HIGH",
+        "message": "Access Key sin rotación por 1918 días",
+        "module": "iam"
+      },
+      {
+        "finding_id": "IAM-004",
+        "severity": "HIGH",
+        "message": "Access Key sin rotación por 2211 días",
+        "module": "iam"
+      },
+      {
+        "finding_id": "IAM-004",
+        "severity": "HIGH",
+        "message": "Access Key sin rotación por 1214 días",
+        "module": "iam"
+      }
+    ],
+    "immediate_actions_required": []
+  }
+}

@@ -11,6 +11,9 @@ from huaweicloudsdkcore.exceptions import exceptions
 from huaweicloudsdkcore.region.region import Region
 from huaweicloudsdkiam.v3 import *
 from huaweicloudsdkiam.v3.region.iam_region import IamRegion
+from huaweicloudsdkcore.exceptions import exceptions
+from huaweicloudsdkiam.v3 import IamClient
+from huaweicloudsdkiam.v3.model import KeystoneListUsersRequest
 from utils.logger import SecurityLogger
 from config.settings import (
     HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY, 
@@ -19,6 +22,7 @@ from config.settings import (
 from config.constants import PASSWORD_POLICY, MFA_REQUIREMENTS
 import pytz
 from dateutil import parser
+from datetime import datetime, timedelta, timezone
 
 class IAMCollector:
     """Colector de configuraciones y vulnerabilidades IAM"""
@@ -87,7 +91,47 @@ class IAMCollector:
             except Exception as e2:
                 self.logger.error(f"Error con configuración alternativa: {str(e2)}")
                 raise
-    
+
+
+    def _parse_date_safe(self, date_str) -> str:
+        """Parsear fecha de forma segura"""
+        if not date_str:
+            return None
+            
+        try:
+            # Si es timestamp en milliseconds
+            if isinstance(date_str, (int, float)):
+                if date_str > 1000000000000:  # Timestamp en milliseconds
+                    date_str = date_str / 1000
+                return datetime.fromtimestamp(date_str, tz=timezone.utc).isoformat()
+            
+            # Si es string, intentar parsearlo
+            if isinstance(date_str, str):
+                # Intentar diferentes formatos
+                formats = [
+                    '%Y-%m-%dT%H:%M:%S.%fZ',
+                    '%Y-%m-%dT%H:%M:%SZ',
+                    '%Y-%m-%d %H:%M:%S',
+                    '%Y-%m-%d'
+                ]
+                
+                for fmt in formats:
+                    try:
+                        dt = datetime.strptime(date_str, fmt)
+                        if 'Z' in date_str:
+                            dt = dt.replace(tzinfo=timezone.utc)
+                        return dt.isoformat()
+                    except ValueError:
+                        continue
+                        
+                # Si no se puede parsear, devolver como string
+                return str(date_str)
+                
+        except Exception as e:
+            self.logger.warning(f"Error parseando fecha {date_str}: {e}")
+            return str(date_str) if date_str else None
+        
+        return None
     def _parse_datetime_safe(self, date_str) -> datetime:
         """Parsear datetime de manera segura manejando timezone"""
         if not date_str:
@@ -152,15 +196,9 @@ class IAMCollector:
                 request = KeystoneListUsersRequest()
                 response = self.client.keystone_list_users(request)
                 user_list = response.users
-            except:
-                try:
-                    # Método alternativo
-                    request = ListUsersRequest()
-                    response = self.client.list_users(request)
-                    user_list = response.users
-                except Exception as e:
-                    self.logger.error(f"No se pudo listar usuarios: {str(e)}")
-                    return users
+            except Exception as e:
+                self.logger.error(f"No se pudo listar usuarios: {str(e)}")
+                return users
             
             for user in user_list:
                 user_info = {
@@ -212,15 +250,33 @@ class IAMCollector:
             self.logger.error(f"Error recolectando grupos: {str(e)}")
             
         return groups
-    
+
+
+    async def _collect_role_assignments(self) -> List[Dict]:
+        """Método alternativo para obtener información de roles a través de asignaciones"""
+        assignments = []
+        
+        # Listar asignaciones de roles para usuarios
+        for user in self.users:
+            try:
+                request = ListProjectPermissionsForAgencyRequest()
+                request.project_id = HUAWEI_PROJECT_ID
+                # Ajustar según la API real disponible
+                
+            except Exception as e:
+                self.logger.debug(f"No se pudieron obtener roles para usuario {user['id']}")
+        
+        return assignments
+        
+
     async def _collect_roles(self) -> List[Dict]:
         """Recolectar información de roles - CORREGIDO nombres de clases"""
         roles = []
         try:
             # Corregir el nombre de la clase
-            request = KeystoneListRolesRequest()
-            response = self.client.keystone_list_roles(request)
-            
+            request = ListRolesRequest()
+            response = self.client.list_roles(request) 
+                
             for role in response.roles:
                 role_info = {
                     'id': getattr(role, 'id', 'unknown'),
@@ -229,25 +285,34 @@ class IAMCollector:
                     'description': getattr(role, 'description', ''),
                     'type': getattr(role, 'type', 'unknown')
                 }
-                roles.append(role_info)
                 
+            # Analizar permisos excesivos
+            if self._check_excessive_permissions(role.policy):
+                self._add_finding(
+                    'IAM-001',
+                    'CRITICAL',
+                    f'Rol con permisos administrativos excesivos: {role.display_name}',
+                    {
+                        'role_id': role.id,
+                        'role_name': role.display_name,
+                        'type': role.type
+                    }
+                )
+            
+            roles.append(role_info)
+            
         except Exception as e:
             self.logger.error(f"Error recolectando roles: {str(e)}")
-            # Intentar método alternativo
-            try:
-                # Si el método anterior falla, intentar con otro approach
-                request = ListRolesRequest()
-                response = self.client.list_roles(request)
-                
-                for role in response.roles:
-                    role_info = self._convert_to_serializable(role)
-                    roles.append(role_info)
-                    
-            except Exception as e2:
-                self.logger.error(f"Error con método alternativo de roles: {str(e2)}")
             
+            # Plan B: Usar endpoint directo si el SDK falla
+            try:
+                # Obtener roles a través de políticas y asignaciones
+                await self._collect_role_assignments()
+            except Exception as e2:
+                self.logger.error(f"Error alternativo: {str(e2)}")
+        
         return roles
-    
+
     async def _collect_policies(self) -> List[Dict]:
         """Recolectar políticas IAM - CORREGIDO"""
         policies = []
@@ -256,7 +321,9 @@ class IAMCollector:
             request = ListCustomPoliciesRequest()
             response = self.client.list_custom_policies(request)
             
-            for policy in response.roles:
+
+            # La respuesta contiene políticas en el atributo 'policies'
+            for policy in getattr(response, 'policies', []):
                 # Convertir a formato serializable
                 policy_info = {
                     'id': getattr(policy, 'id', 'unknown'),
