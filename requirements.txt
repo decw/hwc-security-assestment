@@ -1,0 +1,65 @@
+# Huawei Cloud SDK Core
+huaweicloudsdkcore>=3.1.60
+
+# SDKs específicos (podés agregar más según necesidad)
+huaweicloudsdkecs        # Elastic Cloud Server
+huaweicloudsdkevs        # Elastic Volume Service
+huaweicloudsdkobs>=3.1.0        # Object Storage Service
+huaweicloudsdkvpc        # Virtual Private Cloud
+huaweicloudsdkims        # Identity and Management Service
+huaweicloudsdkcts        # Cloud Trace Service
+huaweicloudsdkrds        # Relational Database Service
+huaweicloudsdkces        # Cloud Eye (monitoring)
+huaweicloudsdkconfig     # Config & compliance
+huaweicloudsdkiam        # IAM Service
+huaweicloudsdklts        # Log Tank Service
+huaweicloudsdksfsturbo        # Log Tank Service
+
+#agregado dcabral
+huaweicloudsdkcbr       # cloud backup  & recovery
+huaweicloudsdkhss       # Host security Service
+huaweicloudsdkiamaccessanalyzer
+huaweicloudsdkcts      # Cloud trace service
+huaweicloudsdkcce       # cloud container engine
+
+
+# Async support
+asyncio>=3.4.3
+aiohttp>=3.8.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Reporting
+matplotlib>=3.6.0
+reportlab>=3.6.0
+
+# Utilities
+python-dateutil>=2.8.0
+pyyaml>=6.0
+python-dotenv>=0.20.0
+
+# Networking
+ipaddress>=1.0.23
+
+# Development (optional)
+pytest>=7.2.0
+pytest-asyncio>=0.20.0
+black>=22.10.0
+flake8>=5.0.0
+
+# .env file support
+python-dotenv>=1.0.1
+
+# Logging y utilidades
+rich                      # Logging bonito y color
+requests>=2.31.0          # HTTP requests
+tqdm                      # Progress bars
+
+# Reportes (opcional)
+pandas                    # Para generar tablas o reportes
+jinja2                    # Para plantillas HTML si hacés reportes visuales
+
+# Seguridad y análisis (opcional)
+pyyaml                    # Si querés manejar configuración en YAML
