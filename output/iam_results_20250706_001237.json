@@ -1,0 +1,337 @@
+{
+  "users": [],
+  "groups": [
+    {
+      "id": "b777482458f54983916a2a3ff3aa40b0",
+      "name": "Iplan",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Usuarios para realizar assessment",
+      "create_time": 1748533008864,
+      "links": {
+        "discriminator": null
+      },
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+          "user_name": "rsuarez"
+        },
+        {
+          "user_id": "cd50c85ce40f42edb375edba41193bb0",
+          "user_name": "dcabral"
+        }
+      ]
+    },
+    {
+      "id": "e00dd7600d014367af0858c8ffef5081",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS",
+      "create_time": 1743089378106,
+      "links": {
+        "discriminator": null
+      },
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "220c0d60592f4f24bf773beee71891ad",
+          "user_name": "prueba.iis"
+        },
+        {
+          "user_id": "7621b455711f48daa3d404bba883f1fe",
+          "user_name": "Christian Vazquez"
+        }
+      ]
+    },
+    {
+      "id": "8d3a120cb9ca4350abaf6513a526df09",
+      "name": "Cloud-Eye-Lectura",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Acceso de lectura a la consola Cloud Eye",
+      "create_time": 1722865248998,
+      "links": {
+        "discriminator": null
+      },
+      "member_count": 1,
+      "members": [
+        {
+          "user_id": "922791f34b45408cbea7f83c440a2293",
+          "user_name": "Ricardo Huberman"
+        }
+      ]
+    },
+    {
+      "id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+      "name": "power_user",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "powerGroupDes",
+      "create_time": 1552043962922,
+      "links": {
+        "discriminator": null
+      },
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "0563f1d7034343cfa595eeb58b633b99",
+          "user_name": "Julian Vazzano"
+        },
+        {
+          "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+          "user_name": "VeeamBackup_Huawei"
+        }
+      ]
+    },
+    {
+      "id": "be61248cddbf441e9446e8bc5a2bf26f",
+      "name": "admin",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "adminGroupDes",
+      "create_time": 1552043962867,
+      "links": {
+        "discriminator": null
+      },
+      "member_count": 9,
+      "members": [
+        {
+          "user_id": "08450e873d00f5051fefc01364c4b18b",
+          "user_name": "diegogarone"
+        },
+        {
+          "user_id": "0e3c90608486441a87cfd710156eab73",
+          "user_name": "Nicolas Villafane"
+        },
+        {
+          "user_id": "2d5502377631460c9601244670a8aa1c",
+          "user_name": "ConectorCloud"
+        },
+        {
+          "user_id": "5ade0315e9ba4045b063df938541c286",
+          "user_name": "globo"
+        },
+        {
+          "user_id": "6b31f9905d88499985c003f0db251a05",
+          "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar"
+        },
+        {
+          "user_id": "7b342f3b84144b048b37ade414729bf7",
+          "user_name": "Nicolas Alcorta"
+        },
+        {
+          "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+          "user_name": "SManoni"
+        },
+        {
+          "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+          "user_name": "emilianosilva"
+        },
+        {
+          "user_id": "e84771c7285a47939e6895479962ddd0",
+          "user_name": "Florencia Pavon"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "44189681f4b44de7b5ac4035cfe39b7d",
+      "name": "custom_77aed4ae1ffc40e4a7ae7e98604569a7_0",
+      "display_name": "policy6nylu4",
+      "type": "custom",
+      "description": "",
+      "policy": {
+        "discriminator": null
+      },
+      "created": null,
+      "references": 0
+    },
+    {
+      "id": "62cf836d73b64e79862d21eb4ff430a8",
+      "name": "custom_77aed4ae1ffc40e4a7ae7e98604569a7_2",
+      "display_name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "type": "custom",
+      "description": "Permisos para listar, visualizar, iniciar, reiniciar, detener y acceso remoto en los ECS",
+      "policy": {
+        "discriminator": null
+      },
+      "created": null,
+      "references": 0
+    },
+    {
+      "id": "fa03e33be7094553a66d0911d5faafa0",
+      "name": "custom_77aed4ae1ffc40e4a7ae7e98604569a7_1",
+      "display_name": "CloudEye-Lectura",
+      "type": "custom",
+      "description": "",
+      "policy": {
+        "discriminator": null
+      },
+      "created": null,
+      "references": 0
+    }
+  ],
+  "policies": [],
+  "access_keys": [],
+  "mfa_status": {
+    "total_users": 0,
+    "mfa_enabled": 0,
+    "mfa_disabled": 0,
+    "users_without_mfa": [],
+    "mfa_types": {
+      "virtual": 0,
+      "sms": 0,
+      "email": 0,
+      "hardware": 0
+    }
+  },
+  "password_policy": {},
+  "login_policy": {
+    "account_validity_period": 0,
+    "custom_info_for_login": "",
+    "lockout_duration": 15,
+    "login_failed_times": 5,
+    "period_with_login_failures": 60,
+    "session_timeout": 240,
+    "show_recent_login_info": false
+  },
+  "protection_policy": {},
+  "permissions_analysis": {
+    "users_with_admin_access": [],
+    "overprivileged_users": [],
+    "permission_conflicts": [],
+    "unused_permissions": []
+  },
+  "user_group_mappings": {},
+  "role_assignments": {
+    "user_roles": {},
+    "group_roles": {},
+    "total_assignments": 0
+  },
+  "service_accounts": [],
+  "privileged_accounts": [],
+  "inactive_users": [],
+  "findings": [
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con contraseña temporal no cambiada: Christian Vazquez",
+      "details": {
+        "user_id": "7621b455711f48daa3d404bba883f1fe",
+        "user_name": "Christian Vazquez"
+      },
+      "timestamp": "2025-07-06T00:12:41.677550"
+    },
+    {
+      "id": "IAM-007",
+      "severity": "HIGH",
+      "message": "Bajo porcentaje de adopción de MFA: 0.0%",
+      "details": {
+        "total_users": 0,
+        "mfa_enabled": 0,
+        "percentage": 0
+      },
+      "timestamp": "2025-07-06T00:12:41.678853"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cbc_partneragent_hwc83871270",
+      "details": {
+        "agency_name": "cbc_partneragent_hwc83871270",
+        "trust_domain": "hwc83871270",
+        "description": null
+      },
+      "timestamp": "2025-07-06T00:12:45.726458"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cce_admin_trust",
+      "details": {
+        "agency_name": "cce_admin_trust",
+        "trust_domain": "op_svc_cce",
+        "description": "Create by CCE Team"
+      },
+      "timestamp": "2025-07-06T00:12:45.726662"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: CESAgentAutoConfigAgency",
+      "details": {
+        "agency_name": "CESAgentAutoConfigAgency",
+        "trust_domain": "op_svc_ecs",
+        "description": ""
+      },
+      "timestamp": "2025-07-06T00:12:45.726741"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cts_admin_trust",
+      "details": {
+        "agency_name": "cts_admin_trust",
+        "trust_domain": "op_svc_CTS",
+        "description": "Created by CTS. To ensure that services run properly, do not delete this agency."
+      },
+      "timestamp": "2025-07-06T00:12:45.726812"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: PrendeApagaAgency",
+      "details": {
+        "agency_name": "PrendeApagaAgency",
+        "trust_domain": "op_svc_cff",
+        "description": "Creada para apagado y encendido programado de ECS con function graph"
+      },
+      "timestamp": "2025-07-06T00:12:45.726893"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: prueba",
+      "details": {
+        "agency_name": "prueba",
+        "trust_domain": "op_svc_cff",
+        "description": ""
+      },
+      "timestamp": "2025-07-06T00:12:45.726969"
+    },
+    {
+      "id": "IAM-023",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: ssa_admin_trust",
+      "details": {
+        "agency_name": "ssa_admin_trust",
+        "trust_domain": "op_svc_ssa",
+        "description": "Created by SA Service."
+      },
+      "timestamp": "2025-07-06T00:12:45.727045"
+    }
+  ],
+  "statistics": {
+    "total_users": 0,
+    "total_groups": 5,
+    "total_roles": 3,
+    "total_policies": 0,
+    "total_access_keys": 0,
+    "users_without_mfa": 0,
+    "mfa_compliance_rate": 0,
+    "old_access_keys": 0,
+    "users_with_temp_passwords": 0,
+    "inactive_users": 0,
+    "service_accounts": 0,
+    "privileged_accounts": 0,
+    "unused_access_keys": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 2,
+      "MEDIUM": 7,
+      "LOW": 0
+    },
+    "top_risks": [],
+    "users_without_groups": 0,
+    "password_policy_compliant": false
+  },
+  "timestamp": "2025-07-06T00:12:40.203736"
+}
