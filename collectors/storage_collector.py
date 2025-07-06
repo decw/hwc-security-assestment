@@ -28,13 +28,26 @@ except ImportError:
         print("⚠️ OBS SDK no disponible")
 
 # Importar otros servicios de backup y recuperación
+# --- Cloud Backup & Recovery (CBR) ---
 try:
     from huaweicloudsdkcbr.v1 import *
     CBR_AVAILABLE = True
-    print("✅ CBR SDK disponible")
 except ImportError:
     CBR_AVAILABLE = False
-    print("⚠️ CBR SDK no disponible")
+
+# --- Cloud Server Backup Service (CSBS, legado) ---
+try:
+    # disponible solo en algunas regiones (ej.: sa-argentina-1)
+    # forma 1 → paquete dedicado (si existiera)
+    import huaweicloudsdkcsbs
+except ImportError:
+    try:
+        # forma 2 → SDK “openstack” archivado
+        from openstack import connection as _oc_conn               # depende de openstacksdk
+        import openstack.csbs.v1 as csbs                            # ruta del módulo legado
+    except ImportError:
+        csbs = None
+CSBS_AVAILABLE = csbs is not None
 
 try:
     from huaweicloudsdksfsturbo import *
@@ -49,6 +62,8 @@ from config.settings import (
     HUAWEI_PROJECT_ID, REGIONS
 )
 from config.constants import DATA_CLASSIFICATION_TAGS
+
+
 
 class StorageCollector(MultiRegionClient):
     """Colector de configuraciones de almacenamiento y backup"""
@@ -110,40 +125,63 @@ class StorageCollector(MultiRegionClient):
             return None
 
     async def collect_all(self) -> Dict[str, Any]:
-        """Recolectar todos los datos de almacenamiento"""
+        """
+        Recolecta:
+          • Volúmenes EVS
+          • Backups (CBR/CSBS)
+          • Servidores sin backup automático
+          • Shares SFS (si el SDK está disponible)
+          • Buckets OBS (global)
+        Devuelve un gran diccionario `results`.
+        """
         self.logger.info("Iniciando recolección de datos de almacenamiento")
-        
-        results = {
-            'evs_volumes': {},
-            'obs_buckets': [],
-            'backups': {},
-            'sfs_shares': {},
-            'encryption_status': {
-                'evs': {'encrypted': 0, 'unencrypted': 0},
-                'obs': {'encrypted': 0, 'unencrypted': 0}
+
+        results: Dict[str, Any] = {
+            "evs_volumes":            {},   # por región
+            "backups":                {},   # por región
+            "servers_without_backups": {},  # por región  ← NUEVO
+            "sfs_shares":             {},   # por región
+            "obs_buckets":            [],   # global
+            "encryption_status": {
+                "evs": {"encrypted": 0, "unencrypted": 0},
+                "obs": {"encrypted": 0, "unencrypted": 0},
             },
-            'findings': self.findings,
-            'statistics': {},
-            'timestamp': datetime.now().isoformat()
+            "findings":   self.findings,
+            "statistics": {},
+            "timestamp":  datetime.now().isoformat(),
         }
-        
-        # Recolectar EVS por región
+
+        # ---------- 1) recursos por región ---------------------------------
         for region in REGIONS:
             self.logger.info(f"Analizando almacenamiento en región: {region}")
             try:
-                results['evs_volumes'][region] = await self._collect_evs_volumes(region)
-                results['backups'][region] = await self._collect_backups(region)
-                results['sfs_shares'][region] = await self._collect_sfs_shares(region)
-            except Exception as e:
-                self.logger.error(f"Error en región {region}: {str(e)}")
-        
-        # Recolectar OBS (global)
-        results['obs_buckets'] = await self._collect_obs_buckets()
-        
-        # Calcular estadísticas
-        results['statistics'] = self._calculate_statistics(results)
-        
-        self.logger.info(f"Recolección de almacenamiento completada. Hallazgos: {len(self.findings)}")
+                # EVS
+                results["evs_volumes"][region] = await self._collect_evs_volumes(region)
+
+                # Backups (CBR / CSBS según disponibilidad)
+                results["backups"][region] = await self._collect_backups(region)
+
+                # Instancias sin backup
+                results["servers_without_backups"][region] = (
+                    await self._map_instances_without_backups(region)
+                )
+
+                # SFS (puede que la librería no exista en todas las regiones)
+                results["sfs_shares"][region] = await self._collect_sfs_shares(region)
+
+            except Exception as exc:
+                self.logger.error(f"Error en región {region}: {exc}")
+
+        # ---------- 2) OBS (global) ----------------------------------------
+        results["obs_buckets"] = await self._collect_obs_buckets()
+
+        # ---------- 3) Estadísticas ----------------------------------------
+        results["statistics"] = self._calculate_statistics(results)
+
+        self.logger.info(
+            f"Recolección de almacenamiento completada. "
+            f"Hallazgos: {len(self.findings)}"
+        )
         return results
     
     async def _collect_evs_volumes(self, region: str) -> List[Dict]:
@@ -218,7 +256,92 @@ class StorageCollector(MultiRegionClient):
             self.logger.error(f"Error recolectando volúmenes EVS en {region}: {str(e)}")
             
         return volumes
-    
+
+
+    def get_credentials_for_region(self, region_id: str) -> BasicCredentials:
+        if region_id in self.credentials_cache:
+            return self.credentials_cache[region_id]
+
+        # Descubre el project-id correcto con GlobalCredentials
+        cred = GlobalCredentials(HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY, HUAWEI_DOMAIN_ID)
+        self.credentials_cache[region_id] = cred
+        return cred
+
+
+    async def _collect_region_storage(self, region: str) -> dict:
+        """
+        Recolecta volúmenes, snapshots y estado de backups
+        para una región y devuelve un diccionario por región.
+        """
+        results: dict[str, Any] = {
+            "evs_volumes":           [],
+            "evs_backups":           [],
+            "servers_without_backups": {}   # ← prepara el slot
+        }
+
+        # --- volúmenes, snapshots, etc. (esto ya lo tenías) ---
+        results["evs_volumes"] = await self._collect_evs_volumes(region)
+        results["evs_backups"] = await self._collect_backups(region)
+
+        # ⬇️  AQUÍ va la línea que preguntas
+        results["servers_without_backups"][region] = await self._map_instances_without_backups(region)
+
+        return results
+
+    async def _map_instances_without_backups(self, region: str) -> list[dict]:
+        """Devuelve instancias ECS que NO tienen backup (CBR o CSBS)"""
+        ecs_client = self._get_ecs_client(region)
+        if not ecs_client:
+            return []
+
+        # --- 1) Todos los servidores de la región
+        servers = (ecs_client.list_servers_details(
+            ListServersDetailsRequest(limit=500)).servers)
+        server_ids = {srv.id: srv for srv in servers}
+
+        # --- 2) Todos los backups CBR/VBS
+        backed_up_ids = set()
+
+        if CBR_AVAILABLE:
+            cbr = self._get_cbr_client(region)
+            for vault in cbr.list_vaults(ListVaultsRequest()).vaults:
+                for res in vault.resources:
+                    backed_up_ids.add(res.id)
+
+        # --- 3) Si la región admite CSBS (solo sa-argentina-1, por ej.)
+        if CSBS_AVAILABLE and region == 'sa-argentina-1':
+            # Conexión openstacksdk (ejemplo mínimo)
+            conn = _oc_conn.Connection(
+                auth_url=f"https://iam.{region}.myhuaweicloud.com/v3",
+                project_id=self.get_project_id(region),
+                domain_id=HUAWEI_DOMAIN_ID,
+                region_name=region,
+                app_name="collector", app_version="1.0",
+                username=HUAWEI_ACCESS_KEY, password=HUAWEI_SECRET_KEY,
+                system_scope='all')                    # usa AK/SK → token
+            for checkpoint in conn.csbs.checkpoints():  # :contentReference[oaicite:0]{index=0}
+                for res in checkpoint.resources:
+                    backed_up_ids.add(res.id)
+
+        # --- 4) Diferencia
+        no_backup = []
+        for sid, srv in server_ids.items():
+            if sid not in backed_up_ids:
+                no_backup.append({
+                    "server_id": sid,
+                    "name": srv.name,
+                    "region": region,
+                    "flavor": srv.flavor["id"],
+                    "az": srv.availability_zone,
+                })
+                self._add_finding(
+                    "STO-011", "HIGH",
+                    f"Servidor sin backup automático: {srv.name}",
+                    {"server_id": sid, "region": region}
+                )
+        return no_backup
+
+
     async def _collect_obs_buckets(self) -> List[Dict]:
         """Recolectar información de buckets OBS - CORREGIDO"""
         buckets = []

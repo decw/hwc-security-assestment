@@ -1,0 +1,464 @@
+{
+  "vpcs": {
+    "LA-Buenos Aires1": [
+      {
+        "id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
+        "name": "VPC_General",
+        "cidr": "172.27.0.0/23",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-03-07T13:33:23+00:00"
+      },
+      {
+        "id": "28f3248b-87c1-40ab-882d-af35ad49c541",
+        "name": "VPC_KUBERNETES",
+        "cidr": "172.27.28.0/28",
+        "status": "OK",
+        "description": "",
+        "created_at": "2024-07-16T19:00:13+00:00"
+      },
+      {
+        "id": "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
+        "name": "VPC_BACKUP",
+        "cidr": "172.27.22.0/24",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-08-22T14:13:21+00:00"
+      },
+      {
+        "id": "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
+        "name": "VPC_MGMT",
+        "cidr": "172.27.24.0/23",
+        "status": "OK",
+        "description": "",
+        "created_at": "2024-06-03T13:29:28+00:00"
+      },
+      {
+        "id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+        "name": "VPC_PROD",
+        "cidr": "172.27.8.0/23",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-03-07T13:34:34+00:00"
+      },
+      {
+        "id": "b0c609f7-af01-442b-8d93-e5c776dff09f",
+        "name": "VPC_Camuzzi_ParaEliminar",
+        "cidr": "172.22.0.0/24",
+        "status": "OK",
+        "description": "",
+        "created_at": "2019-03-08T16:55:18+00:00"
+      },
+      {
+        "id": "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
+        "name": "VPC_DESA",
+        "cidr": "172.27.12.0/23",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-03-07T14:10:13+00:00"
+      },
+      {
+        "id": "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
+        "name": "VPC_DMZ",
+        "cidr": "172.27.20.0/24",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-03-07T14:11:16+00:00"
+      },
+      {
+        "id": "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
+        "name": "VPC_QA",
+        "cidr": "172.27.16.0/23",
+        "status": "OK",
+        "description": "",
+        "created_at": "2023-03-07T14:10:49+00:00"
+      }
+    ]
+  },
+  "subnets": {
+    "LA-Buenos Aires1": [
+      {
+        "id": "1f241abb-174e-400f-9f09-bef1a894fb5a",
+        "name": "Subnet_DESA",
+        "cidr": "172.27.12.0/23",
+        "vpc_id": "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
+        "gateway_ip": "172.27.12.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "226a83c7-ce13-46cd-bdac-42614449169f",
+        "name": "Subnet_BACKUP",
+        "cidr": "172.27.22.0/24",
+        "vpc_id": "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
+        "gateway_ip": "172.27.22.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "38c247d1-bd5d-4235-a7f1-61f71e902d46",
+        "name": "Subnet_QA",
+        "cidr": "172.27.16.0/23",
+        "vpc_id": "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
+        "gateway_ip": "172.27.16.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "803a21f8-bb44-421b-8fa5-3e3934051fd5",
+        "name": "Subnet_KUBERNETES",
+        "cidr": "172.27.28.0/28",
+        "vpc_id": "28f3248b-87c1-40ab-882d-af35ad49c541",
+        "gateway_ip": "172.27.28.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "87f242b0-b1f1-448d-a3ff-af6ac504163a",
+        "name": "Direct_Connect",
+        "cidr": "172.27.0.16/28",
+        "vpc_id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
+        "gateway_ip": "172.27.0.17",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "9fe2c1f0-d1e5-4381-93d3-dbd17b251bb8",
+        "name": "Subnet_DMZ",
+        "cidr": "172.27.20.0/24",
+        "vpc_id": "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
+        "gateway_ip": "172.27.20.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "d08f1dec-c113-49e0-9b3e-007e835a7ea6",
+        "name": "Subnet_MGMT",
+        "cidr": "172.27.24.0/23",
+        "vpc_id": "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
+        "gateway_ip": "172.27.24.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "d527826d-05da-40ff-add0-66abaa49d1c7",
+        "name": "Subnet_PROD",
+        "cidr": "172.27.8.0/23",
+        "vpc_id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+        "gateway_ip": "172.27.8.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "e9bb4d90-b73c-47fe-a2f9-aabe6f2209b0",
+        "name": "Internet",
+        "cidr": "172.27.0.0/28",
+        "vpc_id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
+        "gateway_ip": "172.27.0.1",
+        "availability_zone": "sa-argentina-1a"
+      },
+      {
+        "id": "fb1d80e8-b1db-4bf7-a1ae-f30d5a6302cc",
+        "name": "Subnet_Transit_Redes_Internas",
+        "cidr": "172.27.0.48/28",
+        "vpc_id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
+        "gateway_ip": "172.27.0.49",
+        "availability_zone": "sa-argentina-1a"
+      }
+    ]
+  },
+  "security_groups": {
+    "LA-Santiago": [
+      {
+        "id": "cb886d32-49dc-4037-baee-c7bf203b4f2b",
+        "name": "Sys-default",
+        "description": "default",
+        "rules_count": 4,
+        "critical_exposures": []
+      }
+    ],
+    "LA-Buenos Aires1": [
+      {
+        "id": "126d2d53-0c23-4d27-9930-88e40a254c34",
+        "name": "sg-Permit-ALL",
+        "description": "Allowing traffic on all ports may introduce security risks. Exercise caution when selecting this option.",
+        "rules_count": 3,
+        "critical_exposures": []
+      },
+      {
+        "id": "65aa384d-61ab-411d-a876-07590a645c50",
+        "name": "cluster-camuzzi-kb-cce-control-gcxz3",
+        "description": "Do not delete or update this security group which is created by CCE cluster 71227d5a-ae5a-11ef-99d1-0255ac10008e for the master port",
+        "rules_count": 7,
+        "critical_exposures": []
+      },
+      {
+        "id": "a8bd449b-6b4a-4adb-b991-ed8e0db8994f",
+        "name": "default",
+        "description": "default",
+        "rules_count": 2,
+        "critical_exposures": []
+      }
+    ],
+    "CN-Hong Kong": [
+      {
+        "id": "0b7bae2c-7f70-40fb-82ff-d0d2d317e873",
+        "name": "default",
+        "description": "default",
+        "rules_count": 4,
+        "critical_exposures": []
+      }
+    ]
+  },
+  "network_acls": {},
+  "elastic_ips": {},
+  "exposed_resources": [],
+  "findings": [
+    {
+      "id": "NET-INV-LA-",
+      "severity": "MEDIUM",
+      "message": "No se pudo analizar 50 recursos en LA-Santiago",
+      "details": {
+        "region": "LA-Santiago",
+        "total_resources": 50,
+        "breakdown": {
+          "ecs": 9,
+          "evs": 21,
+          "vpcs": 9,
+          "eips": 1
+        },
+        "reason": "Sin autorización o conectividad a la región",
+        "recommendation": "Verificar manualmente la configuración de seguridad"
+      },
+      "timestamp": "2025-07-04T17:42:45.376185"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_DESA",
+      "details": {
+        "subnet_id": "1f241abb-174e-400f-9f09-bef1a894fb5a",
+        "cidr": "172.27.12.0/23",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.12.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.037488"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_BACKUP",
+      "details": {
+        "subnet_id": "226a83c7-ce13-46cd-bdac-42614449169f",
+        "cidr": "172.27.22.0/24",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.22.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.037745"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_QA",
+      "details": {
+        "subnet_id": "38c247d1-bd5d-4235-a7f1-61f71e902d46",
+        "cidr": "172.27.16.0/23",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.16.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.037858"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_KUBERNETES",
+      "details": {
+        "subnet_id": "803a21f8-bb44-421b-8fa5-3e3934051fd5",
+        "cidr": "172.27.28.0/28",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.28.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.037942"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Direct_Connect",
+      "details": {
+        "subnet_id": "87f242b0-b1f1-448d-a3ff-af6ac504163a",
+        "cidr": "172.27.0.16/28",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.0.17"
+      },
+      "timestamp": "2025-07-04T17:42:47.038051"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_MGMT",
+      "details": {
+        "subnet_id": "d08f1dec-c113-49e0-9b3e-007e835a7ea6",
+        "cidr": "172.27.24.0/23",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.24.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.038136"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_PROD",
+      "details": {
+        "subnet_id": "d527826d-05da-40ff-add0-66abaa49d1c7",
+        "cidr": "172.27.8.0/23",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.8.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.038216"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Internet",
+      "details": {
+        "subnet_id": "e9bb4d90-b73c-47fe-a2f9-aabe6f2209b0",
+        "cidr": "172.27.0.0/28",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.0.1"
+      },
+      "timestamp": "2025-07-04T17:42:47.038299"
+    },
+    {
+      "id": "NET-002",
+      "severity": "HIGH",
+      "message": "Subnet pública sin justificación en LA-Buenos Aires1: Subnet_Transit_Redes_Internas",
+      "details": {
+        "subnet_id": "fb1d80e8-b1db-4bf7-a1ae-f30d5a6302cc",
+        "cidr": "172.27.0.48/28",
+        "region": "LA-Buenos Aires1",
+        "gateway_ip": "172.27.0.49"
+      },
+      "timestamp": "2025-07-04T17:42:47.038383"
+    },
+    {
+      "id": "NET-006",
+      "severity": "HIGH",
+      "message": "Regla permite todo el tráfico desde Internet en LA-Buenos Aires1",
+      "details": {
+        "security_group": "sg-Permit-ALL",
+        "rule_id": "5c1764be-2f23-43db-857b-29ac1f62d66e",
+        "protocol": null,
+        "region": "LA-Buenos Aires1",
+        "risk": "Exposición completa del recurso"
+      },
+      "timestamp": "2025-07-04T17:42:47.823571"
+    },
+    {
+      "id": "NET-INV-CN-",
+      "severity": "MEDIUM",
+      "message": "No se pudo analizar 6 recursos en CN-Hong Kong",
+      "details": {
+        "region": "CN-Hong Kong",
+        "total_resources": 6,
+        "breakdown": {
+          "vpcs": 1,
+          "function_graph": 2
+        },
+        "reason": "Sin autorización o conectividad a la región",
+        "recommendation": "Verificar manualmente la configuración de seguridad"
+      },
+      "timestamp": "2025-07-04T17:42:52.996328"
+    },
+    {
+      "id": "NET-INV-AP-",
+      "severity": "MEDIUM",
+      "message": "No se pudo analizar 4 recursos en AP-Bangkok",
+      "details": {
+        "region": "AP-Bangkok",
+        "total_resources": 4,
+        "breakdown": {
+          "function_graph": 3
+        },
+        "reason": "Sin autorización o conectividad a la región",
+        "recommendation": "Verificar manualmente la configuración de seguridad"
+      },
+      "timestamp": "2025-07-04T17:42:52.996704"
+    },
+    {
+      "id": "NET-INV-AP-",
+      "severity": "MEDIUM",
+      "message": "No se pudo analizar 2 recursos en AP-Singapore",
+      "details": {
+        "region": "AP-Singapore",
+        "total_resources": 2,
+        "breakdown": {
+          "function_graph": 1
+        },
+        "reason": "Sin autorización o conectividad a la región",
+        "recommendation": "Verificar manualmente la configuración de seguridad"
+      },
+      "timestamp": "2025-07-04T17:42:52.996878"
+    },
+    {
+      "id": "NET-CONSOLIDATION-001",
+      "severity": "MEDIUM",
+      "message": "Arquitectura multi-VPC compleja: 19 VPCs en 5 regiones",
+      "details": {
+        "vpcs_by_region": {
+          "LA-Santiago": 9,
+          "LA-Buenos Aires1": 9,
+          "CN-Hong Kong": 1
+        },
+        "recommendation": "Evaluar consolidación de VPCs y uso de VPC Peering"
+      },
+      "timestamp": "2025-07-04T17:42:52.996998"
+    },
+    {
+      "id": "NET-REGIONAL-001",
+      "severity": "HIGH",
+      "message": "Alta concentración de recursos en una región: 85.6% en Buenos Aires",
+      "details": {
+        "buenos_aires": 369,
+        "total": 431,
+        "risk": "Single point of failure regional",
+        "recommendation": "Implementar arquitectura multi-región para alta disponibilidad"
+      },
+      "timestamp": "2025-07-04T17:42:52.997096"
+    },
+    {
+      "id": "NET-SPRAWL-001",
+      "severity": "LOW",
+      "message": "Recursos dispersos en regiones con pocos servicios",
+      "details": {
+        "regions": {
+          "CN-Hong Kong": 6,
+          "AP-Bangkok": 4,
+          "AP-Singapore": 2
+        },
+        "total_resources": 12,
+        "recommendation": "Considerar migración a regiones principales para reducir complejidad"
+      },
+      "timestamp": "2025-07-04T17:42:52.997232"
+    }
+  ],
+  "statistics": {
+    "collected": {
+      "vpcs": 9,
+      "subnets": 10,
+      "security_groups": 5,
+      "elastic_ips": 0,
+      "regions_analyzed": 1
+    },
+    "inventory": {
+      "total_vpcs": 20,
+      "total_security_groups": 17,
+      "total_eips": 10,
+      "total_regions": 5,
+      "total_resources": 437
+    },
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 11,
+      "MEDIUM": 5,
+      "LOW": 1
+    },
+    "exposure_metrics": {
+      "exposed_resources": 0,
+      "critical_ports_exposed": 0,
+      "regions_with_exposures": 0
+    }
+  },
+  "timestamp": "2025-07-04T17:42:41.362326"
+}

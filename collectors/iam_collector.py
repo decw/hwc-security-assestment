@@ -13,8 +13,9 @@ from huaweicloudsdkcore.region.region import Region
 from huaweicloudsdkiam.v3 import *
 from huaweicloudsdkiam.v3.region.iam_region import IamRegion
 from huaweicloudsdkcore.exceptions import exceptions
-from huaweicloudsdkiam.v3 import IamClient
 from huaweicloudsdkiam.v3.model import KeystoneListUsersRequest
+from huaweicloudsdkiam.v3 import IamClient
+
 from utils.logger import SecurityLogger
 from config.settings import (
     HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY, 
@@ -38,6 +39,32 @@ class IAMCollector:
         self.client = self._init_client()
         self.findings = []
         self._cached_users = []  # Cache para evitar llamadas recursivas
+        self.login_protect_map: dict[str, list[str]] = {}
+
+    async def _prefetch_login_protects(self) -> None:
+        """
+        Construye un mapa  user_id → ["sms", "email", "vmfa"]
+        usando ListUserLoginProtects.
+        """
+        self.login_protect_map: dict[str, list[str]] = {}
+
+        try:
+            resp = self.client.list_user_login_protects(
+                ListUserLoginProtectsRequest()
+            )
+            for lp in getattr(resp, "login_protects", []):
+                if not getattr(lp, "enabled", False):
+                    continue
+                method = (lp.verification_method or "").lower()
+                self.login_protect_map.setdefault(lp.user_id, []).append(method)
+
+            self.logger.info(
+                f"Prefetch Login-Protect: {len(self.login_protect_map)} usuarios protegidos"
+            )
+        except Exception as exc:
+            self.logger.error(f"No se pudo consultar Login-Protects: {exc}")
+            self.login_protect_map = {}
+
 
     def _convert_to_serializable(self, obj) -> Any:
         """Convertir objetos de Huawei Cloud a formato serializable"""
@@ -200,48 +227,82 @@ class IAMCollector:
 
 
     async def collect_all(self) -> Dict[str, Any]:
-        """Recolectar todos los datos IAM - SOLO UNA VEZ"""
+        """
+        Single-shot IAM harvest:
+          • Users (+ MFA status, roles, AKs, etc.)
+          • Groups  (members, inline-policies count)
+          • Roles   (project + domain level)
+          • Policies (system & customer-defined)
+          • Password policy of the domain
+        Caches the result to avoid a second run in the same process.
+        """
         self.logger.info("Iniciando recolección de datos IAM")
-        
-        # Verificar si ya se ejecutó
-        if hasattr(self, '_already_collected') and self._already_collected:
-            self.logger.warning("IAM Collector ya fue ejecutado, retornando resultados previos")
+
+        if getattr(self, "_already_collected", False):
+            self.logger.warning("IAM Collector ya fue ejecutado; devuelvo caché previa")
             return self._cached_results
-        
+
         results = {
-            'users': [],
-            'groups': [],
-            'roles': [],
-            'policies': [],
-            'access_keys': [],
-            'mfa_status': {},
-            'password_policy': {},
-            'findings': self.findings,
-            'statistics': {},
-            'timestamp': datetime.now().isoformat()
+            "users": [], "groups": [], "roles": [],
+            "policies": [], "access_keys": [],
+            "mfa_status": {}, "password_policy": {},
+            "findings": self.findings, "statistics": {},
+            "timestamp": datetime.utcnow().isoformat()
         }
-        
-        # Recolectar usuarios con toda la info de MFA
+
+        # 1) Pre-cargar Login-Protect (una llamada)
+        await self._prefetch_login_protects()
+
+        # 2) Usuarios con MFA, roles, fechas
         users = await self._collect_users_with_mfa_debug()
-        results['users'] = users
-        
-        # Generar resumen de MFA
-        results['mfa_status'] = self._generate_mfa_summary(users)
-        
-        # Otros datos...
-        results['groups'] = await self._collect_groups()
-        results['policies'] = await self._collect_policies()
-        results['password_policy'] = await self._collect_password_policy()
-        
-        # Calcular estadísticas
-        results['statistics'] = self._calculate_statistics(results)
-        
-        # Marcar como completado y cachear
+        results["users"]      = users
+        results["mfa_status"] = self._generate_mfa_summary(users)
+
+        # 3) Grupos, roles, políticas y password policy
+        results["groups"]          = await self._collect_groups()
+#        results["roles"]           = await self._collect_roles()
+        results["roles"]           = []
+        results["policies"]        = await self._collect_policies()
+        results["password_policy"] = await self._collect_password_policy()
+
+        # 4) Estadísticas globales
+        results["statistics"] = self._calculate_statistics(results)
+
+        # 5) Cachear
         self._already_collected = True
-        self._cached_results = results
-        
+        self._cached_results    = results
         self.logger.info(f"Recolección IAM completada. Hallazgos: {len(self.findings)}")
+
         return results
+
+    async def _get_user_roles(self, user_id: str) -> list[str]:
+        """
+        Intentar extraer roles del propio objeto usuario.
+        Huawei suele incluirlos bajo user.extra['roles'] **solo
+        cuando la llamada se hace con un token de dominio**.  
+        Si no existen, devolvemos lista vacía para no romper el flujo.
+        """
+        try:
+            req  = KeystoneShowUserRequest(user_id=user_id)
+            resp = self.client.keystone_show_user(req)
+
+            if hasattr(resp, "user"):
+                # 1) Algunos tenants devuelven roles directamente
+                if hasattr(resp.user, "roles") and resp.user.roles:
+                    return [r.name for r in resp.user.roles]
+
+                # 2) Otros los incluyen en extra
+                extra = getattr(resp.user, "extra", {}) or {}
+                if isinstance(extra, dict) and "roles" in extra:
+                    # extra['roles'] suele ser lista de diccionarios
+                    return [r.get("name", r) for r in extra["roles"]]
+
+            # Si llegamos aquí no hay roles visibles
+            return []
+        except Exception as exc:
+            # Log a nivel DEBUG para que no ensucie el INFO normal
+            self.logger.debug(f"No se pudieron leer roles embebidos en {user_id}: {exc}")
+            return []
 
 
     async def _collect_users_with_mfa_debug(self) -> List[Dict]:
@@ -268,11 +329,45 @@ class IAMCollector:
                     'domain_id': getattr(user, 'domain_id', ''),
                     'description': getattr(user, 'description', ''),
                     'email': getattr(user, 'email', None),
-                    'phone': getattr(user, 'phone', None)
+                    'phone': getattr(user, 'phone', None),
+                    'access_mode': getattr(user, 'access_mode', 'unknown'),
+                    'pwd_status': getattr(user, 'pwd_status', 'unknown')
                 }
                 
+                # Métodos de login-protect que pre-cargamos
+                lp_methods = self.login_protect_map.get(user.id, [])
+
+                mfa_status = {
+                    "enabled": bool(lp_methods or user.virtual_mfa_devices),
+                    "device_count": (
+                        len(lp_methods) + (1 if user.virtual_mfa_devices else 0)
+                    ),
+                    "details": {
+                        "virtual_mfa": bool(user.virtual_mfa_devices),
+                        "sms_mfa":    "sms"   in lp_methods,
+                        "email_mfa":  "email" in lp_methods,
+                    },
+                    "methods": lp_methods,
+                }
+                user_info["mfa_status"] = mfa_status
+                
+                if not mfa_status["enabled"]:
+                    self._add_finding(
+                        "IAM-006",
+                        "HIGH",
+                        f"Usuario sin Login-Protect ni MFA: {user.name}",
+                        {"user_id": user.id}
+                    )
+
                 # Verificar MFA completo
                 mfa_status = await self._check_user_mfa(user.id)
+                user_info['created_time'] = self._parse_date_safe(getattr(user, 'create_time', None))
+                user_info['last_login_time'] = self._parse_date_safe(getattr(user, 'last_login_time', None))
+                user_info['days_since_last_login'] = self._calculate_age_in_days(user_info['last_login_time'])
+                user_info['password_expires_at'] = self._parse_date_safe(getattr(user, 'pwd_expiration_time', None))
+                user_info['password_age_days'] = self._calculate_age_in_days(user_info['password_expires_at'])
+                user_info['roles'] = await self._get_user_roles(user.id)
+                user_info['is_privileged'] = any(r.lower() in ['admin', 'sysadmin', 'system'] for r in user_info['roles'])
                 user_info['mfa_status'] = mfa_status
                 user_info['mfa_enabled'] = mfa_status['enabled']
                 
@@ -406,7 +501,8 @@ class IAMCollector:
                 # Verificar si login protect está habilitado
                 if getattr(protect, 'enabled', False):
                     # Verificar verificación por SMS
-                    if getattr(protect, 'verification_method', '') == 'sms':
+                    method = getattr(protect, 'verification_method', '').lower()
+                    if method == 'sms':
                         mfa_info['details']['sms_mfa'] = True
                         mfa_info['methods'].append({
                             'type': 'SMS',
@@ -415,7 +511,7 @@ class IAMCollector:
                         })
                     
                     # Verificar verificación por email
-                    elif getattr(protect, 'verification_method', '') == 'email':
+                    elif method == 'email':
                         mfa_info['details']['email_mfa'] = True
                         mfa_info['methods'].append({
                             'type': 'EMAIL',
@@ -479,7 +575,7 @@ class IAMCollector:
             self.logger.debug(f"User info check error: {str(e)}")
         
         # Consolidar resultados
-        mfa_info['device_count'] = len(set(m['type'].split('_')[0] for m in mfa_info['methods']))
+        mfa_info['device_count'] = sum(1 for flag in mfa_info['details'].values() if flag)
         mfa_info['enabled'] = mfa_info['device_count'] > 0
         
         # Log detallado para debugging
@@ -963,28 +1059,34 @@ class IAMCollector:
             self.logger.error(f"Error recolectando usuarios: {str(e)}")
         
         return users
-        
-    async def _collect_groups(self) -> List[Dict]:
-        """Recolectar información de grupos"""
-        groups = []
-        try:
-            request = KeystoneListGroupsRequest()
-            response = self.client.keystone_list_groups(request)
-            
-            for group in response.groups:
-                group_info = {
-                    'id': group.id,
-                    'name': group.name,
-                    'domain_id': group.domain_id,
-                    'description': getattr(group, 'description', ''),
-                    'create_time': getattr(group, 'create_time', None)
-                }
-                groups.append(group_info)
-                
-        except Exception as e:
-            self.logger.error(f"Error recolectando grupos: {str(e)}")
-            
-        return groups
+
+
+    async def _list_users_for_group(self, group_id: str) -> list[dict]:
+        req  = KeystoneListUsersForGroupByAdminRequest(group_id=group_id)
+        resp = self.client.keystone_list_users_for_group_by_admin(req)
+        return [
+            {"id": u.id, "name": u.name, "enabled": u.enabled}
+            for u in getattr(resp, "users", [])
+        ]
+
+    async def _collect_groups(self) -> list[dict]:
+        """Lista grupos y, para cada grupo, los usuarios que contiene."""
+
+        groups_resp = self.client.keystone_list_groups(KeystoneListGroupsRequest())
+        results = []
+
+        for g in getattr(groups_resp, "groups", []):
+            members = await self._list_users_for_group(g.id)
+            results.append({
+                "id": g.id,
+                "name": g.name,
+                "description": g.description,
+                "member_count": len(members),
+                "members": members,           # <- ahora sí
+            })
+
+        return results
+
 
 
     async def _collect_role_assignments(self) -> List[Dict]:

@@ -1,25 +1,34 @@
 #!/usr/bin/env python3
 """
-Colector de configuraciones de red para Huawei Cloud
+Colector de configuraciones de red para Huawei Cloud - Multi-región
 """
 
 import asyncio
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 import ipaddress
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
+from huaweicloudsdkcore.region.region import Region
+from huaweicloudsdkcore.exceptions import exceptions
 from huaweicloudsdkvpc.v2 import *
 from huaweicloudsdkecs.v2 import *
-from huaweicloudsdkcore.region.region import Region
+
+# Import para EIP
+try:
+    from huaweicloudsdkeip.v2 import *
+    EIP_SDK_AVAILABLE = True
+except ImportError:
+    EIP_SDK_AVAILABLE = False
+    print("WARNING: SDK de EIP no disponible. Instale con: pip install huaweicloudsdkeip")
+
 from utils.logger import SecurityLogger
 from config.settings import (
     HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY,
-    HUAWEI_PROJECT_ID, REGIONS
+    HUAWEI_PROJECT_ID, REGIONS, REGION_PROJECT_MAPPING
 )
 from config.constants import CRITICAL_PORTS
-from utils.multi_region_client import MultiRegionClient
 
-class NetworkCollector(MultiRegionClient):
+class NetworkCollector:
     """Colector de configuraciones de seguridad de red"""
     
     def __init__(self):
@@ -31,27 +40,95 @@ class NetworkCollector(MultiRegionClient):
             HUAWEI_PROJECT_ID
         )
         
-    def _get_vpc_client(self, region: str):
-        """Obtener cliente VPC para una región"""
-        credentials = self.get_credentials_for_region(region)
+        # Mapeo de regiones del inventario a regiones SDK
+        self.region_map = {
+            'LA-Santiago': 'la-south-2',
+            'LA-Buenos Aires1': 'sa-argentina-1',
+            'CN-Hong Kong': 'ap-southeast-1',
+            'AP-Bangkok': 'ap-southeast-2',
+            'AP-Singapore': 'ap-southeast-3'
+        }
         
-        return VpcClient.new_builder() \
-            .with_credentials(credentials) \
-            .with_region(VpcRegion.value_of(region)) \
+        # Recursos por región según inventario
+        self.inventory_by_region = {
+            'LA-Santiago': {'resources': 50, 'ecs': 9, 'evs': 21, 'vpcs': 9, 'eips': 1},
+            'LA-Buenos Aires1': {'resources': 369, 'ecs': 103, 'evs': 230, 'vpcs': 9, 'eips': 9},
+            'CN-Hong Kong': {'resources': 6, 'vpcs': 1, 'function_graph': 2},
+            'AP-Bangkok': {'resources': 4, 'function_graph': 3},
+            'AP-Singapore': {'resources': 2, 'function_graph': 1}
+        }
+        
+    def _get_vpc_client(self, region_alias: str):
+        region_id  = self.region_map.get(region_alias, region_alias)      # la-south-2
+        project_id = REGION_PROJECT_MAPPING[region_id]                        # mapa nuevo
+
+        creds = BasicCredentials(HUAWEI_ACCESS_KEY,
+                                HUAWEI_SECRET_KEY,
+                                project_id)
+
+        region_obj = Region(region_id, f"https://vpc.{region_id}.myhuaweicloud.com")
+
+        return VpcClient.new_builder()\
+            .with_credentials(creds)\
+            .with_region(region_obj)\
             .build()
     
-    def _get_ecs_client(self, region: str):
-        """Obtener cliente ECS para una región"""
-        credentials = self.get_credentials_for_region(region)
-        
-        return EcsClient.new_builder() \
-            .with_credentials(credentials) \
-            .with_region(EcsRegion.value_of(region)) \
-            .build()
+    def _get_ecs_client(self, region_alias: str) -> Optional[EcsClient]:
+        """Devuelve un ECS client configurado para la región indicada."""
+        actual_region = self.region_map.get(region_alias, region_alias)
+
+        # 1. Project ID correcto
+        try:
+            project_id = REGION_PROJECT_MAPPING[actual_region]
+        except KeyError:
+            logger.error(f"No tengo Project-ID para la región {actual_region}")
+            return None
+
+        # 2. Credenciales por región
+        creds = BasicCredentials(
+            HUAWEI_ACCESS_KEY,
+            HUAWEI_SECRET_KEY,
+            project_id
+        )
+
+        # 3. Endpoint (puedes crear un pequeño helper)
+        endpoint = f"https://ecs.{actual_region}.myhuaweicloud.com"
+        region_obj = Region(actual_region, endpoint)
+
+        # 4. Construye el cliente
+        try:
+            return (
+                EcsClient.new_builder()
+                .with_credentials(creds)
+                .with_region(region_obj)
+                .build()
+            )
+        except Exception as e:
+            logger.error(f"Error creando cliente ECS para {actual_region}: {e}")
+            return None
+    
+    def _get_eip_client(self, region: str) -> Optional[Any]:
+        """Obtener cliente EIP para una región"""
+        if not EIP_SDK_AVAILABLE:
+            return None
+            
+        try:
+            actual_region = self.region_map.get(region, region)
+            endpoint = f"https://vpc.{actual_region}.myhuaweicloud.com"
+            region_obj = Region(actual_region, endpoint)
+            
+            return EipClient.new_builder() \
+                .with_credentials(self.credentials) \
+                .with_region(region_obj) \
+                .build()
+                
+        except Exception as e:
+            self.logger.error(f"Error creando cliente EIP para {region}: {str(e)}")
+            return None
     
     async def collect_all(self) -> Dict[str, Any]:
         """Recolectar todos los datos de red"""
-        self.logger.info("Iniciando recolección de datos de red")
+        self.logger.info("Iniciando recolección de datos de red multi-región")
         
         results = {
             'vpcs': {},
@@ -59,47 +136,66 @@ class NetworkCollector(MultiRegionClient):
             'security_groups': {},
             'network_acls': {},
             'elastic_ips': {},
-            'nat_gateways': {},
-            'vpn_connections': {},
             'exposed_resources': [],
-            'security_group_analysis': {},
             'findings': self.findings,
             'statistics': {},
             'timestamp': datetime.now().isoformat()
         }
         
-        # Recolectar datos por región
-        for region in REGIONS:
-            region_name = self.get_region_display_name(region)
-            self.logger.info(f"Analizando región: {region_name} ({region})")
+        # Procesar TODAS las regiones con recursos
+        all_regions = list(self.inventory_by_region.keys())
+        
+        for region in all_regions:
+            region_info = self.inventory_by_region[region]
+            self.logger.info(f"Analizando región: {region} ({region_info['resources']} recursos)")
             
+            # Intentar obtener datos reales de la región
             try:
-                results['vpcs'][region] = await self._collect_vpcs(region)
-                results['subnets'][region] = await self._collect_subnets(region)
-                results['security_groups'][region] = await self._collect_security_groups(region)
-                results['security_group_analysis'][region] = await self._analyze_security_groups_usage(region)
-                results['network_acls'][region] = await self._collect_network_acls(region)
-                results['elastic_ips'][region] = await self._collect_elastic_ips(region)
-                results['exposed_resources'].extend(await self._analyze_exposed_resources(region))
+                # Solo intentar si hay recursos relevantes
+                if region_info.get('vpcs', 0) > 0 or region_info.get('ecs', 0) > 0:
+                    # VPCs
+                    vpc_result = await self._collect_vpcs_safe(region)
+                    if vpc_result:
+                        results['vpcs'][region] = vpc_result
+                    
+                    # Subnets
+                    subnet_result = await self._collect_subnets_safe(region)
+                    if subnet_result:
+                        results['subnets'][region] = subnet_result
+                    
+                    # Security Groups
+                    sg_result = await self._collect_security_groups_safe(region)
+                    if sg_result:
+                        results['security_groups'][region] = sg_result
+                    
+                    # EIPs
+                    if region_info.get('eips', 0) > 0:
+                        eip_result = await self._collect_elastic_ips_with_sdk(region)
+                        if eip_result:
+                            results['elastic_ips'][region] = eip_result
+                    
+                    # Recursos expuestos
+                    if region_info.get('ecs', 0) > 0:
+                        exposed = await self._analyze_exposed_resources_safe(region)
+                        if exposed:
+                            results['exposed_resources'].extend(exposed)
                 
-                # Log de éxito
-                self.logger.info(f"✓ Región {region_name} analizada exitosamente")
-                
+                # Si no pudimos obtener datos reales, agregar hallazgo basado en inventario
+                if region not in results['vpcs'] and region_info['resources'] > 0:
+                    self._add_inventory_based_finding(region, region_info)
+                    
+            except exceptions.ClientRequestException as e:
+                if "401" in str(e) or "403" in str(e):
+                    self.logger.warning(f"Sin autorización para región {region}")
+                    self._add_inventory_based_finding(region, region_info)
+                else:
+                    self.logger.error(f"Error en región {region}: {str(e)}")
             except Exception as e:
-                self.logger.error(f"Error en región {region_name}: {str(e)}")
-                
-                # Si es error de autenticación/proyecto, agregarlo como finding
-                if "does not match with the project" in str(e) or "401" in str(e):
-                    self._add_finding(
-                        'NET-010',
-                        'INFO',
-                        f'No se pudo acceder a la región {region_name}',
-                        {
-                            'region': region,
-                            'error': 'Posible falta de permisos o región no habilitada',
-                            'recommendation': 'Verificar permisos IAM para esta región'
-                        }
-                    )
+                self.logger.error(f"Error inesperado en región {region}: {str(e)}")
+                self._add_inventory_based_finding(region, region_info)
+        
+        # Agregar análisis consolidado
+        self._add_consolidated_findings(results)
         
         # Calcular estadísticas
         results['statistics'] = self._calculate_statistics(results)
@@ -107,49 +203,64 @@ class NetworkCollector(MultiRegionClient):
         self.logger.info(f"Recolección de red completada. Hallazgos: {len(self.findings)}")
         return results
     
-    async def _collect_vpcs(self, region: str) -> List[Dict]:
-        """Recolectar información de VPCs"""
-        vpcs = []
+    async def _collect_vpcs_safe(self, region: str) -> Optional[List[Dict]]:
+        """Recolectar VPCs con manejo de errores"""
         try:
             client = self._get_vpc_client(region)
+            if not client:
+                return None
+                
             request = ListVpcsRequest()
+            request.limit = 100
             response = client.list_vpcs(request)
             
+            vpcs = []
             for vpc in response.vpcs:
                 vpc_info = {
                     'id': vpc.id,
                     'name': vpc.name,
                     'cidr': vpc.cidr,
                     'status': vpc.status,
-                    'description': vpc.description,
-                    'enterprise_project_id': vpc.enterprise_project_id,
-                    'created_at': vpc.created_at,
-                    'routes': []
+                    'description': getattr(vpc, 'description', ''),
+                    'created_at': getattr(vpc, 'created_at', None)
                 }
                 
-                # Verificar configuración de red
+                # Verificar configuración
                 if self._check_vpc_issues(vpc):
                     self._add_finding(
                         'NET-001',
                         'MEDIUM',
-                        f'VPC con configuración subóptima: {vpc.name}',
-                        {'vpc_id': vpc.id, 'region': region}
+                        f'VPC con CIDR muy grande en {region}: {vpc.name}',
+                        {
+                            'vpc_id': vpc.id, 
+                            'region': region, 
+                            'cidr': vpc.cidr,
+                            'hosts': str(ipaddress.ip_network(vpc.cidr).num_addresses)
+                        }
                     )
                 
                 vpcs.append(vpc_info)
-                
+            
+            self.logger.info(f"Recolectadas {len(vpcs)} VPCs en {region}")
+            return vpcs
+            
         except Exception as e:
             self.logger.error(f"Error recolectando VPCs en {region}: {str(e)}")
-            
-        return vpcs
+            return None
     
-    async def _collect_subnets(self, region: str) -> List[Dict]:
-        """Recolectar información de subnets"""
-        subnets = []
+    async def _collect_subnets_safe(self, region: str) -> Optional[List[Dict]]:
+        """Recolectar subnets con manejo de errores"""
         try:
             client = self._get_vpc_client(region)
+            if not client:
+                return None
+                
             request = ListSubnetsRequest()
+            request.limit = 100
             response = client.list_subnets(request)
+            
+            subnets = []
+            public_count = 0
             
             for subnet in response.subnets:
                 subnet_info = {
@@ -158,307 +269,458 @@ class NetworkCollector(MultiRegionClient):
                     'cidr': subnet.cidr,
                     'vpc_id': subnet.vpc_id,
                     'gateway_ip': subnet.gateway_ip,
-                    'dhcp_enable': subnet.dhcp_enable,
-                    'primary_dns': subnet.primary_dns,
-                    'secondary_dns': subnet.secondary_dns,
-                    'availability_zone': subnet.availability_zone
+                    'availability_zone': getattr(subnet, 'availability_zone', None)
                 }
                 
-                # Verificar si es subnet pública innecesaria
-                if self._is_public_subnet(subnet) and not self._requires_public_access(subnet):
-                    self._add_finding(
-                        'NET-002',
-                        'HIGH',
-                        f'Subnet pública sin justificación: {subnet.name}',
-                        {'subnet_id': subnet.id, 'cidr': subnet.cidr, 'region': region}
-                    )
+                # Verificar subnet pública
+                if self._is_public_subnet(subnet):
+                    public_count += 1
+                    if not self._requires_public_access(subnet):
+                        self._add_finding(
+                            'NET-002',
+                            'HIGH',
+                            f'Subnet pública sin justificación en {region}: {subnet.name}',
+                            {
+                                'subnet_id': subnet.id, 
+                                'cidr': subnet.cidr, 
+                                'region': region,
+                                'gateway_ip': subnet.gateway_ip
+                            }
+                        )
                 
                 subnets.append(subnet_info)
-                
+            
+            self.logger.info(f"Recolectadas {len(subnets)} subnets en {region} ({public_count} públicas)")
+            return subnets
+            
         except Exception as e:
             self.logger.error(f"Error recolectando subnets en {region}: {str(e)}")
-            
-        return subnets
-    
-    async def _collect_security_groups(self, region: str) -> List[Dict]:
-        """Recolectar y analizar security groups"""
-        security_groups = []
+            return None
+
+
+
+    def _count_sg_assignments(self, sg_id: str, region: str) -> int:
+        """
+        Devuelve cuántas instancias / NIC usan este Security Group.
+        Hace una sola pasada sobre ListServersDetails y filtra por sg.id.
+        """
+        try:
+            client = self._get_ecs_client(region)
+            if not client:
+                return 0
+
+            req  = ListServersDetailsRequest(limit=1000)
+            resp = client.list_servers_details(req)
+
+            attached = 0
+            for srv in resp.servers:
+                for sg in getattr(srv, 'security_groups', []):
+                    sg_match = sg.id if hasattr(sg, "id") else sg.get("id")
+                    if sg_match == sg_id:
+                        attached += 1
+                        break
+            return attached
+        except Exception:
+            return 0
+
+
+    async def _collect_security_groups_safe(self, region: str) -> Optional[List[Dict]]:
+        """Recolectar security groups con manejo de errores"""
         try:
             client = self._get_vpc_client(region)
+            if not client:
+                return None
+                
             request = ListSecurityGroupsRequest()
+            request.limit = 100
             response = client.list_security_groups(request)
+            
+            security_groups = []
+            overly_permissive = 0
             
             for sg in response.security_groups:
                 sg_info = {
                     'id': sg.id,
                     'name': sg.name,
-                    'description': sg.description,
-                    'vpc_id': getattr(sg, 'vpc_id', None),
-                    'enterprise_project_id': sg.enterprise_project_id,
-                    'rules': []
+                    'description': getattr(sg, 'description', ''),
+                    'rules_count': 0,
+                    'critical_exposures': [],
+                    'assigned_instances': 0
                 }
                 
-                # Obtener reglas detalladas
-                rules_request = ListSecurityGroupRulesRequest()
-                rules_request.security_group_id = sg.id
-                rules_response = client.list_security_group_rules(rules_request)
-                
-                for rule in rules_response.security_group_rules:
-                    rule_info = {
-                        'id': rule.id,
-                        'direction': rule.direction,
-                        'protocol': rule.protocol,
-                        'ethertype': rule.ethertype,
-                        'description': rule.description,
-                        'remote_ip_prefix': rule.remote_ip_prefix,
-                        'remote_group_id': rule.remote_group_id,
-                        'port_range_min': rule.port_range_min,
-                        'port_range_max': rule.port_range_max
-                    }
+                # Obtener reglas
+                try:
+                    attached = self._count_sg_assignments(sg.id, region)
+                    sg_info["assigned_instances"] = attached
+
+                    rules_request = ListSecurityGroupRulesRequest()
+                    rules_request.security_group_id = sg.id
+                    rules_response = client.list_security_group_rules(rules_request)
                     
-                    # Analizar reglas peligrosas
-                    self._analyze_security_group_rule(rule, sg.name, region)
+                    sg_info['rules_count'] = len(rules_response.security_group_rules)
                     
-                    sg_info['rules'].append(rule_info)
+                    for rule in rules_response.security_group_rules:
+                        if self._is_dangerous_rule(rule):
+                            overly_permissive += 1
+                            self._analyze_security_group_rule(rule, sg.name, region, attached)
+                            
+                            # Agregar a exposiciones críticas
+                            if self._is_critical_exposure(rule):
+                                sg_info['critical_exposures'].append({
+                                    'ports': f"{getattr(rule, 'port_range_min', 'any')}-{getattr(rule, 'port_range_max', 'any')}",
+                                    'source': getattr(rule, 'remote_ip_prefix', 'any')
+                                })
+                            
+                except Exception as e:
+                    self.logger.debug(f"Error obteniendo reglas para SG {sg.id}: {str(e)}")
                 
                 security_groups.append(sg_info)
-                
+            
+            self.logger.info(f"Recolectados {len(security_groups)} SGs en {region} ({overly_permissive} reglas peligrosas)")
+            return security_groups
+            
         except Exception as e:
             self.logger.error(f"Error recolectando security groups en {region}: {str(e)}")
-            
-        return security_groups
+            return None
     
-    async def _collect_network_acls(self, region: str) -> List[Dict]:
-        """Recolectar Network ACLs"""
-        nacls = []
-        try:
-            client = self._get_vpc_client(region)
-            # API específica de Huawei Cloud para Network ACLs
-            # Implementar según documentación
-            pass
-        except Exception as e:
-            self.logger.error(f"Error recolectando NACLs en {region}: {str(e)}")
+    async def _collect_elastic_ips_with_sdk(self, region: str) -> Optional[List[Dict]]:
+        """Recolectar EIPs usando el SDK dedicado"""
+        if not EIP_SDK_AVAILABLE:
+            self.logger.warning(f"SDK de EIP no disponible para {region}")
+            return None
             
-        return nacls
-    
-    async def _collect_elastic_ips(self, region: str) -> List[Dict]:
-        """Recolectar Elastic IPs"""
-        eips = []
-        
         try:
-            # Intentar con el cliente EIP si está disponible
-            try:
-                from huaweicloudsdkeip.v2 import (
-                    EipClient, ListPublicipsRequest, EipRegion
-                )
+            client = self._get_eip_client(region)
+            if not client:
+                return None
                 
-                credentials = self.get_credentials_for_region(region)
-                eip_client = EipClient.new_builder() \
-                    .with_credentials(credentials) \
-                    .with_region(EipRegion.value_of(region)) \
-                    .build()
-                
-                request = ListPublicipsRequest()
-                response = eip_client.list_publicips(request)
-                publicips = response.publicips
-                
-            except ImportError:
-                # Si no está disponible el módulo EIP, usar VPC
-                self.logger.warning(f"Módulo EIP no disponible, usando método alternativo para {region}")
-                vpc_client = self._get_vpc_client(region)
-                
-                # Intentar con el método de VPC v2
-                from huaweicloudsdkvpc.v2 import ListPublicipsRequest as VpcListPublicipsRequest
-                
-                request = VpcListPublicipsRequest()
-                response = vpc_client.list_publicips(request)
-                publicips = response.publicips
+            # Usar el SDK de EIP correcto
+            request = ListPublicipsRequest()
+            response = client.list_publicips(request)
             
-            # Procesar las IPs públicas
-            for eip in publicips:
+            eips = []
+            unused_count = 0
+            
+            for eip in response.publicips:
                 eip_info = {
-                    'id': getattr(eip, 'id', 'unknown'),
-                    'public_ip_address': getattr(eip, 'public_ip_address', 'unknown'),
-                    'private_ip_address': getattr(eip, 'private_ip_address', None),
-                    'status': getattr(eip, 'status', 'unknown'),
-                    'bandwidth_id': getattr(eip, 'bandwidth_id', None),
-                    'bandwidth_size': getattr(eip, 'bandwidth_size', None),
-                    'created_at': getattr(eip, 'create_time', getattr(eip, 'created_at', None)),
+                    'id': eip.id,
+                    'public_ip': eip.public_ip_address,
+                    'private_ip': getattr(eip, 'private_ip_address', None),
+                    'status': eip.status,
                     'type': getattr(eip, 'type', None),
-                    'port_id': getattr(eip, 'port_id', None),
-                    'instance_type': getattr(eip, 'instance_type', None),
-                    'instance_id': getattr(eip, 'instance_id', None)
+                    'bandwidth_size': getattr(eip, 'bandwidth_size', None),
+                    'create_time': getattr(eip, 'create_time', None),
+                    'associate_instance_type': getattr(eip, 'associate_instance_type', None),
+                    'associate_instance_id': getattr(eip, 'associate_instance_id', None)
                 }
                 
-                # Verificar IPs sin uso
-                if eip_info['status'] == 'DOWN' or not eip_info['port_id']:
+                # Verificar si está sin usar
+                if eip.status == 'DOWN' or not getattr(eip, 'associate_instance_id', None):
+                    unused_count += 1
                     self._add_finding(
                         'NET-005',
                         'LOW',
-                        f'Elastic IP sin utilizar: {eip_info["public_ip_address"]}',
+                        f'Elastic IP sin utilizar en {region}: {eip.public_ip_address}',
                         {
-                            'eip_id': eip_info['id'],
-                            'ip': eip_info['public_ip_address'],
-                            'region': self.get_region_display_name(region),
-                            'cost_estimate': '$5-10/mes desperdiciados'
+                            'eip_id': eip.id, 
+                            'ip': eip.public_ip_address, 
+                            'region': region,
+                            'monthly_cost_estimate': '$5-10 USD'
                         }
                     )
                 
                 eips.append(eip_info)
-                
+            
+            self.logger.info(f"Recolectadas {len(eips)} EIPs en {region} ({unused_count} sin usar)")
+            return eips
+            
         except Exception as e:
-            self.logger.error(f"Error recolectando EIPs en {self.get_region_display_name(region)}: {str(e)}")
-            
-            # Si es un error de importación o método no encontrado, log pero continuar
-            if "ListPublicipsRequest" in str(e) or "has no attribute" in str(e):
-                self.logger.info(f"API de EIP no disponible en {region}, continuando sin EIPs")
-            
-        return eips
+            self.logger.error(f"Error recolectando EIPs en {region}: {str(e)}")
+            return None
     
-    async def _analyze_exposed_resources(self, region: str) -> List[Dict]:
-        """Analizar recursos expuestos a Internet"""
-        exposed = []
+    async def _analyze_exposed_resources_safe(self, region: str) -> Optional[List[Dict]]:
+        """Analizar recursos expuestos con manejo de errores mejorado"""
         try:
-            ecs_client = self._get_ecs_client(region)
+            client = self._get_ecs_client(region)
+            if not client:
+                return None
+                
             request = ListServersDetailsRequest()
-            response = ecs_client.list_servers_details(request)
+            request.limit = 100
+            response = client.list_servers_details(request)
+            
+            exposed = []
+            servers_with_public_ip = 0
             
             for server in response.servers:
-                # Verificar si tiene IP pública
-                public_ips = []
-                for addr_set in server.addresses.values():
-                    for addr in addr_set:
-                        if addr.get('OS-EXT-IPS:type') == 'floating':
-                            public_ips.append(addr['addr'])
+                public_ips = self._extract_public_ips(server)
                 
                 if public_ips:
-                    # Obtener security groups del servidor
-                    for sg in server.security_groups:
-                        exposed_ports = await self._check_exposed_ports(sg['id'], region)
+                    servers_with_public_ip += 1
+                    
+                    # Analizar security groups
+                    for sg in getattr(server, 'security_groups', []):
+                        sg_id = sg.id if hasattr(sg, 'id') else sg.get('id') if isinstance(sg, dict) else None
                         
-                        if exposed_ports:
-                            exposed_info = {
-                                'server_id': server.id,
-                                'server_name': server.name,
-                                'public_ips': public_ips,
-                                'exposed_ports': exposed_ports,
-                                'security_groups': [sg['name'] for sg in server.security_groups],
-                                'region': region
-                            }
-                            exposed.append(exposed_info)
+                        if sg_id:
+                            exposed_ports = await self._check_exposed_ports(sg_id, region)
                             
-                            # Verificar puertos críticos
-                            critical_exposed = [
-                                p for p in exposed_ports 
-                                if p['port'] in CRITICAL_PORTS
-                            ]
-                            
-                            if critical_exposed:
-                                self._add_finding(
-                                    'NET-003',
-                                    'CRITICAL',
-                                    f'Servidor con puertos críticos expuestos: {server.name}',
-                                    {
-                                        'server_id': server.id,
-                                        'ports': critical_exposed,
-                                        'public_ips': public_ips,
-                                        'region': region
-                                    }
-                                )
+                            if exposed_ports:
+                                critical_ports = [p for p in exposed_ports if p['port'] in CRITICAL_PORTS]
                                 
+                                if critical_ports:
+                                    exposed.append({
+                                        'server_id': server.id,
+                                        'server_name': server.name,
+                                        'public_ips': public_ips,
+                                        'exposed_ports': critical_ports,
+                                        'region': region
+                                    })
+                                    
+                                    self._add_finding(
+                                        'NET-003',
+                                        'CRITICAL',
+                                        f'Servidor {server.name} con puertos críticos expuestos en {region}',
+                                        {
+                                            'server_id': server.id,
+                                            'ports': [p['port'] for p in critical_ports],
+                                            'public_ips': public_ips,
+                                            'region': region
+                                        }
+                                    )
+            
+            self.logger.info(f"Analizados {len(response.servers)} servidores en {region} ({servers_with_public_ip} con IP pública)")
+            return exposed
+            
         except Exception as e:
             self.logger.error(f"Error analizando recursos expuestos en {region}: {str(e)}")
+            return None
+    
+    def _extract_public_ips(self, server) -> List[str]:
+        """Extraer IPs públicas de un servidor"""
+        public_ips = []
+        
+        if hasattr(server, 'addresses') and server.addresses:
+            for network_name, addr_list in server.addresses.items():
+                for addr in addr_list:
+                    # Manejar diferentes formatos
+                    if hasattr(addr, 'OS-EXT-IPS:type'):
+                        if getattr(addr, 'OS-EXT-IPS:type') == 'floating':
+                            public_ips.append(addr.addr)
+                    elif isinstance(addr, dict):
+                        if addr.get('OS-EXT-IPS:type') == 'floating':
+                            public_ips.append(addr.get('addr'))
+        
+        # También verificar publicIp directo
+        if hasattr(server, 'publicIp') and server.publicIp:
+            public_ips.extend(server.publicIp)
             
-        return exposed
+        return list(set(public_ips))  # Eliminar duplicados
+    
+    def _add_inventory_based_finding(self, region: str, region_info: Dict):
+        """Agregar hallazgo basado en inventario cuando no hay acceso a la región"""
+        self._add_finding(
+            f'NET-INV-{region[:3].upper()}',
+            'MEDIUM',
+            f'No se pudo analizar {region_info["resources"]} recursos en {region}',
+            {
+                'region': region,
+                'total_resources': region_info['resources'],
+                'breakdown': {k: v for k, v in region_info.items() if k != 'resources'},
+                'reason': 'Sin autorización o conectividad a la región',
+                'recommendation': 'Verificar manualmente la configuración de seguridad'
+            }
+        )
+    
+    def _add_consolidated_findings(self, results: Dict):
+        """Agregar hallazgos consolidados basados en análisis multi-región"""
+        # Análisis de distribución de recursos
+        total_vpcs = sum(len(vpcs) for vpcs in results['vpcs'].values())
+        total_from_inventory = sum(self.inventory_by_region[r].get('vpcs', 0) for r in self.inventory_by_region)
+        
+        if total_from_inventory > 15:
+            self._add_finding(
+                'NET-CONSOLIDATION-001',
+                'MEDIUM',
+                f'Arquitectura multi-VPC compleja: {total_from_inventory} VPCs en 5 regiones',
+                {
+                    'vpcs_by_region': {r: self.inventory_by_region[r].get('vpcs', 0) 
+                                     for r in self.inventory_by_region if self.inventory_by_region[r].get('vpcs', 0) > 0},
+                    'recommendation': 'Evaluar consolidación de VPCs y uso de VPC Peering'
+                }
+            )
+        
+        # Desbalance regional
+        ba_resources = self.inventory_by_region['LA-Buenos Aires1']['resources']
+        total_resources = sum(r['resources'] for r in self.inventory_by_region.values())
+        concentration = (ba_resources / total_resources) * 100
+        
+        if concentration > 80:
+            self._add_finding(
+                'NET-REGIONAL-001',
+                'HIGH',
+                f'Alta concentración de recursos en una región: {concentration:.1f}% en Buenos Aires',
+                {
+                    'buenos_aires': ba_resources,
+                    'total': total_resources,
+                    'risk': 'Single point of failure regional',
+                    'recommendation': 'Implementar arquitectura multi-región para alta disponibilidad'
+                }
+            )
+        
+        # Recursos huérfanos en regiones menores
+        minor_regions = ['CN-Hong Kong', 'AP-Bangkok', 'AP-Singapore']
+        minor_resources = sum(self.inventory_by_region[r]['resources'] for r in minor_regions)
+        
+        if minor_resources > 0 and minor_resources < 20:
+            self._add_finding(
+                'NET-SPRAWL-001',
+                'LOW',
+                f'Recursos dispersos en regiones con pocos servicios',
+                {
+                    'regions': {r: self.inventory_by_region[r]['resources'] for r in minor_regions},
+                    'total_resources': minor_resources,
+                    'recommendation': 'Considerar migración a regiones principales para reducir complejidad'
+                }
+            )
+    
+    def _is_dangerous_rule(self, rule) -> bool:
+        """Verificar si una regla es peligrosa"""
+        if getattr(rule, 'direction', None) != 'ingress':
+            return False
+            
+        remote_ip = getattr(rule, 'remote_ip_prefix', None)
+        if remote_ip not in ['0.0.0.0/0', '::/0']:
+            return False
+            
+        # Es peligrosa si permite acceso desde Internet
+        return True
+    
+    def _is_critical_exposure(self, rule) -> bool:
+        """Verificar si es una exposición crítica"""
+        if not self._is_dangerous_rule(rule):
+            return False
+            
+        port_min = getattr(rule, 'port_range_min', None)
+        port_max = getattr(rule, 'port_range_max', None)
+        
+        if port_min and port_max:
+            # Verificar si incluye puertos críticos
+            for port in CRITICAL_PORTS:
+                if port_min <= port <= port_max:
+                    return True
+                    
+        return False
     
     async def _check_exposed_ports(self, sg_id: str, region: str) -> List[Dict]:
         """Verificar puertos expuestos en un security group"""
         exposed_ports = []
+        
         try:
             client = self._get_vpc_client(region)
+            if not client:
+                return []
+                
             request = ListSecurityGroupRulesRequest()
             request.security_group_id = sg_id
             response = client.list_security_group_rules(request)
             
             for rule in response.security_group_rules:
-                if (rule.direction == 'ingress' and 
-                    rule.remote_ip_prefix in ['0.0.0.0/0', '::/0']):
+                if (getattr(rule, 'direction', None) == 'ingress' and 
+                    getattr(rule, 'remote_ip_prefix', None) in ['0.0.0.0/0', '::/0']):
                     
-                    if rule.port_range_min and rule.port_range_max:
-                        for port in range(rule.port_range_min, rule.port_range_max + 1):
-                            exposed_ports.append({
-                                'port': port,
-                                'protocol': rule.protocol,
-                                'description': CRITICAL_PORTS.get(port, 'Unknown')
-                            })
+                    port_min = getattr(rule, 'port_range_min', None)
+                    port_max = getattr(rule, 'port_range_max', None)
+                    
+                    if port_min and port_max:
+                        # Solo reportar puertos críticos
+                        for port in CRITICAL_PORTS:
+                            if port_min <= port <= port_max:
+                                exposed_ports.append({
+                                    'port': port,
+                                    'protocol': getattr(rule, 'protocol', 'tcp'),
+                                    'description': CRITICAL_PORTS[port]
+                                })
                     
         except Exception as e:
-            self.logger.error(f"Error verificando puertos expuestos: {str(e)}")
+            self.logger.debug(f"Error verificando puertos expuestos en SG {sg_id}: {str(e)}")
             
         return exposed_ports
     
-    def _analyze_security_group_rule(self, rule: Any, sg_name: str, region: str):
-        """Analizar regla de security group para detectar problemas"""
-        # Reglas de entrada desde 0.0.0.0/0
-        if (rule.direction == 'ingress' and 
-            rule.remote_ip_prefix in ['0.0.0.0/0', '::/0']):
-            
-            # Verificar puertos críticos
-            if rule.port_range_min and rule.port_range_max:
-                for port in range(rule.port_range_min, rule.port_range_max + 1):
-                    if port in CRITICAL_PORTS:
-                        self._add_finding(
-                            'NET-004',
-                            'CRITICAL',
-                            f'Puerto crítico {port} ({CRITICAL_PORTS[port]}) expuesto a Internet',
-                            {
-                                'security_group': sg_name,
-                                'rule_id': rule.id,
-                                'port': port,
-                                'protocol': rule.protocol,
-                                'region': region
-                            }
-                        )
-            
-            # Regla demasiado permisiva (todos los puertos)
-            elif not rule.port_range_min and not rule.port_range_max:
+    def _analyze_security_group_rule(self, rule: Any, sg_name: str, region: str, attached_count: int):
+        """Analiza la regla y genera hallazgos con contexto ampliado"""
+        if not self._is_dangerous_rule(rule):
+            return
+
+        port_min = getattr(rule, "port_range_min", None)
+        port_max = getattr(rule, "port_range_max", None)
+
+        # --- (1) CRÍTICOS ---------------------------------------------------
+        if port_min and port_max:
+            critical_in_range = [
+                f"{p} ({CRITICAL_PORTS[p]})"
+                for p in CRITICAL_PORTS
+                if port_min <= p <= port_max
+            ]
+
+            if critical_in_range:
                 self._add_finding(
-                    'NET-006',
-                    'HIGH',
-                    f'Regla permite todo el tráfico desde Internet',
+                    "NET-004",
+                    "CRITICAL",
+                    (
+                        f"Puertos críticos expuestos a Internet en {region} - "
+                        f"SG «{sg_name}» ({attached_count} instancias)"
+                    ),
                     {
-                        'security_group': sg_name,
-                        'rule_id': rule.id,
-                        'protocol': rule.protocol,
-                        'region': region
-                    }
+                        "security_group": sg_name,
+                        "rule_id": rule.id,
+                        "port_range": f"{port_min}-{port_max}",
+                        "exposed_ports": critical_in_range,
+                        "assigned_instances": attached_count,
+                        "protocol": getattr(rule, "protocol", "any"),
+                        "region": region,
+                    },
                 )
+            return  # ya registrado, no necesita NET-006
+
+        # --- (2) PERMITE TODO ----------------------------------------------
+        self._add_finding(
+            "NET-006",
+            "HIGH",
+            (
+                f"Regla permite TODO el tráfico desde Internet en {region} - "
+                f"SG «{sg_name}» ({attached_count} instancias)"
+            ),
+            {
+                "security_group": sg_name,
+                "rule_id": rule.id,
+                "protocol": getattr(rule, "protocol", "any"),
+                "assigned_instances": attached_count,
+                "region": region,
+                "risk": "Exposición completa del recurso",
+            },
+        )
     
     def _check_vpc_issues(self, vpc: Any) -> bool:
         """Verificar problemas en configuración de VPC"""
-        issues = False
-        
-        # Verificar CIDR muy grande
         try:
-            network = ipaddress.ip_network(vpc.cidr)
-            if network.prefixlen < 16:  # Más de 65k hosts
-                issues = True
+            if hasattr(vpc, 'cidr') and vpc.cidr:
+                network = ipaddress.ip_network(vpc.cidr)
+                # Más de 65k hosts es excesivo para la mayoría de casos
+                return network.prefixlen < 16
         except:
             pass
-            
-        return issues
+        return False
     
     def _is_public_subnet(self, subnet: Any) -> bool:
         """Determinar si una subnet es pública"""
-        # Lógica específica de Huawei Cloud
-        # Por ahora, verificar si tiene gateway IP
-        return bool(subnet.gateway_ip)
+        return bool(getattr(subnet, 'gateway_ip', None))
     
     def _requires_public_access(self, subnet: Any) -> bool:
         """Verificar si la subnet requiere acceso público"""
-        # Implementar lógica según tags o nombre
-        public_keywords = ['dmz', 'public', 'frontend', 'lb', 'load-balancer']
-        return any(keyword in subnet.name.lower() for keyword in public_keywords)
+        public_keywords = ['dmz', 'public', 'frontend', 'web', 'lb', 'load', 'nat', 'bastion']
+        subnet_name = getattr(subnet, 'name', '').lower()
+        return any(keyword in subnet_name for keyword in public_keywords)
     
     def _add_finding(self, finding_id: str, severity: str, message: str, details: dict):
         """Agregar un hallazgo de seguridad"""
@@ -475,28 +737,36 @@ class NetworkCollector(MultiRegionClient):
     def _calculate_statistics(self, results: dict) -> dict:
         """Calcular estadísticas del análisis de red"""
         stats = {
-            'total_vpcs': sum(len(vpcs) for vpcs in results['vpcs'].values()),
-            'total_subnets': sum(len(subnets) for subnets in results['subnets'].values()),
-            'total_security_groups': sum(len(sgs) for sgs in results['security_groups'].values()),
-            'total_elastic_ips': sum(len(eips) for eips in results['elastic_ips'].values()),
-            'exposed_resources': len(results['exposed_resources']),
-            'critical_ports_exposed': 0,
-            'unused_elastic_ips': 0,
-            'overly_permissive_rules': 0,
+            # Datos recolectados
+            'collected': {
+                'vpcs': sum(len(vpcs) for vpcs in results['vpcs'].values()),
+                'subnets': sum(len(subnets) for subnets in results['subnets'].values()),
+                'security_groups': sum(len(sgs) for sgs in results['security_groups'].values()),
+                'elastic_ips': sum(len(eips) for eips in results['elastic_ips'].values()),
+                'regions_analyzed': len([r for r in results['vpcs'] if results['vpcs'][r]])
+            },
+            # Datos del inventario
+            'inventory': {
+                'total_vpcs': 20,
+                'total_security_groups': 17,
+                'total_eips': 10,
+                'total_regions': 5,
+                'total_resources': 437
+            },
+            # Hallazgos
             'findings_by_severity': {
                 'CRITICAL': 0,
                 'HIGH': 0,
                 'MEDIUM': 0,
                 'LOW': 0
+            },
+            # Métricas de exposición
+            'exposure_metrics': {
+                'exposed_resources': len(results['exposed_resources']),
+                'critical_ports_exposed': sum(len(r['exposed_ports']) for r in results['exposed_resources']),
+                'regions_with_exposures': len(set(r['region'] for r in results['exposed_resources']))
             }
         }
-        
-        # Contar puertos críticos expuestos
-        for resource in results['exposed_resources']:
-            stats['critical_ports_exposed'] += len([
-                p for p in resource['exposed_ports'] 
-                if p['port'] in CRITICAL_PORTS
-            ])
         
         # Contar hallazgos por severidad
         for finding in self.findings:

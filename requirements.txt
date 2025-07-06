@@ -6,6 +6,7 @@ huaweicloudsdkecs        # Elastic Cloud Server
 huaweicloudsdkevs        # Elastic Volume Service
 huaweicloudsdkobs        # Object Storage Service
 huaweicloudsdkvpc        # Virtual Private Cloud
+huaweicloudsdkeip        # Elastic IP
 huaweicloudsdkims        # Identity and Management Service
 huaweicloudsdkcts        # Cloud Trace Service
 huaweicloudsdkrds        # Relational Database Service
@@ -24,6 +25,14 @@ huaweicloudsdkcts       # Cloud trace service
 huaweicloudsdkcce       # cloud container engine
 huaweicloudsdkelb       # Elastic Load Balancer
 huaweicloudsdksmn       # Simple Message Notification
+huaweicloudsdkkms       # Key Management Service
+
+# CSBS (solo si realmente lo necesitas)
+openstacksdk               # Core OpenStack bindings
+
+# Si prefieres probar primero:
+# pip install openstacksdk==2.1.0
+
 # Async support
 asyncio>=3.4.3
 aiohttp>=3.8.0

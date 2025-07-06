@@ -1,0 +1,103 @@
+{
+  "evs_volumes": {
+    "la-south-2": [],
+    "sa-argentina-1": [],
+    "ap-southeast-1": [],
+    "ap-southeast-3": [],
+    "ap-southeast-2": []
+  },
+  "backups": {
+    "la-south-2": [],
+    "sa-argentina-1": [],
+    "ap-southeast-1": [],
+    "ap-southeast-3": [],
+    "ap-southeast-2": []
+  },
+  "servers_without_backups": {},
+  "sfs_shares": {},
+  "obs_buckets": [],
+  "encryption_status": {
+    "evs": {
+      "encrypted": 0,
+      "unencrypted": 0
+    },
+    "obs": {
+      "encrypted": 0,
+      "unencrypted": 0
+    }
+  },
+  "findings": [
+    {
+      "id": "STO-009",
+      "severity": "HIGH",
+      "message": "No se encontraron backups configurados en región la-south-2",
+      "details": {
+        "region": "la-south-2",
+        "backup_count": 0
+      },
+      "timestamp": "2025-07-05T21:59:36.083238"
+    },
+    {
+      "id": "STO-009",
+      "severity": "HIGH",
+      "message": "No se encontraron backups configurados en región sa-argentina-1",
+      "details": {
+        "region": "sa-argentina-1",
+        "backup_count": 0
+      },
+      "timestamp": "2025-07-05T21:59:36.083844"
+    },
+    {
+      "id": "STO-009",
+      "severity": "HIGH",
+      "message": "No se encontraron backups configurados en región ap-southeast-1",
+      "details": {
+        "region": "ap-southeast-1",
+        "backup_count": 0
+      },
+      "timestamp": "2025-07-05T21:59:36.084458"
+    },
+    {
+      "id": "STO-009",
+      "severity": "HIGH",
+      "message": "No se encontraron backups configurados en región ap-southeast-3",
+      "details": {
+        "region": "ap-southeast-3",
+        "backup_count": 0
+      },
+      "timestamp": "2025-07-05T21:59:36.085400"
+    },
+    {
+      "id": "STO-009",
+      "severity": "HIGH",
+      "message": "No se encontraron backups configurados en región ap-southeast-2",
+      "details": {
+        "region": "ap-southeast-2",
+        "backup_count": 0
+      },
+      "timestamp": "2025-07-05T21:59:36.086026"
+    }
+  ],
+  "statistics": {
+    "total_evs_volumes": 0,
+    "total_obs_buckets": 0,
+    "total_backups": 0,
+    "encryption_compliance": {
+      "evs": 0,
+      "obs": 0,
+      "overall": 0
+    },
+    "unattached_volumes": 0,
+    "public_buckets": 0,
+    "buckets_without_versioning": 0,
+    "resources_without_classification": 0,
+    "total_storage_gb": 0,
+    "findings_by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 5,
+      "MEDIUM": 0,
+      "LOW": 0
+    }
+  },
+  "timestamp": "2025-07-05T21:59:36.082654"
+}
