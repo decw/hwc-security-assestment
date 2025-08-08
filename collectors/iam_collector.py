@@ -634,113 +634,295 @@ class IAMCollector:
                 )
     
     async def _collect_password_policy(self) -> Dict[str, Any]:
-        """Recolectar política de contraseñas del dominio"""
+        """Recolectar política de contraseñas"""
         policy = {}
         try:
             request = ShowDomainPasswordPolicyRequest()
             request.domain_id = HUAWEI_DOMAIN_ID
             response = self.client.show_domain_password_policy(request)
             
-            pp = response.password_policy
+            # Extraer todos los campos de la política
             policy = {
-                'minimum_password_length': pp.minimum_length,
-                'maximum_password_length': pp.maximum_length,
-                'maximum_consecutive_identical_chars': pp.maximum_consecutive_identical_chars,
-                'number_of_recent_passwords_disallowed' = pp.number_of_recent_passwords_disallowed,
-                'require_uppercase': pp.uppercase_requirements > 0,
-                'require_lowercase': pp.lowercase_requirements > 0,
-                'require_numbers': pp.number_requirements > 0,
-                'require_special': pp.special_character_requirements > 0,
-                'password_validity_period': pp.password_validity_period,
-                'number_of_recent_passwords_disallowed': pp.number_of_recent_passwords_disallowed,
-                'password_not_username_or_invert': pp.password_not_username_or_invert,
-                'maximum_consecutive_identical_chars': getattr(pp, 'maximum_consecutive_identical_chars', 0),
-                'minimum_password_age': getattr(pp, 'minimum_password_age', 0)
+                'minimum_password_length': response.password_policy.minimum_password_length,
+                'maximum_password_length': response.password_policy.maximum_password_length,
+                'password_requirements': response.password_policy.password_requirements,
+                'password_char_combination': response.password_policy.password_char_combination,
+                'minimum_password_age': response.password_policy.minimum_password_age,
+                'password_validity_period': response.password_policy.password_validity_period,
+                'number_of_recent_passwords_disallowed': response.password_policy.number_of_recent_passwords_disallowed,
+                'maximum_consecutive_identical_chars': response.password_policy.maximum_consecutive_identical_chars,
+                'password_not_username_or_invert': response.password_policy.password_not_username_or_invert
             }
             
-            # Verificaciones de seguridad
+            # Verificar seguridad de la política
             await self._check_password_policy_security(policy)
-                
+            
         except Exception as e:
             self.logger.error(f"Error recolectando política de contraseñas: {str(e)}")
             
         return policy
-    
+
+
+    def _analyze_password_policy(self, policy: Dict):
+        """Analizar política de contraseñas y generar hallazgos"""
+        issues = []
+        
+        # Verificar longitud mínima
+        min_length = policy.get('minimum_length', 0)
+        if min_length < PASSWORD_POLICY['min_length']:
+            issues.append(f"Longitud mínima insuficiente: {min_length} caracteres (requerido: {PASSWORD_POLICY['min_length']})")
+            
+        # Verificar combinación de caracteres
+        char_combination = policy.get('password_char_combination', 0)
+        if char_combination < 3:
+            issues.append(f"Requisitos de complejidad débiles: solo {char_combination} tipos de caracteres requeridos")
+        
+        # Verificar período de validez
+        validity_period = policy.get('password_validity_period', 0)
+        if validity_period == 0:
+            issues.append("Sin expiración de contraseñas configurada")
+        elif validity_period > PASSWORD_POLICY['max_age_days']:
+            issues.append(f"Período de validez muy largo: {validity_period} días (máximo recomendado: {PASSWORD_POLICY['max_age_days']})")
+        
+        # Verificar historial de contraseñas
+        password_history = policy.get('number_of_recent_passwords_disallowed', 0)
+        if password_history < PASSWORD_POLICY['history_count']:
+            issues.append(f"Historial de contraseñas insuficiente: {password_history} (requerido: {PASSWORD_POLICY['history_count']})")
+        
+        # Verificar edad mínima
+        min_age = policy.get('minimum_password_age', 0)
+        if min_age == 0:
+            issues.append("Sin edad mínima de contraseña configurada")
+        
+        # Generar hallazgo si hay problemas
+        if issues:
+            severity = 'HIGH' if len(issues) > 3 else 'MEDIUM'
+            self._add_finding(
+                'IAM-005',
+                severity,
+                'Política de contraseñas no cumple con las mejores prácticas',
+                {
+                    'issues': issues,
+                    'current_policy': policy,
+                    'password_requirements': policy.get('password_requirements', 'No especificado')
+                }
+            )
+
+
     async def _check_password_policy_security(self, policy: Dict):
         """Verificar seguridad de la política de contraseñas"""
         issues = []
         
         # Longitud mínima
-        if policy['minimum_length'] < PASSWORD_POLICY['min_length']:
-            issues.append(f"Longitud mínima insuficiente ({policy['minimum_length']} < {PASSWORD_POLICY['min_length']})")
+        min_length = policy.get('minimum_password_length', 0)
+        if min_length < PASSWORD_POLICY['min_length']:
+            issues.append(f"Longitud mínima insuficiente ({min_length} < {PASSWORD_POLICY['min_length']})")
             self._add_finding(
                 'IAM-005',
                 'MEDIUM',
-                f'Política de contraseñas débil: longitud mínima {policy["minimum_length"]}',
+                f'Política de contraseñas débil: longitud mínima {min_length}',
                 {
-                    'current_length': policy['minimum_length'], 
+                    'current_length': min_length, 
                     'required_length': PASSWORD_POLICY['min_length']
                 }
             )
         
-        # Complejidad
+        # Complejidad - Analizar password_char_combination y password_requirements
+        char_combination = policy.get('password_char_combination', 0)
+        password_requirements = policy.get('password_requirements', '')
+        
+        if char_combination < 3:
+            self._add_finding(
+                'IAM-008',
+                'MEDIUM',
+                f'Política de contraseñas requiere solo {char_combination} tipos de caracteres',
+                {
+                    'current_requirement': char_combination,
+                    'recommended_requirement': 3,
+                    'description': password_requirements
+                }
+            )
+        
+        # Analizar requisitos específicos desde el texto
+        req_lower = password_requirements.lower()
         complexity_missing = []
-        if not policy['require_uppercase']:
+        
+        if 'uppercase' not in req_lower:
             complexity_missing.append('mayúsculas')
-        if not policy['require_lowercase']:
+        if 'lowercase' not in req_lower:
             complexity_missing.append('minúsculas')
-        if not policy['require_numbers']:
+        if 'digit' not in req_lower and 'number' not in req_lower:
             complexity_missing.append('números')
-        if not policy['require_special']:
+        if 'special' not in req_lower:
             complexity_missing.append('caracteres especiales')
         
         if complexity_missing:
             self._add_finding(
-                'IAM-008',
-                'MEDIUM',
-                'Política de contraseñas no requiere todos los tipos de caracteres',
+                'IAM-009',
+                'LOW',
+                'Política de contraseñas puede no requerir todos los tipos de caracteres',
                 {
-                    'missing_requirements': complexity_missing,
-                    'current_policy': {
-                        'uppercase': policy['require_uppercase'],
-                        'lowercase': policy['require_lowercase'],
-                        'numbers': policy['require_numbers'],
-                        'special': policy['require_special']
-                    }
+                    'potentially_missing': complexity_missing,
+                    'current_requirements': password_requirements
                 }
             )
         
         # Período de validez
-        if policy['password_validity_period'] == 0:
+        validity_period = policy.get('password_validity_period', 0)
+        if validity_period == 0:
             self._add_finding(
                 'IAM-013',
-                'MEDIUM',
+                'HIGH',
                 'Contraseñas sin expiración configurada',
                 {'current_setting': 'Las contraseñas nunca expiran'}
             )
-        elif policy['password_validity_period'] > PASSWORD_POLICY['max_age_days']:
+        elif validity_period > PASSWORD_POLICY['max_age_days']:
             self._add_finding(
                 'IAM-014',
-                'LOW',
-                f'Período de validez de contraseñas muy largo: {policy["password_validity_period"]} días',
+                'MEDIUM',
+                f'Período de validez de contraseñas muy largo: {validity_period} días',
                 {
-                    'current_days': policy['password_validity_period'],
+                    'current_days': validity_period,
                     'recommended_days': PASSWORD_POLICY['max_age_days']
                 }
             )
         
         # Historial de contraseñas
-        if policy['number_of_recent_passwords_disallowed'] < PASSWORD_POLICY['history_count']:
+        password_history = policy.get('number_of_recent_passwords_disallowed', 0)
+        if password_history < PASSWORD_POLICY['history_count']:
             self._add_finding(
                 'IAM-015',
                 'LOW',
-                f'Historial de contraseñas insuficiente: {policy["number_of_recent_passwords_disallowed"]}',
+                f'Historial de contraseñas insuficiente: {password_history}',
                 {
-                    'current_history': policy['number_of_recent_passwords_disallowed'],
+                    'current_history': password_history,
                     'recommended_history': PASSWORD_POLICY['history_count']
                 }
             )
-    
+        
+        # Edad mínima de contraseña
+        min_age = policy.get('minimum_password_age', 0)
+        if min_age == 0:
+            self._add_finding(
+                'IAM-016',
+                'LOW',
+                'Sin edad mínima de contraseña configurada',
+                {
+                    'current_setting': 0,
+                    'recommended_setting': PASSWORD_POLICY.get('min_age_days', 1),
+                    'impact': 'Permite cambios de contraseña inmediatos repetidos'
+                }
+            )
+        
+        # Caracteres consecutivos idénticos
+        max_consecutive = policy.get('maximum_consecutive_identical_chars', 0)
+        if max_consecutive == 0 or max_consecutive > 3:
+            self._add_finding(
+                'IAM-017',
+                'LOW',
+                f'Permite muchos caracteres idénticos consecutivos: {max_consecutive}',
+                {
+                    'current_setting': max_consecutive,
+                    'recommended_setting': 3,
+                    'risk': 'Facilita contraseñas débiles como "aaaaaa"'
+                }
+            )
+        
+        # Verificar si contraseña puede ser igual al username
+        if not policy.get('password_not_username_or_invert', True):
+            self._add_finding(
+                'IAM-018',
+                'MEDIUM',
+                'Permite que la contraseña sea igual al nombre de usuario',
+                {
+                    'current_setting': False,
+                    'risk': 'Contraseñas predecibles basadas en username'
+                }
+            )
+
+    def _check_password_policy_issues(self, policy: Dict) -> List[str]:
+        """Verificar problemas en política de contraseñas"""
+        issues = []
+        
+        # Longitud mínima
+        min_length = policy.get('minimum_length', 0) or policy.get('minimum_password_length', 0)
+        if min_length < PASSWORD_POLICY['min_length']:
+            issues.append(f"Longitud mínima insuficiente ({min_length} < {PASSWORD_POLICY['min_length']})")
+        
+        # Requisitos de complejidad
+        char_combination = policy.get('password_char_combination', 0)
+        password_requirements = policy.get('password_requirements', '')
+        
+        if char_combination < 3:
+            issues.append(f"Complejidad insuficiente: solo {char_combination} tipos de caracteres requeridos")
+        
+        # Verificar descripción de requisitos
+        if password_requirements:
+            req_lower = password_requirements.lower()
+            if 'uppercase' not in req_lower:
+                issues.append("No requiere mayúsculas")
+            if 'lowercase' not in req_lower:
+                issues.append("No requiere minúsculas")
+            if 'digit' not in req_lower:
+                issues.append("No requiere números")
+            if 'special' not in req_lower:
+                issues.append("No requiere caracteres especiales")
+        
+        # Período de validez
+        validity = policy.get('password_validity_period', 0)
+        if validity == 0:
+            issues.append("Sin expiración de contraseñas")
+        elif validity > PASSWORD_POLICY['max_age_days']:
+            issues.append(f"Período de validez muy largo ({validity} días)")
+        
+        # Historial
+        history = policy.get('number_of_recent_passwords_disallowed', 0)
+        if history < PASSWORD_POLICY.get('history_count', 5):
+            issues.append(f"Historial insuficiente ({history} contraseñas)")
+        
+        return issues
+
+    async def _check_user_security_issues(self, user_info: Dict):
+        """Verificar problemas de seguridad específicos del usuario"""
+        try:
+            # Cuenta sin uso reciente
+            last_login = user_info.get('last_login')
+            if last_login:
+                try:
+                    last_login_date = datetime.fromisoformat(last_login.replace('Z', '+00:00'))
+                    days_inactive = (datetime.now(timezone.utc) - last_login_date).days
+                    
+                    if days_inactive > 90:
+                        self._add_finding(
+                            'IAM-006',
+                            'MEDIUM',
+                            f'Usuario inactivo por {days_inactive} días: {user_info["name"]}',
+                            {
+                                'user_id': user_info['id'],
+                                'user_name': user_info['name'],
+                                'last_login': last_login,
+                                'days_inactive': days_inactive
+                            }
+                        )
+                except Exception as e:
+                    self.logger.debug(f"Error procesando fecha de último login: {e}")
+            
+            # Verificar si es cuenta de servicio sin rotación
+            if self._is_service_account(user_info):
+                # Las cuentas de servicio deben tener políticas especiales
+                self._add_finding(
+                    'IAM-007',
+                    'LOW',
+                    f'Cuenta de servicio identificada: {user_info["name"]}',
+                    {
+                        'user_id': user_info['id'],
+                        'user_name': user_info['name'],
+                        'recommendation': 'Considerar usar IAM Agency en lugar de usuario para servicios'
+                    }
+                )
+        except Exception as e:
+            self.logger.error(f"Error verificando problemas de seguridad para usuario {user_info.get('name', 'unknown')}: {e}")
+
     async def _collect_login_policy(self) -> Dict[str, Any]:
         """Recolectar política de login del dominio"""
         policy = {}
@@ -963,18 +1145,34 @@ class IAMCollector:
         return service_accounts
     
     def _is_service_account(self, user: Dict) -> bool:
-        """Determinar si es cuenta de servicio"""
-        indicators = [
-            'service' in user['name'].lower(),
-            'svc' in user['name'].lower(),
-            'app' in user['name'].lower(),
-            'api' in user['name'].lower(),
-            'system' in user['name'].lower(),
-            not user.get('email'),  # Sin email
-            user.get('description', '').lower() in ['service account', 'api user', 'system user']
+        """Determinar si es una cuenta de servicio"""
+        # Corregir el manejo de None
+        description = user.get('description')
+        if description is None:
+            description = ''
+        
+        name = user.get('name', '').lower()
+        description_lower = description.lower()
+        
+        # Indicadores de cuenta de servicio
+        service_indicators = [
+            'service', 'api', 'system', 'app', 'application',
+            'connector', 'integration', 'automation', 'bot'
         ]
         
-        return sum(indicators) >= 2
+        # Verificar en nombre
+        if any(indicator in name for indicator in service_indicators):
+            return True
+        
+        # Verificar en descripción
+        if any(indicator in description_lower for indicator in service_indicators):
+            return True
+        
+        # Verificar patrones específicos
+        if description_lower in ['service account', 'api user', 'system user']:
+            return True
+        
+        return False
     
     def _get_service_account_indicators(self, user: Dict) -> List[str]:
         """Obtener indicadores de cuenta de servicio"""

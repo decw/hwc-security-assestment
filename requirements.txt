@@ -73,3 +73,4 @@ jinja2                    # Para plantillas HTML si hacés reportes visuales
 
 # Seguridad y análisis (opcional)
 pyyaml                    # Si querés manejar configuración en YAML
+autopep8                 # Autopep8

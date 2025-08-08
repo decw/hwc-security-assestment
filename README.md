@@ -59,24 +59,50 @@ Solo operaciones de lectura
 
 Configurar el entorno:
 
-bash# Instalar dependencias
+```bash
+# Instalar dependencias
 pip install -r requirements.txt
 
-# Crear archivo .env
-HUAWEI_ACCESS_KEY=tu_access_key
-HUAWEI_SECRET_KEY=tu_secret_key
-HUAWEI_PROJECT_ID=tu_project_id
-HUAWEI_DOMAIN_ID=tu_domain_id
+# Configurar variables de entorno
+export HUAWEI_ACCESS_KEY=tu_access_key
+export HUAWEI_SECRET_KEY=tu_secret_key
+export HUAWEI_PROJECT_ID=tu_project_id
+export HUAWEI_DOMAIN_ID=tu_domain_id
+```
 
-Ejecutar el assessment:
+## Ejecución del Assessment
 
-bashpython main.py
+### Assessment Completo
+```bash
+python3 main.py
+```
+
+### Colector IAM Individual
+```bash
+# Script simple
+python3 iam_cli.py
+
+# Script con opciones avanzadas
+python3 run_iam_collector.py --help
+
+# Ejemplos de uso específico
+python3 run_iam_collector.py --check-mfa-only
+python3 run_iam_collector.py --check-users-only --verbose
+python3 run_iam_collector.py --check-policies-only --output mi_reporte.json
+```
+
+### Desde el directorio collectors
+```bash
+cd collectors/
+python3 run_iam.py
+```
 
 Revisar resultados:
 
-output/: JSONs con datos raw
-reports/: Reportes formateados
-logs/: Logs de ejecución
+- `output/`: JSONs con datos raw
+- `reports/`: Reportes formateados  
+- `logs/`: Logs de ejecución
+- `iam_*.json`: Resultados del colector IAM individual
 
 
 
@@ -94,3 +120,21 @@ Agregar nuevos colectores en collectors/
 Modificar umbrales en constants.py
 Personalizar reportes en report_generator.py
 Agregar nuevos frameworks de compliance
+
+## 📋 Scripts CLI Individuales
+
+### Colector IAM
+- `iam_cli.py`: Script simple para recolección completa
+- `run_iam_collector.py`: Script avanzado con múltiples opciones
+- `collectors/run_iam.py`: Script directo desde el directorio collectors
+
+### Opciones Disponibles
+- Recolección completa de datos IAM
+- Verificación específica de MFA
+- Análisis de usuarios únicamente
+- Revisión de políticas y roles
+- Verificación de access keys
+- Modo verbose para debugging
+
+### Documentación Detallada
+Ver `README_IAM_CLI.md` para información completa sobre el uso de los scripts CLI del colector IAM.
