@@ -241,15 +241,33 @@ async def run_analysis(iam_data, args):
         return None, f"❌ ERROR durante el análisis: {e}"
 
 def save_results(results, output_file):
-    """Guardar resultados en archivo JSON"""
+    """Guardar resultados en archivo JSON y generar reportes detallados"""
     try:
         output_path = Path(output_file)
         output_path.parent.mkdir(parents=True, exist_ok=True)
         
+        # Guardar JSON
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False, default=str)
         
-        print(f"💾 Resultados guardados en: {output_path}")
+        print(f"💾 Resultados JSON guardados en: {output_path}")
+        
+        # Generar reportes detallados
+        try:
+            from utils.iam_report_generator import IAMReportGenerator
+            report_generator = IAMReportGenerator(results)
+            report_files = report_generator.generate_complete_report(output_path.parent)
+            
+            print("\n📊 Reportes detallados generados:")
+            print(f"   Resumen detallado: {report_files['summary']}")
+            print(f"  📊 CSV de hallazgos: {report_files['csv']}")
+            print(f"  📋 Plan de remediación: {report_files['remediation']}")
+            
+        except ImportError as e:
+            print(f"⚠️ No se pudo generar reporte detallado: {e}")
+        except Exception as e:
+            print(f"⚠️ Error generando reportes: {e}")
+        
         return True
     except Exception as e:
         print(f"❌ ERROR guardando resultados: {e}")
