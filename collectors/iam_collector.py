@@ -551,7 +551,12 @@ class IAMCollector:
             request.group_id = group_id
             response = self.client.keystone_show_group(request)
             
-            group_name = response.group.name.lower()
+            # Verificar que el grupo y su nombre existan
+            if response.group and response.group.name:
+                group_name = response.group.name.lower()
+            else:
+                self.logger.debug(f"Grupo {group_id} sin nombre válido")
+                return permissions
             
             # Mapeo de nombres de grupos a permisos típicos de Huawei Cloud
             group_permission_mapping = {
@@ -1362,14 +1367,31 @@ class IAMCollector:
         return service_accounts
     
     def _is_service_account(self, user: Dict) -> bool:
-        """Determinar si es una cuenta de servicio"""
-        # Corregir el manejo de None
-        description = user.get('description')
-        if description is None:
-            description = ''
+        """Determinar si es una cuenta de servicio basado en access_mode"""
+        # En Huawei Cloud, el access_mode determina el tipo de cuenta:
+        # - 'programmatic': Cuenta de servicio (solo acceso programático)
+        # - 'console': Usuario consola web (solo acceso a consola)
+        # - 'programmatic,console': Usuario con acceso programático (acceso programático y consola)
         
-        name = user.get('name', '').lower()
-        description_lower = description.lower()
+        access_mode = user.get('access_mode')
+        if access_mode:
+            access_mode = access_mode.lower()
+        
+        # Cuenta de servicio = SOLO acceso programático
+        if access_mode == 'programmatic':
+            return True
+        
+        # Usuario con acceso programático = NO es cuenta de servicio
+        # if access_mode == 'programmatic,console':
+        #     return True  # ❌ CAMBIO: Ya no se considera cuenta de servicio
+        
+        # Verificar indicadores adicionales en nombre y descripción
+        description = user.get('description', '')
+        name = user.get('name', '')
+        
+        # Convertir a lowercase de forma segura
+        name_lower = name.lower() if name else ''
+        description_lower = description.lower() if description else ''
         
         # Indicadores de cuenta de servicio
         service_indicators = [
@@ -1378,7 +1400,7 @@ class IAMCollector:
         ]
         
         # Verificar en nombre
-        if any(indicator in name for indicator in service_indicators):
+        if any(indicator in name_lower for indicator in service_indicators):
             return True
         
         # Verificar en descripción
@@ -1390,17 +1412,55 @@ class IAMCollector:
             return True
         
         return False
-    
+
+    def _get_user_access_type(self, user: Dict) -> str:
+        """Determinar el tipo de acceso del usuario según las especificaciones"""
+        access_mode = user.get('access_mode')
+        if access_mode:
+            access_mode = access_mode.lower()
+        
+        if access_mode == 'programmatic':
+            return 'service_account'  # Cuenta de servicio
+        elif access_mode == 'programmatic,console':
+            return 'user_with_programmatic_access'  # Usuario con acceso programático
+        elif access_mode == 'console':
+            return 'console_user'  # Usuario consola web
+        else:
+            return 'unknown'  # Tipo desconocido
+
     def _get_service_account_indicators(self, user: Dict) -> List[str]:
         """Obtener indicadores de cuenta de servicio"""
         indicators = []
         
-        if 'service' in user['name'].lower():
-            indicators.append('Nombre contiene "service"')
+        # Verificar access_mode
+        access_mode = user.get('access_mode', '')
+        if access_mode == 'programmatic':
+            indicators.append('Access mode: programmatic (cuenta de servicio)')
+        elif access_mode == 'programmatic,console':
+            indicators.append('Access mode: programmatic,console (usuario con acceso programático)')
+        elif access_mode == 'console':
+            indicators.append('Access mode: console (usuario consola web)')
+        
+        # Verificar nombre
+        name = user.get('name', '')
+        name_lower = name.lower() if name else ''
+        if any(indicator in name_lower for indicator in ['service', 'api', 'system', 'app']):
+            indicators.append('Nombre contiene indicador de servicio')
+        
+        # Verificar email
         if not user.get('email'):
             indicators.append('Sin email asociado')
+        
+        # Verificar login interactivo
         if not user.get('last_login_time'):
-            indicators.append('Sin login interactivo')
+            indicators.append('Sin login interactivo registrado')
+        
+        # Verificar descripción
+        description = user.get('description', '')
+        if description:
+            description_lower = description.lower()
+            if any(indicator in description_lower for indicator in ['service', 'api', 'programmatic']):
+                indicators.append('Descripción indica cuenta de servicio')
         
         return indicators
     
@@ -1600,8 +1660,11 @@ class IAMCollector:
             
             admin_groups = ['admin', 'administrator', 'power_user', 'be61248cddbf441e9446e8bc5a2bf26f']
             for group in response.groups:
-                if any(admin in group.name.lower() for admin in admin_groups[:3]) or group.id in admin_groups:
-                    return True
+                # Verificar que el grupo tenga nombre válido
+                if group.name:
+                    group_name_lower = group.name.lower()
+                    if any(admin in group_name_lower for admin in admin_groups[:3]) or group.id in admin_groups:
+                        return True
             
             # También verificar roles directos
             # Esto requeriría verificación adicional de roles asignados
@@ -1715,3 +1778,48 @@ class IAMCollector:
         ])
         
         return stats
+
+    async def _analyze_programmatic_access(self, users: List[Dict]):
+        """Analizar acceso programático y generar hallazgos de seguridad"""
+        programmatic_users = []
+        service_accounts = []
+        
+        for user in users:
+            access_type = self._get_user_access_type(user)
+            
+            if access_type == 'user_with_programmatic_access':
+                programmatic_users.append(user)
+                
+                # Hallazgo: Usuario con acceso programático
+                self._add_finding(
+                    'IAM-031',
+                    'MEDIUM',
+                    f'Usuario con acceso programático: {user["name"]}',
+                    {
+                        'user_id': user['id'],
+                        'user_name': user['name'],
+                        'access_type': 'programmatic,console',
+                        'risk': 'Usuario puede generar access keys y usar APIs',
+                        'recommendation': 'Revisar si el acceso programático es necesario'
+                    }
+                )
+                
+            elif access_type == 'service_account':
+                service_accounts.append(user)
+                
+                # Hallazgo: Cuenta de servicio
+                self._add_finding(
+                    'IAM-032',
+                    'LOW',
+                    f'Cuenta de servicio identificada: {user["name"]}',
+                    {
+                        'user_id': user['id'],
+                        'user_name': user['name'],
+                        'access_type': 'programmatic',
+                        'recommendation': 'Considerar usar IAM Agency en lugar de usuario para servicios'
+                    }
+                )
+        
+        # Estadísticas de acceso programático
+        self.logger.info(f"Usuarios con acceso programático: {len(programmatic_users)}")
+        self.logger.info(f"Cuentas de servicio: {len(service_accounts)}")
