@@ -87,38 +87,93 @@ class IAMCollector:
         
         try:
             # Recolectar usuarios primero
+            self.logger.info("Iniciando recolección de usuarios...")
             results['users'] = await self._collect_users()
             self.logger.info(f"Usuarios recolectados: {len(results['users'])}")
             
+            if not results['users']:
+                self.logger.warning("No se encontraron usuarios. Verificar credenciales y permisos.")
+                return results
+            
             # Recolectar información de MFA para cada usuario
+            self.logger.info("Iniciando recolección de estado MFA...")
             results['mfa_status'] = await self._collect_mfa_status(results['users'])
+            self.logger.info(f"Estado MFA recolectado: {results['mfa_status']['total_users']} usuarios")
             
             # Resto de recolecciones
+            self.logger.info("Iniciando recolección de grupos...")
             results['groups'] = await self._collect_groups()
-            results['roles'] = await self._collect_roles()
+            self.logger.info(f"Grupos recolectados: {len(results['groups'])}")
+            
+            self.logger.info("Iniciando recolección de roles...")
+            results['roles'] = await self._collect_roles(results['users'])
+            self.logger.info(f"Roles recolectados: {len(results['roles'])}")
+            
+            self.logger.info("Iniciando recolección de políticas...")
             results['policies'] = await self._collect_policies()
+            self.logger.info(f"Políticas recolectadas: {len(results['policies'])}")
+            
+            self.logger.info("Iniciando recolección de access keys...")
             results['access_keys'] = await self._collect_access_keys(results['users'])
+            self.logger.info(f"Access keys recolectadas: {len(results['access_keys'])}")
+            
+            self.logger.info("Iniciando recolección de políticas de contraseñas...")
             results['password_policy'] = await self._collect_password_policy()
+            self.logger.info("Política de contraseñas recolectada")
+            
+            self.logger.info("Iniciando recolección de políticas de login...")
             results['login_policy'] = await self._collect_login_policy()
+            self.logger.info("Política de login recolectada")
+            
+            self.logger.info("Iniciando recolección de políticas de protección...")
             results['protection_policy'] = await self._collect_protection_policy()
+            self.logger.info("Política de protección recolectada")
             
             # Análisis adicionales
+            self.logger.info("Iniciando análisis de mapeos usuario-grupo...")
             results['user_group_mappings'] = await self._collect_user_group_mappings(results['users'])
+            self.logger.info("Mapeos usuario-grupo recolectados")
+            
+            self.logger.info("Iniciando análisis de asignaciones de roles...")
             results['role_assignments'] = await self._collect_role_assignments(results['users'])
+            self.logger.info("Asignaciones de roles recolectadas")
+            
+            self.logger.info("Iniciando análisis de permisos efectivos...")
             results['permissions_analysis'] = await self._analyze_effective_permissions(results)
+            self.logger.info("Análisis de permisos efectivos completado")
+            
+            self.logger.info("Iniciando identificación de cuentas de servicio...")
             results['service_accounts'] = await self._identify_service_accounts(results['users'])
+            self.logger.info(f"Cuentas de servicio identificadas: {len(results['service_accounts'])}")
+            
+            self.logger.info("Iniciando identificación de cuentas privilegiadas...")
             results['privileged_accounts'] = await self._identify_privileged_accounts(results)
+            self.logger.info(f"Cuentas privilegiadas identificadas: {len(results['privileged_accounts'])}")
+            
+            self.logger.info("Iniciando identificación de usuarios inactivos...")
             results['inactive_users'] = await self._identify_inactive_users(results['users'])
+            self.logger.info(f"Usuarios inactivos identificados: {len(results['inactive_users'])}")
             
             # Análisis de seguridad avanzados
+            self.logger.info("Iniciando análisis de edad de contraseñas...")
             await self._analyze_password_age(results['users'])
+            
+            self.logger.info("Iniciando análisis de límites de permisos...")
             await self._analyze_permission_boundaries(results)
+            
+            self.logger.info("Iniciando análisis de acceso entre cuentas...")
             await self._analyze_cross_account_access(results)
+            
+            self.logger.info("Iniciando análisis de proveedores de identidad...")
             await self._analyze_identity_providers()
+            
+            self.logger.info("Iniciando verificación de uso de cuenta root...")
             await self._check_root_account_usage()
             
             # Calcular estadísticas
+            self.logger.info("Calculando estadísticas...")
             results['statistics'] = self._calculate_statistics(results)
+            self.logger.info("Estadísticas calculadas")
             
         except Exception as e:
             self.logger.error(f"Error durante la recolección: {str(e)}")
@@ -170,6 +225,11 @@ class IAMCollector:
                 try:
                     detailed_info = await self._get_user_details(user.id)
                     user_info.update(detailed_info)
+                    
+                    # Verificar si hay información de access keys en los detalles
+                    if detailed_info:
+                        self.logger.debug(f"Información detallada obtenida para {user.name}: {list(detailed_info.keys())}")
+                        
                 except Exception as e:
                     self.logger.debug(f"No se pudo obtener detalles adicionales para {user.name}: {str(e)}")
                 
@@ -260,6 +320,8 @@ class IAMCollector:
             'mfa_enabled': 0,
             'mfa_disabled': 0,
             'users_without_mfa': [],
+            'service_accounts_without_mfa': [],  # Nuevo: cuentas de servicio sin MFA
+            'regular_users_without_mfa': [],     # Nuevo: usuarios regulares sin MFA
             'mfa_types': {
                 'virtual': 0,
                 'sms': 0,
@@ -270,6 +332,9 @@ class IAMCollector:
         
         for user in users:
             try:
+                # Verificar si es cuenta de servicio
+                is_service_account = self._is_service_account(user)
+                
                 # Verificar dispositivos MFA virtuales
                 mfa_info = await self._check_user_mfa_detailed(user['id'])
                 
@@ -281,42 +346,67 @@ class IAMCollector:
                             mfa_status['mfa_types'][mfa_type] += 1
                 else:
                     mfa_status['mfa_disabled'] += 1
-                    mfa_status['users_without_mfa'].append({
-                        'user_id': user['id'],
-                        'user_name': user['name']
-                    })
                     
-                    # Verificar si es usuario privilegiado
-                    if await self._check_admin_privileges(user['id']):
-                        self._add_finding(
-                            'IAM-002',
-                            'CRITICAL',
-                            f'Usuario administrativo sin MFA: {user["name"]}',
-                            {'user_id': user['id'], 'user_name': user['name']}
-                        )
+                    # Separar cuentas de servicio de usuarios regulares
+                    if is_service_account:
+                        mfa_status['service_accounts_without_mfa'].append({
+                            'user_id': user['id'],
+                            'user_name': user['name'],
+                            'access_mode': user.get('access_mode', 'unknown')
+                        })
+                    else:
+                        mfa_status['regular_users_without_mfa'].append({
+                            'user_id': user['id'],
+                            'user_name': user['name']
+                        })
+                    
+                    # Solo generar hallazgo para usuarios regulares (no cuentas de servicio)
+                    if not is_service_account:
+                        mfa_status['users_without_mfa'].append({
+                            'user_id': user['id'],
+                            'user_name': user['name']
+                        })
+                        
+                        # Verificar si es usuario privilegiado
+                        if await self._check_admin_privileges(user['id']):
+                            self._add_finding(
+                                'IAM-002',
+                                'CRITICAL',
+                                f'Usuario administrativo sin MFA: {user["name"]}',
+                                {'user_id': user['id'], 'user_name': user['name']}
+                            )
                     
             except Exception as e:
                 self.logger.debug(f"No se pudo verificar MFA para usuario {user['id']}: {str(e)}")
                 # Asumir sin MFA si no se puede verificar
                 mfa_status['mfa_disabled'] += 1
-                mfa_status['users_without_mfa'].append({
-                    'user_id': user['id'],
-                    'user_name': user['name']
-                })
+                
+                # Verificar si es cuenta de servicio
+                is_service_account = self._is_service_account(user)
+                if not is_service_account:
+                    mfa_status['users_without_mfa'].append({
+                        'user_id': user['id'],
+                        'user_name': user['name']
+                    })
         
-        # Hallazgo general si hay muchos usuarios sin MFA
-        mfa_percentage = (mfa_status['mfa_enabled'] / mfa_status['total_users'] * 100) if mfa_status['total_users'] > 0 else 0
-        if mfa_percentage < 80:
-            self._add_finding(
-                'IAM-007',
-                'HIGH',
-                f'Bajo porcentaje de adopción de MFA: {mfa_percentage:.1f}%',
-                {
-                    'total_users': mfa_status['total_users'],
-                    'mfa_enabled': mfa_status['mfa_enabled'],
-                    'percentage': mfa_percentage
-                }
-            )
+        # Hallazgo general solo para usuarios regulares sin MFA
+        regular_users_without_mfa = len(mfa_status['regular_users_without_mfa'])
+        total_regular_users = mfa_status['total_users'] - len(mfa_status['service_accounts_without_mfa'])
+        
+        if total_regular_users > 0:
+            mfa_percentage = ((total_regular_users - regular_users_without_mfa) / total_regular_users * 100)
+            if mfa_percentage < 80:
+                self._add_finding(
+                    'IAM-007',
+                    'HIGH',
+                    f'Bajo porcentaje de adopción de MFA en usuarios regulares: {mfa_percentage:.1f}%',
+                    {
+                        'total_regular_users': total_regular_users,
+                        'regular_users_with_mfa': total_regular_users - regular_users_without_mfa,
+                        'percentage': mfa_percentage,
+                        'service_accounts_excluded': len(mfa_status['service_accounts_without_mfa'])
+                    }
+                )
         
         return mfa_status
     
@@ -423,15 +513,16 @@ class IAMCollector:
         
         return members
     
-    async def _collect_roles(self) -> List[Dict]:
+    async def _collect_roles(self, users: List[Dict] = None) -> List[Dict]:
         """Recolectar información de permisos efectivos de usuarios a través de grupos"""
         user_permissions = []
         
         self.logger.info("Recolectando permisos efectivos de usuarios a través de grupos...")
         
         try:
-            # Obtener usuarios primero
-            users = await self._collect_users()
+            # Usar usuarios ya recolectados si se proporcionan, sino recolectarlos
+            if users is None:
+                users = await self._collect_users()
             
             # Para cada usuario, obtener sus permisos efectivos
             for user in users:
@@ -749,56 +840,248 @@ class IAMCollector:
         return policies
     
     async def _collect_access_keys(self, users: List[Dict]) -> List[Dict]:
-        """Recolectar información de access keys"""
+        """Recolectar información de access keys de los usuarios"""
         access_keys = []
+        
+        self.logger.info(f"Iniciando recolección de access keys para {len(users)} usuarios")
         
         for user in users:
             try:
-                request = ListPermanentAccessKeysRequest()
-                request.user_id = user['id']
-                response = self.client.list_permanent_access_keys(request)
+                self.logger.info(f"Verificando access keys para usuario: {user['name']} ({user['id']})")
                 
-                for key in response.credentials:
-                    created_at = getattr(key, 'create_time', None)
-                    if created_at:
-                        # Parsear fecha si es string
-                        if isinstance(created_at, str):
-                            try:
-                                create_date = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
-                            except:
-                                create_date = datetime.now()
-                        else:
-                            create_date = created_at
+                # Método 1: Usar ListPermanentAccessKeysRequest (método estándar)
+                try:
+                    from huaweicloudsdkiam.v3.model import ListPermanentAccessKeysRequest
+                    request = ListPermanentAccessKeysRequest()
+                    request.user_id = user['id']
+                    response = self.client.list_permanent_access_keys(request)
+                    
+                    if hasattr(response, 'credentials') and response.credentials:
+                        self.logger.info(f"✅ Encontradas {len(response.credentials)} access keys permanentes para {user['name']}")
                         
-                        key_age = (datetime.now() - create_date).days
+                        for key in response.credentials:
+                            key_info = await self._process_access_key(key, user)
+                            if key_info:
+                                access_keys.append(key_info)
+                                self.logger.info(f"✅ Access key procesada: {key_info['access_key_id'][:10]}**** para {user['name']}")
                     else:
-                        key_age = 0
-                    
-                    # Obtener último uso
-                    last_used = await self._get_access_key_last_used(key.access)
-                    
-                    key_info = {
-                        'access_key_id': key.access,
-                        'user_id': user['id'],
-                        'user_name': user['name'],
-                        'status': key.status,
-                        'created_at': created_at,
-                        'age_days': key_age,
-                        'description': getattr(key, 'description', ''),
-                        'last_used': last_used,
-                        'last_used_service': last_used.get('service') if last_used else None,
-                        'last_used_region': last_used.get('region') if last_used else None
-                    }
-                    
-                    # Verificaciones de seguridad
-                    await self._check_access_key_security(key_info, user)
-                    
-                    access_keys.append(key_info)
-                    
-            except Exception as e:
-                self.logger.debug(f"Error recolectando access keys para usuario {user['id']}: {str(e)}")
+                        self.logger.info(f"❌ No se encontraron access keys permanentes para {user['name']}")
+                            
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Error con ListPermanentAccessKeysRequest para {user['name']}: {str(e)}")
                 
+                # Método 2: Usar ShowUserRequest para obtener información detallada del usuario
+                try:
+                    from huaweicloudsdkiam.v3.model import KeystoneShowUserRequest
+                    request = KeystoneShowUserRequest()
+                    request.user_id = user['id']
+                    response = self.client.keystone_show_user(request)
+                    
+                    user_obj = response.user
+                    self.logger.info(f" Información detallada obtenida para {user['name']}")
+                    
+                    # Listar todos los atributos del usuario para debug
+                    user_attributes = [attr for attr in dir(user_obj) if not attr.startswith('_')]
+                    self.logger.debug(f"Atributos del usuario {user['name']}: {user_attributes}")
+                    
+                    # Buscar campos específicos de access keys
+                    access_key_fields = []
+                    for attr in user_attributes:
+                        if 'access' in attr.lower() and 'key' in attr.lower():
+                            access_key_fields.append(attr)
+                    
+                    if access_key_fields:
+                        self.logger.info(f"🔍 Campos de access key encontrados para {user['name']}: {access_key_fields}")
+                        
+                        for field in access_key_fields:
+                            field_value = getattr(user_obj, field, None)
+                            if field_value and field_value != 'inactive' and field_value != 'None' and field_value != '':
+                                self.logger.info(f"✅ Campo {field} para {user['name']}: {field_value}")
+                                
+                                # Crear access key basada en el campo encontrado
+                                key_info = {
+                                    'access_key_id': f"{field}_{user['id']}",
+                                    'user_id': user['id'],
+                                    'user_name': user['name'],
+                                    'status': field_value,
+                                    'created_at': None,
+                                    'age_days': 0,
+                                    'description': f'Access Key from {field}',
+                                    'source': 'user_attributes'
+                                }
+                                
+                                access_keys.append(key_info)
+                                self.logger.info(f"✅ Access key agregada desde campo {field} para {user['name']}")
+                    
+                    # Verificar campos específicos mencionados
+                    access_key_1_status = getattr(user_obj, 'access_key_1_status', None)
+                    access_key_1_creation_time = getattr(user_obj, 'access_key_1_creation_time', None)
+                    
+                    if access_key_1_status and access_key_1_status != 'inactive':
+                        self.logger.info(f"✅ Access Key 1 encontrada para {user['name']}: {access_key_1_status}")
+                        
+                        key_info = {
+                            'access_key_id': f"AK1_{user['id']}",
+                            'user_id': user['id'],
+                            'user_name': user['name'],
+                            'status': access_key_1_status,
+                            'created_at': access_key_1_creation_time,
+                            'age_days': 0,
+                            'description': 'Access Key 1',
+                            'source': 'access_key_1_fields'
+                        }
+                        
+                        if access_key_1_creation_time:
+                            try:
+                                if isinstance(access_key_1_creation_time, str):
+                                    create_date = datetime.fromisoformat(access_key_1_creation_time.replace('Z', '+00:00'))
+                                else:
+                                    create_date = access_key_1_creation_time
+                                key_info['age_days'] = (datetime.now() - create_date).days
+                            except Exception as e:
+                                self.logger.debug(f"Error calculando edad de Access Key 1 para {user['name']}: {str(e)}")
+                        
+                        access_keys.append(key_info)
+                        self.logger.info(f"✅ Access Key 1 agregada para {user['name']}")
+                    
+                    # Verificar Access Key 2
+                    access_key_2_status = getattr(user_obj, 'access_key_2_status', None)
+                    access_key_2_creation_time = getattr(user_obj, 'access_key_2_creation_time', None)
+                    
+                    if access_key_2_status and access_key_2_status != 'inactive':
+                        self.logger.info(f"✅ Access Key 2 encontrada para {user['name']}: {access_key_2_status}")
+                        
+                        key_info = {
+                            'access_key_id': f"AK2_{user['id']}",
+                            'user_id': user['id'],
+                            'user_name': user['name'],
+                            'status': access_key_2_status,
+                            'created_at': access_key_2_creation_time,
+                            'age_days': 0,
+                            'description': 'Access Key 2',
+                            'source': 'access_key_2_fields'
+                        }
+                        
+                        if access_key_2_creation_time:
+                            try:
+                                if isinstance(access_key_2_creation_time, str):
+                                    create_date = datetime.fromisoformat(access_key_2_creation_time.replace('Z', '+00:00'))
+                                else:
+                                    create_date = access_key_2_creation_time
+                                key_info['age_days'] = (datetime.now() - create_date).days
+                            except Exception as e:
+                                self.logger.debug(f"Error calculando edad de Access Key 2 para {user['name']}: {str(e)}")
+                        
+                        access_keys.append(key_info)
+                        self.logger.info(f"✅ Access Key 2 agregada para {user['name']}")
+                        
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Error obteniendo información detallada para {user['name']}: {str(e)}")
+                
+                # Método 3: Verificar si el usuario tiene access_mode programático (indica que puede tener access keys)
+                access_mode = user.get('access_mode', '')
+                if access_mode and ('programmatic' in access_mode.lower()):
+                    self.logger.info(f"🔍 Usuario {user['name']} tiene access_mode programático: {access_mode}")
+                    
+                    # Buscar access keys específicas para usuarios programáticos
+                    try:
+                        # Intentar obtener access keys usando el endpoint específico para usuarios programáticos
+                        from huaweicloudsdkiam.v3.model import ListAccessKeysRequest
+                        request = ListAccessKeysRequest()
+                        request.user_id = user['id']
+                        response = self.client.list_access_keys(request)
+                        
+                        if hasattr(response, 'access_keys') and response.access_keys:
+                            self.logger.info(f"✅ Encontradas {len(response.access_keys)} access keys para usuario programático {user['name']}")
+                            
+                            for key in response.access_keys:
+                                key_info = {
+                                    'access_key_id': getattr(key, 'access_key_id', f"PROG_{user['id']}"),
+                                    'user_id': user['id'],
+                                    'user_name': user['name'],
+                                    'status': getattr(key, 'status', 'active'),
+                                    'created_at': getattr(key, 'create_time', None),
+                                    'age_days': 0,
+                                    'description': 'Programmatic Access Key',
+                                    'source': 'programmatic_user'
+                                }
+                                
+                                # Calcular edad
+                                created_at = key_info['created_at']
+                                if created_at:
+                                    try:
+                                        if isinstance(created_at, str):
+                                            create_date = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+                                        else:
+                                            create_date = created_at
+                                        key_info['age_days'] = (datetime.now() - create_date).days
+                                    except:
+                                        pass
+                                
+                                access_keys.append(key_info)
+                                self.logger.info(f"✅ Access key programática agregada para {user['name']}")
+                        
+                    except Exception as e:
+                        self.logger.debug(f"Error obteniendo access keys programáticas para {user['name']}: {str(e)}")
+                        
+            except Exception as e:
+                self.logger.error(f"❌ Error general recolectando access keys para usuario {user['name']}: {str(e)}")
+        
+        self.logger.info(f"🎯 Recolección de access keys completada. Total encontradas: {len(access_keys)}")
+        
+        # Log detallado de las access keys encontradas
+        if access_keys:
+            self.logger.info(" Access Keys encontradas:")
+            for key in access_keys:
+                self.logger.info(f"   - {key['user_name']}: {key['access_key_id']} ({key['status']}) - Fuente: {key['source']}")
+        else:
+            self.logger.warning("⚠️ No se encontraron access keys para ningún usuario")
+        
         return access_keys
+
+    async def _process_access_key(self, key, user: Dict) -> Optional[Dict]:
+        """Procesar una access key individual"""
+        try:
+            created_at = getattr(key, 'create_time', None)
+            if created_at:
+                # Parsear fecha si es string
+                if isinstance(created_at, str):
+                    try:
+                        create_date = datetime.fromisoformat(created_at.replace('Z', '+00:00'))
+                    except:
+                        create_date = datetime.now()
+                else:
+                    create_date = created_at
+                
+                key_age = (datetime.now() - create_date).days
+            else:
+                key_age = 0
+            
+            # Obtener último uso
+            last_used = await self._get_access_key_last_used(key.access)
+            
+            key_info = {
+                'access_key_id': key.access,
+                'user_id': user['id'],
+                'user_name': user['name'],
+                'status': key.status,
+                'created_at': created_at,
+                'age_days': key_age,
+                'description': getattr(key, 'description', ''),
+                'last_used': last_used,
+                'last_used_service': last_used.get('service') if last_used else None,
+                'last_used_region': last_used.get('region') if last_used else None,
+                'source': 'permanent_access_keys'
+            }
+            
+            # Verificaciones de seguridad
+            await self._check_access_key_security(key_info, user)
+            
+            return key_info
+            
+        except Exception as e:
+            self.logger.debug(f"Error procesando access key: {str(e)}")
+            return None
     
     async def _get_access_key_last_used(self, access_key_id: str) -> Optional[Dict]:
         """Obtener información del último uso de una access key"""
@@ -1713,7 +1996,8 @@ class IAMCollector:
             'total_roles': len(results['roles']),
             'total_policies': len(results['policies']),
             'total_access_keys': len(results['access_keys']),
-            'users_without_mfa': results['mfa_status']['mfa_disabled'],
+            'users_without_mfa': len(results['mfa_status']['regular_users_without_mfa']),  # Solo usuarios regulares
+            'service_accounts_without_mfa': len(results['mfa_status']['service_accounts_without_mfa']),
             'mfa_compliance_rate': 0,
             'old_access_keys': 0,
             'users_with_temp_passwords': 0,
@@ -1730,10 +2014,11 @@ class IAMCollector:
             'top_risks': []
         }
         
-        # Calcular tasa de cumplimiento MFA
-        if stats['total_users'] > 0:
+        # Calcular tasa de cumplimiento MFA solo para usuarios regulares
+        total_regular_users = stats['total_users'] - stats['service_accounts_without_mfa']
+        if total_regular_users > 0:
             stats['mfa_compliance_rate'] = round(
-                (results['mfa_status']['mfa_enabled'] / stats['total_users']) * 100, 2
+                ((total_regular_users - stats['users_without_mfa']) / total_regular_users) * 100, 2
             )
         
         # Contar access keys antiguas y sin uso

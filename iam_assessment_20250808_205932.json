@@ -1,0 +1,174 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "VULN-IAM-BC9887",
+      "title": "Política de contraseñas no cumple con estándares mínimos",
+      "description": "La política actual tiene las siguientes debilidades: Longitud mínima insuficiente (0 < 12), No requiere mayúsculas, No requiere minúsculas, No requiere números, No requiere caracteres especiales, Período de validez inadecuado (0 días)",
+      "type": "Autenticación Débil",
+      "severity": "MEDIUM",
+      "cvss_score": 5.3,
+      "cve_ids": [],
+      "affected_resources": [
+        {
+          "type": "account_policy",
+          "identifiers": [
+            "password_policy"
+          ]
+        }
+      ],
+      "evidence": {
+        "current_policy": {
+          "minimum_password_length": 6,
+          "maximum_password_length": 32,
+          "password_requirements": "A password must contain at least two of the following: uppercase letters, lowercase letters, digits, and special characters.",
+          "password_char_combination": 2,
+          "minimum_password_age": 0,
+          "password_validity_period": 0,
+          "number_of_recent_passwords_disallowed": 1,
+          "maximum_consecutive_identical_chars": 0,
+          "password_not_username_or_invert": true
+        },
+        "issues": [
+          "Longitud mínima insuficiente (0 < 12)",
+          "No requiere mayúsculas",
+          "No requiere minúsculas",
+          "No requiere números",
+          "No requiere caracteres especiales",
+          "Período de validez inadecuado (0 días)"
+        ],
+        "required_policy": {
+          "min_length": 12,
+          "require_uppercase": true,
+          "require_lowercase": true,
+          "require_numbers": true,
+          "require_special": true,
+          "max_age_days": 90,
+          "min_age_days": 1,
+          "history_count": 12,
+          "lockout_attempts": 5,
+          "lockout_duration_mins": 30
+        }
+      },
+      "remediation": {
+        "steps": [
+          "Actualizar política de contraseñas según estándares",
+          "Establecer longitud mínima de 12 caracteres",
+          "Requerir complejidad (mayúsculas, minúsculas, números, símbolos)",
+          "Forzar cambio cada 90 días"
+        ],
+        "effort_hours": 4,
+        "priority": "MEDIUM"
+      },
+      "references": [
+        "NIST SP 800-63B",
+        "ISO 27001:2022 A.9.4.3"
+      ],
+      "discovered_date": "2025-08-08T21:00:40.949084",
+      "false_positive_likelihood": 0.0
+    },
+    {
+      "id": "VULN-IAM-2007A1",
+      "title": "Usuarios con privilegios administrativos excesivos",
+      "description": "11 usuarios con acceso administrativo completo",
+      "type": "Autorización Inadecuada",
+      "severity": "HIGH",
+      "cvss_score": 8.0,
+      "cve_ids": [],
+      "affected_resources": [
+        {
+          "type": "iam_user",
+          "identifiers": [
+            "ConectorCloud",
+            "diegogarone",
+            "emilianosilva",
+            "Florencia Pavon",
+            "globo",
+            "Julian Vazzano",
+            "Nicolas Alcorta",
+            "Nicolas Villafane",
+            "SManoni",
+            "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "VeeamBackup_Huawei"
+          ]
+        }
+      ],
+      "evidence": {
+        "privileged_users": [
+          {
+            "user_name": "ConectorCloud",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "diegogarone",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "emilianosilva",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Florencia Pavon",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "globo",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Julian Vazzano",
+            "source": "group:power_user"
+          },
+          {
+            "user_name": "Nicolas Alcorta",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Nicolas Villafane",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "SManoni",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "VeeamBackup_Huawei",
+            "source": "group:power_user"
+          }
+        ],
+        "total_count": 11
+      },
+      "remediation": {
+        "steps": [
+          "Implementar principio de menor privilegio",
+          "Crear roles específicos para funciones",
+          "Revisar y reducir permisos administrativos",
+          "Implementar acceso justo a tiempo (JIT)"
+        ],
+        "effort_hours": 12,
+        "priority": "HIGH"
+      },
+      "references": [
+        "CIS Control 6.8",
+        "NIST SP 800-53 AC-2"
+      ],
+      "discovered_date": "2025-08-08T21:00:40.949135",
+      "false_positive_likelihood": 0.0
+    }
+  ],
+  "summary": {
+    "total_vulnerabilities": 2,
+    "by_severity": {
+      "MEDIUM": 1,
+      "HIGH": 1
+    },
+    "by_type": {
+      "Autenticación Débil": 1,
+      "Autorización Inadecuada": 1
+    }
+  },
+  "timestamp": "2025-08-08T21:00:40.949181"
+}
