@@ -4,7 +4,7 @@ Colector de datos IAM para Huawei Cloud - Versión Completa
 """
 
 import asyncio
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any, Optional
 from huaweicloudsdkcore.auth.credentials import GlobalCredentials
 from huaweicloudsdkcore.exceptions import exceptions
@@ -1284,16 +1284,9 @@ class IAMCollector:
     
     async def _get_user_roles(self, user_id: str) -> List[Dict]:
         """Obtener roles asignados a un usuario"""
-        roles = []
-        try:
-            # Obtener roles a nivel de proyecto
-            request = ListProjectPermissionsForEnterpriseProjectRequest()
-            # Configurar request según necesidad
-            # Este es un ejemplo simplificado
-        except:
-            pass
-        
-        return roles
+        # En Huawei Cloud, los permisos vienen principalmente a través de grupos
+        # No necesitamos consultar roles del sistema
+        return []
     
     async def _analyze_effective_permissions(self, results: Dict) -> Dict[str, Any]:
         """Analizar permisos efectivos de usuarios"""
