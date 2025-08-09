@@ -16,6 +16,7 @@ import sys
 import argparse
 from datetime import datetime
 from pathlib import Path
+from typing import Dict
 
 # Agregar el directorio raíz al path para importaciones
 sys.path.append(str(Path(__file__).parent.parent))
@@ -314,6 +315,50 @@ def print_summary(results, analysis_results=None):
             if count > 0:
                 print(f"    {severity}: {count}")
 
+def merge_collection_and_analysis(collection_data: Dict, analysis_data: Dict) -> Dict:
+    """Combinar datos de recolección y análisis para reporte completo"""
+    # Crear copia de los datos de recolección
+    combined = collection_data.copy()
+    
+    # Agregar vulnerabilidades del análisis
+    combined['vulnerabilities'] = analysis_data.get('vulnerabilities', [])
+    combined['vulnerability_summary'] = analysis_data.get('summary', {})
+    
+    # Convertir findings del collector a formato compatible si existen
+    if 'findings' in combined:
+        # Mantener findings del collector en formato original
+        collector_findings = combined['findings']
+        
+        # Agregar vulnerabilidades como findings adicionales
+        for vuln in combined['vulnerabilities']:
+            combined['findings'].append({
+                'id': vuln.get('id', ''),
+                'severity': vuln.get('severity', 'LOW'),
+                'message': vuln.get('title', ''),
+                'details': vuln.get('description', ''),
+                'timestamp': vuln.get('discovered_date', '')
+            })
+    
+    return combined
+
+def generate_comprehensive_report(combined_data: Dict, base_output_file: str):
+    """Generar reporte completo con datos de recolección y análisis"""
+    try:
+        from utils.iam_report_generator import IAMReportGenerator
+        
+        # Usar datos combinados para el reporte
+        report_generator = IAMReportGenerator(combined_data)
+        output_path = Path(base_output_file)
+        report_files = report_generator.generate_complete_report(output_path.parent)
+        
+        print("\n📊 Reporte completo generado (Recolección + Análisis):")
+        print(f"   📋 Resumen detallado: {report_files['summary']}")
+        print(f"   📊 CSV de hallazgos: {report_files['csv']}")
+        print(f"   📋 Plan de remediación: {report_files['remediation']}")
+        
+    except Exception as e:
+        print(f"⚠️ Error generando reporte completo: {e}")
+
 async def main():
     """Función principal"""
     # Configurar parser de argumentos
@@ -401,13 +446,20 @@ async def main():
             else:
                 print("✅ Análisis completado exitosamente")
         
-        # Guardar resultados
+        # Guardar resultados de recolección
         output_file = get_output_filename(args)
         if not save_results(results, output_file):
             sys.exit(1)
         
-        # Guardar análisis por separado si existe
+        # Ejecutar análisis y combinar resultados para el reporte
         if analysis_results:
+            # NUEVO: Combinar datos para el reporte completo
+            combined_results = merge_collection_and_analysis(results, analysis_results)
+            
+            # Generar reporte completo con datos combinados
+            generate_comprehensive_report(combined_results, output_file)
+            
+            # Guardar análisis por separado
             analysis_file = output_file.replace('.json', '_analysis.json')
             if not save_results(analysis_results, analysis_file):
                 print("⚠️  No se pudo guardar el análisis por separado")
