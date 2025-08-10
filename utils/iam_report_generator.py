@@ -384,39 +384,64 @@ class IAMReportGenerator:
         return content
 
     def _generate_mfa_section(self) -> str:
-        """Generar sección de análisis de MFA"""
+        """Generar sección de análisis de MFA con nuevas categorías"""
         mfa_status = self.results.get('mfa_status', {})
+        verification_summary = mfa_status.get('verification_summary', {})
 
-        content = f"""## 🔐 Estado de MFA (Multi-Factor Authentication)
+        content = f"""## 🔐 Estado de MFA y Verificación de Acceso
 
-###  Resumen General
+### 📊 Resumen General
 
-- **Total de Usuarios**: {mfa_status.get('total_users', 0)}
-- **Usuarios con MFA**: {mfa_status.get('mfa_enabled', 0)}
-- **Usuarios sin MFA**: {mfa_status.get('mfa_disabled', 0)}
-- **Tasa de Cumplimiento**: {mfa_status.get('mfa_enabled', 0) / mfa_status.get('total_users', 1) * 100:.1f}%
+- **Total de Usuarios con Acceso a Consola**: {verification_summary.get('total_console_users', 0)}
+- **MFA Real Habilitado**: {mfa_status.get('mfa_enabled', 0)} ({verification_summary.get('real_mfa_percentage', 0)}%)
+- **Verificación 2FA Habilitada**: {verification_summary.get('verification_2fa_count', 0)} ({verification_summary.get('verification_2fa_percentage', 0)}%)
+- **Sin Verificación**: {verification_summary.get('no_verification_count', 0)} ({verification_summary.get('no_verification_percentage', 0)}%)
 
-### 📈 Distribución por Tipo de MFA
+### 🛡️ MFA Real (Autenticación Multifactor Verdadera)
+
+| Método | Usuarios | Porcentaje |
+|--------|----------|------------|
+| Virtual MFA Device | {mfa_status.get('mfa_types', {}).get('virtual', 0)} | {round((mfa_status.get('mfa_types', {}).get('virtual', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| Security Key | {mfa_status.get('mfa_types', {}).get('security_key', 0)} | {round((mfa_status.get('mfa_types', {}).get('security_key', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+
+### 📱 Verificación 2FA (Métodos de Verificación)
+
+| Método | Usuarios | Porcentaje |
+|--------|----------|------------|
+| 2FA SMS | {mfa_status.get('verification_methods', {}).get('2fa_sms', 0)} | {round((mfa_status.get('verification_methods', {}).get('2fa_sms', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| 2FA Email | {mfa_status.get('verification_methods', {}).get('2fa_email', 0)} | {round((mfa_status.get('verification_methods', {}).get('2fa_email', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+
+### ⚠️ Sin Verificación
+
+| Estado | Usuarios | Porcentaje |
+|--------|----------|------------|
+| Disabled | {mfa_status.get('verification_methods', {}).get('disabled', 0)} | {verification_summary.get('no_verification_percentage', 0)}% |
+
+### 📈 Distribución Detallada por Usuario
 
 """
 
-        mfa_types = mfa_status.get('mfa_types', {})
-        for mfa_type, count in mfa_types.items():
-            if count > 0:
-                content += f"- **{mfa_type.title()}**: {count} usuarios\n"
+        # Tabla de usuarios por método
+        users_by_method = {}
+        for user_detail in mfa_status.get('login_verification_details', []):
+            if user_detail['has_console_access']:
+                method = user_detail['login_verification_method']
+                if method not in users_by_method:
+                    users_by_method[method] = []
+                users_by_method[method].append(user_detail)
 
-        content += "\n###  Usuarios sin MFA\n\n"
-
-        users_without_mfa = mfa_status.get('users_without_mfa', [])
-        if users_without_mfa:
-            content += "| Usuario | ID |\n"
-            content += "|---------|----|\n"
-            for user in users_without_mfa[:10]:
-                content += f"| {user.get('user_name', 'N/A')} | {user.get('user_id', 'N/A')} |\n"
-            if len(users_without_mfa) > 10:
-                content += f"| ... y {len(users_without_mfa) - 10} usuarios más | |\n"
-        else:
-            content += "✅ Todos los usuarios tienen MFA configurado.\n"
+        for method, users in users_by_method.items():
+            if users:
+                content += f"\n#### {method} ({len(users)} usuarios)\n\n"
+                content += "| Usuario | Tipo de Cuenta | Access Mode |\n"
+                content += "|---------|----------------|-------------|\n"
+                
+                for user in users[:10]:  # Limitar a 10 usuarios por método
+                    account_type = "🔧 Servicio" if user['is_service_account'] else "👤 Regular"
+                    content += f"| {user['user_name']} | {account_type} | {user['access_mode']} |\n"
+                
+                if len(users) > 10:
+                    content += f"| ... y {len(users) - 10} usuarios más | | |\n"
 
         content += "\n---\n\n"
         return content

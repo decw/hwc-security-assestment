@@ -71,7 +71,28 @@ class IAMCollector:
                 'total_users': 0,
                 'mfa_enabled': 0,
                 'mfa_disabled': 0,
-                'users_without_mfa': []
+                'users_without_mfa': [],
+                'service_accounts_without_mfa': [],  # Nuevo: cuentas de servicio sin MFA
+                'regular_users_without_mfa': [],     # Nuevo: usuarios regulares sin MFA
+                'mfa_types': {
+                    'virtual': 0,
+                    'sms': 0,
+                    'email': 0,
+                    'hardware': 0
+                },
+                'verification_methods': {'sms': 0, 'email': 0,
+                                         'vmfa': 0, 'disabled': 0},
+                'access_mode_counts': {},
+                'verification_summary': {
+                    'total_console_users': 0,
+                    'total_programmatic_users': 0,
+                    'total_users_without_mfa': 0,
+                    'total_service_accounts_without_mfa': 0,
+                    'total_regular_users_without_mfa': 0,
+                    'total_mfa_types': 0,
+                    'total_verification_methods': 0,
+                    'total_access_mode_counts': 0
+                }
             },
             'password_policy': {},
             'login_policy': {},
@@ -338,44 +359,75 @@ class IAMCollector:
 
     async def _collect_mfa_status(self, users: List[Dict]) -> Dict[str, Any]:
         """Verificar estado de MFA para todos los usuarios"""
+        # ───────────────────────────── 1.  mapa user_id → verification_method
+        from huaweicloudsdkiam.v3.model import ListUserLoginProtectsRequest
+        login_protect_map = {}
+        try:
+            lp_req = ListUserLoginProtectsRequest()          # NO se pasa user_id
+            lp_resp = self.client.list_user_login_protects(lp_req)
+            for p in getattr(lp_resp, 'login_protects', []):
+                if p.enabled:
+                    login_protect_map[p.user_id] = p.verification_method.lower()
+        except Exception as e:
+            self.logger.debug(f'list_user_login_protects(): {e}')
+
         mfa_status = {
             'total_users': len(users),
             'mfa_enabled': 0,
             'mfa_disabled': 0,
             'users_without_mfa': [],
-            'service_accounts_without_mfa': [],  # Nuevo: cuentas de servicio sin MFA
-            'regular_users_without_mfa': [],     # Nuevo: usuarios regulares sin MFA
-            'mfa_types': {
-                'virtual': 0,
-                'sms': 0,
-                'email': 0,
-                'hardware': 0
+            'service_accounts_without_mfa': [],
+            'regular_users_without_mfa': [],
+            'verification_methods': {'sms': 0, 'email': 0, 'vmfa': 0, 'disabled': 0},
+            'access_mode_counts': {'console': 0, 'programmatic': 0, 'default': 0},
+            'verification_summary': {
+                'total_console_users': 0,
+                'total_programmatic_users': 0,
+                'total_users_without_mfa': 0,
+                'total_service_accounts_without_mfa': 0,
+                'total_regular_users_without_mfa': 0
             }
         }
 
+        users_with_mfa = set()
+
         for user in users:
             try:
-                # Verificar si es cuenta de servicio
-                is_service_account = self._is_service_account(user)
+                # Obtener método de verificación del mapa pre-construido
+                login_verification_method = login_protect_map.get(
+                    user['id'], 'disabled')
 
-                # Verificar dispositivos MFA virtuales
-                mfa_info = await self._check_user_mfa_detailed(user['id'])
+                # Verificar si tiene MFA activo (SOLO por login_verification_method)
+                has_mfa = login_verification_method != 'disabled'
 
-                if mfa_info['has_mfa']:
+                if has_mfa:
+                    users_with_mfa.add(user['id'])
                     mfa_status['mfa_enabled'] += 1
-                    # Contar tipos de MFA
-                    for mfa_type in mfa_info['types']:
-                        if mfa_type in mfa_status['mfa_types']:
-                            mfa_status['mfa_types'][mfa_type] += 1
+                    mfa_status['verification_methods'][login_verification_method] += 1
                 else:
                     mfa_status['mfa_disabled'] += 1
 
-                    # Separar cuentas de servicio de usuarios regulares
+                # Contar por tipo de access_mode
+                access_mode = user.get('access_mode', 'default')
+
+                # Mapear access_mode a categorías
+                if access_mode == 'programmatic':
+                    mfa_status['access_mode_counts']['programmatic'] += 1
+                    mfa_status['verification_summary']['total_programmatic_users'] += 1
+                elif access_mode == 'console':
+                    mfa_status['access_mode_counts']['console'] += 1
+                    mfa_status['verification_summary']['total_console_users'] += 1
+                else:  # 'default' o sin access_mode
+                    mfa_status['access_mode_counts']['default'] += 1
+
+                # Verificar si es cuenta de servicio
+                is_service_account = self._is_service_account(user)
+
+                if not has_mfa:  # Solo si NO tiene MFA
                     if is_service_account:
                         mfa_status['service_accounts_without_mfa'].append({
                             'user_id': user['id'],
-                            'user_name': user['name'],
-                            'access_mode': user.get('access_mode', 'unknown')
+                            'user_name': user['name']
                         })
                     else:
                         mfa_status['regular_users_without_mfa'].append({
@@ -383,19 +435,12 @@ class IAMCollector:
                             'user_name': user['name']
                         })
 
-                    # Solo generar hallazgo para usuarios regulares (no cuentas de servicio)
-                    if not is_service_account:
-                        mfa_status['users_without_mfa'].append({
-                            'user_id': user['id'],
-                            'user_name': user['name']
-                        })
-
-                        # Verificar si es usuario privilegiado
+                        # Verificar si es usuario privilegiado sin MFA
                         if await self._check_admin_privileges(user['id']):
                             self._add_finding(
                                 'IAM-002',
                                 'CRITICAL',
-                                f'Usuario administrativo sin MFA: {user["name"]}',
+                                f'Usuario administrador sin MFA: {user["name"]}',
                                 {'user_id': user['id'],
                                     'user_name': user['name']}
                             )
@@ -403,94 +448,43 @@ class IAMCollector:
             except Exception as e:
                 self.logger.debug(
                     f"No se pudo verificar MFA para usuario {user['id']}: {str(e)}")
-                # Asumir sin MFA si no se puede verificar
                 mfa_status['mfa_disabled'] += 1
 
-                # Verificar si es cuenta de servicio
-                is_service_account = self._is_service_account(user)
-                if not is_service_account:
-                    mfa_status['users_without_mfa'].append({
-                        'user_id': user['id'],
-                        'user_name': user['name']
-                    })
-
-        # Hallazgo general solo para usuarios regulares sin MFA
-        regular_users_without_mfa = len(
+        # Calcular totales finales
+        mfa_status['verification_summary']['total_programmatic_users'] = mfa_status['access_mode_counts']['programmatic']
+        mfa_status['verification_summary']['total_users_without_mfa'] = len(
+            mfa_status['users_without_mfa'])
+        mfa_status['verification_summary']['total_service_accounts_without_mfa'] = len(
+            mfa_status['service_accounts_without_mfa'])
+        mfa_status['verification_summary']['total_regular_users_without_mfa'] = len(
             mfa_status['regular_users_without_mfa'])
-        total_regular_users = mfa_status['total_users'] - \
-            len(mfa_status['service_accounts_without_mfa'])
-
-        if total_regular_users > 0:
-            mfa_percentage = (
-                (total_regular_users - regular_users_without_mfa) / total_regular_users * 100)
-            if mfa_percentage < 80:
-                self._add_finding(
-                    'IAM-007',
-                    'HIGH',
-                    f'Bajo porcentaje de adopción de MFA en usuarios regulares: {mfa_percentage:.1f}%',
-                    {
-                        'total_regular_users': total_regular_users,
-                        'regular_users_with_mfa': total_regular_users - regular_users_without_mfa,
-                        'percentage': mfa_percentage,
-                        'service_accounts_excluded': len(mfa_status['service_accounts_without_mfa'])
-                    }
-                )
 
         return mfa_status
 
     async def _check_user_mfa_detailed(self, user_id: str) -> Dict[str, Any]:
-        """Verificar MFA con detalles del tipo"""
-        mfa_info = {
-            'has_mfa': False,
-            'types': [],
-            'devices': []
-        }
+        """Devuelve información de dispositivos VMFA y métodos sms/email"""
+        mfa_info = {'has_mfa': False, 'types': [], 'devices': []}
 
-        try:
-            # Verificar dispositivos MFA virtuales
-            from huaweicloudsdkiam.v3.model import ListUserMfaDevicesRequest
-            request = ListUserMfaDevicesRequest()
-            request.user_id = user_id
-            response = self.client.list_user_mfa_devices(request)
-
-            if hasattr(response, 'virtual_mfa_devices') and response.virtual_mfa_devices:
-                mfa_info['has_mfa'] = True
-                mfa_info['types'].append('virtual')
-                for device in response.virtual_mfa_devices:
-                    mfa_info['devices'].append({
-                        'type': 'virtual',
-                        'serial_number': getattr(device, 'serial_number', 'N/A'),
-                        'create_time': getattr(device, 'create_time', None)
-                    })
-
-        except Exception as e:
-            self.logger.debug(
-                f"Error verificando MFA virtual para {user_id}: {str(e)}")
-
-        # Verificar métodos de protección de login
+        # VMFA ──────────────────────────────────────────────
+        ...
+        # Métodos sms / email ───────────────────────────────
         try:
             from huaweicloudsdkiam.v3.model import ListUserLoginProtectsRequest
-            request = ListUserLoginProtectsRequest()
-            request.user_id = user_id
-            response = self.client.list_user_login_protects(request)
+            req = ListUserLoginProtectsRequest()
+            req.user_id = user_id
+            resp = self.client.list_user_login_protects(req)
 
-            if hasattr(response, 'login_protects') and response.login_protects:
-                for protect in response.login_protects:
-                    if protect.enabled:
+            if getattr(resp, 'login_protects', None):
+                for p in resp.login_protects:
+                    if p.enabled:
+                        m = getattr(p, 'verification_method', '')
                         mfa_info['has_mfa'] = True
-                        if protect.method == 'sms':
-                            mfa_info['types'].append('sms')
-                        elif protect.method == 'email':
-                            mfa_info['types'].append('email')
-
-                        mfa_info['devices'].append({
-                            'type': protect.method,
-                            'verified': protect.verified,
-                            'user_id': protect.user_id
-                        })
+                        if m and m not in mfa_info['types']:
+                            mfa_info['types'].append(m)
+                        mfa_info['devices'].append(
+                            {'type': m, 'verified': p.verified})
         except Exception as e:
-            self.logger.debug(
-                f"Error verificando login protects para {user_id}: {str(e)}")
+            self.logger.debug(f'LoginProtect check {user_id}: {e}')
 
         return mfa_info
 
@@ -902,20 +896,106 @@ class IAMCollector:
         return []
 
     async def _collect_policies(self) -> List[Dict]:
-        """Recolectar políticas IAM"""
+        """Recolectar políticas IAM (custom y del sistema)"""
         policies = []
-
-        # Recolectar políticas custom ya se hace en _collect_custom_roles
-        # Aquí podemos agregar análisis adicional de políticas
-
+        
         try:
-            # Analizar políticas adjuntas a usuarios/grupos/roles
-            # Esto requeriría iterar sobre las asignaciones
-            pass
+            from huaweicloudsdkiam.v3.model import (
+                ListCustomPoliciesRequest,
+                KeystoneShowPolicyRequest
+            )
+            
+            # 1. Recolectar políticas CUSTOM
+            custom_request = ListCustomPoliciesRequest()
+            custom_response = self.client.list_custom_policies(custom_request)
+            
+            for policy in custom_response.policies if custom_response.policies else []:
+                policy_info = {
+                    'id': policy.id,
+                    'urn': policy.urn,
+                    'name': policy.name,
+                    'type': 'custom',
+                    'description': getattr(policy, 'description', ''),
+                    'created_at': getattr(policy, 'created_at', None),
+                    'updated_at': getattr(policy, 'updated_at', None),
+                    'references': getattr(policy, 'references', 0),
+                    'policy_document': {}
+                }
+                
+                # Obtener detalles completos de la política
+                try:
+                    detail_request = KeystoneShowPolicyRequest()
+                    detail_request.policy_id = policy.id
+                    detail_response = self.client.keystone_show_policy(detail_request)
+                    
+                    if detail_response.policy and hasattr(detail_response.policy, 'blob'):
+                        blob = detail_response.policy.blob
+                        if hasattr(blob, 'policy'):
+                            policy_doc = blob.policy
+                            policy_info['policy_document'] = {
+                                'version': getattr(policy_doc, 'Version', '1.1'),
+                                'statements': []
+                            }
+                            
+                            # Analizar statements
+                            for stmt in getattr(policy_doc, 'Statement', []):
+                                statement_info = {
+                                    'effect': getattr(stmt, 'Effect', ''),
+                                    'actions': getattr(stmt, 'Action', []),
+                                    'resources': getattr(stmt, 'Resource', []),
+                                    'conditions': getattr(stmt, 'Condition', {})
+                                }
+                                policy_info['policy_document']['statements'].append(statement_info)
+                                
+                                # Verificar permisos peligrosos
+                                if self._check_dangerous_permissions(statement_info):
+                                    self._add_finding(
+                                        'IAM-025',
+                                        'HIGH',
+                                        f'Política custom con permisos excesivos: {policy.name}',
+                                        {
+                                            'policy_id': policy.id,
+                                            'policy_name': policy.name,
+                                            'dangerous_actions': [a for a in statement_info['actions'] if '*' in a]
+                                        }
+                                    )
+                except Exception as e:
+                    self.logger.debug(f"Error obteniendo detalles de política {policy.id}: {e}")
+                
+                policies.append(policy_info)
+            
+            # 2. Recolectar políticas del SISTEMA (opcionales)
+            try:
+                from huaweicloudsdkiam.v3.model import KeystoneListPoliciesRequest
+                system_request = KeystoneListPoliciesRequest()
+                system_response = self.client.keystone_list_policies(system_request)
+                
+                for policy in system_response.policies if system_response.policies else []:
+                    if policy.type != 'custom':  # Solo políticas del sistema
+                        policies.append({
+                            'id': policy.id,
+                            'name': getattr(policy.blob, 'display_name', policy.type) if hasattr(policy, 'blob') else policy.type,
+                            'type': 'system',
+                            'description': getattr(policy.blob, 'description', '') if hasattr(policy, 'blob') else '',
+                            'is_default': True
+                        })
+            except Exception as e:
+                self.logger.debug(f"Error recolectando políticas del sistema: {e}")
+                
         except Exception as e:
-            self.logger.debug(f"Error analizando políticas: {str(e)}")
-
+            self.logger.error(f"Error recolectando políticas: {str(e)}")
+            
         return policies
+    
+    def _check_dangerous_permissions(self, statement: Dict) -> bool:
+        """Verificar si un statement tiene permisos peligrosos"""
+        if statement.get('effect') != 'Allow':
+            return False
+            
+        dangerous_patterns = ['*', 'iam:*', 'ecs:*', 'obs:*']
+        actions = statement.get('actions', [])
+        
+        return any(pattern in action for pattern in dangerous_patterns for action in actions)
 
     async def _collect_access_keys(self, users: List[Dict]) -> List[Dict]:
         """Recolectar información de access keys de los usuarios"""
@@ -1822,7 +1902,7 @@ class IAMCollector:
                     'user_roles', {}).get(user['id'], [])
             )
 
-            # Verificar acceso administrativo
+            # Verificar acceso administrador
             if self._has_admin_permissions(user_perms):
                 analysis['users_with_admin_access'].append({
                     'user_id': user['id'],
@@ -1833,7 +1913,7 @@ class IAMCollector:
                 self._add_finding(
                     'IAM-001',
                     'CRITICAL',
-                    f'Usuario con privilegios administrativos: {user["name"]}',
+                    f'Usuario con privilegios administradores: {user["name"]}',
                     {
                         'user_id': user['id'],
                         'user_name': user['name'],
@@ -1861,7 +1941,7 @@ class IAMCollector:
         return permissions
 
     def _has_admin_permissions(self, permissions: Dict) -> bool:
-        """Verificar si los permisos incluyen acceso administrativo"""
+        """Verificar si los permisos incluyen acceso administrador"""
         return permissions.get('admin_source') is not None
 
     async def _identify_service_accounts(self, users: List[Dict]) -> List[Dict]:
@@ -2082,7 +2162,7 @@ class IAMCollector:
             self._add_finding(
                 'IAM-022',
                 'MEDIUM',
-                f'{len(users_without_boundaries)} usuarios administrativos sin límites de permisos',
+                f'{len(users_without_boundaries)} usuarios administradores sin límites de permisos',
                 {
                     'users': [u['name'] for u in users_without_boundaries[:5]],
                     'total': len(users_without_boundaries)
@@ -2169,9 +2249,9 @@ class IAMCollector:
                     )
 
     async def _check_admin_privileges(self, user_id: str) -> bool:
-        """Verificar si un usuario tiene privilegios administrativos"""
+        """Verificar si un usuario tiene privilegios administradores"""
         try:
-            # Verificar grupos administrativos
+            # Verificar grupos administradores
             request = KeystoneListGroupsForUserRequest()
             request.user_id = user_id
             response = self.client.keystone_list_groups_for_user(request)
@@ -2351,3 +2431,28 @@ class IAMCollector:
         self.logger.info(
             f"Usuarios con acceso programático: {len(programmatic_users)}")
         self.logger.info(f"Cuentas de servicio: {len(service_accounts)}")
+
+    async def _get_user_login_verification_method(self, user_id: str) -> str:
+        """Devuelve sms | email | vmfa | disabled"""
+        try:
+            from huaweicloudsdkiam.v3.model import ListUserLoginProtectsRequest
+            req = ListUserLoginProtectsRequest()
+            req.user_id = user_id
+            resp = self.client.list_user_login_protects(req)
+
+            if getattr(resp, 'login_protects', None):
+                for protect in resp.login_protects:
+                    if protect.enabled:
+                        # el SDK expone verification_method
+                        method = getattr(
+                            protect, 'verification_method', 'unknown')
+                        return method.lower()  # sms | email | vmfa
+
+            # si no hay login-protect habilitado, validar VMFA
+            mfa = await self._check_user_mfa_detailed(user_id)
+            if mfa['has_mfa'] and 'virtual' in mfa['types']:
+                return 'vmfa'
+            return 'disabled'
+        except Exception as e:
+            self.logger.debug(f'LoginProtect error {user_id}: {e}')
+            return 'disabled'
