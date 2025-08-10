@@ -896,105 +896,89 @@ class IAMCollector:
         return []
 
     async def _collect_policies(self) -> List[Dict]:
-        """Recolectar políticas IAM (custom y del sistema)"""
+        """Recolectar políticas IAM custom"""
         policies = []
         
         try:
-            from huaweicloudsdkiam.v3.model import (
-                ListCustomPoliciesRequest,
-                KeystoneShowPolicyRequest
-            )
+            from huaweicloudsdkiam.v3.model import ListCustomPoliciesRequest
             
-            # 1. Recolectar políticas CUSTOM
+            self.logger.info("Recolectando políticas custom...")
             custom_request = ListCustomPoliciesRequest()
             custom_response = self.client.list_custom_policies(custom_request)
             
-            for policy in custom_response.policies if custom_response.policies else []:
-                policy_info = {
-                    'id': policy.id,
-                    'urn': policy.urn,
-                    'name': policy.name,
-                    'type': 'custom',
-                    'description': getattr(policy, 'description', ''),
-                    'created_at': getattr(policy, 'created_at', None),
-                    'updated_at': getattr(policy, 'updated_at', None),
-                    'references': getattr(policy, 'references', 0),
-                    'policy_document': {}
-                }
+            if custom_response and hasattr(custom_response, 'roles'):
+                self.logger.info(f"Encontradas {len(custom_response.roles)} políticas custom")
                 
-                # Obtener detalles completos de la política
-                try:
-                    detail_request = KeystoneShowPolicyRequest()
-                    detail_request.policy_id = policy.id
-                    detail_response = self.client.keystone_show_policy(detail_request)
+                for role in custom_response.roles:
+                    policy_info = {
+                        'id': role.id,
+                        'name': role.display_name,
+                        'type': 'custom',
+                        'description': getattr(role, 'description', ''),
+                        'created_at': getattr(role, 'created_time', None),
+                        'updated_at': getattr(role, 'updated_time', None),
+                        'domain_id': role.domain_id,
+                        'policy_document': {}
+                    }
                     
-                    if detail_response.policy and hasattr(detail_response.policy, 'blob'):
-                        blob = detail_response.policy.blob
-                        if hasattr(blob, 'policy'):
-                            policy_doc = blob.policy
-                            policy_info['policy_document'] = {
-                                'version': getattr(policy_doc, 'Version', '1.1'),
-                                'statements': []
+                    # Analizar el documento de política
+                    if hasattr(role, 'policy'):
+                        policy_doc = role.policy
+                        policy_info['policy_document'] = {
+                            'version': getattr(policy_doc, 'Version', '1.1'),
+                            'statements': []
+                        }
+                        
+                        # Procesar statements
+                        for stmt in getattr(policy_doc, 'Statement', []):
+                            statement_info = {
+                                'effect': getattr(stmt, 'Effect', ''),
+                                'actions': getattr(stmt, 'Action', [])
                             }
+                            policy_info['policy_document']['statements'].append(statement_info)
                             
-                            # Analizar statements
-                            for stmt in getattr(policy_doc, 'Statement', []):
-                                statement_info = {
-                                    'effect': getattr(stmt, 'Effect', ''),
-                                    'actions': getattr(stmt, 'Action', []),
-                                    'resources': getattr(stmt, 'Resource', []),
-                                    'conditions': getattr(stmt, 'Condition', {})
-                                }
-                                policy_info['policy_document']['statements'].append(statement_info)
+                            # Verificar permisos peligrosos
+                            if statement_info['effect'] == 'Allow':
+                                dangerous_patterns = ['*:*', '*:*:*', 'iam:*']
+                                dangerous_actions = [
+                                    action for action in statement_info['actions'] 
+                                    if any(pattern in action for pattern in dangerous_patterns)
+                                ]
                                 
-                                # Verificar permisos peligrosos
-                                if self._check_dangerous_permissions(statement_info):
+                                if dangerous_actions:
                                     self._add_finding(
                                         'IAM-025',
                                         'HIGH',
-                                        f'Política custom con permisos excesivos: {policy.name}',
+                                        f'Política custom con permisos excesivos: {policy_info["name"]}',
                                         {
-                                            'policy_id': policy.id,
-                                            'policy_name': policy.name,
-                                            'dangerous_actions': [a for a in statement_info['actions'] if '*' in a]
+                                            'policy_id': policy_info['id'],
+                                            'policy_name': policy_info['name'],
+                                            'dangerous_actions': dangerous_actions
                                         }
                                     )
-                except Exception as e:
-                    self.logger.debug(f"Error obteniendo detalles de política {policy.id}: {e}")
+                    
+                    policies.append(policy_info)
+                    self.logger.debug(f"Procesada política custom: {policy_info['name']}")
                 
-                policies.append(policy_info)
-            
-            # 2. Recolectar políticas del SISTEMA (opcionales)
-            try:
-                from huaweicloudsdkiam.v3.model import KeystoneListPoliciesRequest
-                system_request = KeystoneListPoliciesRequest()
-                system_response = self.client.keystone_list_policies(system_request)
-                
-                for policy in system_response.policies if system_response.policies else []:
-                    if policy.type != 'custom':  # Solo políticas del sistema
-                        policies.append({
-                            'id': policy.id,
-                            'name': getattr(policy.blob, 'display_name', policy.type) if hasattr(policy, 'blob') else policy.type,
-                            'type': 'system',
-                            'description': getattr(policy.blob, 'description', '') if hasattr(policy, 'blob') else '',
-                            'is_default': True
-                        })
-            except Exception as e:
-                self.logger.debug(f"Error recolectando políticas del sistema: {e}")
+            else:
+                self.logger.info("No se encontraron políticas custom")
                 
         except Exception as e:
             self.logger.error(f"Error recolectando políticas: {str(e)}")
+            import traceback
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
             
+        self.logger.info(f"Total de políticas recolectadas: {len(policies)}")
         return policies
-    
+
     def _check_dangerous_permissions(self, statement: Dict) -> bool:
         """Verificar si un statement tiene permisos peligrosos"""
         if statement.get('effect') != 'Allow':
             return False
-            
+
         dangerous_patterns = ['*', 'iam:*', 'ecs:*', 'obs:*']
         actions = statement.get('actions', [])
-        
+
         return any(pattern in action for pattern in dangerous_patterns for action in actions)
 
     async def _collect_access_keys(self, users: List[Dict]) -> List[Dict]:
@@ -1913,7 +1897,7 @@ class IAMCollector:
                 self._add_finding(
                     'IAM-001',
                     'CRITICAL',
-                    f'Usuario con privilegios administradores: {user["name"]}',
+                    f'Usuario con privilegios de administrador: {user["name"]}',
                     {
                         'user_id': user['id'],
                         'user_name': user['name'],
@@ -2249,7 +2233,7 @@ class IAMCollector:
                     )
 
     async def _check_admin_privileges(self, user_id: str) -> bool:
-        """Verificar si un usuario tiene privilegios administradores"""
+        """Verificar si un usuario tiene privilegios de administrador"""
         try:
             # Verificar grupos administradores
             request = KeystoneListGroupsForUserRequest()

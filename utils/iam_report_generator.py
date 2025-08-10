@@ -361,6 +361,61 @@ class IAMReportGenerator:
 
         content = f"""## 📋 Análisis de Políticas
 
+### 📑 Políticas IAM
+        
+**Total de Políticas IAM**: {len(policies)}
+
+"""
+        
+        # Separar por tipo
+        custom_policies = [p for p in policies if p.get('type') == 'custom']
+        system_policies = [p for p in policies if p.get('type') == 'system']
+        
+        if custom_policies:
+            content += f"\n#### Políticas Personalizadas ({len(custom_policies)})\n\n"
+            content += "| Nombre | Descripción | Referencias | Creada |\n"
+            content += "|--------|-------------|-------------|--------|\n"
+            
+            for policy in custom_policies[:10]:
+                name = policy.get('name', 'N/A')
+                description = (policy.get('description', 'Sin descripción')[:40] + '...') if len(policy.get('description', '')) > 40 else policy.get('description', 'Sin descripción')
+                references = policy.get('references', 0)
+                created = policy.get('created_at', 'N/A')[:10] if policy.get('created_at') else 'N/A'
+                
+                content += f"| {name} | {description} | {references} | {created} |\n"
+                
+            if len(custom_policies) > 10:
+                content += f"| ... y {len(custom_policies) - 10} políticas más | | | |\n"
+                
+        if system_policies:
+            content += f"\n#### Políticas del Sistema ({len(system_policies)})\n\n"
+            content += "| Nombre | Tipo | Descripción |\n"
+            content += "|--------|------|-------------|\n"
+            
+            for policy in system_policies[:10]:
+                name = policy.get('name', 'N/A')
+                p_type = policy.get('type', 'system')
+                description = (policy.get('description', 'Sin descripción')[:50] + '...') if len(policy.get('description', '')) > 50 else policy.get('description', 'Sin descripción')
+                
+                content += f"| {name} | {p_type} | {description} |\n"
+                
+            if len(system_policies) > 10:
+                content += f"| ... y {len(system_policies) - 10} políticas más | | |\n"
+
+        # Si no hay políticas, mostrar mensaje informativo
+        if len(policies) == 0:
+            content += """
+⚠️ **No se encontraron políticas IAM personalizadas**
+
+Esto puede indicar que:
+- No hay políticas personalizadas creadas en la cuenta
+- El usuario no tiene permisos para listar políticas
+- La API de políticas no está disponible en esta región
+
+Las políticas predefinidas del sistema están implícitas en los roles asignados.
+"""
+
+        content += f"""
 ### 🔐 Política de Contraseñas
 
 | Configuración | Valor Actual | Recomendado | Estado |
@@ -435,11 +490,11 @@ class IAMReportGenerator:
                 content += f"\n#### {method} ({len(users)} usuarios)\n\n"
                 content += "| Usuario | Tipo de Cuenta | Access Mode |\n"
                 content += "|---------|----------------|-------------|\n"
-                
+
                 for user in users[:10]:  # Limitar a 10 usuarios por método
                     account_type = "🔧 Servicio" if user['is_service_account'] else "👤 Regular"
                     content += f"| {user['user_name']} | {account_type} | {user['access_mode']} |\n"
-                
+
                 if len(users) > 10:
                     content += f"| ... y {len(users) - 10} usuarios más | | |\n"
 

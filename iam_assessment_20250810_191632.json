@@ -63,7 +63,7 @@
         "NIST SP 800-63B",
         "ISO 27001:2022 A.9.4.3"
       ],
-      "discovered_date": "2025-08-10T19:03:26.871819",
+      "discovered_date": "2025-08-10T19:17:27.060106",
       "false_positive_likelihood": 0.0
     },
     {
@@ -155,7 +155,7 @@
         "CIS Control 4.3",
         "NIST SP 800-53 AC-2"
       ],
-      "discovered_date": "2025-08-10T19:03:26.871842",
+      "discovered_date": "2025-08-10T19:17:27.060143",
       "false_positive_likelihood": 0.0
     },
     {
@@ -247,7 +247,7 @@
         "CIS Control 6.8",
         "NIST SP 800-53 AC-2"
       ],
-      "discovered_date": "2025-08-10T19:03:26.871858",
+      "discovered_date": "2025-08-10T19:17:27.060172",
       "false_positive_likelihood": 0.0
     }
   ],
@@ -262,5 +262,5 @@
       "Autorización Inadecuada": 1
     }
   },
-  "timestamp": "2025-08-10T19:03:26.871880"
+  "timestamp": "2025-08-10T19:17:27.060246"
 }
