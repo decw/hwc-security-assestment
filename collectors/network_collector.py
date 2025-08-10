@@ -586,16 +586,16 @@ class NetworkCollector:
                 return None
 
             self.logger.info(f"Recolectando EIPs en {region}")
-            
+
             # Importar el request para listar EIPs
             from huaweicloudsdkeip.v2.model import ListPublicipsRequest
-            
+
             request = ListPublicipsRequest()
             request.limit = 200  # Máximo por página
             response = eip_client.list_publicips(request)
-            
+
             eips = []
-            
+
             for eip in response.publicips:
                 # Información básica de la EIP
                 eip_info = {
@@ -614,7 +614,7 @@ class NetworkCollector:
                     'profile': getattr(eip, 'profile', {}),
                     'region': region
                 }
-                
+
                 # Determinar asociación
                 if eip.status == 'ACTIVE' and eip_info['port_id']:
                     # EIP está asociada a un puerto
@@ -625,17 +625,17 @@ class NetworkCollector:
                     # EIP no está asociada
                     eip_info['association'] = None
                     eip_info['is_associated'] = False
-                
+
                 # Análisis de seguridad
                 eip_info['security_analysis'] = await self._analyze_eip_security(eip_info, region)
-                
+
                 eips.append(eip_info)
-            
+
             self.logger.info(f"Encontradas {len(eips)} EIPs en {region}")
-            
+
             # Generar hallazgos de seguridad
             await self._check_eip_security_issues(eips, region)
-            
+
             return eips
 
         except Exception as e:
@@ -649,14 +649,14 @@ class NetworkCollector:
             vpc_client = self._get_vpc_client(region)
             if not vpc_client:
                 return None
-                
+
             # Buscar el puerto en la información de servidores ECS
             ecs_client = self._get_ecs_client(region)
             if ecs_client:
                 request = ListServersDetailsRequest()
                 request.limit = 200
                 response = ecs_client.list_servers_details(request)
-                
+
                 for server in response.servers:
                     # Verificar si este servidor usa el puerto
                     if hasattr(server, 'addresses') and server.addresses:
@@ -681,7 +681,7 @@ class NetworkCollector:
                                         'network_name': network_name,
                                         'private_ip': addr.get('addr')
                                     }
-        
+
             # Si no es ECS, podría ser Load Balancer u otro recurso
             # Intentar determinar el tipo de recurso por el port_id
             return {
@@ -692,9 +692,10 @@ class NetworkCollector:
                 'network_name': 'unknown',
                 'private_ip': None
             }
-            
+
         except Exception as e:
-            self.logger.debug(f"Error obteniendo detalles de asociación para port {port_id}: {e}")
+            self.logger.debug(
+                f"Error obteniendo detalles de asociación para port {port_id}: {e}")
             return None
 
     async def _analyze_eip_security(self, eip_info: Dict, region: str) -> Dict:
@@ -706,29 +707,29 @@ class NetworkCollector:
             'weak_bandwidth': False,
             'shared_bandwidth': False
         }
-        
+
         # 1. EIP no utilizada
         if not eip_info['is_associated'] or eip_info['status'] != 'ACTIVE':
             analysis['unused_eip'] = True
-        
+
         # 2. Exposición pública (siempre es pública por naturaleza)
         analysis['public_exposure'] = True
-        
+
         # 3. Verificar ancho de banda
         bandwidth_size = eip_info.get('bandwidth_size', 0)
         if bandwidth_size and bandwidth_size < 5:  # Menos de 5 Mbps
             analysis['weak_bandwidth'] = True
-        
+
         # 4. Ancho de banda compartido (potencial riesgo de performance)
         if eip_info.get('bandwidth_share_type') == 'WHOLE':
             analysis['shared_bandwidth'] = True
-        
+
         # 5. Si está asociada, verificar exposición de puertos críticos
         if eip_info['is_associated'] and eip_info['association']:
             # Obtener security groups del recurso asociado
             critical_ports = await self._check_eip_critical_ports(eip_info, region)
             analysis['critical_ports_exposed'] = critical_ports
-        
+
         return analysis
 
     async def _check_eip_critical_ports(self, eip_info: Dict, region: str) -> List[int]:
@@ -737,36 +738,38 @@ class NetworkCollector:
             association = eip_info.get('association')
             if not association or association['resource_type'] != 'ecs':
                 return []
-            
+
             # Obtener security groups del servidor ECS asociado
             ecs_client = self._get_ecs_client(region)
             if not ecs_client:
                 return []
-            
+
             request = ShowServerRequest()
             request.server_id = association['resource_id']
             response = ecs_client.show_server(request)
-            
+
             critical_exposed = []
-            
+
             # Verificar security groups
             for sg in response.server.security_groups:
                 # Aquí deberíamos obtener las reglas del SG y verificar puertos críticos
                 # Por simplicidad, asumimos que los puertos comunes están expuestos
                 # En una implementación real, se consultarían las reglas específicas
                 pass
-            
+
             return critical_exposed
-            
+
         except Exception as e:
-            self.logger.debug(f"Error verificando puertos críticos para EIP {eip_info['id']}: {e}")
+            self.logger.debug(
+                f"Error verificando puertos críticos para EIP {eip_info['id']}: {e}")
             return []
 
     async def _check_eip_security_issues(self, eips: List[Dict], region: str):
         """Generar hallazgos de seguridad para EIPs"""
-        
+
         # 1. EIPs no utilizadas
-        unused_eips = [eip for eip in eips if eip['security_analysis']['unused_eip']]
+        unused_eips = [
+            eip for eip in eips if eip['security_analysis']['unused_eip']]
         if unused_eips:
             self._add_finding(
                 'NET-009',  # Nuevo código para EIPs no utilizadas
@@ -785,9 +788,10 @@ class NetworkCollector:
                     'recommendation': 'Liberar EIPs no utilizadas para reducir costos y riesgos de seguridad'
                 }
             )
-        
+
         # 2. EIPs con ancho de banda débil
-        weak_bandwidth_eips = [eip for eip in eips if eip['security_analysis']['weak_bandwidth']]
+        weak_bandwidth_eips = [
+            eip for eip in eips if eip['security_analysis']['weak_bandwidth']]
         if weak_bandwidth_eips:
             self._add_finding(
                 'NET-010',  # Nuevo código para ancho de banda débil
@@ -805,10 +809,10 @@ class NetworkCollector:
                     'recommendation': 'Considerar aumentar el ancho de banda para aplicaciones críticas'
                 }
             )
-        
+
         # 3. EIPs asociadas a recursos con puertos críticos expuestos
         critical_exposed_eips = [
-            eip for eip in eips 
+            eip for eip in eips
             if eip['security_analysis']['critical_ports_exposed']
         ]
         if critical_exposed_eips:
@@ -835,26 +839,28 @@ class NetworkCollector:
         try:
             from huaweicloudsdkeip.v2 import EipClient
             from huaweicloudsdkcore.region.region import Region
-            
+
             # Mapear región a región SDK
             sdk_region = self.region_map.get(region)
             if not sdk_region:
                 self.logger.warning(f"Región {region} no mapeada para EIP")
                 return None
-            
+
             # Crear región
-            eip_region = Region(sdk_region, f"https://vpc.{sdk_region}.myhuaweicloud.com")
-            
+            eip_region = Region(
+                sdk_region, f"https://vpc.{sdk_region}.myhuaweicloud.com")
+
             # Crear cliente
             client = EipClient.new_builder() \
                 .with_credentials(self.credentials) \
                 .with_region(eip_region) \
                 .build()
-            
+
             return client
-            
+
         except ImportError:
-            self.logger.warning(f"SDK de EIP no disponible. Saltando recolección de EIPs.")
+            self.logger.warning(
+                f"SDK de EIP no disponible. Saltando recolección de EIPs.")
             return None
 
     # ===== MÉTODOS DE VERIFICACIÓN SEGÚN CÓDIGOS CSV =====
@@ -865,17 +871,19 @@ class NetworkCollector:
 
         # Manejar estructura por regiones
         vpcs_data = results.get('vpcs', {})
-        
+
         # Si vpcs_data es un diccionario por regiones
         if isinstance(vpcs_data, dict):
             for region, vpcs in vpcs_data.items():
                 if isinstance(vpcs, list):
                     for vpc in vpcs:
-                        self._analyze_vpc_segregation(vpc, region, vpcs_without_segregation, results)
+                        self._analyze_vpc_segregation(
+                            vpc, region, vpcs_without_segregation, results)
         # Si vpcs_data es una lista directa (compatibilidad)
         elif isinstance(vpcs_data, list):
             for vpc in vpcs_data:
-                self._analyze_vpc_segregation(vpc, 'unknown', vpcs_without_segregation, results)
+                self._analyze_vpc_segregation(
+                    vpc, 'unknown', vpcs_without_segregation, results)
 
         # Generar vulnerabilidades encontradas
         if vpcs_without_segregation:
@@ -891,12 +899,13 @@ class NetworkCollector:
     def _analyze_vpc_segregation(self, vpc, region, vpcs_without_segregation, network_data):
         """Analizar segregación de una VPC específica"""
         vpc_id = vpc.get('id', 'Unknown')
-        
+
         # Obtener subnets para esta VPC
         subnets_data = network_data.get('subnets', {})
-        
+
         if isinstance(subnets_data, dict) and region in subnets_data:
-            subnets = [s for s in subnets_data[region] if s.get('vpc_id') == vpc_id]
+            subnets = [s for s in subnets_data[region]
+                       if s.get('vpc_id') == vpc_id]
         elif isinstance(subnets_data, list):
             subnets = [s for s in subnets_data if s.get('vpc_id') == vpc_id]
         else:
@@ -905,7 +914,8 @@ class NetworkCollector:
         # Verificar segregación
         if subnets:
             public_subnets = [s for s in subnets if s.get('is_public', False)]
-            private_subnets = [s for s in subnets if not s.get('is_public', False)]
+            private_subnets = [
+                s for s in subnets if not s.get('is_public', False)]
 
             if len(public_subnets) == 0 or len(private_subnets) == 0:
                 vpcs_without_segregation.append({
@@ -1077,27 +1087,29 @@ class NetworkCollector:
                 if 'prod' in vpc_name_lower or 'production' in vpc_name_lower:
                     env = 'production'
                 elif 'dev' in vpc_name_lower or 'desarrollo' in vpc_name_lower:
-                    env = 'development'  
+                    env = 'development'
                 elif 'test' in vpc_name_lower or 'qa' in vpc_name_lower:
                     env = 'test'
-                
+
                 vpcs.append({
                     'vpc_id': vpc['id'],
                     'vpc_name': vpc['name'],
                     'region': region,
                     'environment': env
                 })
-        
+
         # Verificar peerings entre diferentes ambientes
         cross_env_peerings = []
         for region, peerings in results.get('vpc_peerings', {}).items():
             for peering in peerings:
-                vpc1_env = next((v['environment'] for v in vpcs if v['vpc_id'] == peering.get('vpc_id')), 'unknown')
-                vpc2_env = next((v['environment'] for v in vpcs if v['vpc_id'] == peering.get('peer_vpc_id')), 'unknown')
-                
+                vpc1_env = next(
+                    (v['environment'] for v in vpcs if v['vpc_id'] == peering.get('vpc_id')), 'unknown')
+                vpc2_env = next((v['environment'] for v in vpcs if v['vpc_id'] == peering.get(
+                    'peer_vpc_id')), 'unknown')
+
                 if vpc1_env != vpc2_env and vpc1_env != 'unknown' and vpc2_env != 'unknown':
                     cross_env_peerings.append(peering)
-        
+
         if cross_env_peerings:
             self._add_finding(
                 'NET-009',
@@ -1113,25 +1125,25 @@ class NetworkCollector:
     async def _check_lateral_movement(self, results: Dict):
         """NET-010: Comunicación Lateral sin Restricción"""
         permissive_sgs = []
-        
+
         for region, sgs in results.get('security_groups', {}).items():
             for sg in sgs:
                 rules = sg.get('rules', [])
-                
+
                 # Buscar reglas que permiten ANY-ANY internamente
                 for rule in rules:
-                    if (rule.get('direction') == 'ingress' and 
+                    if (rule.get('direction') == 'ingress' and
                         rule.get('remote_group_id') == sg.get('id') and
-                        rule.get('port_range_min') == 1 and 
-                        rule.get('port_range_max') == 65535):
-                        
+                        rule.get('port_range_min') == 1 and
+                            rule.get('port_range_max') == 65535):
+
                         permissive_sgs.append({
                             'sg_id': sg['id'],
                             'sg_name': sg.get('name', 'Unknown'),
                             'region': region
                         })
                         break
-        
+
         if permissive_sgs:
             self._add_finding(
                 'NET-010',
@@ -1147,12 +1159,12 @@ class NetworkCollector:
         """NET-011: Sin Integración con Fortinet SIEM"""
         # Verificar si hay flow logs configurados (prerequisito para SIEM)
         regions_without_flow_logs = []
-        
+
         for region in results.get('vpcs', {}).keys():
             flow_logs = results.get('flow_logs', {}).get(region, [])
             if not flow_logs:
                 regions_without_flow_logs.append(region)
-        
+
         # Siempre generar finding porque la integración SIEM es manual
         self._add_finding(
             'NET-011',
@@ -1168,21 +1180,21 @@ class NetworkCollector:
     async def _check_eip_documentation(self, results: Dict):
         """NET-012: EIPs sin Justificación Documentada"""
         undocumented_eips = []
-        
+
         for region, eips in results.get('elastic_ips', {}).items():
             for eip in eips:
                 # EIP sin descripción o con descripción genérica
                 description = eip.get('description', '')
-                if (not description or 
-                    description.lower() in ['default', 'auto', 'temp', 'test']):
-                    
+                if (not description or
+                        description.lower() in ['default', 'auto', 'temp', 'test']):
+
                     undocumented_eips.append({
                         'eip_id': eip['id'],
                         'public_ip': eip.get('public_ip_address', 'Unknown'),
                         'region': region,
                         'is_associated': eip.get('is_associated', False)
                     })
-        
+
         if undocumented_eips:
             self._add_finding(
                 'NET-012',
@@ -1197,7 +1209,7 @@ class NetworkCollector:
     async def _check_bandwidth_limits(self, results: Dict):
         """NET-013: Bandwidth sin Límites Configurados"""
         unlimited_bandwidth = []
-        
+
         for region, eips in results.get('elastic_ips', {}).items():
             for eip in eips:
                 bandwidth_size = eip.get('bandwidth_size', 0)
@@ -1208,7 +1220,7 @@ class NetworkCollector:
                         'bandwidth_size': bandwidth_size,
                         'region': region
                     })
-        
+
         if unlimited_bandwidth:
             self._add_finding(
                 'NET-013',
@@ -1224,8 +1236,9 @@ class NetworkCollector:
         """NET-014: Route Tables sin Documentación"""
         # Este check requiere información de route tables que no está siendo recolectada
         # Generar finding genérico
-        total_vpcs = sum(len(vpcs) for vpcs in results.get('vpcs', {}).values())
-        
+        total_vpcs = sum(len(vpcs)
+                         for vpcs in results.get('vpcs', {}).values())
+
         if total_vpcs > 0:
             self._add_finding(
                 'NET-014',

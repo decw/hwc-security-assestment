@@ -276,15 +276,15 @@ async def run_analysis(data, args):
     try:
         # Intentar importar el analizador específico de Network
         try:
-            from analyzers.vulnerability_analyzer_network import NetworkVulnerabilityAnalyzer
-            analyzer = NetworkVulnerabilityAnalyzer()
-            print("✅ Usando NetworkVulnerabilityAnalyzer específico")
+            from analyzers import ModuleVulnerabilityAnalyzer
+            analyzer = ModuleVulnerabilityAnalyzer()
+            print("⚠️ Usando ModuleVulnerabilityAnalyzer (compatibilidad)")
         except ImportError:
             # Fallback al analizador combinado
             try:
-                from analyzers.vulnerability_analizer_modules_iam_network import IAMNetworkVulnerabilityAnalyzer
-                analyzer = IAMNetworkVulnerabilityAnalyzer()
-                print("⚠️ Usando IAMNetworkVulnerabilityAnalyzer (compatibilidad)")
+                from analyzers import ModuleVulnerabilityAnalyzer
+                analyzer = ModuleVulnerabilityAnalyzer()
+                print("⚠️ Usando ModuleVulnerabilityAnalyzer (compatibilidad)")
             except ImportError:
                 print(
                     "⚠️ ADVERTENCIA: No se pudo importar analizador de vulnerabilidades")
@@ -292,7 +292,7 @@ async def run_analysis(data, args):
 
         # Ejecutar análisis
         print("🔍 Ejecutando análisis de vulnerabilidades de red...")
-        analyzer.analyze_network_vulnerabilities(data)
+        analyzer.analyze(data)  # or analyzer.analyze_network_vulnerabilities(data) if it exists
 
         # Obtener resultados
         vulnerabilities = analyzer.get_vulnerabilities()
