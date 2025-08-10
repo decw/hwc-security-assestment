@@ -898,17 +898,18 @@ class IAMCollector:
     async def _collect_policies(self) -> List[Dict]:
         """Recolectar políticas IAM custom"""
         policies = []
-        
+
         try:
             from huaweicloudsdkiam.v3.model import ListCustomPoliciesRequest
-            
+
             self.logger.info("Recolectando políticas custom...")
             custom_request = ListCustomPoliciesRequest()
             custom_response = self.client.list_custom_policies(custom_request)
-            
+
             if custom_response and hasattr(custom_response, 'roles'):
-                self.logger.info(f"Encontradas {len(custom_response.roles)} políticas custom")
-                
+                self.logger.info(
+                    f"Encontradas {len(custom_response.roles)} políticas custom")
+
                 for role in custom_response.roles:
                     policy_info = {
                         'id': role.id,
@@ -920,7 +921,7 @@ class IAMCollector:
                         'domain_id': role.domain_id,
                         'policy_document': {}
                     }
-                    
+
                     # Analizar el documento de política
                     if hasattr(role, 'policy'):
                         policy_doc = role.policy
@@ -928,23 +929,24 @@ class IAMCollector:
                             'version': getattr(policy_doc, 'Version', '1.1'),
                             'statements': []
                         }
-                        
+
                         # Procesar statements
                         for stmt in getattr(policy_doc, 'Statement', []):
                             statement_info = {
                                 'effect': getattr(stmt, 'Effect', ''),
                                 'actions': getattr(stmt, 'Action', [])
                             }
-                            policy_info['policy_document']['statements'].append(statement_info)
-                            
+                            policy_info['policy_document']['statements'].append(
+                                statement_info)
+
                             # Verificar permisos peligrosos
                             if statement_info['effect'] == 'Allow':
                                 dangerous_patterns = ['*:*', '*:*:*', 'iam:*']
                                 dangerous_actions = [
-                                    action for action in statement_info['actions'] 
+                                    action for action in statement_info['actions']
                                     if any(pattern in action for pattern in dangerous_patterns)
                                 ]
-                                
+
                                 if dangerous_actions:
                                     self._add_finding(
                                         'IAM-025',
@@ -956,18 +958,19 @@ class IAMCollector:
                                             'dangerous_actions': dangerous_actions
                                         }
                                     )
-                    
+
                     policies.append(policy_info)
-                    self.logger.debug(f"Procesada política custom: {policy_info['name']}")
-                
+                    self.logger.debug(
+                        f"Procesada política custom: {policy_info['name']}")
+
             else:
                 self.logger.info("No se encontraron políticas custom")
-                
+
         except Exception as e:
             self.logger.error(f"Error recolectando políticas: {str(e)}")
             import traceback
             self.logger.error(f"Traceback: {traceback.format_exc()}")
-            
+
         self.logger.info(f"Total de políticas recolectadas: {len(policies)}")
         return policies
 

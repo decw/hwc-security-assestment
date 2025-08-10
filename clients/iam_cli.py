@@ -141,15 +141,23 @@ def verify_credentials():
 
 
 def get_output_filename(args):
-    """Determinar el nombre del archivo de salida"""
+    """Determinar la ruta/nombre del archivo de salida dentro de reports/iam/"""
+    # Importar aquí porque a esta altura ya agregamos el directorio raíz al sys.path
+    from config.settings import REPORTS_DIR
+
+    base_dir = Path(REPORTS_DIR) / 'iam'         # Aseguramos Path y subdir
+    base_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1. Si el usuario indicó --output se respeta el nombre, pero se fuerza la ruta
     if args.output:
-        return args.output
+        file_name = Path(args.output).name  # evitamos rutas externas
+    elif args.simple_output:
+        file_name = "iam_results.json"
+    else:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        file_name = f"iam_results_{timestamp}.json"
 
-    if args.simple_output:
-        return "iam_results.json"
-
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return f"iam_results_{timestamp}.json"
+    return str(base_dir / file_name)
 
 
 async def run_collection(args):

@@ -522,8 +522,8 @@
           }
         ],
         "effective_actions": [
-          "*:get",
           "*:list",
+          "*:get",
           "*:describe"
         ],
         "admin_access": false,
@@ -549,8 +549,8 @@
       "admin_access": false,
       "privileged_services": [],
       "effective_actions": [
-        "*:get",
         "*:list",
+        "*:get",
         "*:describe"
       ]
     },
@@ -591,17 +591,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -623,16 +623,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -660,8 +660,8 @@
           }
         ],
         "effective_actions": [
-          "iam:list",
-          "iam:get"
+          "iam:get",
+          "iam:list"
         ],
         "admin_access": false,
         "privileged_services": [
@@ -690,8 +690,8 @@
         "iam"
       ],
       "effective_actions": [
-        "iam:list",
-        "iam:get"
+        "iam:get",
+        "iam:list"
       ]
     },
     {
@@ -731,17 +731,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -763,16 +763,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -812,17 +812,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -844,16 +844,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -893,17 +893,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -925,16 +925,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -974,17 +974,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -1006,16 +1006,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -1055,17 +1055,17 @@
           }
         ],
         "effective_actions": [
+          "obs:*",
           "vpc:*",
           "rds:*",
-          "ecs:*",
-          "obs:*"
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "ecs",
           "vpc",
-          "rds",
+          "ecs",
           "obs",
+          "rds",
           "iam_admin"
         ],
         "permission_sources": [
@@ -1088,17 +1088,17 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "ecs",
         "vpc",
-        "rds",
+        "ecs",
         "obs",
+        "rds",
         "iam_admin"
       ],
       "effective_actions": [
+        "obs:*",
         "vpc:*",
         "rds:*",
-        "ecs:*",
-        "obs:*"
+        "ecs:*"
       ]
     },
     {
@@ -1138,17 +1138,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -1170,16 +1170,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -1219,17 +1219,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -1251,16 +1251,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -1288,8 +1288,8 @@
           }
         ],
         "effective_actions": [
-          "iam:list",
-          "iam:get"
+          "iam:get",
+          "iam:list"
         ],
         "admin_access": false,
         "privileged_services": [
@@ -1318,8 +1318,8 @@
         "iam"
       ],
       "effective_actions": [
-        "iam:list",
-        "iam:get"
+        "iam:get",
+        "iam:list"
       ]
     },
     {
@@ -1347,8 +1347,8 @@
           }
         ],
         "effective_actions": [
-          "iam:list",
-          "iam:get"
+          "iam:get",
+          "iam:list"
         ],
         "admin_access": false,
         "privileged_services": [
@@ -1377,8 +1377,8 @@
         "iam"
       ],
       "effective_actions": [
-        "iam:list",
-        "iam:get"
+        "iam:get",
+        "iam:list"
       ]
     },
     {
@@ -1406,8 +1406,8 @@
           }
         ],
         "effective_actions": [
-          "iam:list",
-          "iam:get"
+          "iam:get",
+          "iam:list"
         ],
         "admin_access": false,
         "privileged_services": [
@@ -1436,8 +1436,8 @@
         "iam"
       ],
       "effective_actions": [
-        "iam:list",
-        "iam:get"
+        "iam:get",
+        "iam:list"
       ]
     },
     {
@@ -1477,17 +1477,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -1509,16 +1509,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -1558,17 +1558,17 @@
           }
         ],
         "effective_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "permission_sources": [
           "group:admin"
@@ -1590,16 +1590,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "iam",
-        "ecs",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "iam",
+        "ecs"
       ],
       "effective_actions": [
-        "vpc:*",
-        "ecs:*",
+        "iam:*",
         "*:*:*",
-        "iam:*"
+        "vpc:*",
+        "ecs:*"
       ]
     },
     {
@@ -1639,17 +1639,17 @@
           }
         ],
         "effective_actions": [
+          "obs:*",
           "vpc:*",
           "rds:*",
-          "ecs:*",
-          "obs:*"
+          "ecs:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "ecs",
           "vpc",
-          "rds",
+          "ecs",
           "obs",
+          "rds",
           "iam_admin"
         ],
         "permission_sources": [
@@ -1672,21 +1672,61 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "ecs",
         "vpc",
-        "rds",
+        "ecs",
         "obs",
+        "rds",
         "iam_admin"
       ],
       "effective_actions": [
+        "obs:*",
         "vpc:*",
         "rds:*",
-        "ecs:*",
-        "obs:*"
+        "ecs:*"
       ]
     }
   ],
-  "policies": [],
+  "policies": [
+    {
+      "id": "44189681f4b44de7b5ac4035cfe39b7d",
+      "name": "policy6nylu4",
+      "type": "custom",
+      "description": "",
+      "created_at": "1589215991235",
+      "updated_at": "1589215991235",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    },
+    {
+      "id": "62cf836d73b64e79862d21eb4ff430a8",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "type": "custom",
+      "description": "Permisos para listar, visualizar, iniciar, reiniciar, detener y acceso remoto en los ECS",
+      "created_at": "1743089062572",
+      "updated_at": "1754492435196",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    },
+    {
+      "id": "fa03e33be7094553a66d0911d5faafa0",
+      "name": "CloudEye-Lectura",
+      "type": "custom",
+      "description": "",
+      "created_at": "1722870610446",
+      "updated_at": "1754495119606",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    }
+  ],
   "access_keys": [
     {
       "access_key_id": "HPUATAOSB6KOM8ET3RJR",
@@ -1694,10 +1734,10 @@
       "user_name": "dcabral",
       "status": "active",
       "created_at": "2025-06-25T19:16:02.901000Z",
-      "age_days": 45,
+      "age_days": 46,
       "description": "Assesment",
       "last_used": {
-        "timestamp": "2025-08-10T19:02:34.000368Z",
+        "timestamp": "2025-08-10T19:47:14.000929Z",
         "service": "unknown",
         "region": "unknown"
       },
@@ -1833,7 +1873,7 @@
       "age_days": 716,
       "description": "",
       "last_used": {
-        "timestamp": "2025-08-10T19:00:11.000384Z",
+        "timestamp": "2025-08-10T19:46:14.000276Z",
         "service": "unknown",
         "region": "unknown"
       },
@@ -2182,7 +2222,7 @@
         "user_name": "VeeamBackup_Huawei",
         "recommendation": "Considerar usar IAM Agency en lugar de usuario para servicios"
       },
-      "timestamp": "2025-08-10T19:10:29.554876"
+      "timestamp": "2025-08-10T19:47:21.073998"
     },
     {
       "id": "IAM-002",
@@ -2192,7 +2232,7 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud"
       },
-      "timestamp": "2025-08-10T19:10:30.275791"
+      "timestamp": "2025-08-10T19:47:21.804798"
     },
     {
       "id": "IAM-001",
@@ -2208,7 +2248,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:33.923730"
+      "timestamp": "2025-08-10T19:47:26.497251"
     },
     {
       "id": "IAM-028",
@@ -2218,17 +2258,17 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:33.924014"
+      "timestamp": "2025-08-10T19:47:26.497464"
     },
     {
       "id": "IAM-025",
@@ -2238,16 +2278,16 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:33.924141"
+      "timestamp": "2025-08-10T19:47:26.497556"
     },
     {
       "id": "IAM-001",
@@ -2263,7 +2303,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:35.372938"
+      "timestamp": "2025-08-10T19:47:27.962146"
     },
     {
       "id": "IAM-028",
@@ -2273,17 +2313,17 @@
         "user_id": "08450e873d00f5051fefc01364c4b18b",
         "user_name": "diegogarone",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:35.373197"
+      "timestamp": "2025-08-10T19:47:27.962318"
     },
     {
       "id": "IAM-025",
@@ -2293,16 +2333,16 @@
         "user_id": "08450e873d00f5051fefc01364c4b18b",
         "user_name": "diegogarone",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:35.373810"
+      "timestamp": "2025-08-10T19:47:27.962388"
     },
     {
       "id": "IAM-001",
@@ -2318,7 +2358,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.092827"
+      "timestamp": "2025-08-10T19:47:28.691392"
     },
     {
       "id": "IAM-028",
@@ -2328,17 +2368,17 @@
         "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
         "user_name": "emilianosilva",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.093081"
+      "timestamp": "2025-08-10T19:47:28.691644"
     },
     {
       "id": "IAM-025",
@@ -2348,16 +2388,16 @@
         "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
         "user_name": "emilianosilva",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.093204"
+      "timestamp": "2025-08-10T19:47:28.691756"
     },
     {
       "id": "IAM-001",
@@ -2373,7 +2413,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.808546"
+      "timestamp": "2025-08-10T19:47:29.411653"
     },
     {
       "id": "IAM-028",
@@ -2383,17 +2423,17 @@
         "user_id": "e84771c7285a47939e6895479962ddd0",
         "user_name": "Florencia Pavon",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.808759"
+      "timestamp": "2025-08-10T19:47:29.411834"
     },
     {
       "id": "IAM-025",
@@ -2403,16 +2443,16 @@
         "user_id": "e84771c7285a47939e6895479962ddd0",
         "user_name": "Florencia Pavon",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:36.808924"
+      "timestamp": "2025-08-10T19:47:29.411978"
     },
     {
       "id": "IAM-001",
@@ -2428,7 +2468,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:37.524111"
+      "timestamp": "2025-08-10T19:47:30.130426"
     },
     {
       "id": "IAM-028",
@@ -2438,17 +2478,17 @@
         "user_id": "5ade0315e9ba4045b063df938541c286",
         "user_name": "globo",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:37.524324"
+      "timestamp": "2025-08-10T19:47:30.130616"
     },
     {
       "id": "IAM-025",
@@ -2458,16 +2498,16 @@
         "user_id": "5ade0315e9ba4045b063df938541c286",
         "user_name": "globo",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:37.524434"
+      "timestamp": "2025-08-10T19:47:30.130758"
     },
     {
       "id": "IAM-001",
@@ -2483,7 +2523,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-10T19:10:38.242873"
+      "timestamp": "2025-08-10T19:47:30.850190"
     },
     {
       "id": "IAM-028",
@@ -2493,10 +2533,10 @@
         "user_id": "0563f1d7034343cfa595eeb58b633b99",
         "user_name": "Julian Vazzano",
         "privileged_services": [
-          "ecs",
           "vpc",
-          "rds",
+          "ecs",
           "obs",
+          "rds",
           "iam_admin"
         ],
         "count": 5,
@@ -2504,7 +2544,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-10T19:10:38.243123"
+      "timestamp": "2025-08-10T19:47:30.850434"
     },
     {
       "id": "IAM-001",
@@ -2520,7 +2560,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:38.960244"
+      "timestamp": "2025-08-10T19:47:31.571546"
     },
     {
       "id": "IAM-028",
@@ -2530,17 +2570,17 @@
         "user_id": "7b342f3b84144b048b37ade414729bf7",
         "user_name": "Nicolas Alcorta",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:38.960456"
+      "timestamp": "2025-08-10T19:47:31.571773"
     },
     {
       "id": "IAM-025",
@@ -2550,16 +2590,16 @@
         "user_id": "7b342f3b84144b048b37ade414729bf7",
         "user_name": "Nicolas Alcorta",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:38.960567"
+      "timestamp": "2025-08-10T19:47:31.571866"
     },
     {
       "id": "IAM-001",
@@ -2575,7 +2615,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:39.679171"
+      "timestamp": "2025-08-10T19:47:32.293827"
     },
     {
       "id": "IAM-028",
@@ -2585,17 +2625,17 @@
         "user_id": "0e3c90608486441a87cfd710156eab73",
         "user_name": "Nicolas Villafane",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:39.679391"
+      "timestamp": "2025-08-10T19:47:32.294089"
     },
     {
       "id": "IAM-025",
@@ -2605,16 +2645,16 @@
         "user_id": "0e3c90608486441a87cfd710156eab73",
         "user_name": "Nicolas Villafane",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:39.679481"
+      "timestamp": "2025-08-10T19:47:32.294266"
     },
     {
       "id": "IAM-001",
@@ -2630,7 +2670,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:42.550991"
+      "timestamp": "2025-08-10T19:47:35.190405"
     },
     {
       "id": "IAM-028",
@@ -2640,17 +2680,17 @@
         "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
         "user_name": "SManoni",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:42.551191"
+      "timestamp": "2025-08-10T19:47:35.190645"
     },
     {
       "id": "IAM-025",
@@ -2660,16 +2700,16 @@
         "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
         "user_name": "SManoni",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:42.551310"
+      "timestamp": "2025-08-10T19:47:35.190778"
     },
     {
       "id": "IAM-001",
@@ -2685,7 +2725,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:43.285989"
+      "timestamp": "2025-08-10T19:47:35.911500"
     },
     {
       "id": "IAM-028",
@@ -2695,17 +2735,17 @@
         "user_id": "6b31f9905d88499985c003f0db251a05",
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "privileged_services": [
-          "iam",
-          "ecs",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "iam",
+          "ecs"
         ],
         "count": 4,
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:43.286231"
+      "timestamp": "2025-08-10T19:47:35.911726"
     },
     {
       "id": "IAM-025",
@@ -2715,16 +2755,16 @@
         "user_id": "6b31f9905d88499985c003f0db251a05",
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "excessive_actions": [
-          "vpc:*",
-          "ecs:*",
+          "iam:*",
           "*:*:*",
-          "iam:*"
+          "vpc:*",
+          "ecs:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-10T19:10:43.286333"
+      "timestamp": "2025-08-10T19:47:35.911852"
     },
     {
       "id": "IAM-001",
@@ -2740,7 +2780,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-10T19:10:44.003979"
+      "timestamp": "2025-08-10T19:47:36.632404"
     },
     {
       "id": "IAM-028",
@@ -2750,10 +2790,10 @@
         "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
         "user_name": "VeeamBackup_Huawei",
         "privileged_services": [
-          "ecs",
           "vpc",
-          "rds",
+          "ecs",
           "obs",
+          "rds",
           "iam_admin"
         ],
         "count": 5,
@@ -2761,7 +2801,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-10T19:10:44.004180"
+      "timestamp": "2025-08-10T19:47:36.632651"
     },
     {
       "id": "IAM-004",
@@ -2772,7 +2812,7 @@
         "access_key_id": "DTTDJ53RF3****",
         "age_days": 802
       },
-      "timestamp": "2025-08-10T19:10:47.669008"
+      "timestamp": "2025-08-10T19:47:40.876297"
     },
     {
       "id": "IAM-004",
@@ -2783,7 +2823,7 @@
         "access_key_id": "6OSBSOSYOO****",
         "age_days": 1956
       },
-      "timestamp": "2025-08-10T19:10:48.081684"
+      "timestamp": "2025-08-10T19:47:41.289593"
     },
     {
       "id": "IAM-004",
@@ -2794,7 +2834,7 @@
         "access_key_id": "9ZZKXLTWBO****",
         "age_days": 2249
       },
-      "timestamp": "2025-08-10T19:10:49.274270"
+      "timestamp": "2025-08-10T19:47:42.463505"
     },
     {
       "id": "IAM-004",
@@ -2805,7 +2845,7 @@
         "access_key_id": "Y5TODMRNO9****",
         "age_days": 1252
       },
-      "timestamp": "2025-08-10T19:10:53.528306"
+      "timestamp": "2025-08-10T19:47:46.716243"
     },
     {
       "id": "IAM-004",
@@ -2816,7 +2856,7 @@
         "access_key_id": "K5SVL53RUW****",
         "age_days": 370
       },
-      "timestamp": "2025-08-10T19:10:54.714465"
+      "timestamp": "2025-08-10T19:47:47.894192"
     },
     {
       "id": "IAM-004",
@@ -2827,7 +2867,7 @@
         "access_key_id": "1UEKCRVMLT****",
         "age_days": 2323
       },
-      "timestamp": "2025-08-10T19:10:58.200583"
+      "timestamp": "2025-08-10T19:47:51.373006"
     },
     {
       "id": "IAM-004",
@@ -2838,7 +2878,7 @@
         "access_key_id": "F4QI79CBBN****",
         "age_days": 2280
       },
-      "timestamp": "2025-08-10T19:10:58.612312"
+      "timestamp": "2025-08-10T19:47:51.780983"
     },
     {
       "id": "IAM-004",
@@ -2849,7 +2889,7 @@
         "access_key_id": "PBQPK4AZ7C****",
         "age_days": 716
       },
-      "timestamp": "2025-08-10T19:10:59.788032"
+      "timestamp": "2025-08-10T19:47:52.950293"
     },
     {
       "id": "IAM-005",
@@ -2859,7 +2899,7 @@
         "current_length": 6,
         "required_length": 12
       },
-      "timestamp": "2025-08-10T19:11:00.510168"
+      "timestamp": "2025-08-10T19:47:53.676276"
     },
     {
       "id": "IAM-008",
@@ -2870,7 +2910,7 @@
         "recommended_requirement": 3,
         "description": "A password must contain at least two of the following: uppercase letters, lowercase letters, digits, and special characters."
       },
-      "timestamp": "2025-08-10T19:11:00.510377"
+      "timestamp": "2025-08-10T19:47:53.676512"
     },
     {
       "id": "IAM-013",
@@ -2879,7 +2919,7 @@
       "details": {
         "current_setting": "Las contraseñas nunca expiran"
       },
-      "timestamp": "2025-08-10T19:11:00.510480"
+      "timestamp": "2025-08-10T19:47:53.676621"
     },
     {
       "id": "IAM-015",
@@ -2889,7 +2929,7 @@
         "current_history": 1,
         "recommended_history": 12
       },
-      "timestamp": "2025-08-10T19:11:00.510596"
+      "timestamp": "2025-08-10T19:47:53.676746"
     },
     {
       "id": "IAM-016",
@@ -2900,7 +2940,7 @@
         "recommended_setting": 1,
         "impact": "Permite cambios de contraseña inmediatos repetidos"
       },
-      "timestamp": "2025-08-10T19:11:00.510684"
+      "timestamp": "2025-08-10T19:47:53.676842"
     },
     {
       "id": "IAM-017",
@@ -2911,128 +2951,128 @@
         "recommended_setting": 3,
         "risk": "Facilita contraseñas débiles como \"aaaaaa\""
       },
-      "timestamp": "2025-08-10T19:11:00.510795"
+      "timestamp": "2025-08-10T19:47:53.676962"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: ConectorCloud",
+      "message": "Usuario con privilegios de administrador: ConectorCloud",
       "details": {
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.043951"
+      "timestamp": "2025-08-10T19:48:00.258894"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: diegogarone",
+      "message": "Usuario con privilegios de administrador: diegogarone",
       "details": {
         "user_id": "08450e873d00f5051fefc01364c4b18b",
         "user_name": "diegogarone",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044100"
+      "timestamp": "2025-08-10T19:48:00.259044"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: emilianosilva",
+      "message": "Usuario con privilegios de administrador: emilianosilva",
       "details": {
         "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
         "user_name": "emilianosilva",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044209"
+      "timestamp": "2025-08-10T19:48:00.259152"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: Florencia Pavon",
+      "message": "Usuario con privilegios de administrador: Florencia Pavon",
       "details": {
         "user_id": "e84771c7285a47939e6895479962ddd0",
         "user_name": "Florencia Pavon",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044341"
+      "timestamp": "2025-08-10T19:48:00.259283"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: globo",
+      "message": "Usuario con privilegios de administrador: globo",
       "details": {
         "user_id": "5ade0315e9ba4045b063df938541c286",
         "user_name": "globo",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044444"
+      "timestamp": "2025-08-10T19:48:00.259385"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: Julian Vazzano",
+      "message": "Usuario con privilegios de administrador: Julian Vazzano",
       "details": {
         "user_id": "0563f1d7034343cfa595eeb58b633b99",
         "user_name": "Julian Vazzano",
         "permissions_source": "group:power_user"
       },
-      "timestamp": "2025-08-10T19:11:07.044575"
+      "timestamp": "2025-08-10T19:48:00.259514"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: Nicolas Alcorta",
+      "message": "Usuario con privilegios de administrador: Nicolas Alcorta",
       "details": {
         "user_id": "7b342f3b84144b048b37ade414729bf7",
         "user_name": "Nicolas Alcorta",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044679"
+      "timestamp": "2025-08-10T19:48:00.259660"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: Nicolas Villafane",
+      "message": "Usuario con privilegios de administrador: Nicolas Villafane",
       "details": {
         "user_id": "0e3c90608486441a87cfd710156eab73",
         "user_name": "Nicolas Villafane",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044781"
+      "timestamp": "2025-08-10T19:48:00.259756"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: SManoni",
+      "message": "Usuario con privilegios de administrador: SManoni",
       "details": {
         "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
         "user_name": "SManoni",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.044911"
+      "timestamp": "2025-08-10T19:48:00.259859"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "message": "Usuario con privilegios de administrador: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
       "details": {
         "user_id": "6b31f9905d88499985c003f0db251a05",
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-10T19:11:07.045026"
+      "timestamp": "2025-08-10T19:48:00.259982"
     },
     {
       "id": "IAM-001",
       "severity": "CRITICAL",
-      "message": "Usuario con privilegios administradores: VeeamBackup_Huawei",
+      "message": "Usuario con privilegios de administrador: VeeamBackup_Huawei",
       "details": {
         "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
         "user_name": "VeeamBackup_Huawei",
         "permissions_source": "group:power_user"
       },
-      "timestamp": "2025-08-10T19:11:07.045119"
+      "timestamp": "2025-08-10T19:48:00.260079"
     },
     {
       "id": "IAM-022",
@@ -3048,7 +3088,7 @@
         ],
         "total": 11
       },
-      "timestamp": "2025-08-10T19:11:12.813632"
+      "timestamp": "2025-08-10T19:48:06.122705"
     },
     {
       "id": "IAM-023",
@@ -3059,7 +3099,7 @@
         "trust_domain": "hwc83871270",
         "description": null
       },
-      "timestamp": "2025-08-10T19:11:13.238411"
+      "timestamp": "2025-08-10T19:48:06.543202"
     },
     {
       "id": "IAM-023",
@@ -3070,7 +3110,7 @@
         "trust_domain": "op_svc_cce",
         "description": "Create by CCE Team"
       },
-      "timestamp": "2025-08-10T19:11:13.238705"
+      "timestamp": "2025-08-10T19:48:06.543362"
     },
     {
       "id": "IAM-023",
@@ -3081,7 +3121,7 @@
         "trust_domain": "op_svc_ecs",
         "description": ""
       },
-      "timestamp": "2025-08-10T19:11:13.238916"
+      "timestamp": "2025-08-10T19:48:06.543484"
     },
     {
       "id": "IAM-023",
@@ -3092,7 +3132,7 @@
         "trust_domain": "op_svc_CTS",
         "description": "Created by CTS. To ensure that services run properly, do not delete this agency."
       },
-      "timestamp": "2025-08-10T19:11:13.239067"
+      "timestamp": "2025-08-10T19:48:06.543573"
     },
     {
       "id": "IAM-023",
@@ -3103,7 +3143,7 @@
         "trust_domain": "op_svc_cff",
         "description": "Creada para apagado y encendido programado de ECS con function graph"
       },
-      "timestamp": "2025-08-10T19:11:13.239211"
+      "timestamp": "2025-08-10T19:48:06.543710"
     },
     {
       "id": "IAM-023",
@@ -3114,7 +3154,7 @@
         "trust_domain": "op_svc_cff",
         "description": ""
       },
-      "timestamp": "2025-08-10T19:11:13.239349"
+      "timestamp": "2025-08-10T19:48:06.543782"
     },
     {
       "id": "IAM-023",
@@ -3125,14 +3165,14 @@
         "trust_domain": "op_svc_ssa",
         "description": "Created by SA Service."
       },
-      "timestamp": "2025-08-10T19:11:13.239483"
+      "timestamp": "2025-08-10T19:48:06.543960"
     }
   ],
   "statistics": {
     "total_users": 16,
     "total_groups": 5,
     "total_roles": 16,
-    "total_policies": 0,
+    "total_policies": 3,
     "total_access_keys": 9,
     "users_without_mfa": 1,
     "service_accounts_without_mfa": 1,
@@ -3174,5 +3214,5 @@
     "users_without_groups": 0,
     "password_policy_compliant": false
   },
-  "timestamp": "2025-08-10T19:10:21.498158"
+  "timestamp": "2025-08-10T19:47:13.646699"
 }

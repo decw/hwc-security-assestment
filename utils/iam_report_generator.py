@@ -25,24 +25,25 @@ class IAMReportGenerator:
 
     def generate_complete_report(self, output_dir: str = None) -> Dict[str, str]:
         """Generar reporte completo: JSON + Resumen detallado"""
+        # Siempre usar reports/iam/ como base
+        iam_reports_dir = REPORTS_DIR / 'iam'
 
+        # Si se proporciona output_dir, asegurarse de que sea subdirectorio de reports/iam/
         if output_dir:
             output_path = Path(output_dir)
+            if not str(output_path).startswith(str(REPORTS_DIR)):
+                # Si el directorio proporcionado está fuera de reports/, usar reports/iam/
+                output_path = iam_reports_dir
         else:
-            output_path = REPORTS_DIR
+            output_path = iam_reports_dir
 
+        # Asegurar que el directorio existe
         output_path.mkdir(parents=True, exist_ok=True)
 
-        # Generar JSON
+        # Generar reportes
         json_path = self._generate_json_report(output_path)
-
-        # Generar resumen detallado
         summary_path = self._generate_detailed_summary(output_path)
-
-        # Generar CSV de hallazgos
         csv_path = self._generate_findings_csv(output_path)
-
-        # Generar plan de remediación
         remediation_path = self._generate_remediation_plan(output_path)
 
         return {
@@ -366,39 +367,42 @@ class IAMReportGenerator:
 **Total de Políticas IAM**: {len(policies)}
 
 """
-        
+
         # Separar por tipo
         custom_policies = [p for p in policies if p.get('type') == 'custom']
         system_policies = [p for p in policies if p.get('type') == 'system']
-        
+
         if custom_policies:
             content += f"\n#### Políticas Personalizadas ({len(custom_policies)})\n\n"
             content += "| Nombre | Descripción | Referencias | Creada |\n"
             content += "|--------|-------------|-------------|--------|\n"
-            
+
             for policy in custom_policies[:10]:
                 name = policy.get('name', 'N/A')
-                description = (policy.get('description', 'Sin descripción')[:40] + '...') if len(policy.get('description', '')) > 40 else policy.get('description', 'Sin descripción')
+                description = (policy.get('description', 'Sin descripción')[:40] + '...') if len(
+                    policy.get('description', '')) > 40 else policy.get('description', 'Sin descripción')
                 references = policy.get('references', 0)
-                created = policy.get('created_at', 'N/A')[:10] if policy.get('created_at') else 'N/A'
-                
+                created = policy.get(
+                    'created_at', 'N/A')[:10] if policy.get('created_at') else 'N/A'
+
                 content += f"| {name} | {description} | {references} | {created} |\n"
-                
+
             if len(custom_policies) > 10:
                 content += f"| ... y {len(custom_policies) - 10} políticas más | | | |\n"
-                
+
         if system_policies:
             content += f"\n#### Políticas del Sistema ({len(system_policies)})\n\n"
             content += "| Nombre | Tipo | Descripción |\n"
             content += "|--------|------|-------------|\n"
-            
+
             for policy in system_policies[:10]:
                 name = policy.get('name', 'N/A')
                 p_type = policy.get('type', 'system')
-                description = (policy.get('description', 'Sin descripción')[:50] + '...') if len(policy.get('description', '')) > 50 else policy.get('description', 'Sin descripción')
-                
+                description = (policy.get('description', 'Sin descripción')[:50] + '...') if len(
+                    policy.get('description', '')) > 50 else policy.get('description', 'Sin descripción')
+
                 content += f"| {name} | {p_type} | {description} |\n"
-                
+
             if len(system_policies) > 10:
                 content += f"| ... y {len(system_policies) - 10} políticas más | | |\n"
 
@@ -759,14 +763,13 @@ Para consultas sobre este reporte, contactar al equipo de seguridad.
         """Generar CSV de hallazgos"""
         csv_path = output_path / f"iam_findings_{self.timestamp}.csv"
 
-        findings = self.results.get('findings', [])
-
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerow(
                 ['ID', 'Severidad', 'Mensaje', 'Detalles', 'Timestamp'])
 
-            for finding in findings:
+            # Use self.results.get('findings', [])
+            for finding in self.results.get('findings', []):
                 writer.writerow([
                     finding.get('id', ''),
                     finding.get('severity', ''),
@@ -783,15 +786,14 @@ Para consultas sobre este reporte, contactar al equipo de seguridad.
         remediation_path = output_path / \
             f"iam_remediation_plan_{self.timestamp}.md"
 
-        findings = self.results.get('findings', [])
-
         with open(remediation_path, 'w', encoding='utf-8') as f:
             f.write(f"# Plan de Remediación IAM - {CLIENT_NAME}\n\n")
             f.write(f"**Fecha**: {datetime.now().strftime('%d/%m/%Y')}\n\n")
 
             # Agrupar hallazgos por severidad
             severity_groups = {}
-            for finding in findings:
+            # Use self.results.get('findings', [])
+            for finding in self.results.get('findings', []):
                 severity = finding.get('severity', 'LOW')
                 if severity not in severity_groups:
                     severity_groups[severity] = []
