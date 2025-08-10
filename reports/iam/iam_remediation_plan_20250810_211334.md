@@ -326,13 +326,27 @@
 
 ---
 
+### IAM-025: 1 cuentas genéricas o compartidas detectadas
+
+**Descripción**: 1 cuentas genéricas o compartidas detectadas
+
+**Detalles**: {'users': ['prueba.iis'], 'recommendation': 'Eliminar cuentas compartidas y crear usuarios nominales individuales'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
 ## Altos (1-2 semanas)
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: ConectorCloud
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: ConectorCloud
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -342,11 +356,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: ConectorCloud
+### IAM-006: Usuario con permisos excesivos: ConectorCloud
 
 **Descripción**: Usuario con permisos excesivos: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -356,11 +370,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: diegogarone
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: diegogarone
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -370,11 +384,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: diegogarone
+### IAM-006: Usuario con permisos excesivos: diegogarone
 
 **Descripción**: Usuario con permisos excesivos: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -384,11 +398,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: emilianosilva
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: emilianosilva
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -398,11 +412,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: emilianosilva
+### IAM-006: Usuario con permisos excesivos: emilianosilva
 
 **Descripción**: Usuario con permisos excesivos: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -412,11 +426,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -426,11 +440,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: Florencia Pavon
+### IAM-006: Usuario con permisos excesivos: Florencia Pavon
 
 **Descripción**: Usuario con permisos excesivos: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -440,11 +454,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: globo
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: globo
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -454,11 +468,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: globo
+### IAM-006: Usuario con permisos excesivos: globo
 
 **Descripción**: Usuario con permisos excesivos: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -468,11 +482,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano
 
-**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['rds', 'vpc', 'ecs', 'obs', 'iam_admin'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['iam_admin', 'rds', 'vpc', 'ecs', 'obs'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -482,11 +496,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -496,11 +510,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: Nicolas Alcorta
+### IAM-006: Usuario con permisos excesivos: Nicolas Alcorta
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -510,11 +524,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -524,11 +538,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: Nicolas Villafane
+### IAM-006: Usuario con permisos excesivos: Nicolas Villafane
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -538,11 +552,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: SManoni
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: SManoni
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -552,11 +566,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: SManoni
+### IAM-006: Usuario con permisos excesivos: SManoni
 
 **Descripción**: Usuario con permisos excesivos: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -566,11 +580,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['iam', 'iam_admin', 'vpc', 'ecs'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -580,11 +594,11 @@
 
 ---
 
-### IAM-025: Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
+### IAM-006: Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
 **Descripción**: Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['*:*:*', 'vpc:*', 'ecs:*', 'iam:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -594,11 +608,11 @@
 
 ---
 
-### IAM-028: Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei
+### IAM-001: Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei
 
-**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['rds', 'vpc', 'ecs', 'obs', 'iam_admin'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['iam_admin', 'rds', 'vpc', 'ecs', 'obs'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -608,7 +622,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 802 días
+### IAM-003: Access Key sin rotación por 802 días
 
 **Descripción**: Access Key sin rotación por 802 días
 
@@ -622,7 +636,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 1956 días
+### IAM-003: Access Key sin rotación por 1956 días
 
 **Descripción**: Access Key sin rotación por 1956 días
 
@@ -636,7 +650,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 2249 días
+### IAM-003: Access Key sin rotación por 2249 días
 
 **Descripción**: Access Key sin rotación por 2249 días
 
@@ -650,7 +664,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 1252 días
+### IAM-003: Access Key sin rotación por 1252 días
 
 **Descripción**: Access Key sin rotación por 1252 días
 
@@ -664,7 +678,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 370 días
+### IAM-003: Access Key sin rotación por 370 días
 
 **Descripción**: Access Key sin rotación por 370 días
 
@@ -678,7 +692,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 2323 días
+### IAM-003: Access Key sin rotación por 2323 días
 
 **Descripción**: Access Key sin rotación por 2323 días
 
@@ -692,7 +706,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 2280 días
+### IAM-003: Access Key sin rotación por 2280 días
 
 **Descripción**: Access Key sin rotación por 2280 días
 
@@ -706,7 +720,7 @@
 
 ---
 
-### IAM-004: Access Key sin rotación por 716 días
+### IAM-003: Access Key sin rotación por 716 días
 
 **Descripción**: Access Key sin rotación por 716 días
 
@@ -720,7 +734,7 @@
 
 ---
 
-### IAM-013: Contraseñas sin expiración configurada
+### IAM-004: Contraseñas sin expiración configurada
 
 **Descripción**: Contraseñas sin expiración configurada
 
@@ -734,9 +748,65 @@
 
 ---
 
+### IAM-011: 11 cuentas privilegiadas requieren verificación de logging detallado
+
+**Descripción**: 11 cuentas privilegiadas requieren verificación de logging detallado
+
+**Detalles**: {'admin_users': ['ConectorCloud', 'diegogarone', 'emilianosilva', 'Florencia Pavon', 'globo', 'Julian Vazzano', 'Nicolas Alcorta', 'Nicolas Villafane', 'SManoni', 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'VeeamBackup_Huawei'], 'recommendation': 'Configurar CTS con retención extendida para accesos administrativos'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-024: Verificación de auditoría de cambios IAM requerida
+
+**Descripción**: Verificación de auditoría de cambios IAM requerida
+
+**Detalles**: {'critical_actions': ['iam:users:create', 'iam:users:delete', 'iam:policies:attach', 'iam:roles:create', 'iam:groups:addUser'], 'recommendation': 'Configurar alertas en CTS para todos los cambios IAM críticos'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-026: 11 cuentas privilegiadas sin gestión PIM/PAM
+
+**Descripción**: 11 cuentas privilegiadas sin gestión PIM/PAM
+
+**Detalles**: {'users': ['ConectorCloud', 'diegogarone', 'emilianosilva', 'Florencia Pavon', 'globo', 'Julian Vazzano', 'Nicolas Alcorta', 'Nicolas Villafane', 'SManoni', 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar'], 'total': 11, 'recommendation': 'Implementar solución PIM para gestión de cuentas administrativas'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-028: No se detectaron cuentas de emergencia (break-glass)
+
+**Descripción**: No se detectaron cuentas de emergencia (break-glass)
+
+**Detalles**: {'recommendation': 'Crear procedimiento break-glass con cuenta de emergencia monitoreada'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
 ## Medios (1 mes)
 
-### IAM-005: Política de contraseñas débil: longitud mínima 6
+### IAM-004: Política de contraseñas débil: longitud mínima 6
 
 **Descripción**: Política de contraseñas débil: longitud mínima 6
 
@@ -750,7 +820,7 @@
 
 ---
 
-### IAM-008: Política de contraseñas requiere solo 2 tipos de caracteres
+### IAM-004: Política de contraseñas requiere solo 2 tipos de caracteres
 
 **Descripción**: Política de contraseñas requiere solo 2 tipos de caracteres
 
@@ -764,7 +834,7 @@
 
 ---
 
-### IAM-022: 11 usuarios administradores sin límites de permisos
+### IAM-020: 11 usuarios administradores sin límites de permisos
 
 **Descripción**: 11 usuarios administradores sin límites de permisos
 
@@ -778,7 +848,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: cbc_partneragent_hwc83871270
+### IAM-016: Agency con acceso desde dominio externo: cbc_partneragent_hwc83871270
 
 **Descripción**: Agency con acceso desde dominio externo: cbc_partneragent_hwc83871270
 
@@ -792,7 +862,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: cce_admin_trust
+### IAM-016: Agency con acceso desde dominio externo: cce_admin_trust
 
 **Descripción**: Agency con acceso desde dominio externo: cce_admin_trust
 
@@ -806,7 +876,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: CESAgentAutoConfigAgency
+### IAM-016: Agency con acceso desde dominio externo: CESAgentAutoConfigAgency
 
 **Descripción**: Agency con acceso desde dominio externo: CESAgentAutoConfigAgency
 
@@ -820,7 +890,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: cts_admin_trust
+### IAM-016: Agency con acceso desde dominio externo: cts_admin_trust
 
 **Descripción**: Agency con acceso desde dominio externo: cts_admin_trust
 
@@ -834,7 +904,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: PrendeApagaAgency
+### IAM-016: Agency con acceso desde dominio externo: PrendeApagaAgency
 
 **Descripción**: Agency con acceso desde dominio externo: PrendeApagaAgency
 
@@ -848,7 +918,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: prueba
+### IAM-016: Agency con acceso desde dominio externo: prueba
 
 **Descripción**: Agency con acceso desde dominio externo: prueba
 
@@ -862,7 +932,7 @@
 
 ---
 
-### IAM-023: Agency con acceso desde dominio externo: ssa_admin_trust
+### IAM-016: Agency con acceso desde dominio externo: ssa_admin_trust
 
 **Descripción**: Agency con acceso desde dominio externo: ssa_admin_trust
 
@@ -876,9 +946,23 @@
 
 ---
 
+### IAM-029: Gestión de certificados requiere verificación manual
+
+**Descripción**: Gestión de certificados requiere verificación manual
+
+**Detalles**: {'areas_to_check': ['SSL/TLS certificates', 'API certificates', 'Service certificates'], 'recommendation': 'Implementar gestión centralizada de certificados con rotación automática'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
 ## Bajos (3 meses)
 
-### IAM-007: Cuenta de servicio identificada: VeeamBackup_Huawei
+### IAM-010: Cuenta de servicio identificada: VeeamBackup_Huawei
 
 **Descripción**: Cuenta de servicio identificada: VeeamBackup_Huawei
 
@@ -892,7 +976,7 @@
 
 ---
 
-### IAM-015: Historial de contraseñas insuficiente: 1
+### IAM-004: Historial de contraseñas insuficiente: 1
 
 **Descripción**: Historial de contraseñas insuficiente: 1
 
@@ -906,7 +990,7 @@
 
 ---
 
-### IAM-016: Sin edad mínima de contraseña configurada
+### IAM-004: Sin edad mínima de contraseña configurada
 
 **Descripción**: Sin edad mínima de contraseña configurada
 
@@ -920,11 +1004,39 @@
 
 ---
 
-### IAM-017: Permite muchos caracteres idénticos consecutivos: 0
+### IAM-004: Permite muchos caracteres idénticos consecutivos: 0
 
 **Descripción**: Permite muchos caracteres idénticos consecutivos: 0
 
 **Detalles**: {'current_setting': 0, 'recommended_setting': 3, 'risk': 'Facilita contraseñas débiles como "aaaaaa"'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-015: 20 recursos IAM sin seguir convención de nombres
+
+**Descripción**: 20 recursos IAM sin seguir convención de nombres
+
+**Detalles**: {'users_non_compliant': 15, 'groups_non_compliant': 5, 'sample_users': ['Christian Vazquez', 'ConectorCloud', 'dcabral', 'diegogarone', 'emilianosilva'], 'recommendation': 'Establecer y documentar convención de nombres estándar'}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-030: Métricas IAM básicas disponibles, se requiere dashboard de monitoreo
+
+**Descripción**: Métricas IAM básicas disponibles, se requiere dashboard de monitoreo
+
+**Detalles**: {'current_metrics': {'total_users': 16, 'mfa_enabled': 0, 'inactive_users': 0, 'privileged_accounts': 11, 'groups': 5, 'policies': 3}, 'recommendation': 'Implementar dashboard con KPIs de seguridad IAM y tendencias'}
 
 **Acción Requerida**: [Pendiente de definir]
 

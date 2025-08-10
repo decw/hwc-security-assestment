@@ -17,6 +17,7 @@ from config.settings import (
     HUAWEI_DOMAIN_ID, API_TIMEOUT
 )
 from config.constants import PASSWORD_POLICY, MFA_REQUIREMENTS
+import re
 
 
 class IAMCollector:
@@ -218,6 +219,25 @@ class IAMCollector:
 
         self.logger.info(
             f"Recolección IAM completada. Hallazgos: {len(self.findings)}")
+
+        # Ejecutar checks adicionales
+        await self._check_onboarding_offboarding_process(results)
+        await self._check_privileged_access_logging(results)
+        await self._check_inline_policies(results)
+        await self._check_permission_review_process(results)
+        await self._check_naming_convention(results)
+        await self._check_policy_versions(results)
+        await self._check_api_token_expiration(results)
+        await self._check_environment_segregation(results)
+        await self._check_zero_trust_principles(results)
+        await self._check_iam_change_audit(results)
+        await self._check_generic_shared_accounts(results)
+        await self._check_privileged_identity_management(results)
+        await self._check_inherited_permissions_documentation(results)
+        await self._check_break_glass_procedure(results)
+        await self._check_certificate_management(results)
+        await self._check_iam_metrics(results)
+
         return results
 
     async def _collect_users(self) -> List[Dict]:
@@ -317,7 +337,7 @@ class IAMCollector:
         # Contraseñas temporales no cambiadas
         if user_info.get('pwd_status') is False:
             self._add_finding(
-                'IAM-006',
+                'IAM-005',
                 'HIGH',
                 f'Usuario con contraseña temporal no cambiada: {user_info["name"]}',
                 {'user_id': user_info['id'], 'user_name': user_info['name']}
@@ -332,7 +352,7 @@ class IAMCollector:
 
                 if days_since_login > 90:
                     self._add_finding(
-                        'IAM-009',
+                        'IAM-005',
                         'MEDIUM',
                         f'Usuario inactivo por {days_since_login} días: {user_info["name"]}',
                         {
@@ -833,7 +853,7 @@ class IAMCollector:
         privileged_services = permissions.get('privileged_services', [])
         if len(privileged_services) > 3:
             self._add_finding(
-                'IAM-028',
+                'IAM-001',
                 'HIGH',
                 f'Usuario con acceso a múltiples servicios privilegiados: {user_name}',
                 {
@@ -849,7 +869,7 @@ class IAMCollector:
         effective_actions = permissions.get('effective_actions', [])
         if '*' in effective_actions or any('*:*:*' in action for action in effective_actions):
             self._add_finding(
-                'IAM-025',
+                'IAM-006',
                 'HIGH',
                 f'Usuario con permisos excesivos: {user_name}',
                 {
@@ -864,7 +884,7 @@ class IAMCollector:
         groups = permissions.get('groups', [])
         if not groups:
             self._add_finding(
-                'IAM-029',
+                'IAM-008',
                 'MEDIUM',
                 f'Usuario sin grupos asignados: {user_name}',
                 {
@@ -877,7 +897,7 @@ class IAMCollector:
         # Verificar usuarios con muchos grupos
         if len(groups) > 5:
             self._add_finding(
-                'IAM-030',
+                'IAM-007',
                 'LOW',
                 f'Usuario con muchos grupos asignados: {user_name}',
                 {
@@ -949,7 +969,7 @@ class IAMCollector:
 
                                 if dangerous_actions:
                                     self._add_finding(
-                                        'IAM-025',
+                                        'IAM-006',
                                         'HIGH',
                                         f'Política custom con permisos excesivos: {policy_info["name"]}',
                                         {
@@ -1385,7 +1405,7 @@ class IAMCollector:
         # Keys sin rotación
         if key_info['age_days'] > 90 and key_info['status'] == 'active':
             self._add_finding(
-                'IAM-004',
+                'IAM-003',
                 'HIGH',
                 f'Access Key sin rotación por {key_info["age_days"]} días',
                 {
@@ -1398,7 +1418,7 @@ class IAMCollector:
         # Keys sin uso
         if key_info['age_days'] > 30 and not key_info['last_used']:
             self._add_finding(
-                'IAM-011',
+                'IAM-003',
                 'MEDIUM',
                 f'Access Key creada pero nunca usada',
                 {
@@ -1415,7 +1435,7 @@ class IAMCollector:
                                     and 'active_key' in k.get('id', ''))
             if active_keys_count > 1:
                 self._add_finding(
-                    'IAM-012',
+                    'IAM-014',
                     'LOW',
                     f'Usuario con múltiples access keys activas',
                     {
@@ -1494,7 +1514,7 @@ class IAMCollector:
         if issues:
             severity = 'HIGH' if len(issues) > 3 else 'MEDIUM'
             self._add_finding(
-                'IAM-005',
+                'IAM-004',
                 severity,
                 'Política de contraseñas no cumple con las mejores prácticas',
                 {
@@ -1514,7 +1534,7 @@ class IAMCollector:
             issues.append(
                 f"Longitud mínima insuficiente ({min_length} < {PASSWORD_POLICY['min_length']})")
             self._add_finding(
-                'IAM-005',
+                'IAM-004',
                 'MEDIUM',
                 f'Política de contraseñas débil: longitud mínima {min_length}',
                 {
@@ -1529,7 +1549,7 @@ class IAMCollector:
 
         if char_combination < 3:
             self._add_finding(
-                'IAM-008',
+                'IAM-004',
                 'MEDIUM',
                 f'Política de contraseñas requiere solo {char_combination} tipos de caracteres',
                 {
@@ -1554,7 +1574,7 @@ class IAMCollector:
 
         if complexity_missing:
             self._add_finding(
-                'IAM-009',
+                'IAM-004',
                 'LOW',
                 'Política de contraseñas puede no requerir todos los tipos de caracteres',
                 {
@@ -1567,14 +1587,14 @@ class IAMCollector:
         validity_period = policy.get('password_validity_period', 0)
         if validity_period == 0:
             self._add_finding(
-                'IAM-013',
+                'IAM-004',
                 'HIGH',
                 'Contraseñas sin expiración configurada',
                 {'current_setting': 'Las contraseñas nunca expiran'}
             )
         elif validity_period > PASSWORD_POLICY['max_age_days']:
             self._add_finding(
-                'IAM-014',
+                'IAM-004',
                 'MEDIUM',
                 f'Período de validez de contraseñas muy largo: {validity_period} días',
                 {
@@ -1588,7 +1608,7 @@ class IAMCollector:
             'number_of_recent_passwords_disallowed', 0)
         if password_history < PASSWORD_POLICY['history_count']:
             self._add_finding(
-                'IAM-015',
+                'IAM-004',
                 'LOW',
                 f'Historial de contraseñas insuficiente: {password_history}',
                 {
@@ -1601,7 +1621,7 @@ class IAMCollector:
         min_age = policy.get('minimum_password_age', 0)
         if min_age == 0:
             self._add_finding(
-                'IAM-016',
+                'IAM-004',
                 'LOW',
                 'Sin edad mínima de contraseña configurada',
                 {
@@ -1615,7 +1635,7 @@ class IAMCollector:
         max_consecutive = policy.get('maximum_consecutive_identical_chars', 0)
         if max_consecutive == 0 or max_consecutive > 3:
             self._add_finding(
-                'IAM-017',
+                'IAM-004',
                 'LOW',
                 f'Permite muchos caracteres idénticos consecutivos: {max_consecutive}',
                 {
@@ -1628,7 +1648,7 @@ class IAMCollector:
         # Verificar si contraseña puede ser igual al username
         if not policy.get('password_not_username_or_invert', True):
             self._add_finding(
-                'IAM-018',
+                'IAM-004',
                 'MEDIUM',
                 'Permite que la contraseña sea igual al nombre de usuario',
                 {
@@ -1696,7 +1716,7 @@ class IAMCollector:
 
                     if days_inactive > 90:
                         self._add_finding(
-                            'IAM-006',
+                            'IAM-005',
                             'MEDIUM',
                             f'Usuario inactivo por {days_inactive} días: {user_info["name"]}',
                             {
@@ -1714,7 +1734,7 @@ class IAMCollector:
             if self._is_service_account(user_info):
                 # Las cuentas de servicio deben tener políticas especiales
                 self._add_finding(
-                    'IAM-007',
+                    'IAM-010',
                     'LOW',
                     f'Cuenta de servicio identificada: {user_info["name"]}',
                     {
@@ -1749,14 +1769,14 @@ class IAMCollector:
             # Verificar configuración de bloqueo
             if lp.login_failed_times == 0:
                 self._add_finding(
-                    'IAM-016',
+                    'IAM-019',
                     'HIGH',
                     'Sin política de bloqueo por intentos fallidos',
                     {'current_setting': 'Intentos ilimitados permitidos'}
                 )
             elif lp.login_failed_times > PASSWORD_POLICY['lockout_attempts']:
                 self._add_finding(
-                    'IAM-017',
+                    'IAM-019',
                     'MEDIUM',
                     f'Umbral de bloqueo muy alto: {lp.login_failed_times} intentos',
                     {
@@ -1768,7 +1788,7 @@ class IAMCollector:
             # Verificar timeout de sesión
             if lp.session_timeout == 0:
                 self._add_finding(
-                    'IAM-018',
+                    'IAM-019',
                     'MEDIUM',
                     'Sin timeout de sesión configurado',
                     {'risk': 'Las sesiones permanecen activas indefinidamente'}
@@ -1799,7 +1819,7 @@ class IAMCollector:
             # Verificar autogestión
             if not pp.allow_user_to_manage_mfa_devices:
                 self._add_finding(
-                    'IAM-019',
+                    'IAM-002',
                     'LOW',
                     'Usuarios no pueden gestionar sus propios dispositivos MFA',
                     {'impact': 'Puede reducir la adopción de MFA'}
@@ -1833,7 +1853,7 @@ class IAMCollector:
                 # Verificar usuarios sin grupos
                 if not user_groups:
                     self._add_finding(
-                        'IAM-020',
+                        'IAM-008',
                         'LOW',
                         f'Usuario sin grupos asignados: {user["name"]}',
                         {'user_id': user['id'], 'user_name': user['name']}
@@ -2120,7 +2140,7 @@ class IAMCollector:
 
                     if expires < datetime.now():
                         self._add_finding(
-                            'IAM-021',
+                            'IAM-004',
                             'HIGH',
                             f'Usuario con contraseña expirada: {user["name"]}',
                             {
@@ -2147,7 +2167,7 @@ class IAMCollector:
 
         if users_without_boundaries:
             self._add_finding(
-                'IAM-022',
+                'IAM-020',
                 'MEDIUM',
                 f'{len(users_without_boundaries)} usuarios administradores sin límites de permisos',
                 {
@@ -2167,7 +2187,7 @@ class IAMCollector:
                 # Verificar agencies con permisos amplios
                 if agency.trust_domain_name != HUAWEI_DOMAIN_ID:
                     self._add_finding(
-                        'IAM-023',
+                        'IAM-016',
                         'MEDIUM',
                         f'Agency con acceso desde dominio externo: {agency.name}',
                         {
@@ -2189,7 +2209,7 @@ class IAMCollector:
                 # Verificar configuración de IdP
                 if not idp.enabled:
                     self._add_finding(
-                        'IAM-024',
+                        'IAM-017',
                         'LOW',
                         f'Proveedor de identidad deshabilitado: {idp.id}',
                         {
@@ -2225,7 +2245,7 @@ class IAMCollector:
             for risk_type, patterns in dangerous_patterns.items():
                 if any(pattern in policy_str for pattern in patterns):
                     self._add_finding(
-                        'IAM-025',
+                        'IAM-006',
                         'HIGH' if risk_type == 'full_admin' else 'MEDIUM',
                         f'Rol con permisos de riesgo ({risk_type}): {role["name"]}',
                         {
@@ -2385,25 +2405,25 @@ class IAMCollector:
                 programmatic_users.append(user)
 
                 # Hallazgo: Usuario con acceso programático
-                self._add_finding(
-                    'IAM-031',
-                    'MEDIUM',
-                    f'Usuario con acceso programático: {user["name"]}',
-                    {
-                        'user_id': user['id'],
-                        'user_name': user['name'],
-                        'access_type': 'programmatic,console',
-                        'risk': 'Usuario puede generar access keys y usar APIs',
-                        'recommendation': 'Revisar si el acceso programático es necesario'
-                    }
-                )
+        # self._add_finding(
+        # 'IAM-031',
+        # 'MEDIUM',
+        # f'Usuario con acceso programático: {user["name"]}',
+        # {
+        # 'user_id': user['id'],
+         #                'user_name': user['name'],
+         #               'access_type': 'programmatic,console',
+         #               'risk': 'Usuario puede generar access keys y usar APIs',
+          #               'recommendation': 'Revisar si el acceso programático es necesario'
+          #           }
+          #       )
 
             elif access_type == 'service_account':
                 service_accounts.append(user)
 
                 # Hallazgo: Cuenta de servicio
                 self._add_finding(
-                    'IAM-032',
+                    'IAM-010',
                     'LOW',
                     f'Cuenta de servicio identificada: {user["name"]}',
                     {
@@ -2443,3 +2463,461 @@ class IAMCollector:
         except Exception as e:
             self.logger.debug(f'LoginProtect error {user_id}: {e}')
             return 'disabled'
+
+    async def _check_onboarding_offboarding_process(self, results: Dict):
+        """IAM-009: Verificar proceso de onboarding/offboarding"""
+        # Buscar usuarios creados recientemente sin configuración completa
+        recent_users = []
+        incomplete_users = []
+
+        for user in results.get('users', []):
+            if 'create_time' in user:
+                try:
+                    create_date = datetime.fromisoformat(
+                        user['create_time'].replace('Z', '+00:00'))
+                    days_since_created = (datetime.now(
+                        timezone.utc) - create_date).days
+
+                    if days_since_created <= 30:  # Usuarios de los últimos 30 días
+                        recent_users.append(user)
+
+                        # Verificar configuración incompleta
+                        if not user.get('groups') or not user.get('mfa_enabled'):
+                            incomplete_users.append(user)
+                except:
+                    pass
+
+        if incomplete_users:
+            self._add_finding(
+                'IAM-009',
+                'HIGH',
+                f'{len(incomplete_users)} usuarios nuevos sin configuración completa (sin grupos o MFA)',
+                {
+                    'users': [u['name'] for u in incomplete_users],
+                    'total_recent': len(recent_users),
+                    'recommendation': 'Implementar proceso formal de onboarding/offboarding'
+                }
+            )
+
+    async def _check_privileged_access_logging(self, results: Dict):
+        """IAM-011: Verificar logging de accesos privilegiados"""
+        # En Huawei Cloud, esto requeriría verificar CTS (Cloud Trace Service)
+        admin_users = []
+        
+        for user in results.get('privileged_accounts', []):
+            # Usar user_name en lugar de name
+            admin_users.append(user.get('user_name', user.get('name', 'unknown')))
+        
+        if admin_users:
+            self._add_finding(
+                'IAM-011',
+                'HIGH',
+                f'{len(admin_users)} cuentas privilegiadas requieren verificación de logging detallado',
+                {
+                    'admin_users': admin_users,
+                    'recommendation': 'Configurar CTS con retención extendida para accesos administrativos'
+                }
+            )
+
+    async def _check_inline_policies(self, results: Dict):
+        """IAM-012: Verificar uso excesivo de políticas inline"""
+        inline_count = 0
+        users_with_inline = []
+
+        # Verificar políticas inline en usuarios
+        for user in results.get('users', []):
+            if user.get('attached_policies'):
+                for policy in user['attached_policies']:
+                    if policy.get('type') == 'inline':
+                        inline_count += 1
+                        if user['name'] not in users_with_inline:
+                            users_with_inline.append(user['name'])
+
+        if inline_count > 5:  # Umbral de políticas inline
+            self._add_finding(
+                'IAM-012',
+                'MEDIUM',
+                f'{inline_count} políticas inline detectadas en {len(users_with_inline)} usuarios',
+                {
+                    'inline_policies': inline_count,
+                    'affected_users': users_with_inline[:10],  # Top 10
+                    'recommendation': 'Migrar a políticas gestionadas reutilizables'
+                }
+            )
+
+    async def _check_permission_review_process(self, results: Dict):
+        """IAM-013: Verificar revisión periódica de permisos"""
+        # Verificar usuarios/roles sin cambios recientes (indica falta de revisión)
+        stale_permissions = []
+
+        for user in results.get('users', []):
+            if 'last_permission_update' in user:
+                try:
+                    last_update = datetime.fromisoformat(
+                        user['last_permission_update'].replace('Z', '+00:00'))
+                    days_since_update = (datetime.now(
+                        timezone.utc) - last_update).days
+
+                    if days_since_update > 90:  # Sin cambios en 90 días
+                        stale_permissions.append({
+                            'user': user['name'],
+                            'days': days_since_update
+                        })
+                except:
+                    pass
+
+        if len(stale_permissions) > 5:
+            self._add_finding(
+                'IAM-013',
+                'MEDIUM',
+                f'{len(stale_permissions)} usuarios con permisos sin revisar por más de 90 días',
+                {
+                    'sample_users': stale_permissions[:5],
+                    'total': len(stale_permissions),
+                    'recommendation': 'Implementar revisión trimestral de permisos (access review)'
+                }
+            )
+
+    async def _check_naming_convention(self, results: Dict):
+        """IAM-015: Verificar política de naming convention"""
+        non_compliant = {
+            'users': [],
+            'groups': [],
+            'roles': [],
+            'policies': []
+        }
+        
+        # Patrones de naming esperados
+        patterns = {
+            'users': r'^(usr_|user_|[a-z]+\.[a-z]+)',
+            'groups': r'^(grp_|group_|[a-z]+_team)',
+            'roles': r'^(role_|rol_|[a-z]+_role)',
+            'policies': r'^(pol_|policy_|[a-z]+_policy)'
+        }
+        
+        # Verificar usuarios
+        for user in results.get('users', []):
+            username = user.get('name', '')
+            if username and not re.match(patterns['users'], username.lower()):
+                non_compliant['users'].append(username)
+        
+        # Verificar grupos
+        for group in results.get('groups', []):
+            groupname = group.get('name', '')
+            if groupname and not re.match(patterns['groups'], groupname.lower()):
+                non_compliant['groups'].append(groupname)
+        
+        total_non_compliant = sum(len(v) for v in non_compliant.values())
+        
+        if total_non_compliant > 0:
+            self._add_finding(
+                'IAM-015',
+                'LOW',
+                f'{total_non_compliant} recursos IAM sin seguir convención de nombres',
+                {
+                    'users_non_compliant': len(non_compliant['users']),
+                    'groups_non_compliant': len(non_compliant['groups']),
+                    'sample_users': non_compliant['users'][:5],
+                    'recommendation': 'Establecer y documentar convención de nombres estándar'
+                }
+            )
+
+    async def _check_policy_versions(self, results: Dict):
+        """IAM-018: Verificar versiones de políticas"""
+        old_version_policies = []
+        
+        for policy in results.get('policies', []):
+            if policy.get('version'):
+                # En Huawei Cloud, las políticas pueden tener versiones
+                if policy['version'] < '2.0':  # Versión antigua
+                    old_version_policies.append({
+                        'name': policy.get('name', 'unknown'),
+                        'version': policy['version']
+                    })
+        
+        if old_version_policies:
+            self._add_finding(
+                'IAM-018',
+                'LOW',
+                f'{len(old_version_policies)} políticas usando versiones deprecadas del lenguaje',
+                {
+                    'policies': old_version_policies[:10],
+                    'total': len(old_version_policies),
+                    'recommendation': 'Actualizar todas las políticas a la última versión del lenguaje'
+                }
+            )
+
+    async def _check_api_token_expiration(self, results: Dict):
+        """IAM-021: Verificar expiración de tokens API"""
+        # En Huawei Cloud, los tokens temporales tienen tiempo de vida configurado
+        tokens_without_expiration = []
+        long_lived_tokens = []
+
+        # Verificar configuración de tokens temporales
+        for user in results.get('users', []):
+            if user.get('access_keys'):
+                for key in user['access_keys']:
+                    # Access keys permanentes (sin expiración)
+                    tokens_without_expiration.append({
+                        'user': user['name'],
+                        'key_id': key.get('access_key_id', 'unknown')
+                    })
+
+        if tokens_without_expiration:
+            self._add_finding(
+                'IAM-021',
+                'HIGH',
+                f'{len(tokens_without_expiration)} access keys permanentes sin expiración automática',
+                {
+                    'sample_keys': tokens_without_expiration[:5],
+                    'total': len(tokens_without_expiration),
+                    'recommendation': 'Implementar tokens temporales con expiración máxima de 12 horas'
+                }
+            )
+
+    async def _check_environment_segregation(self, results: Dict):
+        """IAM-022: Verificar segregación por ambiente"""
+        # Buscar usuarios/roles que tienen acceso a múltiples ambientes
+        multi_env_access = []
+
+        for user in results.get('users', []):
+            environments = set()
+
+            # Analizar nombres de recursos/políticas para detectar ambientes
+            for group in user.get('groups', []):
+                if 'prod' in group.lower():
+                    environments.add('production')
+                if 'dev' in group.lower():
+                    environments.add('development')
+                if 'test' in group.lower() or 'qa' in group.lower():
+                    environments.add('test')
+
+            if len(environments) > 1:
+                multi_env_access.append({
+                    'user': user['name'],
+                    'environments': list(environments)
+                })
+
+        if multi_env_access:
+            self._add_finding(
+                'IAM-022',
+                'HIGH',
+                f'{len(multi_env_access)} usuarios con acceso a múltiples ambientes',
+                {
+                    'users': multi_env_access[:10],
+                    'total': len(multi_env_access),
+                    'recommendation': 'Segregar accesos por ambiente (Dev/Test/Prod)'
+                }
+            )
+
+    async def _check_zero_trust_principles(self, results: Dict):
+        """IAM-023: Verificar principios de Zero Trust en roles"""
+        roles_without_conditions = []
+        
+        for role in results.get('roles', []):
+            if role.get('trust_policy'):
+                # Verificar si tiene condiciones restrictivas
+                trust_policy = str(role['trust_policy'])
+                has_conditions = 'Condition' in trust_policy or 'IpAddress' in trust_policy
+                
+                if not has_conditions and role.get('name'):
+                    roles_without_conditions.append(role['name'])
+        
+        if roles_without_conditions:
+            self._add_finding(
+                'IAM-023',
+                'MEDIUM',
+                f'{len(roles_without_conditions)} roles sin condiciones de Zero Trust',
+                {
+                    'roles': roles_without_conditions[:10],
+                    'total': len(roles_without_conditions),
+                    'recommendation': 'Implementar condiciones (IP, MFA, tiempo) en políticas de confianza'
+                }
+            )
+
+    async def _check_iam_change_audit(self, results: Dict):
+        """IAM-024: Verificar auditoría de cambios IAM"""
+        # Verificar configuración de auditoría para cambios IAM
+        critical_actions = [
+            'iam:users:create',
+            'iam:users:delete',
+            'iam:policies:attach',
+            'iam:roles:create',
+            'iam:groups:addUser'
+        ]
+
+        self._add_finding(
+            'IAM-024',
+            'HIGH',
+            'Verificación de auditoría de cambios IAM requerida',
+            {
+                'critical_actions': critical_actions,
+                'recommendation': 'Configurar alertas en CTS para todos los cambios IAM críticos'
+            }
+        )
+
+    async def _check_generic_shared_accounts(self, results: Dict):
+        """IAM-025: Verificar usuarios genéricos o compartidos"""
+        generic_patterns = [
+            'admin', 'test', 'demo', 'temp', 'usuario',
+            'user[0-9]+', 'prueba', 'desarrollo', 'operador'
+        ]
+        
+        generic_users = []
+        
+        for user in results.get('users', []):
+            username = user.get('name', '')
+            if username:
+                username_lower = username.lower()
+                
+                # Verificar patrones genéricos
+                for pattern in generic_patterns:
+                    if re.match(f'^{pattern}', username_lower):
+                        generic_users.append(username)
+                        break
+        
+        if generic_users:
+            self._add_finding(
+                'IAM-025',
+                'CRITICAL',
+                f'{len(generic_users)} cuentas genéricas o compartidas detectadas',
+                {
+                    'users': generic_users,
+                    'recommendation': 'Eliminar cuentas compartidas y crear usuarios nominales individuales'
+                }
+            )
+
+    async def _check_privileged_identity_management(self, results: Dict):
+        """IAM-026: Verificar gestión de identidades privilegiadas"""
+        privileged_without_pim = []
+        
+        for user in results.get('privileged_accounts', []):
+            # Verificar si tiene gestión especial (MFA obligatorio, acceso temporal)
+            if not user.get('mfa_enabled') or not user.get('temporary_elevation'):
+                username = user.get('user_name', user.get('name', 'unknown'))
+                privileged_without_pim.append(username)
+        
+        if privileged_without_pim:
+            self._add_finding(
+                'IAM-026',
+                'HIGH',
+                f'{len(privileged_without_pim)} cuentas privilegiadas sin gestión PIM/PAM',
+                {
+                    'users': privileged_without_pim[:10],
+                    'total': len(privileged_without_pim),
+                    'recommendation': 'Implementar solución PIM para gestión de cuentas administrativas'
+                }
+            )
+
+    async def _check_inherited_permissions_documentation(self, results: Dict):
+        """IAM-027: Verificar documentación de permisos heredados"""
+        users_with_complex_inheritance = []
+
+        for user in results.get('users', []):
+            inheritance_sources = 0
+
+            if user.get('groups'):
+                inheritance_sources += len(user['groups'])
+            if user.get('attached_policies'):
+                inheritance_sources += len(user['attached_policies'])
+            if user.get('inherited_roles'):
+                inheritance_sources += len(user['inherited_roles'])
+
+            if inheritance_sources > 3:  # Herencia compleja
+                users_with_complex_inheritance.append({
+                    'user': user['name'],
+                    'sources': inheritance_sources
+                })
+
+        if len(users_with_complex_inheritance) > 5:
+            self._add_finding(
+                'IAM-027',
+                'MEDIUM',
+                f'{len(users_with_complex_inheritance)} usuarios con herencia de permisos compleja no documentada',
+                {
+                    'sample_users': users_with_complex_inheritance[:5],
+                    'recommendation': 'Documentar y simplificar la herencia de permisos'
+                }
+            )
+
+    async def _check_break_glass_procedure(self, results: Dict):
+        """IAM-028: Verificar procedimiento break-glass"""
+        # Buscar cuentas de emergencia
+        emergency_accounts = []
+        
+        for user in results.get('users', []):
+            username = user.get('name', '')
+            if username and any(keyword in username.lower() for keyword in ['emergency', 'break', 'glass', 'emergencia']):
+                emergency_accounts.append(username)
+        
+        if not emergency_accounts:
+            self._add_finding(
+                'IAM-028',
+                'HIGH',
+                'No se detectaron cuentas de emergencia (break-glass)',
+                {
+                    'recommendation': 'Crear procedimiento break-glass con cuenta de emergencia monitoreada'
+                }
+            )
+
+    async def _check_certificate_management(self, results: Dict):
+        """IAM-029: Verificar gestión centralizada de certificados"""
+        # En Huawei Cloud, verificar certificados SSL/TLS
+        self._add_finding(
+            'IAM-029',
+            'MEDIUM',
+            'Gestión de certificados requiere verificación manual',
+            {
+                'areas_to_check': ['SSL/TLS certificates', 'API certificates', 'Service certificates'],
+                'recommendation': 'Implementar gestión centralizada de certificados con rotación automática'
+            }
+        )
+
+    async def _check_iam_metrics(self, results: Dict):
+        """IAM-030: Verificar métricas de uso IAM"""
+        # Calcular métricas básicas
+        metrics = {
+            'total_users': len(results.get('users', [])),
+            'mfa_enabled': len([u for u in results.get('users', []) if u.get('mfa_enabled')]),
+            'inactive_users': len(results.get('inactive_users', [])),
+            'privileged_accounts': len(results.get('privileged_accounts', [])),
+            'groups': len(results.get('groups', [])),
+            'policies': len(results.get('policies', []))
+        }
+
+        # Siempre generar finding para promover el monitoreo
+        self._add_finding(
+            'IAM-030',
+            'LOW',
+            'Métricas IAM básicas disponibles, se requiere dashboard de monitoreo',
+            {
+                'current_metrics': metrics,
+                'recommendation': 'Implementar dashboard con KPIs de seguridad IAM y tendencias'
+            }
+        )
+
+    # Agregar llamadas a estos métodos en collect_all()
+    async def collect_all_with_new_checks(self) -> Dict[str, Any]:
+        """Versión extendida de collect_all con los nuevos checks"""
+        # Primero ejecutar la recolección original
+        results = await self.collect_all()
+
+        # Ejecutar los nuevos checks
+        await self._check_onboarding_offboarding_process(results)
+        await self._check_privileged_access_logging(results)
+        await self._check_inline_policies(results)
+        await self._check_permission_review_process(results)
+        await self._check_naming_convention(results)
+        await self._check_policy_versions(results)
+        await self._check_api_token_expiration(results)
+        await self._check_environment_segregation(results)
+        await self._check_zero_trust_principles(results)
+        await self._check_iam_change_audit(results)
+        await self._check_generic_shared_accounts(results)
+        await self._check_privileged_identity_management(results)
+        await self._check_inherited_permissions_documentation(results)
+        await self._check_break_glass_procedure(results)
+        await self._check_certificate_management(results)
+        await self._check_iam_metrics(results)
+
+        return results
