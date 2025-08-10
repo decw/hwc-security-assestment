@@ -2503,11 +2503,12 @@ class IAMCollector:
         """IAM-011: Verificar logging de accesos privilegiados"""
         # En Huawei Cloud, esto requeriría verificar CTS (Cloud Trace Service)
         admin_users = []
-        
+
         for user in results.get('privileged_accounts', []):
             # Usar user_name en lugar de name
-            admin_users.append(user.get('user_name', user.get('name', 'unknown')))
-        
+            admin_users.append(
+                user.get('user_name', user.get('name', 'unknown')))
+
         if admin_users:
             self._add_finding(
                 'IAM-011',
@@ -2586,7 +2587,7 @@ class IAMCollector:
             'roles': [],
             'policies': []
         }
-        
+
         # Patrones de naming esperados
         patterns = {
             'users': r'^(usr_|user_|[a-z]+\.[a-z]+)',
@@ -2594,21 +2595,21 @@ class IAMCollector:
             'roles': r'^(role_|rol_|[a-z]+_role)',
             'policies': r'^(pol_|policy_|[a-z]+_policy)'
         }
-        
+
         # Verificar usuarios
         for user in results.get('users', []):
             username = user.get('name', '')
             if username and not re.match(patterns['users'], username.lower()):
                 non_compliant['users'].append(username)
-        
+
         # Verificar grupos
         for group in results.get('groups', []):
             groupname = group.get('name', '')
             if groupname and not re.match(patterns['groups'], groupname.lower()):
                 non_compliant['groups'].append(groupname)
-        
+
         total_non_compliant = sum(len(v) for v in non_compliant.values())
-        
+
         if total_non_compliant > 0:
             self._add_finding(
                 'IAM-015',
@@ -2625,7 +2626,7 @@ class IAMCollector:
     async def _check_policy_versions(self, results: Dict):
         """IAM-018: Verificar versiones de políticas"""
         old_version_policies = []
-        
+
         for policy in results.get('policies', []):
             if policy.get('version'):
                 # En Huawei Cloud, las políticas pueden tener versiones
@@ -2634,7 +2635,7 @@ class IAMCollector:
                         'name': policy.get('name', 'unknown'),
                         'version': policy['version']
                     })
-        
+
         if old_version_policies:
             self._add_finding(
                 'IAM-018',
@@ -2713,16 +2714,16 @@ class IAMCollector:
     async def _check_zero_trust_principles(self, results: Dict):
         """IAM-023: Verificar principios de Zero Trust en roles"""
         roles_without_conditions = []
-        
+
         for role in results.get('roles', []):
             if role.get('trust_policy'):
                 # Verificar si tiene condiciones restrictivas
                 trust_policy = str(role['trust_policy'])
                 has_conditions = 'Condition' in trust_policy or 'IpAddress' in trust_policy
-                
+
                 if not has_conditions and role.get('name'):
                     roles_without_conditions.append(role['name'])
-        
+
         if roles_without_conditions:
             self._add_finding(
                 'IAM-023',
@@ -2762,20 +2763,20 @@ class IAMCollector:
             'admin', 'test', 'demo', 'temp', 'usuario',
             'user[0-9]+', 'prueba', 'desarrollo', 'operador'
         ]
-        
+
         generic_users = []
-        
+
         for user in results.get('users', []):
             username = user.get('name', '')
             if username:
                 username_lower = username.lower()
-                
+
                 # Verificar patrones genéricos
                 for pattern in generic_patterns:
                     if re.match(f'^{pattern}', username_lower):
                         generic_users.append(username)
                         break
-        
+
         if generic_users:
             self._add_finding(
                 'IAM-025',
@@ -2790,13 +2791,13 @@ class IAMCollector:
     async def _check_privileged_identity_management(self, results: Dict):
         """IAM-026: Verificar gestión de identidades privilegiadas"""
         privileged_without_pim = []
-        
+
         for user in results.get('privileged_accounts', []):
             # Verificar si tiene gestión especial (MFA obligatorio, acceso temporal)
             if not user.get('mfa_enabled') or not user.get('temporary_elevation'):
                 username = user.get('user_name', user.get('name', 'unknown'))
                 privileged_without_pim.append(username)
-        
+
         if privileged_without_pim:
             self._add_finding(
                 'IAM-026',
@@ -2844,12 +2845,12 @@ class IAMCollector:
         """IAM-028: Verificar procedimiento break-glass"""
         # Buscar cuentas de emergencia
         emergency_accounts = []
-        
+
         for user in results.get('users', []):
             username = user.get('name', '')
             if username and any(keyword in username.lower() for keyword in ['emergency', 'break', 'glass', 'emergencia']):
                 emergency_accounts.append(username)
-        
+
         if not emergency_accounts:
             self._add_finding(
                 'IAM-028',

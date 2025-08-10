@@ -226,8 +226,8 @@ async def run_analysis(iam_data, args):
     """Ejecutar análisis de vulnerabilidades"""
     try:
         # Importar el analizador
-        from analyzers.vulnerability_analizer_modules_iam_network import IAMNetworkVulnerabilityAnalyzer
-        analyzer = IAMNetworkVulnerabilityAnalyzer()
+        from analyzers import ModuleVulnerabilityAnalyzer
+        analyzer = ModuleVulnerabilityAnalyzer()
 
         print("✅ Analizador IAM inicializado correctamente")
 

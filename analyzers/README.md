@@ -229,5 +229,5 @@ Si encuentras problemas con la migración:
 3. Contacta al equipo de seguridad
 
 ---
-*Última actualización: Diciembre 2024*
+*Última actualización: Agosto 2025*
 *Versión de analyzers: 2.0.0*
