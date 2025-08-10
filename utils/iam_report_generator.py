@@ -23,6 +23,29 @@ class IAMReportGenerator:
         self.timestamp = REPORT_TIMESTAMP
         self.logger = SecurityLogger('IAMReportGenerator')
 
+    # --------------------------------------------------------------------- #
+    # Helpers                                                                #
+    # --------------------------------------------------------------------- #
+    def _get_all_findings(self) -> List[Dict[str, Any]]:
+        """
+        Combina los hallazgos del collector y las vulnerabilidades
+        del analizador en una lista común unificada.
+        """
+        findings = self.results.get('findings', []).copy()
+
+        # Convertir vulnerabilidades a formato de finding estándar
+        for vuln in self.results.get('vulnerabilities', []):
+            findings.append(
+                {
+                    "id": vuln.get("id", ""),
+                    "severity": vuln.get("severity", "LOW").upper(),
+                    "message": vuln.get("title", ""),
+                    "details": vuln.get("description", ""),
+                    "timestamp": vuln.get("discovered_date", ""),
+                }
+            )
+        return findings
+
     def generate_complete_report(self, output_dir: str = None) -> Dict[str, str]:
         """Generar reporte completo: JSON + Resumen detallado"""
         # Siempre usar reports/iam/ como base
@@ -65,47 +88,75 @@ class IAMReportGenerator:
         return json_path
 
     def _generate_detailed_summary(self, output_path: Path) -> Path:
-        """Generar resumen detallado con secciones"""
+        """Generar resumen detallado con secciones (dinámicas)"""
         summary_path = output_path / f"iam_summary_{self.timestamp}.md"
+
+        # Determinar presencia de inventario
+        has_users  = len(self.results.get('users', []))   > 0
+        has_groups = len(self.results.get('groups', []))  > 0
+        has_roles  = len(self.results.get('roles', []))   > 0
+        has_pols   = len(self.results.get('policies', []))> 0
+        has_keys   = len(self.results.get('access_keys',[]))>0
+
+        # Construir TOC dinámico
+        toc_lines = ["## 📋 Tabla de Contenidos",
+                     "",
+                     "1. [Resumen Ejecutivo](#resumen-ejecutivo)"]
+
+        section_writers = []
+
+        if has_users:
+            toc_lines.append(f"{len(toc_lines)}. [Análisis de Usuarios](#análisis-de-usuarios)")
+            section_writers.append(self._generate_users_section)
+
+        if has_groups:
+            toc_lines.append(f"{len(toc_lines)}. [Análisis de Grupos](#análisis-de-grupos)")
+            section_writers.append(self._generate_groups_section)
+
+        if has_roles:       # solo si realmente hay roles
+            toc_lines.append(f"{len(toc_lines)}. [Análisis de Roles](#análisis-de-roles)")
+            section_writers.append(self._generate_roles_section)
+
+        if has_pols:
+            toc_lines.append(f"{len(toc_lines)}. [Análisis de Políticas](#análisis-de-políticas)")
+            section_writers.append(self._generate_policies_section)
+
+        # Secciones siempre presentes
+        toc_lines.extend([
+            f"{len(toc_lines)}. [Estado de MFA](#estado-de-mfa)",
+            f"{len(toc_lines)+1}. [Hallazgos de Seguridad](#hallazgos-de-seguridad)",
+            f"{len(toc_lines)+2}. [Estadísticas Generales](#estadísticas-generales)",
+            f"{len(toc_lines)+3}. [Recomendaciones](#recomendaciones)",
+            f"{len(toc_lines)+4}. [Anexos](#anexos)",
+            "---",
+            ""
+        ])
 
         with open(summary_path, 'w', encoding='utf-8') as f:
             # Header
             f.write(self._generate_header())
 
-            # Tabla de contenidos
-            f.write(self._generate_toc())
+            # TOC dinámico
+            f.write("\n".join(toc_lines))
 
             # Resumen ejecutivo
             f.write(self._generate_executive_summary())
 
-            # Sección de usuarios
-            f.write(self._generate_users_section())
+            # Secciones de inventario (solo si hay datos)
+            for writer in section_writers:
+                f.write(writer())
 
-            # Sección de grupos
-            f.write(self._generate_groups_section())
-
-            # Sección de roles
-            f.write(self._generate_roles_section())
-
-            # Sección de políticas
-            f.write(self._generate_policies_section())
-
-            # Sección de MFA
+            # MFA (siempre relevante)
             f.write(self._generate_mfa_section())
 
-            # Sección de access keys
-            f.write(self._generate_access_keys_section())
+            # Access Keys solo si existen
+            if has_keys:
+                f.write(self._generate_access_keys_section())
 
-            # Sección de hallazgos de seguridad
+            # Hallazgos + estadísticas + recomendaciones + anexos
             f.write(self._generate_security_findings_section())
-
-            # Sección de estadísticas
             f.write(self._generate_statistics_section())
-
-            # Sección de recomendaciones
             f.write(self._generate_recommendations_section())
-
-            # Anexos
             f.write(self._generate_annexes())
 
         self.logger.info(f"Resumen detallado generado: {summary_path}")
@@ -124,29 +175,13 @@ class IAMReportGenerator:
 
 """
 
-    def _generate_toc(self) -> str:
-        """Generar tabla de contenidos"""
-        return """## 📋 Tabla de Contenidos
-
-1. [Resumen Ejecutivo](#resumen-ejecutivo)
-2. [Análisis de Usuarios](#análisis-de-usuarios)
-3. [Análisis de Grupos](#análisis-de-grupos)
-4. [Análisis de Roles](#análisis-de-roles)
-5. [Análisis de Políticas](#análisis-de-políticas)
-6. [Estado de MFA](#estado-de-mfa)
-7. [Análisis de Access Keys](#análisis-de-access-keys)
-8. [Hallazgos de Seguridad](#hallazgos-de-seguridad)
-9. [Estadísticas Generales](#estadísticas-generales)
-10. [Recomendaciones](#recomendaciones)
-11. [Anexos](#anexos)
----
-
-"""
+    # La función previa _generate_toc está obsoleta y se mantiene sólo por compatibilidad,
+    # pero ahora ya no se llama directamente.
 
     def _generate_executive_summary(self) -> str:
         """Generar resumen ejecutivo"""
         stats = self.results.get('statistics', {})
-        findings = self.results.get('findings', [])
+        findings = self._get_all_findings()
 
         # Contar hallazgos por severidad
         severity_counts = {'CRITICAL': 0, 'HIGH': 0, 'MEDIUM': 0, 'LOW': 0}
@@ -663,7 +698,7 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
 
     def _generate_recommendations_section(self) -> str:
         """Generar sección de recomendaciones"""
-        findings = self.results.get('findings', [])
+        findings = self._get_all_findings()
 
         content = """## 💡 Recomendaciones
 
@@ -768,8 +803,7 @@ Para consultas sobre este reporte, contactar al equipo de seguridad.
             writer.writerow(
                 ['ID', 'Severidad', 'Mensaje', 'Detalles', 'Timestamp'])
 
-            # Use self.results.get('findings', [])
-            for finding in self.results.get('findings', []):
+            for finding in self._get_all_findings():
                 writer.writerow([
                     finding.get('id', ''),
                     finding.get('severity', ''),
@@ -792,9 +826,8 @@ Para consultas sobre este reporte, contactar al equipo de seguridad.
 
             # Agrupar hallazgos por severidad
             severity_groups = {}
-            # Use self.results.get('findings', [])
-            for finding in self.results.get('findings', []):
-                severity = finding.get('severity', 'LOW')
+            for finding in self._get_all_findings():
+                severity = finding.get('severity', 'LOW').upper()
                 if severity not in severity_groups:
                     severity_groups[severity] = []
                 severity_groups[severity].append(finding)
