@@ -18,9 +18,15 @@ huaweicloudsdksfsturbo   # SFS Turbo (file storage)
 huaweicloudsdkrds        # Relational Database Service
 
 #agregado dcabral
+huaweicloudsdkcsbs       # Cloud Backup Service
+huaweicloudsdkvbs       # Volume Backup Service
+
+huaweicloudsdksmn       # Simple Message Notification
+huaweicloudsdkhss       # Host Security Service
+huaweicloudsdkiamaccessanalyzer
+huaweicloudsdkcce       # Cloud Container Engine
 huaweicloudsdkcbr       # cloud backup  & recovery
 huaweicloudsdkhss       # Host security Service
-huaweicloudsdkiamaccessanalyzer
 huaweicloudsdkcts       # Cloud trace service
 huaweicloudsdkcce       # cloud container engine
 huaweicloudsdkelb       # Elastic Load Balancer
