@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-10T22:48:31.962759",
+  "timestamp": "2025-08-11T12:45:57.629742",
   "vpcs": {
     "LA-Santiago": [
       {
@@ -9,8 +9,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 19:04:08+00:00",
+        "region": "LA-Santiago",
+        "environment": "production",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "244e97db-12df-40f3-8c8c-a9e79999ce9b",
@@ -19,8 +24,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 20:04:11+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "36ae4994-67cb-44ff-a793-3619a4fd6629",
@@ -29,8 +39,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 19:35:39+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "3d387f31-e1cc-4e99-9c38-881565c5375c",
@@ -39,8 +54,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-10 18:29:45+00:00",
+        "region": "LA-Santiago",
+        "environment": "testing",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "44a14efc-1762-4c86-8731-187c3bea0c7a",
@@ -49,8 +69,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 20:03:45+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "4cd732fb-6c68-4b13-8437-efa79880d2cb",
@@ -59,8 +84,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 19:05:03+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "91104d53-0155-4f93-8eef-ac4f033cfb2e",
@@ -69,8 +99,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 19:34:11+00:00",
+        "region": "LA-Santiago",
+        "environment": "testing",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "e57fc038-1a7e-4f7e-8963-310f041ddbf2",
@@ -79,8 +114,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-02 19:00:32+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "f156045a-556b-49b9-8669-d8190c19ceee",
@@ -89,8 +129,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-12-04 20:05:23+00:00",
+        "region": "LA-Santiago",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       }
     ],
     "LA-Buenos Aires1": [
@@ -101,8 +146,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-03-07 13:33:23+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "28f3248b-87c1-40ab-882d-af35ad49c541",
@@ -111,8 +161,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-07-16 19:00:13+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
@@ -121,8 +176,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-08-22 14:13:21+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
@@ -131,8 +191,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2024-06-03 13:29:28+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
@@ -141,8 +206,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-03-07 13:34:34+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "production",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "b0c609f7-af01-442b-8d93-e5c776dff09f",
@@ -151,8 +221,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2019-03-08 16:55:18+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
@@ -161,8 +236,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-03-07 14:10:13+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
@@ -171,8 +251,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-03-07 14:11:16+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       },
       {
         "id": "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
@@ -181,8 +266,13 @@
         "status": "OK",
         "description": "",
         "created_at": "2023-03-07 14:10:49+00:00",
+        "region": "LA-Buenos Aires1",
+        "environment": "testing",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       }
     ],
     "CN-Hong Kong": [
@@ -193,8 +283,13 @@
         "status": "OK",
         "description": "vpc-default",
         "created_at": "2020-04-01 22:50:01+00:00",
+        "region": "CN-Hong Kong",
+        "environment": "unknown",
+        "purpose": "general",
         "has_flow_logs": false,
-        "has_segregated_subnets": false
+        "has_segregated_subnets": false,
+        "resource_count": 0,
+        "is_empty": true
       }
     ]
   },
@@ -1157,294 +1252,108 @@
     ]
   },
   "elastic_ips": {
+    "LA-Santiago": [
+      {
+        "id": "3f943e00-12b3-465e-8009-58c5ca51bacd",
+        "public_ip_address": "176.52.133.17",
+        "status": "ACTIVE",
+        "type": "5_bgp",
+        "bandwidth_id": "76815df6-f315-4a1e-a541-2499f41c2920",
+        "port_id": "00ab1509-1fba-4f6e-99cb-86f27f1d8318",
+        "is_associated": true,
+        "region": "LA-Santiago"
+      }
+    ],
     "LA-Buenos Aires1": [
       {
         "id": "0554fe6c-65d5-4143-a879-788cc031b3db",
+        "public_ip_address": "119.8.77.23",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.77.23",
-        "private_ip_address": "172.27.0.11",
-        "port_id": "e80e85c6-6636-4c0d-8e87-4b760b075db7",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-12-12 18:59:56",
         "bandwidth_id": "cbfe7fa8-eef6-40f5-917d-00d64d241001",
-        "bandwidth_name": "bandwidth-bd3a",
-        "bandwidth_size": 50,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "e80e85c6-6636-4c0d-8e87-4b760b075db7",
-          "resource_name": "Port-e80e85c6-6636-4c0d-8e87-4b760b075db7",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "e80e85c6-6636-4c0d-8e87-4b760b075db7",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "2213dd57-4bcf-44d3-a346-bb357f8864e2",
+        "public_ip_address": "119.8.73.37",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.73.37",
-        "private_ip_address": "172.27.0.6",
-        "port_id": "34f64ae0-116e-4e49-8e47-79d0da3229da",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-08-14 13:58:23",
         "bandwidth_id": "c63ee01d-b76d-46ed-aaab-b3c4579983b9",
-        "bandwidth_name": "bandwidth-598a",
-        "bandwidth_size": 20,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "34f64ae0-116e-4e49-8e47-79d0da3229da",
-          "resource_name": "Port-34f64ae0-116e-4e49-8e47-79d0da3229da",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "34f64ae0-116e-4e49-8e47-79d0da3229da",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "52233f94-7031-4f79-a65f-96cc3372c949",
+        "public_ip_address": "119.8.73.10",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.73.10",
-        "private_ip_address": "172.27.0.4",
-        "port_id": "595ef4b9-d4f8-4da8-a9ec-8a1cee2959b1",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-02-23 13:53:38",
         "bandwidth_id": "92eb571a-4d41-4622-a2e3-3614648ce9a2",
-        "bandwidth_name": "bandwidth-9bb1",
-        "bandwidth_size": 10,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "595ef4b9-d4f8-4da8-a9ec-8a1cee2959b1",
-          "resource_name": "Port-595ef4b9-d4f8-4da8-a9ec-8a1cee2959b1",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "595ef4b9-d4f8-4da8-a9ec-8a1cee2959b1",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "58fc35b0-f48d-459c-a512-b014ae896267",
+        "public_ip_address": "119.8.76.197",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.76.197",
-        "private_ip_address": "172.27.0.8",
-        "port_id": "a82edcfa-6826-436a-8eeb-ad41828e0bfb",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-09-17 17:36:23",
         "bandwidth_id": "24868e05-459d-4d07-b848-52fed5d2117d",
-        "bandwidth_name": "bandwidth-3f0a",
-        "bandwidth_size": 25,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "a82edcfa-6826-436a-8eeb-ad41828e0bfb",
-          "resource_name": "Port-a82edcfa-6826-436a-8eeb-ad41828e0bfb",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "a82edcfa-6826-436a-8eeb-ad41828e0bfb",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "672b8770-446d-4546-9177-ae9ece465ce9",
+        "public_ip_address": "119.8.78.94",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.78.94",
-        "private_ip_address": "172.27.0.9",
-        "port_id": "9cbf3511-d345-434f-a6bc-44c62974589b",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-10-14 17:59:00",
         "bandwidth_id": "b58b493b-f562-4f44-8adb-5b38f1e65082",
-        "bandwidth_name": "bandwidth-1917",
-        "bandwidth_size": 50,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "9cbf3511-d345-434f-a6bc-44c62974589b",
-          "resource_name": "Port-9cbf3511-d345-434f-a6bc-44c62974589b",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "9cbf3511-d345-434f-a6bc-44c62974589b",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "6e8535c7-e448-4bd3-9235-a3a7b5ac5165",
+        "public_ip_address": "119.8.78.160",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.78.160",
-        "private_ip_address": "172.27.0.2",
-        "port_id": "c9e288dc-1d7e-4e65-9727-cae7c841a1a6",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2025-01-14 00:10:17",
         "bandwidth_id": "f6d60031-e421-4184-bc60-9004a5cfed92",
-        "bandwidth_name": "bandwidth-1863",
-        "bandwidth_size": 300,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "c9e288dc-1d7e-4e65-9727-cae7c841a1a6",
-          "resource_name": "Port-c9e288dc-1d7e-4e65-9727-cae7c841a1a6",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "c9e288dc-1d7e-4e65-9727-cae7c841a1a6",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "b5c25b7f-5b43-46c0-8c7c-a3350dcd99bb",
+        "public_ip_address": "119.8.72.196",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.72.196",
-        "private_ip_address": "172.27.0.5",
-        "port_id": "3eaf3daf-8323-4182-8456-3e697864e908",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-04-16 14:31:30",
         "bandwidth_id": "b72f4f0c-82e5-45a9-ac90-8c8b21359138",
-        "bandwidth_name": "bandwidth-a845",
-        "bandwidth_size": 50,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "3eaf3daf-8323-4182-8456-3e697864e908",
-          "resource_name": "Port-3eaf3daf-8323-4182-8456-3e697864e908",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "3eaf3daf-8323-4182-8456-3e697864e908",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "dd8f6448-a289-4055-a1c5-3ed711afedd3",
+        "public_ip_address": "119.8.77.68",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.77.68",
-        "private_ip_address": "172.27.0.7",
-        "port_id": "cae2c9f1-8c11-41ed-a546-9cff6186fb0a",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-09-16 13:39:58",
         "bandwidth_id": "c5669c3c-9b93-4d1d-9978-ae93889a4c92",
-        "bandwidth_name": "bandwidth-eeef",
-        "bandwidth_size": 25,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "cae2c9f1-8c11-41ed-a546-9cff6186fb0a",
-          "resource_name": "Port-cae2c9f1-8c11-41ed-a546-9cff6186fb0a",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "cae2c9f1-8c11-41ed-a546-9cff6186fb0a",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       },
       {
         "id": "f0658118-fcd9-4280-a06a-ef00cc344d8d",
+        "public_ip_address": "119.8.77.27",
         "status": "ACTIVE",
         "type": "5_bgp",
-        "public_ip_address": "119.8.77.27",
-        "private_ip_address": "172.27.0.10",
-        "port_id": "c4dec8ea-7a3e-440f-9f80-257e92f25877",
-        "tenant_id": "4b941a5dca294bedab5e907bd7f2bd08",
-        "create_time": "2024-12-12 18:50:23",
         "bandwidth_id": "c52a8604-db8d-4524-9ba6-579ef6c77768",
-        "bandwidth_name": "bandwidth-494f",
-        "bandwidth_size": 50,
-        "bandwidth_share_type": "PER",
-        "profile": "{}",
-        "region": "LA-Buenos Aires1",
-        "association": {
-          "resource_type": "unknown",
-          "resource_id": "c4dec8ea-7a3e-440f-9f80-257e92f25877",
-          "resource_name": "Port-c4dec8ea-7a3e-440f-9f80-257e92f25877",
-          "resource_status": "unknown",
-          "network_name": "unknown",
-          "private_ip": null
-        },
+        "port_id": "c4dec8ea-7a3e-440f-9f80-257e92f25877",
         "is_associated": true,
-        "security_analysis": {
-          "unused_eip": false,
-          "public_exposure": true,
-          "critical_ports_exposed": [],
-          "weak_bandwidth": false,
-          "shared_bandwidth": false
-        }
+        "region": "LA-Buenos Aires1"
       }
     ]
   },
@@ -1511,148 +1420,240 @@
     {
       "id": "NET-001",
       "severity": "ALTA",
-      "message": "Se encontraron 17 VPCs sin segregación adecuada",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
       "details": {
-        "vpcs_without_segregation": [
-          {
-            "vpc_id": "226a8988-4786-465b-af8e-62c1533c2460",
-            "vpc_name": "VPC_PROD",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "244e97db-12df-40f3-8c8c-a9e79999ce9b",
-            "vpc_name": "VPC_MGMT",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "36ae4994-67cb-44ff-a793-3619a4fd6629",
-            "vpc_name": "VPC_DMZ",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "3d387f31-e1cc-4e99-9c38-881565c5375c",
-            "vpc_name": "VPC-TESTER",
-            "region": "LA-Santiago",
-            "total_subnets": 3,
-            "public_subnets": 3,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "44a14efc-1762-4c86-8731-187c3bea0c7a",
-            "vpc_name": "VPC_BACKUP",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "4cd732fb-6c68-4b13-8437-efa79880d2cb",
-            "vpc_name": "VPC_DESA",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "91104d53-0155-4f93-8eef-ac4f033cfb2e",
-            "vpc_name": "VPC_QA",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "e57fc038-1a7e-4f7e-8963-310f041ddbf2",
-            "vpc_name": "VPC_General",
-            "region": "LA-Santiago",
-            "total_subnets": 2,
-            "public_subnets": 2,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "f156045a-556b-49b9-8669-d8190c19ceee",
-            "vpc_name": "VPC_KUBERNETES",
-            "region": "LA-Santiago",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
-            "vpc_name": "VPC_General",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 3,
-            "public_subnets": 3,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "28f3248b-87c1-40ab-882d-af35ad49c541",
-            "vpc_name": "VPC_KUBERNETES",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
-            "vpc_name": "VPC_BACKUP",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
-            "vpc_name": "VPC_MGMT",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
-            "vpc_name": "VPC_PROD",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
-            "vpc_name": "VPC_DESA",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
-            "vpc_name": "VPC_DMZ",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          },
-          {
-            "vpc_id": "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
-            "vpc_name": "VPC_QA",
-            "region": "LA-Buenos Aires1",
-            "total_subnets": 1,
-            "public_subnets": 1,
-            "private_subnets": 0
-          }
-        ]
+        "vpc_id": "226a8988-4786-465b-af8e-62c1533c2460",
+        "vpc_name": "VPC_PROD",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
       },
-      "timestamp": "2025-08-10T22:49:26.335312"
+      "timestamp": "2025-08-11T12:47:00.701368"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "244e97db-12df-40f3-8c8c-a9e79999ce9b",
+        "vpc_name": "VPC_MGMT",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.701701"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "36ae4994-67cb-44ff-a793-3619a4fd6629",
+        "vpc_name": "VPC_DMZ",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.701847"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "3d387f31-e1cc-4e99-9c38-881565c5375c",
+        "vpc_name": "VPC-TESTER",
+        "total_subnets": 3,
+        "public_subnets": 3,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.701931"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "44a14efc-1762-4c86-8731-187c3bea0c7a",
+        "vpc_name": "VPC_BACKUP",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702027"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "4cd732fb-6c68-4b13-8437-efa79880d2cb",
+        "vpc_name": "VPC_DESA",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702101"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "91104d53-0155-4f93-8eef-ac4f033cfb2e",
+        "vpc_name": "VPC_QA",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702194"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "e57fc038-1a7e-4f7e-8963-310f041ddbf2",
+        "vpc_name": "VPC_General",
+        "total_subnets": 2,
+        "public_subnets": 2,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702313"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Santiago",
+      "details": {
+        "vpc_id": "f156045a-556b-49b9-8669-d8190c19ceee",
+        "vpc_name": "VPC_KUBERNETES",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702409"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "1bf15980-1891-46a8-bb99-cf974e98d44c",
+        "vpc_name": "VPC_General",
+        "total_subnets": 3,
+        "public_subnets": 3,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702503"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "28f3248b-87c1-40ab-882d-af35ad49c541",
+        "vpc_name": "VPC_KUBERNETES",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702593"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
+        "vpc_name": "VPC_BACKUP",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702683"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
+        "vpc_name": "VPC_MGMT",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702804"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+        "vpc_name": "VPC_PROD",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.702956"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
+        "vpc_name": "VPC_DESA",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.703097"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
+        "vpc_name": "VPC_DMZ",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.703235"
+    },
+    {
+      "id": "NET-001",
+      "severity": "ALTA",
+      "message": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+      "details": {
+        "vpc_id": "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
+        "vpc_name": "VPC_QA",
+        "total_subnets": 1,
+        "public_subnets": 1,
+        "private_subnets": 0,
+        "recommendation": "Segregar subnets públicas y privadas en la VPC"
+      },
+      "timestamp": "2025-08-11T12:47:00.703329"
     },
     {
       "id": "NET-002",
@@ -1665,7 +1666,7 @@
         "gateway_ip": "172.27.132.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.335640"
+      "timestamp": "2025-08-11T12:47:00.703449"
     },
     {
       "id": "NET-002",
@@ -1678,7 +1679,7 @@
         "gateway_ip": "172.27.136.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.335773"
+      "timestamp": "2025-08-11T12:47:00.703588"
     },
     {
       "id": "NET-002",
@@ -1691,7 +1692,7 @@
         "gateway_ip": "172.27.253.129",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.335884"
+      "timestamp": "2025-08-11T12:47:00.703675"
     },
     {
       "id": "NET-002",
@@ -1704,7 +1705,7 @@
         "gateway_ip": "172.27.253.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.335993"
+      "timestamp": "2025-08-11T12:47:00.703762"
     },
     {
       "id": "NET-002",
@@ -1717,7 +1718,7 @@
         "gateway_ip": "172.27.138.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336098"
+      "timestamp": "2025-08-11T12:47:00.703849"
     },
     {
       "id": "NET-002",
@@ -1730,7 +1731,7 @@
         "gateway_ip": "172.27.253.193",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336188"
+      "timestamp": "2025-08-11T12:47:00.703918"
     },
     {
       "id": "NET-002",
@@ -1743,7 +1744,7 @@
         "gateway_ip": "172.27.254.17",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336277"
+      "timestamp": "2025-08-11T12:47:00.704005"
     },
     {
       "id": "NET-002",
@@ -1756,7 +1757,7 @@
         "gateway_ip": "172.27.128.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336365"
+      "timestamp": "2025-08-11T12:47:00.704073"
     },
     {
       "id": "NET-002",
@@ -1769,7 +1770,7 @@
         "gateway_ip": "172.27.254.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336476"
+      "timestamp": "2025-08-11T12:47:00.704185"
     },
     {
       "id": "NET-002",
@@ -1782,7 +1783,7 @@
         "gateway_ip": "172.27.130.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336591"
+      "timestamp": "2025-08-11T12:47:00.704318"
     },
     {
       "id": "NET-002",
@@ -1795,7 +1796,7 @@
         "gateway_ip": "172.27.135.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336682"
+      "timestamp": "2025-08-11T12:47:00.704389"
     },
     {
       "id": "NET-002",
@@ -1808,7 +1809,7 @@
         "gateway_ip": "172.27.12.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336772"
+      "timestamp": "2025-08-11T12:47:00.704480"
     },
     {
       "id": "NET-002",
@@ -1821,7 +1822,7 @@
         "gateway_ip": "172.27.22.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336861"
+      "timestamp": "2025-08-11T12:47:00.704570"
     },
     {
       "id": "NET-002",
@@ -1834,7 +1835,7 @@
         "gateway_ip": "172.27.16.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.336953"
+      "timestamp": "2025-08-11T12:47:00.704659"
     },
     {
       "id": "NET-002",
@@ -1847,7 +1848,7 @@
         "gateway_ip": "172.27.28.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337061"
+      "timestamp": "2025-08-11T12:47:00.704748"
     },
     {
       "id": "NET-002",
@@ -1860,7 +1861,7 @@
         "gateway_ip": "172.27.0.17",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337130"
+      "timestamp": "2025-08-11T12:47:00.704859"
     },
     {
       "id": "NET-002",
@@ -1873,7 +1874,7 @@
         "gateway_ip": "172.27.24.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337239"
+      "timestamp": "2025-08-11T12:47:00.704945"
     },
     {
       "id": "NET-002",
@@ -1886,7 +1887,7 @@
         "gateway_ip": "172.27.8.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337328"
+      "timestamp": "2025-08-11T12:47:00.705030"
     },
     {
       "id": "NET-002",
@@ -1899,7 +1900,7 @@
         "gateway_ip": "172.27.0.1",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337430"
+      "timestamp": "2025-08-11T12:47:00.705115"
     },
     {
       "id": "NET-002",
@@ -1912,7 +1913,7 @@
         "gateway_ip": "172.27.0.49",
         "recommendation": "Evaluar si la subnet requiere acceso público o convertirla en privada"
       },
-      "timestamp": "2025-08-10T22:49:26.337580"
+      "timestamp": "2025-08-11T12:47:00.705200"
     },
     {
       "id": "NET-003",
@@ -1947,7 +1948,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.337681"
+      "timestamp": "2025-08-11T12:47:00.705275"
     },
     {
       "id": "NET-003",
@@ -1982,7 +1983,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.337833"
+      "timestamp": "2025-08-11T12:47:00.705342"
     },
     {
       "id": "NET-003",
@@ -2017,7 +2018,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.337974"
+      "timestamp": "2025-08-11T12:47:00.705433"
     },
     {
       "id": "NET-003",
@@ -2052,7 +2053,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.338145"
+      "timestamp": "2025-08-11T12:47:00.705524"
     },
     {
       "id": "NET-003",
@@ -2077,7 +2078,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.338222"
+      "timestamp": "2025-08-11T12:47:00.705616"
     },
     {
       "id": "NET-003",
@@ -2102,7 +2103,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.338356"
+      "timestamp": "2025-08-11T12:47:00.705709"
     },
     {
       "id": "NET-003",
@@ -2127,7 +2128,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.338427"
+      "timestamp": "2025-08-11T12:47:00.705800"
     },
     {
       "id": "NET-003",
@@ -2162,7 +2163,7 @@
         ],
         "recommendation": "Restringir reglas a IPs y puertos específicos necesarios"
       },
-      "timestamp": "2025-08-10T22:49:26.338497"
+      "timestamp": "2025-08-11T12:47:00.705889"
     },
     {
       "id": "NET-005",
@@ -2174,7 +2175,7 @@
         "nacl_count": 0,
         "recommendation": "Implementar Network ACLs como capa adicional de seguridad"
       },
-      "timestamp": "2025-08-10T22:49:26.338635"
+      "timestamp": "2025-08-11T12:47:00.705983"
     },
     {
       "id": "NET-005",
@@ -2186,7 +2187,7 @@
         "nacl_count": 0,
         "recommendation": "Implementar Network ACLs como capa adicional de seguridad"
       },
-      "timestamp": "2025-08-10T22:49:26.338769"
+      "timestamp": "2025-08-11T12:47:00.706074"
     },
     {
       "id": "NET-005",
@@ -2198,7 +2199,7 @@
         "nacl_count": 0,
         "recommendation": "Implementar Network ACLs como capa adicional de seguridad"
       },
-      "timestamp": "2025-08-10T22:49:26.338925"
+      "timestamp": "2025-08-11T12:47:00.706171"
     },
     {
       "id": "NET-007",
@@ -2211,7 +2212,7 @@
         "http_listeners": 1,
         "recommendation": "Configurar listeners HTTPS con certificados SSL/TLS válidos"
       },
-      "timestamp": "2025-08-10T22:49:26.339027"
+      "timestamp": "2025-08-11T12:47:00.706269"
     },
     {
       "id": "NET-007",
@@ -2224,7 +2225,7 @@
         "http_listeners": 2,
         "recommendation": "Configurar listeners HTTPS con certificados SSL/TLS válidos"
       },
-      "timestamp": "2025-08-10T22:49:26.339184"
+      "timestamp": "2025-08-11T12:47:00.706384"
     },
     {
       "id": "NET-007",
@@ -2237,7 +2238,7 @@
         "http_listeners": 1,
         "recommendation": "Configurar listeners HTTPS con certificados SSL/TLS válidos"
       },
-      "timestamp": "2025-08-10T22:49:26.339253"
+      "timestamp": "2025-08-11T12:47:00.706496"
     },
     {
       "id": "NET-008",
@@ -2248,7 +2249,7 @@
         "vpc_name": "VPC_PROD",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339343"
+      "timestamp": "2025-08-11T12:47:00.706595"
     },
     {
       "id": "NET-008",
@@ -2259,7 +2260,7 @@
         "vpc_name": "VPC_MGMT",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339426"
+      "timestamp": "2025-08-11T12:47:00.706686"
     },
     {
       "id": "NET-008",
@@ -2270,7 +2271,7 @@
         "vpc_name": "VPC_DMZ",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339489"
+      "timestamp": "2025-08-11T12:47:00.706795"
     },
     {
       "id": "NET-008",
@@ -2281,7 +2282,7 @@
         "vpc_name": "VPC-TESTER",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339534"
+      "timestamp": "2025-08-11T12:47:00.706880"
     },
     {
       "id": "NET-008",
@@ -2292,7 +2293,7 @@
         "vpc_name": "VPC_BACKUP",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339595"
+      "timestamp": "2025-08-11T12:47:00.706964"
     },
     {
       "id": "NET-008",
@@ -2303,7 +2304,7 @@
         "vpc_name": "VPC_DESA",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339660"
+      "timestamp": "2025-08-11T12:47:00.707074"
     },
     {
       "id": "NET-008",
@@ -2314,7 +2315,7 @@
         "vpc_name": "VPC_QA",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339742"
+      "timestamp": "2025-08-11T12:47:00.707142"
     },
     {
       "id": "NET-008",
@@ -2325,7 +2326,7 @@
         "vpc_name": "VPC_General",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339806"
+      "timestamp": "2025-08-11T12:47:00.707231"
     },
     {
       "id": "NET-008",
@@ -2336,7 +2337,7 @@
         "vpc_name": "VPC_KUBERNETES",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339870"
+      "timestamp": "2025-08-11T12:47:00.707319"
     },
     {
       "id": "NET-008",
@@ -2347,7 +2348,7 @@
         "vpc_name": "VPC_General",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.339953"
+      "timestamp": "2025-08-11T12:47:00.707409"
     },
     {
       "id": "NET-008",
@@ -2358,7 +2359,7 @@
         "vpc_name": "VPC_KUBERNETES",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340016"
+      "timestamp": "2025-08-11T12:47:00.707498"
     },
     {
       "id": "NET-008",
@@ -2369,7 +2370,7 @@
         "vpc_name": "VPC_BACKUP",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340086"
+      "timestamp": "2025-08-11T12:47:00.707588"
     },
     {
       "id": "NET-008",
@@ -2380,7 +2381,7 @@
         "vpc_name": "VPC_MGMT",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340198"
+      "timestamp": "2025-08-11T12:47:00.707677"
     },
     {
       "id": "NET-008",
@@ -2391,7 +2392,7 @@
         "vpc_name": "VPC_PROD",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340320"
+      "timestamp": "2025-08-11T12:47:00.707767"
     },
     {
       "id": "NET-008",
@@ -2402,7 +2403,7 @@
         "vpc_name": "VPC_Camuzzi_ParaEliminar",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340444"
+      "timestamp": "2025-08-11T12:47:00.707877"
     },
     {
       "id": "NET-008",
@@ -2413,7 +2414,7 @@
         "vpc_name": "VPC_DESA",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340515"
+      "timestamp": "2025-08-11T12:47:00.707960"
     },
     {
       "id": "NET-008",
@@ -2424,7 +2425,7 @@
         "vpc_name": "VPC_DMZ",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340639"
+      "timestamp": "2025-08-11T12:47:00.708044"
     },
     {
       "id": "NET-008",
@@ -2435,7 +2436,7 @@
         "vpc_name": "VPC_QA",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340762"
+      "timestamp": "2025-08-11T12:47:00.708154"
     },
     {
       "id": "NET-008",
@@ -2446,7 +2447,170 @@
         "vpc_name": "vpc-default",
         "recommendation": "Habilitar Flow Logs para auditoría y análisis de tráfico"
       },
-      "timestamp": "2025-08-10T22:49:26.340941"
+      "timestamp": "2025-08-11T12:47:00.708247"
+    },
+    {
+      "id": "NET-011",
+      "severity": "ALTA",
+      "message": "Logs y eventos de red no integrados con plataforma Fortinet",
+      "details": {
+        "flow_logs_configured": 0,
+        "expected_integration": "FortiSIEM/FortiAnalyzer",
+        "recommendation": "Integrar eventos de Huawei Cloud con FortiSIEM/FortiAnalyzer"
+      },
+      "timestamp": "2025-08-11T12:47:00.708443"
+    },
+    {
+      "id": "NET-013",
+      "severity": "MEDIA",
+      "message": "3 recursos sin límites de bandwidth configurados",
+      "details": {
+        "affected_resources": [
+          {
+            "resource_type": "ELB",
+            "resource_id": "57de5702-0d3e-4d1c-8ada-7e339eaac9a6",
+            "resource_name": "lb-ov-prd",
+            "region": "LA-Buenos Aires1"
+          },
+          {
+            "resource_type": "ELB",
+            "resource_id": "f9c9b227-978d-417b-80bc-c0132086e7a7",
+            "resource_name": "lb-ov-uat",
+            "region": "LA-Buenos Aires1"
+          },
+          {
+            "resource_type": "ELB",
+            "resource_id": "cae4a8c1-d157-49c0-a17e-b62aabb6780f",
+            "resource_name": "LB-TS-NEW",
+            "region": "LA-Buenos Aires1"
+          }
+        ],
+        "total_affected": 3,
+        "recommendation": "Configurar límites de bandwidth según SLAs"
+      },
+      "timestamp": "2025-08-11T12:47:00.708558"
+    },
+    {
+      "id": "NET-015",
+      "severity": "MEDIA",
+      "message": "2 VPCs usando resolución DNS pública sin filtrado",
+      "details": {
+        "affected_vpcs": [
+          {
+            "vpc_id": "226a8988-4786-465b-af8e-62c1533c2460",
+            "vpc_name": "VPC_PROD",
+            "region": "LA-Santiago"
+          },
+          {
+            "vpc_id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+            "vpc_name": "VPC_PROD",
+            "region": "LA-Buenos Aires1"
+          }
+        ],
+        "recommendation": "Implementar DNS privado con filtrado de dominios maliciosos"
+      },
+      "timestamp": "2025-08-11T12:47:00.708688"
+    },
+    {
+      "id": "NET-016",
+      "severity": "ALTA",
+      "message": "2 VPCs sin NAT Gateway con alta disponibilidad",
+      "details": {
+        "affected_vpcs": [
+          {
+            "vpc_id": "226a8988-4786-465b-af8e-62c1533c2460",
+            "vpc_name": "VPC_PROD",
+            "region": "LA-Santiago"
+          },
+          {
+            "vpc_id": "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+            "vpc_name": "VPC_PROD",
+            "region": "LA-Buenos Aires1"
+          }
+        ],
+        "recommendation": "Implementar NAT Gateways redundantes en múltiples AZs"
+      },
+      "timestamp": "2025-08-11T12:47:00.708787"
+    },
+    {
+      "id": "NET-017",
+      "severity": "ALTA",
+      "message": "NAT Gateway potencialmente compartido entre ambientes Dev/Test/Prod",
+      "details": {
+        "risk": "Mismo NAT Gateway usado por diferentes ambientes sin segregación",
+        "recommendation": "Segregar NAT Gateways por ambiente y criticidad"
+      },
+      "timestamp": "2025-08-11T12:47:00.708915"
+    },
+    {
+      "id": "NET-018",
+      "severity": "ALTA",
+      "message": "Tráfico a servicios de Huawei Cloud pasando por Internet sin VPC Endpoints",
+      "details": {
+        "vpcs_without_endpoints": 19,
+        "services_affected": [
+          "OBS",
+          "RDS",
+          "DDS",
+          "ECS"
+        ],
+        "recommendation": "Implementar VPC Endpoints para servicios críticos (OBS/RDS/etc)"
+      },
+      "timestamp": "2025-08-11T12:47:00.709018"
+    },
+    {
+      "id": "NET-019",
+      "severity": "CRITICA",
+      "message": "Transferencias entre 3 regiones sin cifrado adicional verificado",
+      "details": {
+        "regions": [
+          "LA-Santiago",
+          "LA-Buenos Aires1",
+          "CN-Hong Kong"
+        ],
+        "cross_region_pairs": [
+          "LA-Santiago <-> LA-Buenos Aires1",
+          "LA-Santiago <-> CN-Hong Kong",
+          "LA-Buenos Aires1 <-> CN-Hong Kong"
+        ],
+        "recommendation": "Cifrar todo tráfico cross-region con IPSec o TLS"
+      },
+      "timestamp": "2025-08-11T12:47:00.709120"
+    },
+    {
+      "id": "a3ad447cc55d",
+      "severity": "ALTA",
+      "message": "VPC sin Segregación de Subnets",
+      "details": "VPCs sin subnets públicas y privadas segregadas",
+      "timestamp": "2025-08-11T12:47:01.618220"
+    },
+    {
+      "id": "16361264f357",
+      "severity": "ALTA",
+      "message": "Subnets Públicas sin Justificación",
+      "details": "Recursos en subnets públicas sin necesidad de acceso desde Internet",
+      "timestamp": "2025-08-11T12:47:01.618228"
+    },
+    {
+      "id": "b9dc472d4756",
+      "severity": "CRITICA",
+      "message": "Security Groups con Reglas 0.0.0.0/0",
+      "details": "Security groups permitiendo acceso desde cualquier IP externa",
+      "timestamp": "2025-08-11T12:47:01.618231"
+    },
+    {
+      "id": "46e214085047",
+      "severity": "MEDIA",
+      "message": "VPCs sin Recursos Asociados",
+      "details": "VPCs creadas pero sin recursos activos generando costos",
+      "timestamp": "2025-08-11T12:47:01.618233"
+    },
+    {
+      "id": "6b892665963d",
+      "severity": "BAJA",
+      "message": "Incumplimiento de Nomenclatura",
+      "details": "Recursos de red sin seguir convención de nombres estándar",
+      "timestamp": "2025-08-11T12:47:01.618234"
     }
   ],
   "statistics": {
@@ -2457,7 +2621,7 @@
       "load_balancers": 3,
       "flow_logs": 0,
       "vpc_peerings": 0,
-      "elastic_ips": 9,
+      "elastic_ips": 10,
       "exposed_resources": 0,
       "regions_analyzed": 3
     },
@@ -2470,18 +2634,25 @@
       "total_resources": 437
     },
     "findings_by_severity": {
-      "CRITICA": 8,
-      "ALTA": 24,
-      "MEDIA": 22,
-      "BAJA": 0
+      "CRITICA": 10,
+      "ALTA": 46,
+      "MEDIA": 25,
+      "BAJA": 1
     },
     "findings_by_code": {
-      "NET-001": 1,
+      "NET-001": 17,
       "NET-002": 20,
       "NET-003": 8,
       "NET-005": 3,
       "NET-007": 3,
-      "NET-008": 19
+      "NET-008": 19,
+      "NET-011": 1,
+      "NET-013": 1,
+      "NET-015": 1,
+      "NET-016": 1,
+      "NET-017": 1,
+      "NET-018": 1,
+      "NET-019": 1
     },
     "exposure_metrics": {
       "resources_with_public_ip": 0,
@@ -2497,6 +2668,258 @@
       "NET-006": "CUMPLE",
       "NET-007": "VERIFICADO",
       "NET-008": "VERIFICADO"
-    }
+    },
+    "total_findings": 82,
+    "top_risks": [
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Santiago",
+        "severity": "ALTA",
+        "code": "NET-001"
+      },
+      {
+        "risk": "VPC sin segregación adecuada de subnets en LA-Buenos Aires1",
+        "severity": "ALTA",
+        "code": "NET-001"
+      }
+    ]
+  },
+  "vulnerability_analysis": {
+    "total_vulnerabilities": 5,
+    "by_severity": {
+      "CRITICA": 1,
+      "ALTA": 2,
+      "MEDIA": 1,
+      "BAJA": 1
+    },
+    "by_type": {
+      "network": 3,
+      "operational": 1,
+      "compliance": 1
+    },
+    "vulnerabilities": [
+      {
+        "id": "a3ad447cc55d",
+        "title": "VPC sin Segregación de Subnets",
+        "description": "VPCs sin subnets públicas y privadas segregadas",
+        "severity": "ALTA",
+        "cvss_score": 7.5,
+        "affected_resources": [
+          {
+            "type": "vpc",
+            "identifiers": [
+              "3d387f31-e1cc-4e99-9c38-881565c5375c",
+              "e57fc038-1a7e-4f7e-8963-310f041ddbf2",
+              "1bf15980-1891-46a8-bb99-cf974e98d44c"
+            ]
+          }
+        ],
+        "remediation": {
+          "steps": [
+            "Segregar subnets públicas y privadas en todas las VPCs"
+          ],
+          "effort_hours": 16,
+          "priority": "ALTA",
+          "time_days": 14
+        }
+      },
+      {
+        "id": "16361264f357",
+        "title": "Subnets Públicas sin Justificación",
+        "description": "Recursos en subnets públicas sin necesidad de acceso desde Internet",
+        "severity": "ALTA",
+        "cvss_score": 7.2,
+        "affected_resources": [
+          {
+            "type": "subnet",
+            "identifiers": [
+              "1366a887-7df0-4bf6-a833-da0ee15d53f3",
+              "16f2c86f-5ed6-4dab-9fb1-d4c177fead36",
+              "1eb45074-7b9d-441c-bb9f-2b041bba1768",
+              "3aa3fc41-f86e-420b-bf09-8ca21551883c",
+              "484fff5c-27b4-4d31-b84e-c7cf4594c697",
+              "55240377-601c-4bd5-ac25-f465ecae3727",
+              "5d85cb7a-ac95-49c7-9bf6-5c300437b973",
+              "6415af55-c0d0-49eb-9d5d-80ab79c1953b",
+              "646988e9-e562-4f1b-9844-9bb284b79325",
+              "9992bf15-669f-4b5c-84cc-b85e3b870818",
+              "f9a4c738-b4c5-4872-acc4-4115fda47a09",
+              "1f241abb-174e-400f-9f09-bef1a894fb5a",
+              "226a83c7-ce13-46cd-bdac-42614449169f",
+              "38c247d1-bd5d-4235-a7f1-61f71e902d46",
+              "803a21f8-bb44-421b-8fa5-3e3934051fd5",
+              "87f242b0-b1f1-448d-a3ff-af6ac504163a",
+              "d08f1dec-c113-49e0-9b3e-007e835a7ea6",
+              "d527826d-05da-40ff-add0-66abaa49d1c7",
+              "e9bb4d90-b73c-47fe-a2f9-aabe6f2209b0",
+              "fb1d80e8-b1db-4bf7-a1ae-f30d5a6302cc"
+            ]
+          }
+        ],
+        "remediation": {
+          "steps": [
+            "Mover recursos a subnets privadas cuando sea posible"
+          ],
+          "effort_hours": 8,
+          "priority": "ALTA",
+          "time_days": 14
+        }
+      },
+      {
+        "id": "b9dc472d4756",
+        "title": "Security Groups con Reglas 0.0.0.0/0",
+        "description": "Security groups permitiendo acceso desde cualquier IP externa",
+        "severity": "CRITICA",
+        "cvss_score": 9.3,
+        "affected_resources": [
+          {
+            "type": "security_group",
+            "identifiers": [
+              "018413c4-8b39-43ec-95b7-601f378423ef",
+              "106b09ca-bf4c-4796-85c9-2b40d50e7bd1",
+              "1d197588-bcd0-41bf-b7fc-dceb21b3498f",
+              "ca7c1cd7-4bdb-43be-a4ec-eb4334c9fc3a",
+              "126d2d53-0c23-4d27-9930-88e40a254c34",
+              "120587a3-d68e-4837-8275-af9de4f9b3bd",
+              "cec3e865-2542-4610-9706-70af6ead4baf",
+              "fd24318a-da03-4316-8209-afefc8b7c079"
+            ]
+          }
+        ],
+        "remediation": {
+          "steps": [
+            "Restringir reglas a IPs y puertos específicos"
+          ],
+          "effort_hours": 6,
+          "priority": "CRITICA",
+          "time_days": 3
+        }
+      },
+      {
+        "id": "46e214085047",
+        "title": "VPCs sin Recursos Asociados",
+        "description": "VPCs creadas pero sin recursos activos generando costos",
+        "severity": "MEDIA",
+        "cvss_score": 4.2,
+        "affected_resources": [
+          {
+            "type": "vpc",
+            "identifiers": [
+              "226a8988-4786-465b-af8e-62c1533c2460",
+              "244e97db-12df-40f3-8c8c-a9e79999ce9b",
+              "36ae4994-67cb-44ff-a793-3619a4fd6629",
+              "44a14efc-1762-4c86-8731-187c3bea0c7a",
+              "4cd732fb-6c68-4b13-8437-efa79880d2cb",
+              "91104d53-0155-4f93-8eef-ac4f033cfb2e",
+              "f156045a-556b-49b9-8669-d8190c19ceee",
+              "28f3248b-87c1-40ab-882d-af35ad49c541",
+              "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
+              "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
+              "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+              "b0c609f7-af01-442b-8d93-e5c776dff09f",
+              "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
+              "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
+              "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
+              "45dd8c8b-4fbc-47eb-8c07-5b82684d1683"
+            ]
+          }
+        ],
+        "remediation": {
+          "steps": [
+            "Revisar y eliminar VPCs sin recursos activos",
+            "Documentar el propósito de VPCs aparentemente vacías",
+            "Consolidar recursos en VPCs existentes cuando sea posible",
+            "Establecer proceso de limpieza regular de recursos no utilizados"
+          ],
+          "effort_hours": 4,
+          "priority": "MEDIA",
+          "time_days": 30
+        }
+      },
+      {
+        "id": "6b892665963d",
+        "title": "Incumplimiento de Nomenclatura",
+        "description": "Recursos de red sin seguir convención de nombres estándar",
+        "severity": "BAJA",
+        "cvss_score": 3.5,
+        "affected_resources": [
+          {
+            "type": "vpc",
+            "identifiers": [
+              "226a8988-4786-465b-af8e-62c1533c2460",
+              "244e97db-12df-40f3-8c8c-a9e79999ce9b",
+              "36ae4994-67cb-44ff-a793-3619a4fd6629",
+              "3d387f31-e1cc-4e99-9c38-881565c5375c",
+              "44a14efc-1762-4c86-8731-187c3bea0c7a",
+              "4cd732fb-6c68-4b13-8437-efa79880d2cb",
+              "91104d53-0155-4f93-8eef-ac4f033cfb2e",
+              "e57fc038-1a7e-4f7e-8963-310f041ddbf2",
+              "f156045a-556b-49b9-8669-d8190c19ceee",
+              "1bf15980-1891-46a8-bb99-cf974e98d44c",
+              "28f3248b-87c1-40ab-882d-af35ad49c541",
+              "2cd0caed-38cd-49fe-8dd1-5ad594de0e1d",
+              "5ccb67a2-1787-4431-baa4-4b23c39ff8ef",
+              "65ccd3b0-3d57-40f6-88e9-c9bc256222a8",
+              "b0c609f7-af01-442b-8d93-e5c776dff09f",
+              "ca79ae4a-5058-4b7a-af10-f90fcaf87c65",
+              "ee2a45b0-066c-4fb1-ae26-54288609fa6e",
+              "fa2f9ab7-fee3-4c93-abc5-e8a560fb6aea",
+              "45dd8c8b-4fbc-47eb-8c07-5b82684d1683"
+            ]
+          }
+        ],
+        "remediation": {
+          "steps": [
+            "Establecer y documentar convenciones de nomenclatura",
+            "Renombrar VPCs para seguir patrón: {project}-{env}-{purpose}-vpc",
+            "Evitar nombres genéricos como 'default' o 'main'",
+            "Incluir indicador de ambiente en todos los nombres",
+            "Implementar validación automática en proceso de creación"
+          ],
+          "effort_hours": 8,
+          "priority": "BAJA",
+          "time_days": 60
+        }
+      }
+    ]
   }
 }

@@ -31,16 +31,52 @@ class NetworkReportGenerator:
             'BAJA': '🟢'
         }
 
-        # Mapeo de códigos NET a frameworks de compliance
+        # Mapeo de códigos NET a frameworks de compliance (actualizado con 20 controles)
         self.compliance_mapping = {
-            'NET-001': {'CIS': '2.1', 'ISO': 'A.13.1.1', 'NIST': 'PR.AC-5'},
-            'NET-002': {'CIS': '2.2', 'ISO': 'A.13.1.3', 'NIST': 'PR.AC-5'},
-            'NET-003': {'CIS': '4.1-4.4', 'ISO': 'A.13.1.1', 'NIST': 'PR.AC-5'},
-            'NET-004': {'CIS': '4.1-4.4', 'ISO': 'A.13.1.1', 'NIST': 'PR.AC-5'},
-            'NET-005': {'CIS': '3.1-3.7', 'ISO': 'A.13.1.1', 'NIST': 'PR.AC-5'},
-            'NET-006': {'CIS': '2.3', 'ISO': 'A.13.1.3', 'NIST': 'PR.AC-5'},
-            'NET-007': {'CIS': '2.4', 'ISO': 'A.10.1.1', 'NIST': 'PR.DS-2'},
-            'NET-008': {'CIS': '2.5', 'ISO': 'A.12.4.1', 'NIST': 'DE.CM-1'}
+            'NET-001': {'CIS': 'CIS 2.1', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-002': {'CIS': 'CIS 2.2', 'ISO': 'ISO 27001 A.13.1.3', 'NIST': 'NIST PR.AC-5'},
+            'NET-003': {'CIS': 'CIS 4.1-4.4', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-004': {'CIS': 'CIS 4.1-4.4', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-005': {'CIS': 'CIS 3.1-3.7', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-006': {'CIS': 'CIS 2.3', 'ISO': 'ISO 27001 A.13.1.3', 'NIST': 'NIST PR.AC-5'},
+            'NET-007': {'CIS': 'CIS 2.4', 'ISO': 'ISO 27001 A.10.1.1', 'NIST': 'NIST PR.DS-2'},
+            'NET-008': {'CIS': 'CIS 2.5', 'ISO': 'ISO 27001 A.12.4.1', 'NIST': 'NIST DE.CM-1'},
+            'NET-009': {'CIS': 'CIS 4.6', 'ISO': 'ISO 27001 A.13.1.3', 'NIST': 'NIST PR.AC-5'},
+            'NET-010': {'CIS': 'CIS 4.5', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-011': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.12.4.1', 'NIST': 'NIST DE.AE-1'},
+            'NET-012': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.8.1.1', 'NIST': 'NIST ID.AM-2'},
+            'NET-013': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.13.2.1', 'NIST': 'NIST PR.DS-5'},
+            'NET-014': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.12.1.1', 'NIST': 'NIST ID.AM-3'},
+            'NET-015': {'CIS': 'CIS 2.6', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-016': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.17.1.1', 'NIST': 'NIST PR.PT-5'},
+            'NET-017': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.13.1.3', 'NIST': 'NIST PR.AC-5'},
+            'NET-018': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.13.1.1', 'NIST': 'NIST PR.AC-5'},
+            'NET-019': {'CIS': 'N/A', 'ISO': 'ISO 27001 A.10.1.1', 'NIST': 'NIST PR.DS-2'},
+            'NET-020': {'CIS': 'CIS 4.6', 'ISO': 'ISO 27001 A.13.1.3', 'NIST': 'NIST PR.AC-5'}
+        }
+
+        # Descripciones de controles (actualizadas con 20 controles)
+        self.control_descriptions = {
+            'NET-001': 'VPC sin Segregación de Subnets',
+            'NET-002': 'Subnets Públicas sin Justificación',
+            'NET-003': 'Security Groups con Reglas 0.0.0.0/0',
+            'NET-004': 'Puertos Críticos Expuestos a Internet',
+            'NET-005': 'Ausencia de Network ACLs',
+            'NET-006': 'VPC Peering sin Restricciones',
+            'NET-007': 'ELB sin Cifrado SSL/TLS',
+            'NET-008': 'Ausencia de Flow Logs',
+            'NET-009': 'Sin Aislamiento entre Ambientes',
+            'NET-010': 'Comunicación Lateral sin Restricción',
+            'NET-011': 'Sin Integración con Fortinet SIEM',
+            'NET-012': 'EIPs sin Justificación Documentada',
+            'NET-013': 'Bandwidth sin Límites Configurados',
+            'NET-014': 'Route Tables sin Documentación',
+            'NET-015': 'DNS Resolver sin Restricciones',
+            'NET-016': 'NAT Gateway sin Alta Disponibilidad',
+            'NET-017': 'NAT Gateway Compartido entre Ambientes',
+            'NET-018': 'Sin VPC Endpoints para Servicios',
+            'NET-019': 'Cross-Region Traffic sin Cifrado',
+            'NET-020': 'Sin Segmentación de Bases de Datos'
         }
 
     # --------------------------------------------------------------------- #
@@ -95,15 +131,15 @@ class NetworkReportGenerator:
 
         findings = self._get_all_findings()
 
-        # Restar puntos según severidad
+        # Restar puntos según severidad (ajustado para 20 controles)
         for finding in findings:
             severity = finding.get('severity', 'BAJA')
             if severity == 'CRITICA':
-                score -= 20
+                score -= 15  # Reducido de 20 para acomodar más controles
             elif severity == 'ALTA':
-                score -= 10
+                score -= 8   # Reducido de 10
             elif severity == 'MEDIA':
-                score -= 5
+                score -= 4   # Reducido de 5
             elif severity == 'BAJA':
                 score -= 2
 
@@ -194,6 +230,9 @@ class NetworkReportGenerator:
             # Load Balancers
             f.write(self._generate_load_balancers_section())
 
+            # Controles avanzados (NET-009 a NET-020)
+            f.write(self._generate_advanced_controls_section())
+
             # Hallazgos críticos
             f.write(self._generate_critical_findings_section())
 
@@ -219,19 +258,37 @@ class NetworkReportGenerator:
             "3. [Análisis Regional](#análisis-regional)"
         ]
 
+        section_num = 4
+
         # Agregar secciones según datos disponibles
         if self.results.get('vpcs'):
-            sections.append("4. [VPCs y Segmentación](#vpcs-y-segmentación)")
+            sections.append(
+                f"{section_num}. [VPCs y Segmentación](#vpcs-y-segmentación)")
+            section_num += 1
+
         if self.results.get('security_groups'):
-            sections.append("5. [Security Groups](#security-groups)")
+            sections.append(
+                f"{section_num}. [Security Groups](#security-groups)")
+            section_num += 1
+
         if self.results.get('exposed_resources'):
-            sections.append("6. [Recursos Expuestos](#recursos-expuestos)")
+            sections.append(
+                f"{section_num}. [Recursos Expuestos](#recursos-expuestos)")
+            section_num += 1
+
         if self.results.get('load_balancers'):
-            sections.append("7. [Load Balancers](#load-balancers)")
+            sections.append(
+                f"{section_num}. [Load Balancers](#load-balancers)")
+            section_num += 1
+
+        # Nueva sección de controles avanzados
+        sections.append(
+            f"{section_num}. [Controles Avanzados de Seguridad](#controles-avanzados-de-seguridad)")
+        section_num += 1
 
         sections.extend([
-            "8. [Hallazgos Críticos](#hallazgos-críticos)",
-            "9. [Recomendaciones](#recomendaciones)"
+            f"{section_num}. [Hallazgos Críticos](#hallazgos-críticos)",
+            f"{section_num + 1}. [Recomendaciones](#recomendaciones)"
         ])
 
         for section in sections:
@@ -525,6 +582,76 @@ class NetworkReportGenerator:
         content += "\n---\n\n"
         return content
 
+    def _generate_advanced_controls_section(self) -> str:
+        """Generar sección de controles avanzados (NET-009 a NET-020)"""
+        content = "## Controles Avanzados de Seguridad\n\n"
+
+        findings = self._get_all_findings()
+        advanced_codes = ['NET-009', 'NET-010', 'NET-011', 'NET-012', 'NET-013',
+                          'NET-014', 'NET-015', 'NET-016', 'NET-017', 'NET-018',
+                          'NET-019', 'NET-020']
+
+        # Filtrar hallazgos de controles avanzados
+        advanced_findings = [
+            f for f in findings if f.get('id') in advanced_codes]
+
+        if not advanced_findings:
+            content += "✅ No se encontraron incumplimientos en controles avanzados\n\n"
+            return content
+
+        content += f"### ⚠️ {len(advanced_findings)} Controles Avanzados con Hallazgos\n\n"
+
+        # Agrupar por categoría
+        categories = {
+            'Aislamiento y Segmentación': ['NET-009', 'NET-010', 'NET-020'],
+            'Integración con Fortinet': ['NET-011'],
+            'Gestión de Recursos': ['NET-012', 'NET-013', 'NET-014'],
+            'Alta Disponibilidad': ['NET-016', 'NET-017'],
+            'Configuración Avanzada': ['NET-015', 'NET-018', 'NET-019']
+        }
+
+        for category, codes in categories.items():
+            category_findings = [
+                f for f in advanced_findings if f.get('id') in codes]
+
+            if category_findings:
+                content += f"#### {category}\n\n"
+
+                for finding in category_findings:
+                    code = finding.get('id')
+                    severity = finding.get('severity', 'MEDIA')
+                    icon = self.severity_colors.get(severity, '⚪')
+
+                    content += f"{icon} **{code}: {self.control_descriptions.get(code, 'N/A')}**\n"
+
+                    details = finding.get('details', {})
+                    if isinstance(details, dict):
+                        recommendation = details.get('recommendation', '')
+                        if recommendation:
+                            content += f"   - Recomendación: {recommendation}\n"
+
+                    content += "\n"
+
+        # Destacar controles críticos específicos
+        critical_advanced = ['NET-009', 'NET-019', 'NET-020']
+        critical_found = [f for f in advanced_findings if f.get(
+            'id') in critical_advanced]
+
+        if critical_found:
+            content += "### 🔴 Controles Críticos de Aislamiento\n\n"
+            content += "Los siguientes controles son fundamentales para la seguridad:\n\n"
+
+            for code in critical_advanced:
+                if any(f.get('id') == code for f in critical_found):
+                    content += f"- **{code}**: {self.control_descriptions.get(code)}\n"
+
+            content += "\n**Impacto**: La falta de estos controles puede resultar en "
+            content += "movimiento lateral de atacantes, exposición de datos sensibles "
+            content += "y violación de compliance regulatorio.\n"
+
+        content += "\n---\n\n"
+        return content
+
     def _generate_critical_findings_section(self) -> str:
         """Generar sección de hallazgos críticos"""
         content = "## Hallazgos Críticos\n\n"
@@ -580,50 +707,104 @@ class NetworkReportGenerator:
         # Recomendaciones por prioridad
         content += "### 🎯 Acciones Prioritarias\n\n"
 
-        # Prioridad 1: Hallazgos críticos
+        # Prioridad 1: Hallazgos críticos (incluye los nuevos NET-009, NET-019, NET-020)
         critical = [f for f in findings if f.get('severity') == 'CRITICA']
         if critical:
             content += "#### Prioridad 1: Inmediata (0-3 días)\n\n"
 
-            recommendations = set()
-            for finding in critical:
-                details = finding.get('details', {})
-                if isinstance(details, dict):
-                    rec = details.get('recommendation', '')
-                    if rec:
-                        recommendations.add(rec)
+            # Agrupar recomendaciones críticas por tema
+            critical_groups = {
+                'Exposición Externa': ['NET-003', 'NET-004'],
+                'Aislamiento y Segmentación': ['NET-009', 'NET-020'],
+                'Cifrado': ['NET-019']
+            }
 
-            for i, rec in enumerate(recommendations, 1):
-                content += f"{i}. {rec}\n"
+            for group_name, codes in critical_groups.items():
+                group_findings = [f for f in critical if f.get('id') in codes]
+                if group_findings:
+                    content += f"**{group_name}:**\n"
 
-            content += "\n"
+                    recommendations = set()
+                    for finding in group_findings:
+                        details = finding.get('details', {})
+                        if isinstance(details, dict):
+                            rec = details.get('recommendation', '')
+                            if rec:
+                                recommendations.add(rec)
+
+                    for i, rec in enumerate(recommendations, 1):
+                        content += f"{i}. {rec}\n"
+                    content += "\n"
 
         # Prioridad 2: Hallazgos altos
         high = [f for f in findings if f.get('severity') == 'ALTA']
         if high:
             content += "#### Prioridad 2: Corto Plazo (1-2 semanas)\n\n"
 
-            recommendations = set()
-            for finding in high[:10]:  # Limitar a 10
-                details = finding.get('details', {})
-                if isinstance(details, dict):
-                    rec = details.get('recommendation', '')
-                    if rec:
-                        recommendations.add(rec)
+            high_groups = {
+                'Alta Disponibilidad': ['NET-016', 'NET-017'],
+                'Configuración de Red': ['NET-001', 'NET-002', 'NET-006'],
+                'Monitoreo': ['NET-007', 'NET-010', 'NET-011'],
+                'Servicios Cloud': ['NET-018']
+            }
 
-            for i, rec in enumerate(recommendations, 1):
-                content += f"{i}. {rec}\n"
+            for group_name, codes in high_groups.items():
+                group_findings = [f for f in high if f.get('id') in codes]
+                if group_findings:
+                    content += f"**{group_name}:**\n"
 
+                    recommendations = set()
+                    for finding in group_findings[:5]:  # Limitar a 5
+                        details = finding.get('details', {})
+                        if isinstance(details, dict):
+                            rec = details.get('recommendation', '')
+                            if rec:
+                                recommendations.add(rec)
+
+                    for i, rec in enumerate(recommendations, 1):
+                        content += f"{i}. {rec}\n"
+                    content += "\n"
+
+        # Prioridad 3: Hallazgos medios
+        medium = [f for f in findings if f.get('severity') == 'MEDIA']
+        if medium:
+            content += "#### Prioridad 3: Mediano Plazo (1 mes)\n\n"
+
+            medium_codes = ['NET-005', 'NET-008',
+                            'NET-012', 'NET-013', 'NET-015']
+            for code in medium_codes:
+                code_findings = [f for f in medium if f.get('id') == code]
+                if code_findings:
+                    content += f"- {self.control_descriptions.get(code, code)}\n"
             content += "\n"
 
-        # Mejores prácticas generales
+        # Mejores prácticas generales (actualizadas)
         content += "### 📚 Mejores Prácticas Recomendadas\n\n"
-        content += "1. **Principio de Menor Privilegio**: Restringir todos los Security Groups al mínimo necesario\n"
-        content += "2. **Segmentación de Red**: Implementar subnets públicas/privadas/DMZ en todas las VPCs\n"
-        content += "3. **Monitoreo Continuo**: Habilitar Flow Logs y centralizar análisis de tráfico\n"
-        content += "4. **Cifrado en Tránsito**: Usar SSL/TLS en todos los Load Balancers y servicios públicos\n"
-        content += "5. **Defense in Depth**: Implementar Network ACLs además de Security Groups\n"
-        content += "6. **Auditoría Regular**: Revisar mensualmente configuraciones de red y exposición\n"
+        content += "#### Segmentación y Aislamiento\n"
+        content += "1. **Segregación de Ambientes**: Separar completamente DEV/QA/PROD en VPCs distintas\n"
+        content += "2. **Microsegmentación**: Implementar segmentación a nivel de aplicación con Security Groups específicos\n"
+        content += "3. **Aislamiento de Bases de Datos**: Ubicar todas las bases de datos en subnets privadas dedicadas\n"
+        content += "4. **Zero Trust Network**: Asumir que ningún tráfico interno es confiable por defecto\n\n"
+
+        content += "#### Monitoreo y Visibilidad\n"
+        content += "5. **Flow Logs Centralizados**: Habilitar Flow Logs y enviar a Fortinet FortiAnalyzer\n"
+        content += "6. **Integración SIEM**: Conectar eventos de Huawei Cloud con FortiSIEM\n"
+        content += "7. **Alertas Proactivas**: Configurar alertas para cambios en configuraciones críticas\n\n"
+
+        content += "#### Cifrado y Protección\n"
+        content += "8. **TLS Everywhere**: Usar TLS 1.2+ en todas las comunicaciones\n"
+        content += "9. **Cifrado Cross-Region**: IPSec o TLS para todo tráfico entre regiones\n"
+        content += "10. **Gestión de Certificados**: Rotación automática y almacenamiento seguro\n\n"
+
+        content += "#### Alta Disponibilidad\n"
+        content += "11. **Redundancia Multi-AZ**: Distribuir recursos críticos en múltiples zonas\n"
+        content += "12. **NAT Gateway HA**: Implementar NAT Gateways redundantes\n"
+        content += "13. **VPC Endpoints**: Usar endpoints para servicios críticos (OBS, RDS)\n\n"
+
+        content += "#### Gestión y Documentación\n"
+        content += "14. **Inventario Actualizado**: Mantener documentación de todos los recursos de red\n"
+        content += "15. **Justificación de Recursos**: Documentar la necesidad de cada EIP y recurso público\n"
+        content += "16. **Revisión Periódica**: Auditar mensualmente configuraciones de red\n"
 
         content += "\n---\n\n"
         return content
@@ -754,40 +935,92 @@ class NetworkReportGenerator:
 
                         f.write("\n")
 
-            # Estimación de esfuerzo
+            # Estimación de esfuerzo (actualizada para 20 controles)
             f.write("## 📊 Estimación de Esfuerzo\n\n")
 
-            total_hours = {
-                'CRITICA': len(severity_groups['CRITICA']) * 4,
-                'ALTA': len(severity_groups['ALTA']) * 3,
-                'MEDIA': len(severity_groups['MEDIA']) * 2,
-                'BAJA': len(severity_groups['BAJA']) * 1
+            # Horas por hallazgo según complejidad del control
+            hours_mapping = {
+                'NET-001': 8, 'NET-002': 4, 'NET-003': 6, 'NET-004': 8,
+                'NET-005': 6, 'NET-006': 4, 'NET-007': 4, 'NET-008': 3,
+                'NET-009': 16, 'NET-010': 12, 'NET-011': 8, 'NET-012': 2,
+                'NET-013': 3, 'NET-014': 2, 'NET-015': 4, 'NET-016': 8,
+                'NET-017': 6, 'NET-018': 6, 'NET-019': 10, 'NET-020': 12
             }
 
-            f.write("| Severidad | Hallazgos | Horas/Hallazgo | Total Horas |\n")
+            total_hours = 0
+            effort_details = []
+
+            for finding in self._get_all_findings():
+                code = finding.get('id', '')
+                if code in hours_mapping:
+                    hours = hours_mapping[code]
+                    total_hours += hours
+                    effort_details.append((code, hours))
+
+            # Agrupar por severidad para la tabla
+            severity_effort = {
+                'CRITICA': 0,
+                'ALTA': 0,
+                'MEDIA': 0,
+                'BAJA': 0
+            }
+
+            for finding in self._get_all_findings():
+                code = finding.get('id', '')
+                severity = finding.get('severity', 'BAJA')
+                if code in hours_mapping:
+                    severity_effort[severity] += hours_mapping[code]
+
+            f.write("| Severidad | Hallazgos | Horas Promedio | Total Horas |\n")
             f.write("|-----------|-----------|----------------|-------------|\n")
 
             for severity in ['CRITICA', 'ALTA', 'MEDIA', 'BAJA']:
-                count = len(severity_groups[severity])
-                hours_per = {'CRITICA': 4, 'ALTA': 3,
-                             'MEDIA': 2, 'BAJA': 1}[severity]
-                total = total_hours[severity]
-                f.write(f"| {severity} | {count} | {hours_per} | {total} |\n")
+                count = len([f for f in self._get_all_findings()
+                            if f.get('severity') == severity])
+                total = severity_effort[severity]
+                avg = total / count if count > 0 else 0
+                f.write(f"| {severity} | {count} | {avg:.1f} | {total} |\n")
 
             f.write(
-                f"\n**Total estimado**: {sum(total_hours.values())} horas\n\n")
+                f"\n**Total estimado**: {total_hours} horas ({total_hours/8:.1f} días-persona)\n\n")
 
-            # Métricas de éxito
+            # Recursos necesarios
+            f.write("### 👥 Recursos Recomendados\n\n")
+            f.write(
+                "- **Arquitecto de Red**: Para diseño de segmentación y VPC endpoints\n")
+            f.write(
+                "- **Ingeniero de Seguridad**: Para configuración de Security Groups y NACLs\n")
+            f.write(
+                "- **Especialista en Fortinet**: Para integración con FortiSIEM/FortiAnalyzer\n")
+            f.write("- **DevOps Engineer**: Para automatización y IaC\n\n")
+
+            # Métricas de éxito (actualizadas para 20 controles)
             f.write("## 🎯 Métricas de Éxito\n\n")
-            f.write("- Score de seguridad objetivo: **80/100**\n")
-            f.write("- Eliminar el 100% de hallazgos críticos\n")
+            f.write("### Objetivos a 30 días:\n")
+            f.write(
+                "- Eliminar el 100% de hallazgos críticos (NET-003, NET-004, NET-009, NET-019, NET-020)\n")
             f.write("- Reducir hallazgos altos en un 80%\n")
-            f.write("- Implementar monitoreo continuo para todos los recursos\n")
-            f.write("- Documentar todas las excepciones de seguridad\n\n")
+            f.write("- Score de seguridad objetivo: **85/100**\n\n")
+
+            f.write("### Objetivos a 90 días:\n")
+            f.write("- Implementar segregación completa de ambientes (NET-009)\n")
+            f.write("- Integración completa con Fortinet SIEM (NET-011)\n")
+            f.write("- Flow Logs en el 100% de VPCs críticas (NET-008)\n")
+            f.write("- Cifrado en todo tráfico cross-region (NET-019)\n")
+            f.write("- Score de seguridad objetivo: **95/100**\n\n")
+
+            f.write("### KPIs de Seguimiento:\n")
+            f.write("- Número de puertos críticos expuestos: Target 0\n")
+            f.write("- Porcentaje de VPCs con segregación: Target 100%\n")
+            f.write("- Security Groups con reglas 0.0.0.0/0: Target 0\n")
+            f.write("- Recursos sin monitoreo: Target 0\n")
+            f.write("- Compliance con frameworks: Target >95%\n\n")
 
             f.write("---\n\n")
             f.write(
                 "*Plan generado automáticamente - Requiere revisión del equipo de seguridad*\n")
+            f.write(
+                f"*Basado en {len(self._get_all_findings())} hallazgos identificados*\n")
 
         self.logger.info(f"Plan de remediación generado: {remediation_path}")
         return remediation_path
@@ -807,7 +1040,7 @@ class NetworkReportGenerator:
             f.write("| Código | Control | CIS | ISO 27001 | NIST CSF | Estado |\n")
             f.write("|--------|---------|-----|-----------|----------|--------|\n")
 
-            # Verificar cada control NET
+            # Verificar cada control NET (actualizado para 20 controles)
             findings_by_code = {}
             for finding in self._get_all_findings():
                 code = finding.get('id', '')
@@ -815,33 +1048,34 @@ class NetworkReportGenerator:
                     findings_by_code[code] = []
                 findings_by_code[code].append(finding)
 
-            control_descriptions = {
-                'NET-001': 'VPC sin Segregación de Subnets',
-                'NET-002': 'Subnets Públicas sin Justificación',
-                'NET-003': 'Security Groups con Reglas Permisivas',
-                'NET-004': 'Puertos Críticos Expuestos',
-                'NET-005': 'Ausencia de Network ACLs',
-                'NET-006': 'VPC Peering sin Restricciones',
-                'NET-007': 'ELB sin Cifrado SSL/TLS',
-                'NET-008': 'Ausencia de Flow Logs'
-            }
-
-            for code in ['NET-001', 'NET-002', 'NET-003', 'NET-004',
-                         'NET-005', 'NET-006', 'NET-007', 'NET-008']:
+            # Iterar sobre todos los 20 controles NET
+            for code in ['NET-001', 'NET-002', 'NET-003', 'NET-004', 'NET-005',
+                         'NET-006', 'NET-007', 'NET-008', 'NET-009', 'NET-010',
+                         'NET-011', 'NET-012', 'NET-013', 'NET-014', 'NET-015',
+                         'NET-016', 'NET-017', 'NET-018', 'NET-019', 'NET-020']:
                 compliance = self.compliance_mapping.get(code, {})
                 status = '❌ No Cumple' if code in findings_by_code else '✅ Cumple'
 
+                # Manejar N/A en frameworks
+                cis_ref = compliance.get('CIS', 'N/A')
+                iso_ref = compliance.get('ISO', 'N/A')
+                nist_ref = compliance.get('NIST', 'N/A')
+
+                # Formatear referencias ISO (quitar prefijo si ya está)
+                if iso_ref != 'N/A' and not iso_ref.startswith('ISO'):
+                    iso_ref = f'ISO 27001 {iso_ref}'
+
                 f.write(
-                    f"| {code} | {control_descriptions.get(code, 'N/A')} | ")
-                f.write(f"{compliance.get('CIS', 'N/A')} | ")
-                f.write(f"{compliance.get('ISO', 'N/A')} | ")
-                f.write(f"{compliance.get('NIST', 'N/A')} | ")
+                    f"| {code} | {self.control_descriptions.get(code, 'N/A')} | ")
+                f.write(f"{cis_ref} | ")
+                f.write(f"{iso_ref} | ")
+                f.write(f"{nist_ref} | ")
                 f.write(f"{status} |\n")
 
             # Resumen por framework
             f.write("\n## Resumen de Cumplimiento\n\n")
 
-            total_controls = 8
+            total_controls = 20  # Actualizado
             controls_failed = len(findings_by_code)
             compliance_percentage = (
                 (total_controls - controls_failed) / total_controls * 100)
