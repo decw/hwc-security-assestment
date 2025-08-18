@@ -231,9 +231,29 @@ async def run_analysis(iam_data, args):
 
         print("✅ Analizador IAM inicializado correctamente")
 
-        # Ejecutar análisis
+        # Ejecutar análisis con manejo de errores detallado
         print("🔍 Analizando vulnerabilidades IAM...")
-        analyzer.analyze_iam_vulnerabilities(iam_data)
+
+        try:
+            analyzer.analyze_iam_vulnerabilities(iam_data)
+            print("✅ Análisis IAM completado sin errores")
+        except Exception as analysis_error:
+            print(
+                f"❌ ERROR específico en analyze_iam_vulnerabilities: {analysis_error}")
+            import traceback
+            print("🔍 TRACEBACK COMPLETO:")
+            traceback.print_exc()
+
+            # Intentar identificar si es el error de pandas específico
+            if "ambiguous" in str(analysis_error) and "array" in str(analysis_error):
+                print(
+                    "\n🐛 ERROR IDENTIFICADO: Problema con evaluación booleana de arrays pandas")
+                print(
+                    "💡 CAUSA: Algún método está intentando evaluar un array/Series como boolean")
+                print(
+                    "🔧 SOLUCIÓN: Revisar uso de pd.notna() o comparaciones directas de arrays")
+
+            raise  # Re-lanzar para que se maneje arriba
 
         # Obtener resultados
         vulnerabilities = analyzer.get_vulnerabilities()
@@ -251,8 +271,19 @@ async def run_analysis(iam_data, args):
         return analysis_results, None
 
     except ImportError as e:
-        return None, f"❌ ERROR: No se pudo importar IAMNetworkVulnerabilityAnalyzer: {e}"
+        return None, f"❌ ERROR: No se pudo importar ModuleVulnerabilityAnalyzer: {e}"
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"\n🔍 ERROR DETALLADO EN ANÁLISIS:")
+        print(error_details)
+
+        # Buscar línea específica del error
+        lines = error_details.split('\n')
+        for line in lines:
+            if 'ambiguous' in line or 'array' in line:
+                print(f"\n🎯 LÍNEA PROBLEMÁTICA: {line}")
+
         return None, f"❌ ERROR durante el análisis: {e}"
 
 

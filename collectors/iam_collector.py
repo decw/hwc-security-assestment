@@ -1449,9 +1449,10 @@ class IAMCollector:
             if hasattr(response.credential, 'last_use_time') and response.credential.last_use_time:
                 # CORREGIDO: Solo retornar si hay fecha real de último uso
                 last_use_time = response.credential.last_use_time
-                
+
                 # Verificar que no sea igual a la fecha de creación
-                created_time = getattr(response.credential, 'create_time', None)
+                created_time = getattr(
+                    response.credential, 'create_time', None)
                 if last_use_time != created_time:
                     return {
                         'timestamp': last_use_time,
@@ -2424,14 +2425,14 @@ class IAMCollector:
             # Keys antiguas (>90 días y activas)
             if key.get('age_days', 0) > 90 and key.get('status') == 'active':
                 stats['old_access_keys'] += 1
-            
+
             # CORREGIDO: Keys sin uso (timestamp vacío y >30 días)
             last_used_data = key.get('last_used', {})
             if isinstance(last_used_data, dict):
                 timestamp = last_used_data.get('timestamp', '')
             else:
                 timestamp = last_used_data or ''
-            
+
             # Key sin uso si no tiene timestamp y tiene más de 30 días
             if not timestamp and key.get('age_days', 0) > 30:
                 stats['unused_access_keys'] += 1
