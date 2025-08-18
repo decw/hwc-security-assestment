@@ -291,8 +291,26 @@ class IAMReportGenerator:
         # Contar hallazgos por severidad
         severity_counts = {'CRITICAL': 0, 'HIGH': 0, 'MEDIUM': 0, 'LOW': 0}
         for finding in findings:
-            severity = finding.get('severity', 'LOW')
-            severity_counts[severity] += 1
+            severity = finding.get('severity', 'LOW').upper()
+
+            # CORREGIDO: Normalizar severidades de español a inglés
+            if severity in ['CRITICA', 'CRÍTICA']:
+                severity = 'CRITICAL'
+            elif severity in ['ALTA']:
+                severity = 'HIGH'
+            elif severity in ['MEDIA']:
+                severity = 'MEDIUM'
+            elif severity in ['BAJA']:
+                severity = 'LOW'
+
+            # Verificar que la severidad sea válida antes de usar como clave
+            if severity in severity_counts:
+                severity_counts[severity] += 1
+            else:
+                self.logger.warning(
+                    f"Severidad desconocida encontrada: {severity}")
+                # Default a LOW para severidades desconocidas
+                severity_counts['LOW'] += 1
 
         total_findings = len(findings)
         total_users = stats.get('total_users', 0)
@@ -370,28 +388,86 @@ class IAMReportGenerator:
 - **Usuarios Inactivos**: {stats.get('inactive_users', 0)}
 - **Cuentas de Servicio**: {stats.get('service_accounts', 0)}
 
+### 🔐 Estadísticas de Contraseñas
+
+- **Contraseñas Recientes (<30 días)**: {self._count_passwords_by_age(users, 0, 30)}
+- **Contraseñas Moderadas (30-90 días)**: {self._count_passwords_by_age(users, 30, 90)}
+- **Contraseñas Antiguas (>90 días)**: {self._count_passwords_by_age(users, 90, 999999)}
+- **Sin Datos de Contraseña**: {self._count_passwords_without_data(users)}
+
 ### 🔍 Detalle de Usuarios
 
-| Usuario | Estado | Último Login | MFA | Grupos | Acceso Admin |
-|---------|--------|--------------|-----|--------|--------------|
+**Nota**: La edad de contraseña se calcula desde la última modificación (`modify_pwd_time`). 
+- 🟢 **< 30 días**: Contraseña reciente
+- 🟡 **30-90 días**: Contraseña moderada  
+- 🔴 **> 90 días**: Contraseña antigua (requiere cambio)
+
+| Usuario | Estado | Último Login | MFA | Grupos | Acceso Admin | Edad Contraseña |
+|---------|--------|--------------|-----|--------|--------------|-----------------|
 """
 
-        for user in users[:10]:  # Mostrar solo los primeros 10
+        for user in users:  # CAMBIO: Remover [:10]
             username = user.get('name', 'N/A')
             enabled = "✅" if user.get('enabled', True) else "❌"
-            last_login = user.get('last_login_time', 'Nunca')[
-                :10] if user.get('last_login_time') else 'Nunca'
+
+            # Último Login
+            last_login_raw = user.get('last_login_time')
+            if last_login_raw and last_login_raw != 'null':
+                try:
+                    # Formatear fecha si existe
+                    last_login = last_login_raw[:10] if len(
+                        last_login_raw) > 10 else last_login_raw
+                except:
+                    last_login = 'Sin datos'
+            else:
+                last_login = 'Sin datos'
+
+            # MFA Status
             mfa_status = "✅" if user.get('id') not in [u.get('user_id') for u in self.results.get(
                 'mfa_status', {}).get('users_without_mfa', [])] else "❌"
+
+            # Grupos
             groups = len(self.results.get(
                 'user_group_mappings', {}).get(user.get('id'), []))
-            admin_access = "" if user.get('id') in [u.get(
-                'user_id') for u in self.results.get('privileged_accounts', [])] else "✅"
 
-            content += f"| {username} | {enabled} | {last_login} | {mfa_status} | {groups} | {admin_access} |\n"
+            # Admin Access
+            admin_access = "🔴" if user.get('id') in [u.get(
+                'user_id') for u in self.results.get('privileged_accounts', [])] else ""
 
-        if len(users) > 10:
-            content += f"| ... y {len(users) - 10} usuarios más | | | | | |\n"
+            # NUEVO: Calcular antigüedad de contraseña
+            modify_pwd_time = user.get('modify_pwd_time')
+            if modify_pwd_time and modify_pwd_time != 'null':
+                try:
+                    from datetime import datetime
+                    # Manejar diferentes formatos de fecha
+                    if 'T' in modify_pwd_time:
+                        pwd_date = datetime.fromisoformat(
+                            modify_pwd_time.replace('Z', '+00:00'))
+                    else:
+                        # Formato: "2025-06-04 12:37:58.0"
+                        pwd_date = datetime.strptime(modify_pwd_time.split('.')[
+                                                     0], '%Y-%m-%d %H:%M:%S')
+
+                    pwd_age_days = (datetime.now() - pwd_date).days
+
+                    # Formatear según la antigüedad
+                    if pwd_age_days < 30:
+                        pwd_age = f"{pwd_age_days}d 🟢"  # Verde para reciente
+                    elif pwd_age_days < 90:
+                        pwd_age = f"{pwd_age_days}d 🟡"  # Amarillo para medio
+                    else:
+                        pwd_age = f"{pwd_age_days}d 🔴"  # Rojo para antigua
+
+                except Exception as e:
+                    pwd_age = "Error"
+            else:
+                pwd_age = "Sin datos"
+
+            content += f"| {username} | {enabled} | {last_login} | {mfa_status} | {groups} | {admin_access} | {pwd_age} |\n"
+
+        # Eliminar el mensaje de truncamiento (líneas 393-394)
+        # if len(users) > 10:
+        #     content += f"| ... y {len(users) - 10} usuarios más | | | | | |\n"
 
         content += "\n### 🚨 Usuarios Críticos\n\n"
 
@@ -400,20 +476,22 @@ class IAMReportGenerator:
             'mfa_status', {}).get('users_without_mfa', [])
         if users_without_mfa:
             content += "**Usuarios sin MFA:**\n"
-            for user in users_without_mfa[:5]:
+            for user in users_without_mfa:  # CAMBIO: Remover [:5]
                 content += f"- {user.get('user_name', 'N/A')}\n"
-            if len(users_without_mfa) > 5:
-                content += f"- ... y {len(users_without_mfa) - 5} usuarios más\n"
+            # Eliminar mensaje de truncamiento (líneas 405-406)
+            # if len(users_without_mfa) > 5:
+            #     content += f"- ... y {len(users_without_mfa) - 5} usuarios más\n"
             content += "\n"
 
         # Usuarios privilegiados
         privileged_users = self.results.get('privileged_accounts', [])
         if privileged_users:
             content += "**Usuarios con Privilegios Administrativos:**\n"
-            for user in privileged_users[:5]:
+            for user in privileged_users:  # CAMBIO: Remover [:5]
                 content += f"- {user.get('user_name', 'N/A')} (fuente: {user.get('privilege_source', 'N/A')})\n"
-            if len(privileged_users) > 5:
-                content += f"- ... y {len(privileged_users) - 5} usuarios más\n"
+            # Eliminar mensaje de truncamiento (líneas 415-416)
+            # if len(privileged_users) > 5:
+            #     content += f"- ... y {len(privileged_users) - 5} usuarios más\n"
             content += "\n"
 
         content += "---\n\n"
@@ -602,12 +680,17 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
         mfa_status = self.results.get('mfa_status', {})
         verification_summary = mfa_status.get('verification_summary', {})
 
+        # Calcular MFA real dinámicamente
+        mfa_types = mfa_status.get('mfa_types', {})
+        total_mfa_real = mfa_types.get(
+            'virtual', 0) + mfa_types.get('security_key', 0) + mfa_types.get('hardware', 0)
+
         content = f"""## 🔐 Estado de MFA y Verificación de Acceso
 
 ### 📊 Resumen General
 
 - **Total de Usuarios con Acceso a Consola**: {verification_summary.get('total_console_users', 0)}
-- **MFA Real Habilitado**: {mfa_status.get('mfa_enabled', 0)} ({verification_summary.get('real_mfa_percentage', 0)}%)
+- **MFA Real Habilitado**: {total_mfa_real} ({verification_summary.get('real_mfa_percentage', 0)}%)
 - **Verificación 2FA Habilitada**: {verification_summary.get('verification_2fa_count', 0)} ({verification_summary.get('verification_2fa_percentage', 0)}%)
 - **Sin Verificación**: {verification_summary.get('no_verification_count', 0)} ({verification_summary.get('no_verification_percentage', 0)}%)
 
@@ -615,8 +698,8 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
 
 | Método | Usuarios | Porcentaje |
 |--------|----------|------------|
-| Virtual MFA Device | {mfa_status.get('mfa_types', {}).get('virtual', 0)} | {round((mfa_status.get('mfa_types', {}).get('virtual', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
-| Security Key | {mfa_status.get('mfa_types', {}).get('security_key', 0)} | {round((mfa_status.get('mfa_types', {}).get('security_key', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| Virtual MFA Device | {mfa_status.get('mfa_types', {}).get('virtual', 0)} | {round((mfa_status.get('mfa_types', {}).get('virtual', 0) / mfa_status.get('total_users', 1)) * 100, 1)}% |
+| Security Key | {mfa_status.get('mfa_types', {}).get('security_key', 0)} | {round((mfa_status.get('mfa_types', {}).get('security_key', 0) / mfa_status.get('total_users', 1)) * 100, 1)}% |
 
 ### 📱 Verificación 2FA (Métodos de Verificación)
 
@@ -651,12 +734,13 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
                 content += "| Usuario | Tipo de Cuenta | Access Mode |\n"
                 content += "|---------|----------------|-------------|\n"
 
-                for user in users[:10]:  # Limitar a 10 usuarios por método
+                for user in users:  # CAMBIO: Remover [:10]
                     account_type = "🔧 Servicio" if user['is_service_account'] else "👤 Regular"
                     content += f"| {user['user_name']} | {account_type} | {user['access_mode']} |\n"
 
-                if len(users) > 10:
-                    content += f"| ... y {len(users) - 10} usuarios más | | |\n"
+                # Eliminar mensaje de truncamiento (líneas 662-663)
+                # if len(users) > 10:
+                #     content += f"| ... y {len(users) - 10} usuarios más | | |\n"
 
         content += "\n---\n\n"
         return content
@@ -678,15 +762,15 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
 
 ### 🔍 Detalle de Access Keys
 
-| Usuario | Estado | Edad (días) | Último Uso | Servicio |
-|---------|--------|-------------|------------|----------|
+| Usuario | Estado | Edad (días) | Último Uso |
+|---------|--------|-------------|------------|
 """
 
-        for key in access_keys[:10]:  # Mostrar solo las primeras 10
+        for key in access_keys:  # CAMBIO: Remover [:10]
             user_name = key.get('user_name', 'N/A')
             status = "✅" if key.get('status') == 'active' else "❌"
             age = key.get('age_days', 0)
-            
+
             # CORREGIDO: Mostrar timestamp del último uso
             last_used_data = key.get('last_used', {})
             if isinstance(last_used_data, dict) and last_used_data.get('timestamp'):
@@ -695,26 +779,23 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
                     # Formatear fecha para mostrar solo la fecha (sin hora)
                     try:
                         from datetime import datetime
-                        dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+                        dt = datetime.fromisoformat(
+                            timestamp.replace('Z', '+00:00'))
                         last_used = dt.strftime('%Y-%m-%d')
                     except:
-                        last_used = timestamp[:10]  # Tomar solo los primeros 10 caracteres (fecha)
+                        # Tomar solo los primeros 10 caracteres (fecha)
+                        last_used = timestamp[:10]
                 else:
                     last_used = 'Nunca'
             else:
                 last_used = 'Nunca'
-            
-            # CORREGIDO: Mostrar servicio real o 'Sin datos' si es unknown
-            service_data = key.get('last_used_service', 'N/A')
-            if service_data == 'unknown' or service_data is None:
-                service = 'Sin datos'
-            else:
-                service = service_data
 
-            content += f"| {user_name} | {status} | {age} | {last_used} | {service} |\n"
+            # REMOVIDO: Ya no incluir la columna de servicio
+            content += f"| {user_name} | {status} | {age} | {last_used} |\n"
 
-        if len(access_keys) > 10:
-            content += f"| ... y {len(access_keys) - 10} keys más | | | | |\n"
+        # Eliminar mensaje de truncamiento (líneas 722-723)
+        # if len(access_keys) > 10:
+        #     content += f"| ... y {len(access_keys) - 10} keys más | | | | |\n"
 
         content += "\n### 🚨 Access Keys Críticas\n\n"
 
@@ -723,10 +804,11 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
             'age_days', 0) > 90 and k.get('status') == 'active']
         if old_keys:
             content += "**Access Keys Antiguas (>90 días):**\n"
-            for key in old_keys[:5]:
+            for key in old_keys:  # CAMBIO: Remover [:5]
                 content += f"- {key.get('user_name', 'N/A')} ({key.get('age_days', 0)} días)\n"
-            if len(old_keys) > 5:
-                content += f"- ... y {len(old_keys) - 5} keys más\n"
+            # REMOVIDO: Eliminar mensaje de truncamiento
+            # if len(old_keys) > 5:
+            #     content += f"- ... y {len(old_keys) - 5} keys más\n"
             content += "\n"
 
         # Keys sin uso
@@ -734,10 +816,11 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
             'last_used') and k.get('age_days', 0) > 30]
         if unused_keys:
             content += "**Access Keys Sin Uso (>30 días):**\n"
-            for key in unused_keys[:5]:
+            for key in unused_keys:  # CAMBIO: Remover [:5]
                 content += f"- {key.get('user_name', 'N/A')} ({key.get('age_days', 0)} días)\n"
-            if len(unused_keys) > 5:
-                content += f"- ... y {len(unused_keys) - 5} keys más\n"
+            # REMOVIDO: Eliminar mensaje de truncamiento
+            # if len(unused_keys) > 5:
+            #     content += f"- ... y {len(unused_keys) - 5} keys más\n"
             content += "\n"
 
         content += "---\n\n"
@@ -1004,3 +1087,34 @@ Para consultas sobre este reporte, contactar al equipo de seguridad.
 
         self.logger.info(f"Plan de remediación generado: {remediation_path}")
         return remediation_path
+
+    def _count_passwords_by_age(self, users: List[Dict], min_days: int, max_days: int) -> int:
+        """Contar contraseñas por rango de edad"""
+        count = 0
+        for user in users:
+            modify_pwd_time = user.get('modify_pwd_time')
+            if modify_pwd_time and modify_pwd_time != 'null':
+                try:
+                    from datetime import datetime
+                    if 'T' in modify_pwd_time:
+                        pwd_date = datetime.fromisoformat(
+                            modify_pwd_time.replace('Z', '+00:00'))
+                    else:
+                        pwd_date = datetime.strptime(modify_pwd_time.split('.')[
+                                                     0], '%Y-%m-%d %H:%M:%S')
+
+                    pwd_age_days = (datetime.now() - pwd_date).days
+                    if min_days <= pwd_age_days < max_days:
+                        count += 1
+                except:
+                    pass
+        return count
+
+    def _count_passwords_without_data(self, users: List[Dict]) -> int:
+        """Contar usuarios sin datos de contraseña"""
+        count = 0
+        for user in users:
+            modify_pwd_time = user.get('modify_pwd_time')
+            if not modify_pwd_time or modify_pwd_time == 'null':
+                count += 1
+        return count

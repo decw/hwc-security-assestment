@@ -7,18 +7,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "christian.vazquez@iberdata.com.ar",
+      "create_time": "2025-03-27 18:06:16.0",
+      "last_login_time": "2025-07-17 20:16:04",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/7621b455711f48daa3d404bba883f1fe\"}",
-      "phone": "",
+      "phone": "0054-1131490639",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2025-03-27 18:06:16.0",
+      "pwd_create_time": "2025-03-27 18:06:16.0",
+      "modify_pwd_time": "2025-03-27 18:06:16.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -30,18 +34,22 @@
       "enabled": false,
       "password_expires_at": null,
       "description": "Conector nube movistar",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "infraestructura.it@camuzzigas.com.ar",
+      "create_time": "2019-04-01 15:23:32.0",
+      "last_login_time": "2019-04-01 15:23:32.0",
       "pwd_status": true,
-      "pwd_strength": null,
+      "pwd_strength": "None",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/2d5502377631460c9601244670a8aa1c\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
-      "access_mode": null,
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "access_mode": "default",
+      "update_time": "2019-04-01 15:23:32.0",
+      "pwd_create_time": null,
+      "modify_pwd_time": "2019-04-01 15:23:32.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -53,18 +61,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Consultor Iplan",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "dcabral@iplan.com.ar",
+      "create_time": "2025-05-29 15:36:06.0",
+      "last_login_time": "2025-08-18 06:05:45",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/cd50c85ce40f42edb375edba41193bb0\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
       "access_mode": "default",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2025-06-04 12:37:58.0",
+      "pwd_create_time": "2025-06-04 12:37:58.0",
+      "modify_pwd_time": "2025-06-04 12:37:58.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -76,18 +88,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Diego Garone",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "diego.garone@camuzzigas.com.ar",
+      "create_time": "2020-04-01 20:23:58.0",
+      "last_login_time": "2025-07-18 11:46:29",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/08450e873d00f5051fefc01364c4b18b\"}",
-      "phone": "",
+      "phone": "0054-1136427570",
       "is_domain_owner": false,
-      "access_mode": null,
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "access_mode": "default",
+      "update_time": "2020-04-01 20:23:57.0",
+      "pwd_create_time": "2020-04-01 20:29:52.0",
+      "modify_pwd_time": "2020-04-01 20:23:57.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -99,18 +115,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "emiliano.silva@camuzzigas.com.ar",
+      "create_time": "2019-06-14 17:35:08.0",
+      "last_login_time": "2025-08-14 15:31:13",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/ab66dc6fc98745bfa87f539d8e64aca2\"}",
-      "phone": "",
+      "phone": "0054-1158304154",
       "is_domain_owner": false,
-      "access_mode": null,
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "access_mode": "default",
+      "update_time": "2023-12-28 14:35:04.0",
+      "pwd_create_time": "2023-12-28 14:35:04.0",
+      "modify_pwd_time": "2023-12-28 14:35:04.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -122,18 +142,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Seguridad Informatica",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "florencia.pavon@camuzzigas.com.ar",
+      "create_time": "2022-04-25 17:42:15.0",
+      "last_login_time": "2022-04-26 00:53:09.0",
       "pwd_status": true,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/e84771c7285a47939e6895479962ddd0\"}",
-      "phone": "",
+      "phone": "0054-91168246247",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2023-09-08 19:37:00.0",
+      "pwd_create_time": "2023-09-08 19:37:00.0",
+      "modify_pwd_time": "2023-09-08 19:37:00.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -145,18 +169,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "guillermo.lobo@camuzzigas.com.ar",
+      "create_time": "2024-12-10 15:30:51.0",
+      "last_login_time": "2025-06-09 15:24:24",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/5ade0315e9ba4045b063df938541c286\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
       "access_mode": "default",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2025-06-09 15:23:14.0",
+      "pwd_create_time": "2025-06-09 15:23:14.0",
+      "modify_pwd_time": "2025-06-09 15:23:14.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -168,18 +196,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "julianv@cservices.com.ar",
+      "create_time": "2023-03-07 14:24:45.0",
+      "last_login_time": "2025-02-10 17:06:34",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/0563f1d7034343cfa595eeb58b633b99\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
       "access_mode": "default",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2024-11-20 13:25:32.0",
+      "pwd_create_time": "2024-11-20 13:25:32.0",
+      "modify_pwd_time": "2024-11-20 13:25:32.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -191,18 +223,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Seguridad Informatica",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "nicolas.alcorta@camuzzigas.com.ar",
+      "create_time": "2022-04-25 18:01:11.0",
+      "last_login_time": "2025-06-25 19:13:47",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/7b342f3b84144b048b37ade414729bf7\"}",
-      "phone": "",
+      "phone": "0054-91151753446",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2024-03-12 19:07:25.0",
+      "pwd_create_time": "2024-03-12 19:07:25.0",
+      "modify_pwd_time": "2024-03-12 19:07:25.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -214,18 +250,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Nicolas Villafañe",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "francisco.villafane@camuzzigas.com.ar",
+      "create_time": "2022-03-07 14:11:18.0",
+      "last_login_time": "2025-08-13 10:52:08",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/0e3c90608486441a87cfd710156eab73\"}",
-      "phone": "",
+      "phone": "0054-1121584782",
       "is_domain_owner": false,
       "access_mode": "default",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2024-10-14 18:34:20.0",
+      "pwd_create_time": "2024-10-14 18:34:20.0",
+      "modify_pwd_time": "2024-10-14 18:34:20.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -237,18 +277,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "pruebaii@camuzzigas.com.ar",
+      "create_time": "2024-08-05 13:51:57.0",
+      "last_login_time": "2025-08-06 16:57:55",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/220c0d60592f4f24bf773beee71891ad\"}",
-      "phone": "",
+      "phone": "0054-1136659793",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2024-08-05 14:06:17.0",
+      "pwd_create_time": "2024-08-05 14:06:17.0",
+      "modify_pwd_time": "2024-08-05 14:06:17.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -260,18 +304,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "ricardo.huberman@camuzzigas.com.ar",
+      "create_time": "2024-08-12 18:27:43.0",
+      "last_login_time": "2025-08-07 11:37:11",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/922791f34b45408cbea7f83c440a2293\"}",
-      "phone": "",
+      "phone": "0054-1135603393",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": null,
+      "pwd_create_time": "2024-08-12 18:27:43.0",
+      "modify_pwd_time": "2024-08-12 18:27:43.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -283,18 +331,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Consultor Iplan",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "rsuarez@iplan.com.ar",
+      "create_time": "2025-05-29 15:36:07.0",
+      "last_login_time": "2025-08-11 15:26:07",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/4348314e44b4494ab54f1ce26e1731aa\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": "2025-06-19 20:40:49.0",
+      "pwd_create_time": "2025-06-19 20:40:49.0",
+      "modify_pwd_time": "2025-06-19 20:40:49.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -306,18 +358,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": "Seguridad Informatica",
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "santiago.manoni@camuzzigas.com.ar",
+      "create_time": "2023-12-18 14:31:13.0",
+      "last_login_time": "2025-01-13 17:22:34",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/8cb2fc59f63a4af3ab47710e48b5b551\"}",
-      "phone": "",
+      "phone": "0054-1158339255",
       "is_domain_owner": false,
       "access_mode": "console",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": null,
+      "pwd_create_time": "2023-12-18 14:31:13.0",
+      "modify_pwd_time": "2023-12-18 14:31:13.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "0054",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -329,18 +385,22 @@
       "enabled": true,
       "password_expires_at": null,
       "description": null,
-      "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "email": "gustavo.petrasso@camuzzigas.com.ar",
+      "create_time": "2019-03-08 11:19:25.0",
+      "last_login_time": "2025-08-11 14:36:50",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "Strong",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/6b31f9905d88499985c003f0db251a05\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
-      "access_mode": null,
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "access_mode": "default",
+      "update_time": null,
+      "pwd_create_time": "2020-02-10 12:52:31.0",
+      "modify_pwd_time": "2019-03-08 12:18:30.0",
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -353,17 +413,21 @@
       "password_expires_at": null,
       "description": "Usuario para conexion consola Veeam con repositorio OBS",
       "email": "",
-      "create_time": null,
-      "last_login_time": null,
+      "create_time": "2023-08-25 14:18:53.0",
+      "last_login_time": "2025-08-18 05:53:45",
       "pwd_status": false,
-      "pwd_strength": null,
+      "pwd_strength": "None",
       "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/affb4d6b5a13438a869b0d5ab6df958d\"}",
-      "phone": "",
+      "phone": "-",
       "is_domain_owner": false,
       "access_mode": "programmatic",
-      "xuser_id": null,
-      "xuser_type": null,
-      "areacode": null,
+      "update_time": null,
+      "pwd_create_time": null,
+      "modify_pwd_time": null,
+      "last_pwd_auth_time": null,
+      "xuser_id": "",
+      "xuser_type": "HWC_HK",
+      "areacode": "",
       "login_protect_status": null,
       "xdomain_id": null,
       "xdomain_type": null
@@ -522,9 +586,9 @@
           }
         ],
         "effective_actions": [
-          "*:list",
+          "*:describe",
           "*:get",
-          "*:describe"
+          "*:list"
         ],
         "admin_access": false,
         "privileged_services": [],
@@ -549,9 +613,9 @@
       "admin_access": false,
       "privileged_services": [],
       "effective_actions": [
-        "*:list",
+        "*:describe",
         "*:get",
-        "*:describe"
+        "*:list"
       ]
     },
     {
@@ -591,15 +655,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -623,16 +687,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -731,15 +795,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -763,16 +827,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -812,15 +876,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -844,16 +908,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -893,15 +957,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -925,16 +989,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -974,15 +1038,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -1006,16 +1070,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -1055,18 +1119,18 @@
           }
         ],
         "effective_actions": [
-          "ecs:*",
-          "rds:*",
           "vpc:*",
-          "obs:*"
+          "ecs:*",
+          "obs:*",
+          "rds:*"
         ],
         "admin_access": true,
         "privileged_services": [
           "ecs",
-          "obs",
           "rds",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "obs"
         ],
         "permission_sources": [
           "group:power_user"
@@ -1089,16 +1153,16 @@
       "admin_access": true,
       "privileged_services": [
         "ecs",
-        "obs",
         "rds",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "obs"
       ],
       "effective_actions": [
-        "ecs:*",
-        "rds:*",
         "vpc:*",
-        "obs:*"
+        "ecs:*",
+        "obs:*",
+        "rds:*"
       ]
     },
     {
@@ -1138,15 +1202,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -1170,16 +1234,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -1219,15 +1283,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -1251,16 +1315,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -1477,15 +1541,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -1509,16 +1573,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -1558,15 +1622,15 @@
           }
         ],
         "effective_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "admin_access": true,
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -1590,16 +1654,16 @@
       ],
       "admin_access": true,
       "privileged_services": [
-        "vpc",
         "ecs",
+        "vpc",
         "iam",
         "iam_admin"
       ],
       "effective_actions": [
-        "*:*:*",
+        "vpc:*",
         "iam:*",
         "ecs:*",
-        "vpc:*"
+        "*:*:*"
       ]
     },
     {
@@ -1639,18 +1703,18 @@
           }
         ],
         "effective_actions": [
-          "ecs:*",
-          "rds:*",
           "vpc:*",
-          "obs:*"
+          "ecs:*",
+          "obs:*",
+          "rds:*"
         ],
         "admin_access": true,
         "privileged_services": [
           "ecs",
-          "obs",
           "rds",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "obs"
         ],
         "permission_sources": [
           "group:power_user"
@@ -1673,16 +1737,16 @@
       "admin_access": true,
       "privileged_services": [
         "ecs",
-        "obs",
         "rds",
+        "vpc",
         "iam_admin",
-        "vpc"
+        "obs"
       ],
       "effective_actions": [
-        "ecs:*",
-        "rds:*",
         "vpc:*",
-        "obs:*"
+        "ecs:*",
+        "obs:*",
+        "rds:*"
       ]
     }
   ],
@@ -1737,7 +1801,7 @@
       "age_days": 53,
       "description": "Assesment",
       "last_used": {
-        "timestamp": "2025-08-18T04:56:57.000887Z",
+        "timestamp": "2025-08-18T06:05:45.000403Z",
         "service": "unknown",
         "region": "unknown"
       },
@@ -1873,7 +1937,7 @@
       "age_days": 723,
       "description": "",
       "last_used": {
-        "timestamp": "2025-08-18T05:07:41.000722Z",
+        "timestamp": "2025-08-18T05:53:45.000145Z",
         "service": "unknown",
         "region": "unknown"
       },
@@ -1899,6 +1963,11 @@
         "user_name": "ConectorCloud"
       }
     ],
+    "mfa_types": {
+      "virtual": 2,
+      "security_key": 0,
+      "hardware": 0
+    },
     "verification_methods": {
       "sms": 7,
       "email": 5,
@@ -1911,11 +1980,16 @@
       "default": 8
     },
     "verification_summary": {
-      "total_console_users": 7,
+      "total_console_users": 15,
       "total_programmatic_users": 1,
       "total_users_without_mfa": 0,
       "total_service_accounts_without_mfa": 1,
-      "total_regular_users_without_mfa": 1
+      "total_regular_users_without_mfa": 1,
+      "verification_2fa_count": 14,
+      "verification_2fa_percentage": 93.3,
+      "real_mfa_percentage": 13.3,
+      "no_verification_count": 0,
+      "no_verification_percentage": 0.0
     }
   },
   "password_policy": {
@@ -2127,8 +2201,7 @@
       "user_name": "VeeamBackup_Huawei",
       "indicators": [
         "Access mode: programmatic (cuenta de servicio)",
-        "Sin email asociado",
-        "Sin login interactivo registrado"
+        "Sin email asociado"
       ]
     }
   ],
@@ -2137,81 +2210,110 @@
       "user_id": "2d5502377631460c9601244670a8aa1c",
       "user_name": "ConectorCloud",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2019-04-01 15:23:32.0",
       "mfa_enabled": true
     },
     {
       "user_id": "08450e873d00f5051fefc01364c4b18b",
       "user_name": "diegogarone",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-07-18 11:46:29",
       "mfa_enabled": true
     },
     {
       "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
       "user_name": "emilianosilva",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-08-14 15:31:13",
       "mfa_enabled": true
     },
     {
       "user_id": "e84771c7285a47939e6895479962ddd0",
       "user_name": "Florencia Pavon",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2022-04-26 00:53:09.0",
       "mfa_enabled": true
     },
     {
       "user_id": "5ade0315e9ba4045b063df938541c286",
       "user_name": "globo",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-06-09 15:24:24",
       "mfa_enabled": true
     },
     {
       "user_id": "0563f1d7034343cfa595eeb58b633b99",
       "user_name": "Julian Vazzano",
       "privilege_source": "group:power_user",
-      "last_login": null,
+      "last_login": "2025-02-10 17:06:34",
       "mfa_enabled": true
     },
     {
       "user_id": "7b342f3b84144b048b37ade414729bf7",
       "user_name": "Nicolas Alcorta",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-06-25 19:13:47",
       "mfa_enabled": true
     },
     {
       "user_id": "0e3c90608486441a87cfd710156eab73",
       "user_name": "Nicolas Villafane",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-08-13 10:52:08",
       "mfa_enabled": true
     },
     {
       "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
       "user_name": "SManoni",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-01-13 17:22:34",
       "mfa_enabled": true
     },
     {
       "user_id": "6b31f9905d88499985c003f0db251a05",
       "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
       "privilege_source": "group:admin",
-      "last_login": null,
+      "last_login": "2025-08-11 14:36:50",
       "mfa_enabled": true
     },
     {
       "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
       "user_name": "VeeamBackup_Huawei",
       "privilege_source": "group:power_user",
-      "last_login": null,
+      "last_login": "2025-08-18 05:53:45",
       "mfa_enabled": true
     }
   ],
-  "inactive_users": [],
+  "inactive_users": [
+    {
+      "user_id": "2d5502377631460c9601244670a8aa1c",
+      "user_name": "ConectorCloud",
+      "last_login": "2019-04-01 15:23:32.0",
+      "days_inactive": 2330,
+      "enabled": false
+    },
+    {
+      "user_id": "e84771c7285a47939e6895479962ddd0",
+      "user_name": "Florencia Pavon",
+      "last_login": "2022-04-26 00:53:09.0",
+      "days_inactive": 1210,
+      "enabled": true
+    },
+    {
+      "user_id": "0563f1d7034343cfa595eeb58b633b99",
+      "user_name": "Julian Vazzano",
+      "last_login": "2025-02-10 17:06:34",
+      "days_inactive": 188,
+      "enabled": true
+    },
+    {
+      "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+      "user_name": "SManoni",
+      "last_login": "2025-01-13 17:22:34",
+      "days_inactive": 216,
+      "enabled": true
+    }
+  ],
   "findings": [
     {
       "id": "IAM-010",
@@ -2222,7 +2324,7 @@
         "user_name": "VeeamBackup_Huawei",
         "recommendation": "Considerar usar IAM Agency en lugar de usuario para servicios"
       },
-      "timestamp": "2025-08-18T02:11:30.415266"
+      "timestamp": "2025-08-18T03:20:10.859240"
     },
     {
       "id": "IAM-002",
@@ -2232,7 +2334,7 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud"
       },
-      "timestamp": "2025-08-18T02:11:31.177887"
+      "timestamp": "2025-08-18T03:20:11.590048"
     },
     {
       "id": "IAM-001",
@@ -2248,7 +2350,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:34.967961"
+      "timestamp": "2025-08-18T03:20:15.251223"
     },
     {
       "id": "IAM-001",
@@ -2258,8 +2360,8 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2268,7 +2370,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:34.969033"
+      "timestamp": "2025-08-18T03:20:15.251452"
     },
     {
       "id": "IAM-006",
@@ -2278,16 +2380,16 @@
         "user_id": "2d5502377631460c9601244670a8aa1c",
         "user_name": "ConectorCloud",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:34.969936"
+      "timestamp": "2025-08-18T03:20:15.251557"
     },
     {
       "id": "IAM-001",
@@ -2303,7 +2405,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:36.495491"
+      "timestamp": "2025-08-18T03:20:16.696458"
     },
     {
       "id": "IAM-001",
@@ -2313,8 +2415,8 @@
         "user_id": "08450e873d00f5051fefc01364c4b18b",
         "user_name": "diegogarone",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2323,7 +2425,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:36.495945"
+      "timestamp": "2025-08-18T03:20:16.696705"
     },
     {
       "id": "IAM-006",
@@ -2333,16 +2435,16 @@
         "user_id": "08450e873d00f5051fefc01364c4b18b",
         "user_name": "diegogarone",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:36.496118"
+      "timestamp": "2025-08-18T03:20:16.696811"
     },
     {
       "id": "IAM-001",
@@ -2358,7 +2460,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.239225"
+      "timestamp": "2025-08-18T03:20:17.417438"
     },
     {
       "id": "IAM-001",
@@ -2368,8 +2470,8 @@
         "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
         "user_name": "emilianosilva",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2378,7 +2480,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.239647"
+      "timestamp": "2025-08-18T03:20:17.417661"
     },
     {
       "id": "IAM-006",
@@ -2388,16 +2490,16 @@
         "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
         "user_name": "emilianosilva",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.239868"
+      "timestamp": "2025-08-18T03:20:17.417774"
     },
     {
       "id": "IAM-001",
@@ -2413,7 +2515,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.980620"
+      "timestamp": "2025-08-18T03:20:18.140674"
     },
     {
       "id": "IAM-001",
@@ -2423,8 +2525,8 @@
         "user_id": "e84771c7285a47939e6895479962ddd0",
         "user_name": "Florencia Pavon",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2433,7 +2535,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.980833"
+      "timestamp": "2025-08-18T03:20:18.140847"
     },
     {
       "id": "IAM-006",
@@ -2443,16 +2545,16 @@
         "user_id": "e84771c7285a47939e6895479962ddd0",
         "user_name": "Florencia Pavon",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:37.980933"
+      "timestamp": "2025-08-18T03:20:18.140933"
     },
     {
       "id": "IAM-001",
@@ -2468,7 +2570,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:38.720913"
+      "timestamp": "2025-08-18T03:20:18.861267"
     },
     {
       "id": "IAM-001",
@@ -2478,8 +2580,8 @@
         "user_id": "5ade0315e9ba4045b063df938541c286",
         "user_name": "globo",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2488,7 +2590,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:38.721098"
+      "timestamp": "2025-08-18T03:20:18.861488"
     },
     {
       "id": "IAM-006",
@@ -2498,16 +2600,16 @@
         "user_id": "5ade0315e9ba4045b063df938541c286",
         "user_name": "globo",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:38.721183"
+      "timestamp": "2025-08-18T03:20:18.861590"
     },
     {
       "id": "IAM-001",
@@ -2523,7 +2625,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-18T02:11:39.464513"
+      "timestamp": "2025-08-18T03:20:19.580399"
     },
     {
       "id": "IAM-001",
@@ -2534,17 +2636,17 @@
         "user_name": "Julian Vazzano",
         "privileged_services": [
           "ecs",
-          "obs",
           "rds",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "obs"
         ],
         "count": 5,
         "groups": [
           "power_user"
         ]
       },
-      "timestamp": "2025-08-18T02:11:39.464677"
+      "timestamp": "2025-08-18T03:20:19.580623"
     },
     {
       "id": "IAM-001",
@@ -2560,7 +2662,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.205560"
+      "timestamp": "2025-08-18T03:20:20.301997"
     },
     {
       "id": "IAM-001",
@@ -2570,8 +2672,8 @@
         "user_id": "7b342f3b84144b048b37ade414729bf7",
         "user_name": "Nicolas Alcorta",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2580,7 +2682,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.205873"
+      "timestamp": "2025-08-18T03:20:20.302246"
     },
     {
       "id": "IAM-006",
@@ -2590,16 +2692,16 @@
         "user_id": "7b342f3b84144b048b37ade414729bf7",
         "user_name": "Nicolas Alcorta",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.206041"
+      "timestamp": "2025-08-18T03:20:20.302395"
     },
     {
       "id": "IAM-001",
@@ -2615,7 +2717,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.951844"
+      "timestamp": "2025-08-18T03:20:21.019384"
     },
     {
       "id": "IAM-001",
@@ -2625,8 +2727,8 @@
         "user_id": "0e3c90608486441a87cfd710156eab73",
         "user_name": "Nicolas Villafane",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2635,7 +2737,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.952042"
+      "timestamp": "2025-08-18T03:20:21.019563"
     },
     {
       "id": "IAM-006",
@@ -2645,16 +2747,16 @@
         "user_id": "0e3c90608486441a87cfd710156eab73",
         "user_name": "Nicolas Villafane",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:40.952161"
+      "timestamp": "2025-08-18T03:20:21.019668"
     },
     {
       "id": "IAM-001",
@@ -2670,7 +2772,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:43.930749"
+      "timestamp": "2025-08-18T03:20:23.901808"
     },
     {
       "id": "IAM-001",
@@ -2680,8 +2782,8 @@
         "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
         "user_name": "SManoni",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2690,7 +2792,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:43.930939"
+      "timestamp": "2025-08-18T03:20:23.902099"
     },
     {
       "id": "IAM-006",
@@ -2700,16 +2802,16 @@
         "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
         "user_name": "SManoni",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:43.931061"
+      "timestamp": "2025-08-18T03:20:23.902203"
     },
     {
       "id": "IAM-001",
@@ -2725,7 +2827,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:44.679810"
+      "timestamp": "2025-08-18T03:20:24.623211"
     },
     {
       "id": "IAM-001",
@@ -2735,8 +2837,8 @@
         "user_id": "6b31f9905d88499985c003f0db251a05",
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "privileged_services": [
-          "vpc",
           "ecs",
+          "vpc",
           "iam",
           "iam_admin"
         ],
@@ -2745,7 +2847,7 @@
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:44.680161"
+      "timestamp": "2025-08-18T03:20:24.623452"
     },
     {
       "id": "IAM-006",
@@ -2755,16 +2857,16 @@
         "user_id": "6b31f9905d88499985c003f0db251a05",
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "excessive_actions": [
-          "*:*:*",
+          "vpc:*",
           "iam:*",
           "ecs:*",
-          "vpc:*"
+          "*:*:*"
         ],
         "groups": [
           "admin"
         ]
       },
-      "timestamp": "2025-08-18T02:11:44.680379"
+      "timestamp": "2025-08-18T03:20:24.623554"
     },
     {
       "id": "IAM-001",
@@ -2780,7 +2882,7 @@
           "power_user"
         ]
       },
-      "timestamp": "2025-08-18T02:11:45.421573"
+      "timestamp": "2025-08-18T03:20:25.346738"
     },
     {
       "id": "IAM-001",
@@ -2791,17 +2893,17 @@
         "user_name": "VeeamBackup_Huawei",
         "privileged_services": [
           "ecs",
-          "obs",
           "rds",
+          "vpc",
           "iam_admin",
-          "vpc"
+          "obs"
         ],
         "count": 5,
         "groups": [
           "power_user"
         ]
       },
-      "timestamp": "2025-08-18T02:11:45.421764"
+      "timestamp": "2025-08-18T03:20:25.346928"
     },
     {
       "id": "IAM-003",
@@ -2812,7 +2914,7 @@
         "access_key_id": "DTTDJ53RF3****",
         "age_days": 809
       },
-      "timestamp": "2025-08-18T02:11:50.457963"
+      "timestamp": "2025-08-18T03:20:29.610845"
     },
     {
       "id": "IAM-003",
@@ -2823,7 +2925,7 @@
         "access_key_id": "6OSBSOSYOO****",
         "age_days": 1963
       },
-      "timestamp": "2025-08-18T02:11:50.884905"
+      "timestamp": "2025-08-18T03:20:30.026265"
     },
     {
       "id": "IAM-003",
@@ -2834,7 +2936,7 @@
         "access_key_id": "9ZZKXLTWBO****",
         "age_days": 2256
       },
-      "timestamp": "2025-08-18T02:11:52.120615"
+      "timestamp": "2025-08-18T03:20:31.219134"
     },
     {
       "id": "IAM-003",
@@ -2845,7 +2947,7 @@
         "access_key_id": "Y5TODMRNO9****",
         "age_days": 1259
       },
-      "timestamp": "2025-08-18T02:11:56.664182"
+      "timestamp": "2025-08-18T03:20:35.506112"
     },
     {
       "id": "IAM-003",
@@ -2856,7 +2958,7 @@
         "access_key_id": "K5SVL53RUW****",
         "age_days": 377
       },
-      "timestamp": "2025-08-18T02:11:57.898762"
+      "timestamp": "2025-08-18T03:20:36.812111"
     },
     {
       "id": "IAM-003",
@@ -2867,7 +2969,7 @@
         "access_key_id": "1UEKCRVMLT****",
         "age_days": 2330
       },
-      "timestamp": "2025-08-18T02:12:01.658162"
+      "timestamp": "2025-08-18T03:20:40.307883"
     },
     {
       "id": "IAM-003",
@@ -2878,7 +2980,7 @@
         "access_key_id": "F4QI79CBBN****",
         "age_days": 2287
       },
-      "timestamp": "2025-08-18T02:12:02.092112"
+      "timestamp": "2025-08-18T03:20:40.722228"
     },
     {
       "id": "IAM-003",
@@ -2889,7 +2991,7 @@
         "access_key_id": "PBQPK4AZ7C****",
         "age_days": 723
       },
-      "timestamp": "2025-08-18T02:12:03.454331"
+      "timestamp": "2025-08-18T03:20:41.941668"
     },
     {
       "id": "IAM-004",
@@ -2899,7 +3001,7 @@
         "current_length": 6,
         "required_length": 12
       },
-      "timestamp": "2025-08-18T02:12:04.219952"
+      "timestamp": "2025-08-18T03:20:42.674326"
     },
     {
       "id": "IAM-004",
@@ -2910,7 +3012,7 @@
         "recommended_requirement": 3,
         "description": "A password must contain at least two of the following: uppercase letters, lowercase letters, digits, and special characters."
       },
-      "timestamp": "2025-08-18T02:12:04.220179"
+      "timestamp": "2025-08-18T03:20:42.674512"
     },
     {
       "id": "IAM-004",
@@ -2919,7 +3021,7 @@
       "details": {
         "current_setting": "Las contraseñas nunca expiran"
       },
-      "timestamp": "2025-08-18T02:12:04.220295"
+      "timestamp": "2025-08-18T03:20:42.674598"
     },
     {
       "id": "IAM-004",
@@ -2929,7 +3031,7 @@
         "current_history": 1,
         "recommended_history": 12
       },
-      "timestamp": "2025-08-18T02:12:04.220431"
+      "timestamp": "2025-08-18T03:20:42.674696"
     },
     {
       "id": "IAM-004",
@@ -2940,7 +3042,7 @@
         "recommended_setting": 1,
         "impact": "Permite cambios de contraseña inmediatos repetidos"
       },
-      "timestamp": "2025-08-18T02:12:04.220563"
+      "timestamp": "2025-08-18T03:20:42.674809"
     },
     {
       "id": "IAM-004",
@@ -2951,7 +3053,7 @@
         "recommended_setting": 3,
         "risk": "Facilita contraseñas débiles como \"aaaaaa\""
       },
-      "timestamp": "2025-08-18T02:12:04.220663"
+      "timestamp": "2025-08-18T03:20:42.674899"
     },
     {
       "id": "IAM-001",
@@ -2962,7 +3064,7 @@
         "user_name": "ConectorCloud",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.122000"
+      "timestamp": "2025-08-18T03:20:49.358807"
     },
     {
       "id": "IAM-001",
@@ -2973,7 +3075,7 @@
         "user_name": "diegogarone",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.122859"
+      "timestamp": "2025-08-18T03:20:49.358958"
     },
     {
       "id": "IAM-001",
@@ -2984,7 +3086,7 @@
         "user_name": "emilianosilva",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.123482"
+      "timestamp": "2025-08-18T03:20:49.359071"
     },
     {
       "id": "IAM-001",
@@ -2995,7 +3097,7 @@
         "user_name": "Florencia Pavon",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.124122"
+      "timestamp": "2025-08-18T03:20:49.359158"
     },
     {
       "id": "IAM-001",
@@ -3006,7 +3108,7 @@
         "user_name": "globo",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.125174"
+      "timestamp": "2025-08-18T03:20:49.359265"
     },
     {
       "id": "IAM-001",
@@ -3017,7 +3119,7 @@
         "user_name": "Julian Vazzano",
         "permissions_source": "group:power_user"
       },
-      "timestamp": "2025-08-18T02:12:11.125657"
+      "timestamp": "2025-08-18T03:20:49.359349"
     },
     {
       "id": "IAM-001",
@@ -3028,7 +3130,7 @@
         "user_name": "Nicolas Alcorta",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.125999"
+      "timestamp": "2025-08-18T03:20:49.359457"
     },
     {
       "id": "IAM-001",
@@ -3039,7 +3141,7 @@
         "user_name": "Nicolas Villafane",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.126466"
+      "timestamp": "2025-08-18T03:20:49.359541"
     },
     {
       "id": "IAM-001",
@@ -3050,7 +3152,7 @@
         "user_name": "SManoni",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.126821"
+      "timestamp": "2025-08-18T03:20:49.359655"
     },
     {
       "id": "IAM-001",
@@ -3061,7 +3163,7 @@
         "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
         "permissions_source": "group:admin"
       },
-      "timestamp": "2025-08-18T02:12:11.127266"
+      "timestamp": "2025-08-18T03:20:49.359739"
     },
     {
       "id": "IAM-001",
@@ -3072,7 +3174,7 @@
         "user_name": "VeeamBackup_Huawei",
         "permissions_source": "group:power_user"
       },
-      "timestamp": "2025-08-18T02:12:11.127633"
+      "timestamp": "2025-08-18T03:20:49.359854"
     },
     {
       "id": "IAM-020",
@@ -3088,7 +3190,7 @@
         ],
         "total": 11
       },
-      "timestamp": "2025-08-18T02:12:17.146074"
+      "timestamp": "2025-08-18T03:20:55.186166"
     },
     {
       "id": "IAM-016",
@@ -3099,7 +3201,7 @@
         "trust_domain": "hwc83871270",
         "description": null
       },
-      "timestamp": "2025-08-18T02:12:17.570350"
+      "timestamp": "2025-08-18T03:20:55.602625"
     },
     {
       "id": "IAM-016",
@@ -3110,7 +3212,7 @@
         "trust_domain": "op_svc_cce",
         "description": "Create by CCE Team"
       },
-      "timestamp": "2025-08-18T02:12:17.570512"
+      "timestamp": "2025-08-18T03:20:55.602838"
     },
     {
       "id": "IAM-016",
@@ -3121,7 +3223,7 @@
         "trust_domain": "op_svc_ecs",
         "description": ""
       },
-      "timestamp": "2025-08-18T02:12:17.570590"
+      "timestamp": "2025-08-18T03:20:55.602958"
     },
     {
       "id": "IAM-016",
@@ -3132,7 +3234,7 @@
         "trust_domain": "op_svc_CTS",
         "description": "Created by CTS. To ensure that services run properly, do not delete this agency."
       },
-      "timestamp": "2025-08-18T02:12:17.570679"
+      "timestamp": "2025-08-18T03:20:55.603085"
     },
     {
       "id": "IAM-016",
@@ -3143,7 +3245,7 @@
         "trust_domain": "op_svc_cff",
         "description": "Creada para apagado y encendido programado de ECS con function graph"
       },
-      "timestamp": "2025-08-18T02:12:17.570764"
+      "timestamp": "2025-08-18T03:20:55.603208"
     },
     {
       "id": "IAM-016",
@@ -3154,7 +3256,7 @@
         "trust_domain": "op_svc_cff",
         "description": ""
       },
-      "timestamp": "2025-08-18T02:12:17.570811"
+      "timestamp": "2025-08-18T03:20:55.603329"
     },
     {
       "id": "IAM-016",
@@ -3165,7 +3267,7 @@
         "trust_domain": "op_svc_ssa",
         "description": "Created by SA Service."
       },
-      "timestamp": "2025-08-18T02:12:17.570850"
+      "timestamp": "2025-08-18T03:20:55.603450"
     },
     {
       "id": "IAM-011",
@@ -3187,7 +3289,7 @@
         ],
         "recommendation": "Configurar CTS con retención extendida para accesos administrativos"
       },
-      "timestamp": "2025-08-18T02:12:17.995704"
+      "timestamp": "2025-08-18T03:20:56.015199"
     },
     {
       "id": "IAM-015",
@@ -3205,7 +3307,7 @@
         ],
         "recommendation": "Establecer y documentar convención de nombres estándar"
       },
-      "timestamp": "2025-08-18T02:12:17.996341"
+      "timestamp": "2025-08-18T03:20:56.015864"
     },
     {
       "id": "IAM-024",
@@ -3221,7 +3323,7 @@
         ],
         "recommendation": "Configurar alertas en CTS para todos los cambios IAM críticos"
       },
-      "timestamp": "2025-08-18T02:12:17.996585"
+      "timestamp": "2025-08-18T03:20:56.016063"
     },
     {
       "id": "IAM-025",
@@ -3233,7 +3335,7 @@
         ],
         "recommendation": "Eliminar cuentas compartidas y crear usuarios nominales individuales"
       },
-      "timestamp": "2025-08-18T02:12:17.997354"
+      "timestamp": "2025-08-18T03:20:56.016652"
     },
     {
       "id": "IAM-026",
@@ -3255,7 +3357,7 @@
         "total": 11,
         "recommendation": "Implementar solución PIM para gestión de cuentas administrativas"
       },
-      "timestamp": "2025-08-18T02:12:17.997572"
+      "timestamp": "2025-08-18T03:20:56.016818"
     },
     {
       "id": "IAM-028",
@@ -3264,7 +3366,7 @@
       "details": {
         "recommendation": "Crear procedimiento break-glass con cuenta de emergencia monitoreada"
       },
-      "timestamp": "2025-08-18T02:12:17.997801"
+      "timestamp": "2025-08-18T03:20:56.016968"
     },
     {
       "id": "IAM-029",
@@ -3278,7 +3380,7 @@
         ],
         "recommendation": "Implementar gestión centralizada de certificados con rotación automática"
       },
-      "timestamp": "2025-08-18T02:12:17.997998"
+      "timestamp": "2025-08-18T03:20:56.017114"
     },
     {
       "id": "IAM-030",
@@ -3288,14 +3390,14 @@
         "current_metrics": {
           "total_users": 16,
           "mfa_enabled": 0,
-          "inactive_users": 0,
+          "inactive_users": 4,
           "privileged_accounts": 11,
           "groups": 5,
           "policies": 3
         },
         "recommendation": "Implementar dashboard con KPIs de seguridad IAM y tendencias"
       },
-      "timestamp": "2025-08-18T02:12:17.998162"
+      "timestamp": "2025-08-18T03:20:56.017231"
     }
   ],
   "statistics": {
@@ -3309,7 +3411,7 @@
     "mfa_compliance_rate": 93.33,
     "old_access_keys": 8,
     "users_with_temp_passwords": 14,
-    "inactive_users": 0,
+    "inactive_users": 4,
     "service_accounts": 1,
     "privileged_accounts": 11,
     "unused_access_keys": 0,
@@ -3344,5 +3446,5 @@
     "users_without_groups": 0,
     "password_policy_compliant": false
   },
-  "timestamp": "2025-08-18T02:11:22.561367"
+  "timestamp": "2025-08-18T03:20:01.801658"
 }

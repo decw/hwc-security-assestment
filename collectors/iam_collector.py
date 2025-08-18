@@ -77,8 +77,7 @@ class IAMCollector:
                 'regular_users_without_mfa': [],     # Nuevo: usuarios regulares sin MFA
                 'mfa_types': {
                     'virtual': 0,
-                    'sms': 0,
-                    'email': 0,
+                    'security_key': 0,
                     'hardware': 0
                 },
                 'verification_methods': {'sms': 0, 'email': 0,
@@ -284,11 +283,16 @@ class IAMCollector:
                 try:
                     detailed_info = await self._get_user_details(user.id)
                     user_info.update(detailed_info)
-
-                    # Verificar si hay información de access keys en los detalles
-                    if detailed_info:
-                        self.logger.debug(
-                            f"Información detallada obtenida para {user.name}: {list(detailed_info.keys())}")
+                    
+                    # CORREGIDO: Sobrescribir campos básicos con información detallada si está disponible
+                    if detailed_info.get('last_login_time'):
+                        user_info['last_login_time'] = detailed_info['last_login_time']
+                    if detailed_info.get('create_time'):
+                        user_info['create_time'] = detailed_info['create_time']
+                    if detailed_info.get('email'):
+                        user_info['email'] = detailed_info['email']
+                    
+                    self.logger.debug(f"Información detallada actualizada para {user.name}")
 
                 except Exception as e:
                     self.logger.debug(
@@ -312,13 +316,29 @@ class IAMCollector:
         details = {}
 
         try:
-            # Obtener información extendida del usuario
-            request = KeystoneShowUserRequest()
+            # CORREGIDO: Usar ShowUserRequest en lugar de KeystoneShowUserRequest
+            from huaweicloudsdkiam.v3.model import ShowUserRequest
+            request = ShowUserRequest()
             request.user_id = user_id
-            response = self.client.keystone_show_user(request)
+            response = self.client.show_user(request)
 
             user = response.user
             details.update({
+                # Información básica mejorada
+                'last_login_time': getattr(user, 'last_login_time', None),
+                'create_time': getattr(user, 'create_time', None),
+                'update_time': getattr(user, 'update_time', None),
+                'pwd_create_time': getattr(user, 'pwd_create_time', None),
+                'modify_pwd_time': getattr(user, 'modify_pwd_time', None),
+                'last_pwd_auth_time': getattr(user, 'last_pwd_auth_time', None),
+                'pwd_strength': getattr(user, 'pwd_strength', None),
+                'pwd_status': getattr(user, 'pwd_status', None),
+                'email': getattr(user, 'email', ''),
+                'description': getattr(user, 'description', ''),
+                'phone': getattr(user, 'phone', ''),
+                'access_mode': getattr(user, 'access_mode', 'default'),
+                'enabled': getattr(user, 'enabled', True),
+                # Información extendida
                 'xuser_id': getattr(user, 'xuser_id', None),
                 'xuser_type': getattr(user, 'xuser_type', None),
                 'areacode': getattr(user, 'areacode', None),
@@ -326,9 +346,11 @@ class IAMCollector:
                 'xdomain_id': getattr(user, 'xdomain_id', None),
                 'xdomain_type': getattr(user, 'xdomain_type', None)
             })
+            
+            self.logger.debug(f"Detalles obtenidos para {user_id}: last_login_time = {details.get('last_login_time')}")
+            
         except Exception as e:
-            self.logger.debug(
-                f"Error obteniendo detalles del usuario {user_id}: {str(e)}")
+            self.logger.debug(f"Error obteniendo detalles del usuario {user_id}: {str(e)}")
 
         return details
 
@@ -398,6 +420,11 @@ class IAMCollector:
             'users_without_mfa': [],
             'service_accounts_without_mfa': [],
             'regular_users_without_mfa': [],
+            'mfa_types': {
+                'virtual': 0,      # VMFA devices reales
+                'security_key': 0,  # Hardware security keys
+                'hardware': 0      # Otros hardware tokens
+            },
             'verification_methods': {'sms': 0, 'email': 0, 'vmfa': 0, 'disabled': 0},
             'access_mode_counts': {'console': 0, 'programmatic': 0, 'default': 0},
             'verification_summary': {
@@ -424,6 +451,12 @@ class IAMCollector:
                     users_with_mfa.add(user['id'])
                     mfa_status['mfa_enabled'] += 1
                     mfa_status['verification_methods'][login_verification_method] += 1
+
+                    # Poblar mfa_types: Solo VMFA cuenta como MFA real
+                    if login_verification_method == 'vmfa':
+                        mfa_status['mfa_types']['virtual'] += 1
+                        # Aquí podríamos verificar si es hardware key vs virtual
+                        # Por ahora, todo VMFA lo contamos como virtual
                 else:
                     mfa_status['mfa_disabled'] += 1
 
@@ -439,6 +472,8 @@ class IAMCollector:
                     mfa_status['verification_summary']['total_console_users'] += 1
                 else:  # 'default' o sin access_mode
                     mfa_status['access_mode_counts']['default'] += 1
+                    # CORREGIDO: Default permite acceso a consola
+                    mfa_status['verification_summary']['total_console_users'] += 1
 
                 # Verificar si es cuenta de servicio
                 is_service_account = self._is_service_account(user)
@@ -478,6 +513,25 @@ class IAMCollector:
             mfa_status['service_accounts_without_mfa'])
         mfa_status['verification_summary']['total_regular_users_without_mfa'] = len(
             mfa_status['regular_users_without_mfa'])
+
+        # Calcular verification_summary correctamente
+        total_console_users = mfa_status['verification_summary']['total_console_users']
+        total_verification_2fa = mfa_status['verification_methods']['sms'] + \
+            mfa_status['verification_methods']['email'] + \
+            mfa_status['verification_methods']['vmfa']
+        total_mfa_real = mfa_status['mfa_types']['virtual'] + \
+            mfa_status['mfa_types']['security_key'] + \
+            mfa_status['mfa_types']['hardware']
+        total_no_verification = mfa_status['verification_methods']['disabled']
+
+        # Actualizar verification_summary
+        mfa_status['verification_summary'].update({
+            'verification_2fa_count': total_verification_2fa,
+            'verification_2fa_percentage': round((total_verification_2fa / total_console_users) * 100, 1) if total_console_users > 0 else 0,
+            'real_mfa_percentage': round((total_mfa_real / total_console_users) * 100, 1) if total_console_users > 0 else 0,
+            'no_verification_count': total_no_verification,
+            'no_verification_percentage': round((total_no_verification / total_console_users) * 100, 1) if total_console_users > 0 else 0
+        })
 
         return mfa_status
 

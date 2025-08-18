@@ -346,7 +346,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -360,7 +360,7 @@
 
 **Descripción**: Usuario con permisos excesivos: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -374,7 +374,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -388,7 +388,7 @@
 
 **Descripción**: Usuario con permisos excesivos: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -402,7 +402,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -416,7 +416,7 @@
 
 **Descripción**: Usuario con permisos excesivos: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -430,7 +430,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -444,7 +444,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -458,7 +458,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -472,7 +472,7 @@
 
 **Descripción**: Usuario con permisos excesivos: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -486,7 +486,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano
 
-**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['ecs', 'obs', 'rds', 'iam_admin', 'vpc'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['ecs', 'rds', 'vpc', 'iam_admin', 'obs'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -500,7 +500,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -514,7 +514,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -528,7 +528,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -542,7 +542,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -556,7 +556,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -570,7 +570,7 @@
 
 **Descripción**: Usuario con permisos excesivos: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -584,7 +584,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['vpc', 'ecs', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['ecs', 'vpc', 'iam', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -598,7 +598,7 @@
 
 **Descripción**: Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['*:*:*', 'iam:*', 'ecs:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['vpc:*', 'iam:*', 'ecs:*', '*:*:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -612,7 +612,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei
 
-**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['ecs', 'obs', 'rds', 'iam_admin', 'vpc'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['ecs', 'rds', 'vpc', 'iam_admin', 'obs'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -1036,7 +1036,7 @@
 
 **Descripción**: Métricas IAM básicas disponibles, se requiere dashboard de monitoreo
 
-**Detalles**: {'current_metrics': {'total_users': 16, 'mfa_enabled': 0, 'inactive_users': 0, 'privileged_accounts': 11, 'groups': 5, 'policies': 3}, 'recommendation': 'Implementar dashboard con KPIs de seguridad IAM y tendencias'}
+**Detalles**: {'current_metrics': {'total_users': 16, 'mfa_enabled': 0, 'inactive_users': 4, 'privileged_accounts': 11, 'groups': 5, 'policies': 3}, 'recommendation': 'Implementar dashboard con KPIs de seguridad IAM y tendencias'}
 
 **Acción Requerida**: [Pendiente de definir]
 
