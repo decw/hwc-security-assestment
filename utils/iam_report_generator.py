@@ -121,7 +121,17 @@ class IAMReportGenerator:
         # Determinar presencia de inventario
         has_users = len(self.results.get('users', [])) > 0
         has_groups = len(self.results.get('groups', [])) > 0
-        has_roles = len(self.results.get('roles', [])) > 0
+        # Líneas 124 y 145-148: Comentar o eliminar la lógica de roles
+
+        # Línea 124: Comentar la detección de roles
+        # has_roles = len(self.results.get('roles', [])) > 0
+
+        # Líneas 145-148: Comentar la adición de la sección de roles
+        # if has_roles:       # solo si realmente hay roles
+        #     toc_lines.append(
+        #         f"{len(toc_lines)}. [Análisis de Roles](#análisis-de-roles)")
+        #     section_writers.append(self._generate_roles_section)
+
         has_pols = len(self.results.get('policies', [])) > 0
         has_keys = len(self.results.get('access_keys', [])) > 0
 
@@ -141,16 +151,6 @@ class IAMReportGenerator:
             toc_lines.append(
                 f"{len(toc_lines)}. [Análisis de Grupos](#análisis-de-grupos)")
             section_writers.append(self._generate_groups_section)
-
-        if has_roles:       # solo si realmente hay roles
-            toc_lines.append(
-                f"{len(toc_lines)}. [Análisis de Roles](#análisis-de-roles)")
-            section_writers.append(self._generate_roles_section)
-
-        if has_pols:
-            toc_lines.append(
-                f"{len(toc_lines)}. [Análisis de Políticas](#análisis-de-políticas)")
-            section_writers.append(self._generate_policies_section)
 
         # Secciones siempre presentes
         toc_lines.extend([
@@ -686,8 +686,30 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
             user_name = key.get('user_name', 'N/A')
             status = "✅" if key.get('status') == 'active' else "❌"
             age = key.get('age_days', 0)
-            last_used = key.get('last_used_service', 'Nunca')
-            service = key.get('last_used_service', 'N/A')
+            
+            # CORREGIDO: Mostrar timestamp del último uso
+            last_used_data = key.get('last_used', {})
+            if isinstance(last_used_data, dict) and last_used_data.get('timestamp'):
+                timestamp = last_used_data.get('timestamp', '')
+                if timestamp:
+                    # Formatear fecha para mostrar solo la fecha (sin hora)
+                    try:
+                        from datetime import datetime
+                        dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
+                        last_used = dt.strftime('%Y-%m-%d')
+                    except:
+                        last_used = timestamp[:10]  # Tomar solo los primeros 10 caracteres (fecha)
+                else:
+                    last_used = 'Nunca'
+            else:
+                last_used = 'Nunca'
+            
+            # CORREGIDO: Mostrar servicio real o 'Sin datos' si es unknown
+            service_data = key.get('last_used_service', 'N/A')
+            if service_data == 'unknown' or service_data is None:
+                service = 'Sin datos'
+            else:
+                service = service_data
 
             content += f"| {user_name} | {status} | {age} | {last_used} | {service} |\n"
 
