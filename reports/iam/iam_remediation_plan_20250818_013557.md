@@ -1,6 +1,6 @@
 # Plan de Remediación IAM - CCGP S.A.
 
-**Fecha**: 10/08/2025
+**Fecha**: 18/08/2025
 
 ## Críticos (Inmediatos)
 
@@ -346,7 +346,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -360,7 +360,7 @@
 
 **Descripción**: Usuario con permisos excesivos: ConectorCloud
 
-**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '2d5502377631460c9601244670a8aa1c', 'user_name': 'ConectorCloud', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -374,7 +374,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -388,7 +388,7 @@
 
 **Descripción**: Usuario con permisos excesivos: diegogarone
 
-**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '08450e873d00f5051fefc01364c4b18b', 'user_name': 'diegogarone', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -402,7 +402,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -416,7 +416,7 @@
 
 **Descripción**: Usuario con permisos excesivos: emilianosilva
 
-**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'ab66dc6fc98745bfa87f539d8e64aca2', 'user_name': 'emilianosilva', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -430,7 +430,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -444,7 +444,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Florencia Pavon
 
-**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': 'e84771c7285a47939e6895479962ddd0', 'user_name': 'Florencia Pavon', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -458,7 +458,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -472,7 +472,7 @@
 
 **Descripción**: Usuario con permisos excesivos: globo
 
-**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '5ade0315e9ba4045b063df938541c286', 'user_name': 'globo', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -486,7 +486,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano
 
-**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['iam_admin', 'rds', 'vpc', 'ecs', 'obs'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': '0563f1d7034343cfa595eeb58b633b99', 'user_name': 'Julian Vazzano', 'privileged_services': ['iam_admin', 'ecs', 'obs', 'rds', 'vpc'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -500,7 +500,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -514,7 +514,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Alcorta
 
-**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '7b342f3b84144b048b37ade414729bf7', 'user_name': 'Nicolas Alcorta', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -528,7 +528,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -542,7 +542,7 @@
 
 **Descripción**: Usuario con permisos excesivos: Nicolas Villafane
 
-**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '0e3c90608486441a87cfd710156eab73', 'user_name': 'Nicolas Villafane', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -556,7 +556,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -570,7 +570,7 @@
 
 **Descripción**: Usuario con permisos excesivos: SManoni
 
-**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '8cb2fc59f63a4af3ab47710e48b5b551', 'user_name': 'SManoni', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -584,7 +584,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['iam_admin', 'ecs', 'vpc', 'iam'], 'count': 4, 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'privileged_services': ['iam', 'ecs', 'vpc', 'iam_admin'], 'count': 4, 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -598,7 +598,7 @@
 
 **Descripción**: Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar
 
-**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['ecs:*', '*:*:*', 'iam:*', 'vpc:*'], 'groups': ['admin']}
+**Detalles**: {'user_id': '6b31f9905d88499985c003f0db251a05', 'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'excessive_actions': ['*:*:*', 'vpc:*', 'iam:*', 'ecs:*'], 'groups': ['admin']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -612,7 +612,7 @@
 
 **Descripción**: Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei
 
-**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['iam_admin', 'rds', 'vpc', 'ecs', 'obs'], 'count': 5, 'groups': ['power_user']}
+**Detalles**: {'user_id': 'affb4d6b5a13438a869b0d5ab6df958d', 'user_name': 'VeeamBackup_Huawei', 'privileged_services': ['iam_admin', 'ecs', 'obs', 'rds', 'vpc'], 'count': 5, 'groups': ['power_user']}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -622,25 +622,11 @@
 
 ---
 
-### IAM-003: Access Key sin rotación por 802 días
+### IAM-003: Access Key sin rotación por 809 días
 
-**Descripción**: Access Key sin rotación por 802 días
+**Descripción**: Access Key sin rotación por 809 días
 
-**Detalles**: {'user_name': 'diegogarone', 'access_key_id': 'DTTDJ53RF3****', 'age_days': 802}
-
-**Acción Requerida**: [Pendiente de definir]
-
-**Responsable**: [Pendiente de asignar]
-
-**Fecha Objetivo**: [Pendiente de definir]
-
----
-
-### IAM-003: Access Key sin rotación por 1956 días
-
-**Descripción**: Access Key sin rotación por 1956 días
-
-**Detalles**: {'user_name': 'diegogarone', 'access_key_id': '6OSBSOSYOO****', 'age_days': 1956}
+**Detalles**: {'user_name': 'diegogarone', 'access_key_id': 'DTTDJ53RF3****', 'age_days': 809}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -650,25 +636,11 @@
 
 ---
 
-### IAM-003: Access Key sin rotación por 2249 días
+### IAM-003: Access Key sin rotación por 1963 días
 
-**Descripción**: Access Key sin rotación por 2249 días
+**Descripción**: Access Key sin rotación por 1963 días
 
-**Detalles**: {'user_name': 'emilianosilva', 'access_key_id': '9ZZKXLTWBO****', 'age_days': 2249}
-
-**Acción Requerida**: [Pendiente de definir]
-
-**Responsable**: [Pendiente de asignar]
-
-**Fecha Objetivo**: [Pendiente de definir]
-
----
-
-### IAM-003: Access Key sin rotación por 1252 días
-
-**Descripción**: Access Key sin rotación por 1252 días
-
-**Detalles**: {'user_name': 'Nicolas Villafane', 'access_key_id': 'Y5TODMRNO9****', 'age_days': 1252}
+**Detalles**: {'user_name': 'diegogarone', 'access_key_id': '6OSBSOSYOO****', 'age_days': 1963}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -678,25 +650,11 @@
 
 ---
 
-### IAM-003: Access Key sin rotación por 370 días
+### IAM-003: Access Key sin rotación por 2256 días
 
-**Descripción**: Access Key sin rotación por 370 días
+**Descripción**: Access Key sin rotación por 2256 días
 
-**Detalles**: {'user_name': 'prueba.iis', 'access_key_id': 'K5SVL53RUW****', 'age_days': 370}
-
-**Acción Requerida**: [Pendiente de definir]
-
-**Responsable**: [Pendiente de asignar]
-
-**Fecha Objetivo**: [Pendiente de definir]
-
----
-
-### IAM-003: Access Key sin rotación por 2323 días
-
-**Descripción**: Access Key sin rotación por 2323 días
-
-**Detalles**: {'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'access_key_id': '1UEKCRVMLT****', 'age_days': 2323}
+**Detalles**: {'user_name': 'emilianosilva', 'access_key_id': '9ZZKXLTWBO****', 'age_days': 2256}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -706,11 +664,11 @@
 
 ---
 
-### IAM-003: Access Key sin rotación por 2280 días
+### IAM-003: Access Key sin rotación por 1259 días
 
-**Descripción**: Access Key sin rotación por 2280 días
+**Descripción**: Access Key sin rotación por 1259 días
 
-**Detalles**: {'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'access_key_id': 'F4QI79CBBN****', 'age_days': 2280}
+**Detalles**: {'user_name': 'Nicolas Villafane', 'access_key_id': 'Y5TODMRNO9****', 'age_days': 1259}
 
 **Acción Requerida**: [Pendiente de definir]
 
@@ -720,11 +678,53 @@
 
 ---
 
-### IAM-003: Access Key sin rotación por 716 días
+### IAM-003: Access Key sin rotación por 377 días
 
-**Descripción**: Access Key sin rotación por 716 días
+**Descripción**: Access Key sin rotación por 377 días
 
-**Detalles**: {'user_name': 'VeeamBackup_Huawei', 'access_key_id': 'PBQPK4AZ7C****', 'age_days': 716}
+**Detalles**: {'user_name': 'prueba.iis', 'access_key_id': 'K5SVL53RUW****', 'age_days': 377}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-003: Access Key sin rotación por 2330 días
+
+**Descripción**: Access Key sin rotación por 2330 días
+
+**Detalles**: {'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'access_key_id': '1UEKCRVMLT****', 'age_days': 2330}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-003: Access Key sin rotación por 2287 días
+
+**Descripción**: Access Key sin rotación por 2287 días
+
+**Detalles**: {'user_name': 'us_gustavo-dpetrasso-acamuzzigas-dcom-dar', 'access_key_id': 'F4QI79CBBN****', 'age_days': 2287}
+
+**Acción Requerida**: [Pendiente de definir]
+
+**Responsable**: [Pendiente de asignar]
+
+**Fecha Objetivo**: [Pendiente de definir]
+
+---
+
+### IAM-003: Access Key sin rotación por 723 días
+
+**Descripción**: Access Key sin rotación por 723 días
+
+**Detalles**: {'user_name': 'VeeamBackup_Huawei', 'access_key_id': 'PBQPK4AZ7C****', 'age_days': 723}
 
 **Acción Requerida**: [Pendiente de definir]
 

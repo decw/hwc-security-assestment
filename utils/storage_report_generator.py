@@ -26,6 +26,44 @@ class StorageReportGenerator:
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
+    def _normalize_severity(self, severity: str) -> str:
+        """
+        Normalizar severidad de español a inglés
+        
+        Args:
+            severity: Severidad en español o inglés
+            
+        Returns:
+            Severidad normalizada en inglés
+        """
+        severity_mapping = {
+            'CRITICA': 'CRITICAL',
+            'ALTA': 'HIGH', 
+            'MEDIA': 'MEDIUM',
+            'BAJA': 'LOW',
+            'CRITICAL': 'CRITICAL',
+            'HIGH': 'HIGH',
+            'MEDIUM': 'MEDIUM', 
+            'LOW': 'LOW'
+        }
+        return severity_mapping.get(severity, 'LOW')
+
+    def _normalize_vulnerabilities(self, analysis_data: Dict) -> Dict:
+        """
+        Normalizar todas las severidades en los datos de análisis
+        
+        Args:
+            analysis_data: Datos del análisis
+            
+        Returns:
+            Datos con severidades normalizadas
+        """
+        if 'vulnerabilities' in analysis_data:
+            for vuln in analysis_data['vulnerabilities']:
+                if 'severity' in vuln:
+                    vuln['severity'] = self._normalize_severity(vuln['severity'])
+        return analysis_data
+
     def generate_all_reports(self,
                              collection_data: Dict,
                              analysis_data: Optional[Dict] = None,
@@ -41,6 +79,10 @@ class StorageReportGenerator:
         Returns:
             Diccionario con las rutas de los reportes generados
         """
+        # Normalizar severidades antes de procesar
+        if analysis_data:
+            analysis_data = self._normalize_vulnerabilities(analysis_data)
+            
         reports = {}
 
         # Generar JSON del assessment
@@ -273,6 +315,18 @@ class StorageReportGenerator:
             pass
 
         if analysis_data and 'vulnerabilities' in analysis_data:
+            # Mapeo de severidades de español a inglés
+            severity_mapping = {
+                'CRITICA': 'CRITICAL',
+                'ALTA': 'HIGH',
+                'MEDIA': 'MEDIUM',
+                'BAJA': 'LOW',
+                'CRITICAL': 'CRITICAL',  # Para casos que ya estén en inglés
+                'HIGH': 'HIGH',
+                'MEDIUM': 'MEDIUM',
+                'LOW': 'LOW'
+            }
+
             # Agrupar por severidad
             by_severity = {
                 'CRITICAL': [],
@@ -282,7 +336,9 @@ class StorageReportGenerator:
             }
 
             for vuln in analysis_data['vulnerabilities']:
-                severity = vuln.get('severity', 'LOW')
+                raw_severity = vuln.get('severity', 'LOW')
+                # Normalizar severidad a inglés
+                severity = severity_mapping.get(raw_severity, 'LOW')
                 by_severity[severity].append(vuln)
 
             # Fase 1: Críticas (0-7 días)

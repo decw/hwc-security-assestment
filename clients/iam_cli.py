@@ -771,24 +771,27 @@ async def main():
             else:
                 print("✅ Análisis completado exitosamente")
 
-        # Guardar resultados de recolección
+        # Preparar archivo de salida
         output_file = get_output_filename(args)
-        if not save_results(results, output_file):
-            sys.exit(1)
 
-        # Ejecutar análisis y combinar resultados para el reporte
+        # Combinar datos si hay análisis, sino usar solo recolección
         if analysis_results:
-            # NUEVO: Combinar datos para el reporte completo
+            # Combinar datos para el reporte completo
             combined_results = merge_collection_and_analysis(
                 results, analysis_results)
 
-            # Generar reporte completo con datos combinados
-            generate_comprehensive_report(combined_results, output_file)
+            # Guardar resultados combinados completos (JSON + reportes detallados)
+            if not save_results(combined_results, output_file):
+                sys.exit(1)
 
             # Guardar análisis por separado
             analysis_file = output_file.replace('.json', '_analysis.json')
             if not save_results(analysis_results, analysis_file):
                 print("⚠️  No se pudo guardar el análisis por separado")
+        else:
+            # Si no hay análisis, guardar solo los datos de recolección
+            if not save_results(results, output_file):
+                sys.exit(1)
 
         # Mostrar resumen
         print_summary(results, analysis_results)

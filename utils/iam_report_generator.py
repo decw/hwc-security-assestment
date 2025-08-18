@@ -63,18 +63,45 @@ class IAMReportGenerator:
         # Asegurar que el directorio existe
         output_path.mkdir(parents=True, exist_ok=True)
 
-        # Generar reportes
-        json_path = self._generate_json_report(output_path)
-        summary_path = self._generate_detailed_summary(output_path)
-        csv_path = self._generate_findings_csv(output_path)
-        remediation_path = self._generate_remediation_plan(output_path)
+        results = {}
 
-        return {
-            'json': str(json_path),
-            'summary': str(summary_path),
-            'csv': str(csv_path),
-            'remediation': str(remediation_path)
-        }
+        # Generar reportes con manejo de errores individual
+        try:
+            json_path = self._generate_json_report(output_path)
+            results['json'] = str(json_path)
+            self.logger.info(f"✅ JSON generado: {json_path}")
+        except Exception as e:
+            self.logger.error(f"❌ Error generando JSON: {e}")
+            results['json'] = None
+
+        try:
+            summary_path = self._generate_detailed_summary(output_path)
+            results['summary'] = str(summary_path)
+            self.logger.info(f"✅ Summary generado: {summary_path}")
+        except Exception as e:
+            self.logger.error(f"❌ Error generando summary: {e}")
+            import traceback
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
+            results['summary'] = None
+
+        try:
+            csv_path = self._generate_findings_csv(output_path)
+            results['csv'] = str(csv_path)
+            self.logger.info(f"✅ CSV generado: {csv_path}")
+        except Exception as e:
+            self.logger.error(f"❌ Error generando CSV: {e}")
+            results['csv'] = None
+
+        try:
+            remediation_path = self._generate_remediation_plan(output_path)
+            results['remediation'] = str(remediation_path)
+            self.logger.info(
+                f"✅ Plan de remediación generado: {remediation_path}")
+        except Exception as e:
+            self.logger.error(f"❌ Error generando plan de remediación: {e}")
+            results['remediation'] = None
+
+        return results
 
     def _generate_json_report(self, output_path: Path) -> Path:
         """Generar reporte JSON completo"""
@@ -92,11 +119,11 @@ class IAMReportGenerator:
         summary_path = output_path / f"iam_summary_{self.timestamp}.md"
 
         # Determinar presencia de inventario
-        has_users  = len(self.results.get('users', []))   > 0
-        has_groups = len(self.results.get('groups', []))  > 0
-        has_roles  = len(self.results.get('roles', []))   > 0
-        has_pols   = len(self.results.get('policies', []))> 0
-        has_keys   = len(self.results.get('access_keys',[]))>0
+        has_users = len(self.results.get('users', [])) > 0
+        has_groups = len(self.results.get('groups', [])) > 0
+        has_roles = len(self.results.get('roles', [])) > 0
+        has_pols = len(self.results.get('policies', [])) > 0
+        has_keys = len(self.results.get('access_keys', [])) > 0
 
         # Construir TOC dinámico
         toc_lines = ["## 📋 Tabla de Contenidos",
@@ -106,19 +133,23 @@ class IAMReportGenerator:
         section_writers = []
 
         if has_users:
-            toc_lines.append(f"{len(toc_lines)}. [Análisis de Usuarios](#análisis-de-usuarios)")
+            toc_lines.append(
+                f"{len(toc_lines)}. [Análisis de Usuarios](#análisis-de-usuarios)")
             section_writers.append(self._generate_users_section)
 
         if has_groups:
-            toc_lines.append(f"{len(toc_lines)}. [Análisis de Grupos](#análisis-de-grupos)")
+            toc_lines.append(
+                f"{len(toc_lines)}. [Análisis de Grupos](#análisis-de-grupos)")
             section_writers.append(self._generate_groups_section)
 
         if has_roles:       # solo si realmente hay roles
-            toc_lines.append(f"{len(toc_lines)}. [Análisis de Roles](#análisis-de-roles)")
+            toc_lines.append(
+                f"{len(toc_lines)}. [Análisis de Roles](#análisis-de-roles)")
             section_writers.append(self._generate_roles_section)
 
         if has_pols:
-            toc_lines.append(f"{len(toc_lines)}. [Análisis de Políticas](#análisis-de-políticas)")
+            toc_lines.append(
+                f"{len(toc_lines)}. [Análisis de Políticas](#análisis-de-políticas)")
             section_writers.append(self._generate_policies_section)
 
         # Secciones siempre presentes
@@ -132,35 +163,109 @@ class IAMReportGenerator:
             ""
         ])
 
-        with open(summary_path, 'w', encoding='utf-8') as f:
-            # Header
-            f.write(self._generate_header())
+        try:
+            with open(summary_path, 'w', encoding='utf-8') as f:
+                # Header
+                try:
+                    f.write(self._generate_header())
+                    self.logger.debug("✅ Header escrito")
+                except Exception as e:
+                    self.logger.error(f"❌ Error en header: {e}")
+                    raise
 
-            # TOC dinámico
-            f.write("\n".join(toc_lines))
+                # TOC dinámico
+                try:
+                    f.write("\n".join(toc_lines))
+                    self.logger.debug("✅ TOC escrito")
+                except Exception as e:
+                    self.logger.error(f"❌ Error en TOC: {e}")
+                    raise
 
-            # Resumen ejecutivo
-            f.write(self._generate_executive_summary())
+                # Resumen ejecutivo
+                try:
+                    exec_summary = self._generate_executive_summary()
+                    f.write(exec_summary)
+                    self.logger.debug(
+                        f"✅ Resumen ejecutivo escrito ({len(exec_summary)} chars)")
+                except Exception as e:
+                    self.logger.error(f"❌ Error en resumen ejecutivo: {e}")
+                    import traceback
+                    self.logger.error(f"Traceback: {traceback.format_exc()}")
+                    # Escribir mensaje de error en lugar de fallar completamente
+                    f.write(
+                        "\n## 🎯 Resumen Ejecutivo\n\n❌ **Error generando resumen ejecutivo**\n\n")
 
-            # Secciones de inventario (solo si hay datos)
-            for writer in section_writers:
-                f.write(writer())
+                # Secciones de inventario (solo si hay datos)
+                for i, writer in enumerate(section_writers):
+                    try:
+                        section_content = writer()
+                        f.write(section_content)
+                        self.logger.debug(
+                            f"✅ Sección {i+1} escrita ({len(section_content)} chars)")
+                    except Exception as e:
+                        self.logger.error(f"❌ Error en sección {i+1}: {e}")
+                        f.write(f"\n## ❌ Error en Sección {i+1}\n\n")
 
-            # MFA (siempre relevante)
-            f.write(self._generate_mfa_section())
+                # MFA (siempre relevante)
+                try:
+                    mfa_content = self._generate_mfa_section()
+                    f.write(mfa_content)
+                    self.logger.debug(
+                        f"✅ Sección MFA escrita ({len(mfa_content)} chars)")
+                except Exception as e:
+                    self.logger.error(f"❌ Error en sección MFA: {e}")
+                    f.write(
+                        "\n## 🔐 Estado de MFA\n\n❌ **Error generando sección MFA**\n\n")
 
-            # Access Keys solo si existen
-            if has_keys:
-                f.write(self._generate_access_keys_section())
+                # Access Keys solo si existen
+                if has_keys:
+                    try:
+                        keys_content = self._generate_access_keys_section()
+                        f.write(keys_content)
+                        self.logger.debug(
+                            f"✅ Sección Access Keys escrita ({len(keys_content)} chars)")
+                    except Exception as e:
+                        self.logger.error(
+                            f"❌ Error en sección Access Keys: {e}")
+                        f.write(
+                            "\n## 🔑 Análisis de Access Keys\n\n❌ **Error generando sección Access Keys**\n\n")
 
-            # Hallazgos + estadísticas + recomendaciones + anexos
-            f.write(self._generate_security_findings_section())
-            f.write(self._generate_statistics_section())
-            f.write(self._generate_recommendations_section())
-            f.write(self._generate_annexes())
+                # Hallazgos + estadísticas + recomendaciones + anexos
+                sections = [
+                    ("Security Findings", self._generate_security_findings_section),
+                    ("Statistics", self._generate_statistics_section),
+                    ("Recommendations", self._generate_recommendations_section),
+                    ("Annexes", self._generate_annexes)
+                ]
 
-        self.logger.info(f"Resumen detallado generado: {summary_path}")
-        return summary_path
+                for section_name, section_func in sections:
+                    try:
+                        section_content = section_func()
+                        f.write(section_content)
+                        self.logger.debug(
+                            f"✅ Sección {section_name} escrita ({len(section_content)} chars)")
+                    except Exception as e:
+                        self.logger.error(
+                            f"❌ Error en sección {section_name}: {e}")
+                        f.write(f"\n## ❌ Error en {section_name}\n\n")
+
+            self.logger.info(f"Resumen detallado generado: {summary_path}")
+
+            # Verificar que el archivo se escribió correctamente
+            if summary_path.exists():
+                file_size = summary_path.stat().st_size
+                self.logger.info(f"Archivo generado: {file_size} bytes")
+                if file_size < 1000:
+                    self.logger.warning(
+                        f"⚠️ Archivo muy pequeño: {file_size} bytes")
+
+            return summary_path
+
+        except Exception as e:
+            self.logger.error(f"❌ Error crítico generando summary: {e}")
+            import traceback
+            self.logger.error(f"Traceback completo: {traceback.format_exc()}")
+            raise
 
     def _generate_header(self) -> str:
         """Generar header del reporte"""
@@ -230,7 +335,22 @@ class IAMReportGenerator:
                 'severity') == 'CRITICAL' else "🟠"
             content += f"{severity_icon} **{i}. {finding.get('message', 'Sin descripción')}**\n"
             content += f"   - ID: {finding.get('id', 'N/A')}\n"
-            content += f"   - Detalles: {finding.get('details', {})}\n\n"
+
+            # CORREGIDO: Manejar detalles de forma segura para evitar problemas de formato
+            details = finding.get('details', {})
+            if isinstance(details, dict) and details:
+                # Mostrar solo información clave de los detalles
+                if 'user_name' in details:
+                    content += f"   - Usuario: {details.get('user_name', 'N/A')}\n"
+                if 'count' in details:
+                    content += f"   - Cantidad: {details.get('count', 'N/A')}\n"
+                if 'recommendation' in details:
+                    content += f"   - Recomendación: {details.get('recommendation', 'N/A')}\n"
+                # Agregar más campos según sea necesario
+            elif details:
+                # Si no es diccionario, mostrar como string truncado
+                content += f"   - Detalles: {str(details)[:100]}...\n"
+            content += "\n"
 
         content += "---\n\n"
         return content
@@ -502,8 +622,9 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
 
 | Método | Usuarios | Porcentaje |
 |--------|----------|------------|
-| 2FA SMS | {mfa_status.get('verification_methods', {}).get('2fa_sms', 0)} | {round((mfa_status.get('verification_methods', {}).get('2fa_sms', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
-| 2FA Email | {mfa_status.get('verification_methods', {}).get('2fa_email', 0)} | {round((mfa_status.get('verification_methods', {}).get('2fa_email', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| 2FA SMS | {mfa_status.get('verification_methods', {}).get('sms', 0)} | {round((mfa_status.get('verification_methods', {}).get('sms', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| 2FA Email | {mfa_status.get('verification_methods', {}).get('email', 0)} | {round((mfa_status.get('verification_methods', {}).get('email', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
+| Virtual MFA (VMFA) | {mfa_status.get('verification_methods', {}).get('vmfa', 0)} | {round((mfa_status.get('verification_methods', {}).get('vmfa', 0) / verification_summary.get('total_console_users', 1)) * 100, 1)}% |
 
 ### ⚠️ Sin Verificación
 

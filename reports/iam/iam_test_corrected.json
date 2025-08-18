@@ -1,0 +1,4135 @@
+{
+  "users": [
+    {
+      "id": "7621b455711f48daa3d404bba883f1fe",
+      "name": "Christian Vazquez",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/7621b455711f48daa3d404bba883f1fe\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "2d5502377631460c9601244670a8aa1c",
+      "name": "ConectorCloud",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": false,
+      "password_expires_at": null,
+      "description": "Conector nube movistar",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": true,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/2d5502377631460c9601244670a8aa1c\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": null,
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "cd50c85ce40f42edb375edba41193bb0",
+      "name": "dcabral",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Consultor Iplan",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/cd50c85ce40f42edb375edba41193bb0\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "default",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "08450e873d00f5051fefc01364c4b18b",
+      "name": "diegogarone",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Diego Garone",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/08450e873d00f5051fefc01364c4b18b\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": null,
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "name": "emilianosilva",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/ab66dc6fc98745bfa87f539d8e64aca2\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": null,
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "e84771c7285a47939e6895479962ddd0",
+      "name": "Florencia Pavon",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Seguridad Informatica",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": true,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/e84771c7285a47939e6895479962ddd0\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "5ade0315e9ba4045b063df938541c286",
+      "name": "globo",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/5ade0315e9ba4045b063df938541c286\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "default",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "0563f1d7034343cfa595eeb58b633b99",
+      "name": "Julian Vazzano",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/0563f1d7034343cfa595eeb58b633b99\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "default",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "7b342f3b84144b048b37ade414729bf7",
+      "name": "Nicolas Alcorta",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Seguridad Informatica",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/7b342f3b84144b048b37ade414729bf7\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "0e3c90608486441a87cfd710156eab73",
+      "name": "Nicolas Villafane",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Nicolas Villafañe",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/0e3c90608486441a87cfd710156eab73\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "default",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "220c0d60592f4f24bf773beee71891ad",
+      "name": "prueba.iis",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/220c0d60592f4f24bf773beee71891ad\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "922791f34b45408cbea7f83c440a2293",
+      "name": "Ricardo Huberman",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/922791f34b45408cbea7f83c440a2293\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "4348314e44b4494ab54f1ce26e1731aa",
+      "name": "rsuarez",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Consultor Iplan",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/4348314e44b4494ab54f1ce26e1731aa\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "8cb2fc59f63a4af3ab47710e48b5b551",
+      "name": "SManoni",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Seguridad Informatica",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/8cb2fc59f63a4af3ab47710e48b5b551\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "console",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "6b31f9905d88499985c003f0db251a05",
+      "name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": null,
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/6b31f9905d88499985c003f0db251a05\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": null,
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    },
+    {
+      "id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "name": "VeeamBackup_Huawei",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "enabled": true,
+      "password_expires_at": null,
+      "description": "Usuario para conexion consola Veeam con repositorio OBS",
+      "email": "",
+      "create_time": null,
+      "last_login_time": null,
+      "pwd_status": false,
+      "pwd_strength": null,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/users/affb4d6b5a13438a869b0d5ab6df958d\"}",
+      "phone": "",
+      "is_domain_owner": false,
+      "access_mode": "programmatic",
+      "xuser_id": null,
+      "xuser_type": null,
+      "areacode": null,
+      "login_protect_status": null,
+      "xdomain_id": null,
+      "xdomain_type": null
+    }
+  ],
+  "groups": [
+    {
+      "id": "b777482458f54983916a2a3ff3aa40b0",
+      "name": "Iplan",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Usuarios para realizar assessment",
+      "create_time": 1748533008864,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/groups/b777482458f54983916a2a3ff3aa40b0\"}",
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+          "user_name": "rsuarez"
+        },
+        {
+          "user_id": "cd50c85ce40f42edb375edba41193bb0",
+          "user_name": "dcabral"
+        }
+      ]
+    },
+    {
+      "id": "e00dd7600d014367af0858c8ffef5081",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS",
+      "create_time": 1743089378106,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/groups/e00dd7600d014367af0858c8ffef5081\"}",
+      "member_count": 1,
+      "members": [
+        {
+          "user_id": "7621b455711f48daa3d404bba883f1fe",
+          "user_name": "Christian Vazquez"
+        }
+      ]
+    },
+    {
+      "id": "8d3a120cb9ca4350abaf6513a526df09",
+      "name": "Cloud-Eye-Lectura",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "Acceso de lectura a la consola Cloud Eye",
+      "create_time": 1722865248998,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/groups/8d3a120cb9ca4350abaf6513a526df09\"}",
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "220c0d60592f4f24bf773beee71891ad",
+          "user_name": "prueba.iis"
+        },
+        {
+          "user_id": "922791f34b45408cbea7f83c440a2293",
+          "user_name": "Ricardo Huberman"
+        }
+      ]
+    },
+    {
+      "id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+      "name": "power_user",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "powerGroupDes",
+      "create_time": 1552043962922,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/groups/7a58e35805ec4ad98e65db8a9d2cd4fd\"}",
+      "member_count": 2,
+      "members": [
+        {
+          "user_id": "0563f1d7034343cfa595eeb58b633b99",
+          "user_name": "Julian Vazzano"
+        },
+        {
+          "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+          "user_name": "VeeamBackup_Huawei"
+        }
+      ]
+    },
+    {
+      "id": "be61248cddbf441e9446e8bc5a2bf26f",
+      "name": "admin",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "description": "adminGroupDes",
+      "create_time": 1552043962867,
+      "links": "{\"self\": \"https://iam.ap-southeast-1.myhuaweicloud.com/v3/groups/be61248cddbf441e9446e8bc5a2bf26f\"}",
+      "member_count": 9,
+      "members": [
+        {
+          "user_id": "08450e873d00f5051fefc01364c4b18b",
+          "user_name": "diegogarone"
+        },
+        {
+          "user_id": "0e3c90608486441a87cfd710156eab73",
+          "user_name": "Nicolas Villafane"
+        },
+        {
+          "user_id": "2d5502377631460c9601244670a8aa1c",
+          "user_name": "ConectorCloud"
+        },
+        {
+          "user_id": "5ade0315e9ba4045b063df938541c286",
+          "user_name": "globo"
+        },
+        {
+          "user_id": "6b31f9905d88499985c003f0db251a05",
+          "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar"
+        },
+        {
+          "user_id": "7b342f3b84144b048b37ade414729bf7",
+          "user_name": "Nicolas Alcorta"
+        },
+        {
+          "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+          "user_name": "SManoni"
+        },
+        {
+          "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+          "user_name": "emilianosilva"
+        },
+        {
+          "user_id": "e84771c7285a47939e6895479962ddd0",
+          "user_name": "Florencia Pavon"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "effective_7621b455711f48daa3d404bba883f1fe",
+      "name": "effective_permissions_Christian Vazquez",
+      "display_name": "Permisos Efectivos - Christian Vazquez",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Christian Vazquez a través de sus grupos",
+      "user_id": "7621b455711f48daa3d404bba883f1fe",
+      "user_name": "Christian Vazquez",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:get",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "readonly_group"
+          },
+          {
+            "action": "*:list",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "readonly_group"
+          },
+          {
+            "action": "*:describe",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "readonly_group"
+          }
+        ],
+        "effective_actions": [
+          "*:get",
+          "*:describe",
+          "*:list"
+        ],
+        "admin_access": false,
+        "privileged_services": [],
+        "permission_sources": [
+          "group:ECS ReadOnlyAccess-Start-Reset-Stop"
+        ],
+        "groups": [
+          {
+            "group_id": "e00dd7600d014367af0858c8ffef5081",
+            "group_name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+            "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "e00dd7600d014367af0858c8ffef5081",
+          "group_name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+          "description": "Permisos para listar, visualizar,  iniciar, reiniciar, detener y acceso remoto a los ECS"
+        }
+      ],
+      "admin_access": false,
+      "privileged_services": [],
+      "effective_actions": [
+        "*:get",
+        "*:describe",
+        "*:list"
+      ]
+    },
+    {
+      "id": "effective_2d5502377631460c9601244670a8aa1c",
+      "name": "effective_permissions_ConectorCloud",
+      "display_name": "Permisos Efectivos - ConectorCloud",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario ConectorCloud a través de sus grupos",
+      "user_id": "2d5502377631460c9601244670a8aa1c",
+      "user_name": "ConectorCloud",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_cd50c85ce40f42edb375edba41193bb0",
+      "name": "effective_permissions_dcabral",
+      "display_name": "Permisos Efectivos - dcabral",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario dcabral a través de sus grupos",
+      "user_id": "cd50c85ce40f42edb375edba41193bb0",
+      "user_name": "dcabral",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "iam:get",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          },
+          {
+            "action": "iam:list",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          }
+        ],
+        "effective_actions": [
+          "iam:list",
+          "iam:get"
+        ],
+        "admin_access": false,
+        "privileged_services": [
+          "iam"
+        ],
+        "permission_sources": [
+          "group:Iplan"
+        ],
+        "groups": [
+          {
+            "group_id": "b777482458f54983916a2a3ff3aa40b0",
+            "group_name": "Iplan",
+            "description": "Usuarios para realizar assessment"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "b777482458f54983916a2a3ff3aa40b0",
+          "group_name": "Iplan",
+          "description": "Usuarios para realizar assessment"
+        }
+      ],
+      "admin_access": false,
+      "privileged_services": [
+        "iam"
+      ],
+      "effective_actions": [
+        "iam:list",
+        "iam:get"
+      ]
+    },
+    {
+      "id": "effective_08450e873d00f5051fefc01364c4b18b",
+      "name": "effective_permissions_diegogarone",
+      "display_name": "Permisos Efectivos - diegogarone",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario diegogarone a través de sus grupos",
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_ab66dc6fc98745bfa87f539d8e64aca2",
+      "name": "effective_permissions_emilianosilva",
+      "display_name": "Permisos Efectivos - emilianosilva",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario emilianosilva a través de sus grupos",
+      "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "user_name": "emilianosilva",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_e84771c7285a47939e6895479962ddd0",
+      "name": "effective_permissions_Florencia Pavon",
+      "display_name": "Permisos Efectivos - Florencia Pavon",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Florencia Pavon a través de sus grupos",
+      "user_id": "e84771c7285a47939e6895479962ddd0",
+      "user_name": "Florencia Pavon",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_5ade0315e9ba4045b063df938541c286",
+      "name": "effective_permissions_globo",
+      "display_name": "Permisos Efectivos - globo",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario globo a través de sus grupos",
+      "user_id": "5ade0315e9ba4045b063df938541c286",
+      "user_name": "globo",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_0563f1d7034343cfa595eeb58b633b99",
+      "name": "effective_permissions_Julian Vazzano",
+      "display_name": "Permisos Efectivos - Julian Vazzano",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Julian Vazzano a través de sus grupos",
+      "user_id": "0563f1d7034343cfa595eeb58b633b99",
+      "user_name": "Julian Vazzano",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "obs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "rds:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "rds:*",
+          "obs:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "iam_admin",
+          "vpc",
+          "rds",
+          "ecs",
+          "obs"
+        ],
+        "permission_sources": [
+          "group:power_user"
+        ],
+        "groups": [
+          {
+            "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+            "group_name": "power_user",
+            "description": "powerGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+          "group_name": "power_user",
+          "description": "powerGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "iam_admin",
+        "vpc",
+        "rds",
+        "ecs",
+        "obs"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "rds:*",
+        "obs:*"
+      ]
+    },
+    {
+      "id": "effective_7b342f3b84144b048b37ade414729bf7",
+      "name": "effective_permissions_Nicolas Alcorta",
+      "display_name": "Permisos Efectivos - Nicolas Alcorta",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Nicolas Alcorta a través de sus grupos",
+      "user_id": "7b342f3b84144b048b37ade414729bf7",
+      "user_name": "Nicolas Alcorta",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_0e3c90608486441a87cfd710156eab73",
+      "name": "effective_permissions_Nicolas Villafane",
+      "display_name": "Permisos Efectivos - Nicolas Villafane",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Nicolas Villafane a través de sus grupos",
+      "user_id": "0e3c90608486441a87cfd710156eab73",
+      "user_name": "Nicolas Villafane",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_220c0d60592f4f24bf773beee71891ad",
+      "name": "effective_permissions_prueba.iis",
+      "display_name": "Permisos Efectivos - prueba.iis",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario prueba.iis a través de sus grupos",
+      "user_id": "220c0d60592f4f24bf773beee71891ad",
+      "user_name": "prueba.iis",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "iam:get",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          },
+          {
+            "action": "iam:list",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          }
+        ],
+        "effective_actions": [
+          "iam:list",
+          "iam:get"
+        ],
+        "admin_access": false,
+        "privileged_services": [
+          "iam"
+        ],
+        "permission_sources": [
+          "group:Cloud-Eye-Lectura"
+        ],
+        "groups": [
+          {
+            "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+            "group_name": "Cloud-Eye-Lectura",
+            "description": "Acceso de lectura a la consola Cloud Eye"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+          "group_name": "Cloud-Eye-Lectura",
+          "description": "Acceso de lectura a la consola Cloud Eye"
+        }
+      ],
+      "admin_access": false,
+      "privileged_services": [
+        "iam"
+      ],
+      "effective_actions": [
+        "iam:list",
+        "iam:get"
+      ]
+    },
+    {
+      "id": "effective_922791f34b45408cbea7f83c440a2293",
+      "name": "effective_permissions_Ricardo Huberman",
+      "display_name": "Permisos Efectivos - Ricardo Huberman",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario Ricardo Huberman a través de sus grupos",
+      "user_id": "922791f34b45408cbea7f83c440a2293",
+      "user_name": "Ricardo Huberman",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "iam:get",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          },
+          {
+            "action": "iam:list",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          }
+        ],
+        "effective_actions": [
+          "iam:list",
+          "iam:get"
+        ],
+        "admin_access": false,
+        "privileged_services": [
+          "iam"
+        ],
+        "permission_sources": [
+          "group:Cloud-Eye-Lectura"
+        ],
+        "groups": [
+          {
+            "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+            "group_name": "Cloud-Eye-Lectura",
+            "description": "Acceso de lectura a la consola Cloud Eye"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+          "group_name": "Cloud-Eye-Lectura",
+          "description": "Acceso de lectura a la consola Cloud Eye"
+        }
+      ],
+      "admin_access": false,
+      "privileged_services": [
+        "iam"
+      ],
+      "effective_actions": [
+        "iam:list",
+        "iam:get"
+      ]
+    },
+    {
+      "id": "effective_4348314e44b4494ab54f1ce26e1731aa",
+      "name": "effective_permissions_rsuarez",
+      "display_name": "Permisos Efectivos - rsuarez",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario rsuarez a través de sus grupos",
+      "user_id": "4348314e44b4494ab54f1ce26e1731aa",
+      "user_name": "rsuarez",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "iam:get",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          },
+          {
+            "action": "iam:list",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "basic_group"
+          }
+        ],
+        "effective_actions": [
+          "iam:list",
+          "iam:get"
+        ],
+        "admin_access": false,
+        "privileged_services": [
+          "iam"
+        ],
+        "permission_sources": [
+          "group:Iplan"
+        ],
+        "groups": [
+          {
+            "group_id": "b777482458f54983916a2a3ff3aa40b0",
+            "group_name": "Iplan",
+            "description": "Usuarios para realizar assessment"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "b777482458f54983916a2a3ff3aa40b0",
+          "group_name": "Iplan",
+          "description": "Usuarios para realizar assessment"
+        }
+      ],
+      "admin_access": false,
+      "privileged_services": [
+        "iam"
+      ],
+      "effective_actions": [
+        "iam:list",
+        "iam:get"
+      ]
+    },
+    {
+      "id": "effective_8cb2fc59f63a4af3ab47710e48b5b551",
+      "name": "effective_permissions_SManoni",
+      "display_name": "Permisos Efectivos - SManoni",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario SManoni a través de sus grupos",
+      "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+      "user_name": "SManoni",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_6b31f9905d88499985c003f0db251a05",
+      "name": "effective_permissions_us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "display_name": "Permisos Efectivos - us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario us_gustavo-dpetrasso-acamuzzigas-dcom-dar a través de sus grupos",
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "*:*:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "iam:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "admin_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          {
+            "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+            "group_name": "admin",
+            "description": "adminGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+          "group_name": "admin",
+          "description": "adminGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "vpc",
+        "iam_admin",
+        "ecs",
+        "iam"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "*:*:*",
+        "iam:*"
+      ]
+    },
+    {
+      "id": "effective_affb4d6b5a13438a869b0d5ab6df958d",
+      "name": "effective_permissions_VeeamBackup_Huawei",
+      "display_name": "Permisos Efectivos - VeeamBackup_Huawei",
+      "type": "effective",
+      "description": "Permisos efectivos del usuario VeeamBackup_Huawei a través de sus grupos",
+      "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "user_name": "VeeamBackup_Huawei",
+      "permissions": {
+        "direct_permissions": [],
+        "group_permissions": [
+          {
+            "action": "ecs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "vpc:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "obs:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          },
+          {
+            "action": "rds:*",
+            "resource": "*",
+            "effect": "Allow",
+            "source": "power_group"
+          }
+        ],
+        "effective_actions": [
+          "vpc:*",
+          "ecs:*",
+          "rds:*",
+          "obs:*"
+        ],
+        "admin_access": true,
+        "privileged_services": [
+          "iam_admin",
+          "vpc",
+          "rds",
+          "ecs",
+          "obs"
+        ],
+        "permission_sources": [
+          "group:power_user"
+        ],
+        "groups": [
+          {
+            "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+            "group_name": "power_user",
+            "description": "powerGroupDes"
+          }
+        ]
+      },
+      "groups": [
+        {
+          "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+          "group_name": "power_user",
+          "description": "powerGroupDes"
+        }
+      ],
+      "admin_access": true,
+      "privileged_services": [
+        "iam_admin",
+        "vpc",
+        "rds",
+        "ecs",
+        "obs"
+      ],
+      "effective_actions": [
+        "vpc:*",
+        "ecs:*",
+        "rds:*",
+        "obs:*"
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "44189681f4b44de7b5ac4035cfe39b7d",
+      "name": "policy6nylu4",
+      "type": "custom",
+      "description": "",
+      "created_at": "1589215991235",
+      "updated_at": "1589215991235",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    },
+    {
+      "id": "62cf836d73b64e79862d21eb4ff430a8",
+      "name": "ECS ReadOnlyAccess-Start-Reset-Stop",
+      "type": "custom",
+      "description": "Permisos para listar, visualizar, iniciar, reiniciar, detener y acceso remoto en los ECS",
+      "created_at": "1743089062572",
+      "updated_at": "1754492435196",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    },
+    {
+      "id": "fa03e33be7094553a66d0911d5faafa0",
+      "name": "CloudEye-Lectura",
+      "type": "custom",
+      "description": "",
+      "created_at": "1722870610446",
+      "updated_at": "1754495119606",
+      "domain_id": "77aed4ae1ffc40e4a7ae7e98604569a7",
+      "policy_document": {
+        "version": "1.1",
+        "statements": []
+      }
+    }
+  ],
+  "access_keys": [
+    {
+      "access_key_id": "HPUATAOSB6KOM8ET3RJR",
+      "user_id": "cd50c85ce40f42edb375edba41193bb0",
+      "user_name": "dcabral",
+      "status": "active",
+      "created_at": "2025-06-25T19:16:02.901000Z",
+      "age_days": 53,
+      "description": "Assesment",
+      "last_used": {
+        "timestamp": "2025-08-18T02:16:55.000812Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "DTTDJ53RF38UNUVFZTUY",
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "status": "active",
+      "created_at": "2023-05-31T18:21:10.744000Z",
+      "age_days": 809,
+      "description": "",
+      "last_used": {
+        "timestamp": "2025-06-09T18:32:23.000701Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "6OSBSOSYOO4KXDP8X8TY",
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "status": "active",
+      "created_at": "2020-04-02T11:50:42.992264Z",
+      "age_days": 1963,
+      "description": "",
+      "last_used": {
+        "timestamp": "2020-04-02T11:50:42.992264Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "9ZZKXLTWBONX8R9AEVG6",
+      "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "user_name": "emilianosilva",
+      "status": "active",
+      "created_at": "2019-06-14T17:39:49.805492Z",
+      "age_days": 2256,
+      "description": "",
+      "last_used": {
+        "timestamp": "",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "Y5TODMRNO9WVPHBTKOLA",
+      "user_id": "0e3c90608486441a87cfd710156eab73",
+      "user_name": "Nicolas Villafane",
+      "status": "active",
+      "created_at": "2022-03-07T14:11:18.493000Z",
+      "age_days": 1259,
+      "description": "",
+      "last_used": {
+        "timestamp": "2022-03-07T14:11:18.493000Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "K5SVL53RUWR6NGZUTFZ8",
+      "user_id": "220c0d60592f4f24bf773beee71891ad",
+      "user_name": "prueba.iis",
+      "status": "active",
+      "created_at": "2024-08-05T13:51:57.465000Z",
+      "age_days": 377,
+      "description": "",
+      "last_used": {
+        "timestamp": "2024-08-05T13:51:57.465000Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "1UEKCRVMLT4E1NIXXEHI",
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "status": "active",
+      "created_at": "2019-04-01T15:29:04.986228Z",
+      "age_days": 2330,
+      "description": "",
+      "last_used": {
+        "timestamp": "",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "F4QI79CBBNLUS3ZRUHLF",
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "status": "active",
+      "created_at": "2019-05-14T14:19:05.421316Z",
+      "age_days": 2287,
+      "description": "",
+      "last_used": {
+        "timestamp": "",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    },
+    {
+      "access_key_id": "PBQPK4AZ7CYQRD5HO0FM",
+      "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "user_name": "VeeamBackup_Huawei",
+      "status": "active",
+      "created_at": "2023-08-25T14:18:53.045000Z",
+      "age_days": 723,
+      "description": "",
+      "last_used": {
+        "timestamp": "2025-08-18T02:03:27.000202Z",
+        "service": "unknown",
+        "region": "unknown"
+      },
+      "last_used_service": "unknown",
+      "last_used_region": "unknown",
+      "source": "permanent_access_keys"
+    }
+  ],
+  "mfa_status": {
+    "total_users": 16,
+    "mfa_enabled": 14,
+    "mfa_disabled": 2,
+    "users_without_mfa": [
+      {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud"
+      }
+    ],
+    "service_accounts_without_mfa": [
+      {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei"
+      }
+    ],
+    "regular_users_without_mfa": [
+      {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud"
+      }
+    ],
+    "verification_methods": {
+      "sms": 7,
+      "email": 5,
+      "vmfa": 2,
+      "disabled": 0
+    },
+    "access_mode_counts": {
+      "console": 7,
+      "programmatic": 1,
+      "default": 8
+    },
+    "verification_summary": {
+      "total_console_users": 7,
+      "total_programmatic_users": 1,
+      "total_users_without_mfa": 0,
+      "total_service_accounts_without_mfa": 1,
+      "total_regular_users_without_mfa": 1
+    }
+  },
+  "password_policy": {
+    "minimum_password_length": 6,
+    "maximum_password_length": 32,
+    "password_requirements": "A password must contain at least two of the following: uppercase letters, lowercase letters, digits, and special characters.",
+    "password_char_combination": 2,
+    "minimum_password_age": 0,
+    "password_validity_period": 0,
+    "number_of_recent_passwords_disallowed": 1,
+    "maximum_consecutive_identical_chars": 0,
+    "password_not_username_or_invert": true
+  },
+  "login_policy": {
+    "account_validity_period": 0,
+    "custom_info_for_login": "",
+    "lockout_duration": 15,
+    "login_failed_times": 5,
+    "period_with_login_failures": 60,
+    "session_timeout": 240,
+    "show_recent_login_info": false
+  },
+  "protection_policy": {},
+  "permissions_analysis": {
+    "users_with_admin_access": [
+      {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "source": "group:power_user"
+      },
+      {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "source": "group:admin"
+      },
+      {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "source": "group:power_user"
+      }
+    ],
+    "overprivileged_users": [],
+    "permission_conflicts": [],
+    "unused_permissions": []
+  },
+  "user_group_mappings": {
+    "7621b455711f48daa3d404bba883f1fe": [
+      {
+        "group_id": "e00dd7600d014367af0858c8ffef5081",
+        "group_name": "ECS ReadOnlyAccess-Start-Reset-Stop"
+      }
+    ],
+    "2d5502377631460c9601244670a8aa1c": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "cd50c85ce40f42edb375edba41193bb0": [
+      {
+        "group_id": "b777482458f54983916a2a3ff3aa40b0",
+        "group_name": "Iplan"
+      }
+    ],
+    "08450e873d00f5051fefc01364c4b18b": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "ab66dc6fc98745bfa87f539d8e64aca2": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "e84771c7285a47939e6895479962ddd0": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "5ade0315e9ba4045b063df938541c286": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "0563f1d7034343cfa595eeb58b633b99": [
+      {
+        "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+        "group_name": "power_user"
+      }
+    ],
+    "7b342f3b84144b048b37ade414729bf7": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "0e3c90608486441a87cfd710156eab73": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "220c0d60592f4f24bf773beee71891ad": [
+      {
+        "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+        "group_name": "Cloud-Eye-Lectura"
+      }
+    ],
+    "922791f34b45408cbea7f83c440a2293": [
+      {
+        "group_id": "8d3a120cb9ca4350abaf6513a526df09",
+        "group_name": "Cloud-Eye-Lectura"
+      }
+    ],
+    "4348314e44b4494ab54f1ce26e1731aa": [
+      {
+        "group_id": "b777482458f54983916a2a3ff3aa40b0",
+        "group_name": "Iplan"
+      }
+    ],
+    "8cb2fc59f63a4af3ab47710e48b5b551": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "6b31f9905d88499985c003f0db251a05": [
+      {
+        "group_id": "be61248cddbf441e9446e8bc5a2bf26f",
+        "group_name": "admin"
+      }
+    ],
+    "affb4d6b5a13438a869b0d5ab6df958d": [
+      {
+        "group_id": "7a58e35805ec4ad98e65db8a9d2cd4fd",
+        "group_name": "power_user"
+      }
+    ]
+  },
+  "role_assignments": {
+    "user_roles": {
+      "7621b455711f48daa3d404bba883f1fe": [],
+      "2d5502377631460c9601244670a8aa1c": [],
+      "cd50c85ce40f42edb375edba41193bb0": [],
+      "08450e873d00f5051fefc01364c4b18b": [],
+      "ab66dc6fc98745bfa87f539d8e64aca2": [],
+      "e84771c7285a47939e6895479962ddd0": [],
+      "5ade0315e9ba4045b063df938541c286": [],
+      "0563f1d7034343cfa595eeb58b633b99": [],
+      "7b342f3b84144b048b37ade414729bf7": [],
+      "0e3c90608486441a87cfd710156eab73": [],
+      "220c0d60592f4f24bf773beee71891ad": [],
+      "922791f34b45408cbea7f83c440a2293": [],
+      "4348314e44b4494ab54f1ce26e1731aa": [],
+      "8cb2fc59f63a4af3ab47710e48b5b551": [],
+      "6b31f9905d88499985c003f0db251a05": [],
+      "affb4d6b5a13438a869b0d5ab6df958d": []
+    },
+    "group_roles": {},
+    "total_assignments": 0
+  },
+  "service_accounts": [
+    {
+      "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "user_name": "VeeamBackup_Huawei",
+      "indicators": [
+        "Access mode: programmatic (cuenta de servicio)",
+        "Sin email asociado",
+        "Sin login interactivo registrado"
+      ]
+    }
+  ],
+  "privileged_accounts": [
+    {
+      "user_id": "2d5502377631460c9601244670a8aa1c",
+      "user_name": "ConectorCloud",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "08450e873d00f5051fefc01364c4b18b",
+      "user_name": "diegogarone",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+      "user_name": "emilianosilva",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "e84771c7285a47939e6895479962ddd0",
+      "user_name": "Florencia Pavon",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "5ade0315e9ba4045b063df938541c286",
+      "user_name": "globo",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "0563f1d7034343cfa595eeb58b633b99",
+      "user_name": "Julian Vazzano",
+      "privilege_source": "group:power_user",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "7b342f3b84144b048b37ade414729bf7",
+      "user_name": "Nicolas Alcorta",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "0e3c90608486441a87cfd710156eab73",
+      "user_name": "Nicolas Villafane",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+      "user_name": "SManoni",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "6b31f9905d88499985c003f0db251a05",
+      "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "privilege_source": "group:admin",
+      "last_login": null,
+      "mfa_enabled": true
+    },
+    {
+      "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+      "user_name": "VeeamBackup_Huawei",
+      "privilege_source": "group:power_user",
+      "last_login": null,
+      "mfa_enabled": true
+    }
+  ],
+  "inactive_users": [],
+  "findings": [
+    {
+      "id": "IAM-010",
+      "severity": "LOW",
+      "message": "Cuenta de servicio identificada: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "recommendation": "Considerar usar IAM Agency en lugar de usuario para servicios"
+      },
+      "timestamp": "2025-08-18T02:17:02.501366"
+    },
+    {
+      "id": "IAM-002",
+      "severity": "CRITICAL",
+      "message": "Usuario administrador sin MFA: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud"
+      },
+      "timestamp": "2025-08-18T02:17:03.232204"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:06.873228"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:06.873518"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:06.873736"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:08.318191"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:08.318455"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:08.318564"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: emilianosilva",
+      "details": {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.047276"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: emilianosilva",
+      "details": {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.047481"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: emilianosilva",
+      "details": {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.047586"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.769128"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.769340"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:09.769457"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:10.499458"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:10.499741"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:10.499870"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "permission_sources": [
+          "group:power_user"
+        ],
+        "groups": [
+          "power_user"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:11.231703"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "privileged_services": [
+          "iam_admin",
+          "vpc",
+          "rds",
+          "ecs",
+          "obs"
+        ],
+        "count": 5,
+        "groups": [
+          "power_user"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:11.232429"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:11.956077"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:11.956354"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:11.956467"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: Nicolas Villafane",
+      "details": {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:12.679332"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: Nicolas Villafane",
+      "details": {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:12.679501"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: Nicolas Villafane",
+      "details": {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:12.679597"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:15.570306"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:15.570649"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:15.570839"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "details": {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "permission_sources": [
+          "group:admin"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:16.330934"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "details": {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "privileged_services": [
+          "vpc",
+          "iam_admin",
+          "ecs",
+          "iam"
+        ],
+        "count": 4,
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:16.331140"
+    },
+    {
+      "id": "IAM-006",
+      "severity": "HIGH",
+      "message": "Usuario con permisos excesivos: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "details": {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "excessive_actions": [
+          "vpc:*",
+          "ecs:*",
+          "*:*:*",
+          "iam:*"
+        ],
+        "groups": [
+          "admin"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:16.331251"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con acceso administrador: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "permission_sources": [
+          "group:power_user"
+        ],
+        "groups": [
+          "power_user"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:17.061908"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "HIGH",
+      "message": "Usuario con acceso a múltiples servicios privilegiados: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "privileged_services": [
+          "iam_admin",
+          "vpc",
+          "rds",
+          "ecs",
+          "obs"
+        ],
+        "count": 5,
+        "groups": [
+          "power_user"
+        ]
+      },
+      "timestamp": "2025-08-18T02:17:17.062346"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 809 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "DTTDJ53RF3****",
+        "age_days": 809
+      },
+      "timestamp": "2025-08-18T02:17:21.741539"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1963 días",
+      "details": {
+        "user_name": "diegogarone",
+        "access_key_id": "6OSBSOSYOO****",
+        "age_days": 1963
+      },
+      "timestamp": "2025-08-18T02:17:22.152309"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2256 días",
+      "details": {
+        "user_name": "emilianosilva",
+        "access_key_id": "9ZZKXLTWBO****",
+        "age_days": 2256
+      },
+      "timestamp": "2025-08-18T02:17:23.331766"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 1259 días",
+      "details": {
+        "user_name": "Nicolas Villafane",
+        "access_key_id": "Y5TODMRNO9****",
+        "age_days": 1259
+      },
+      "timestamp": "2025-08-18T02:17:27.983697"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 377 días",
+      "details": {
+        "user_name": "prueba.iis",
+        "access_key_id": "K5SVL53RUW****",
+        "age_days": 377
+      },
+      "timestamp": "2025-08-18T02:17:29.194034"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2330 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "1UEKCRVMLT****",
+        "age_days": 2330
+      },
+      "timestamp": "2025-08-18T02:17:32.831309"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 2287 días",
+      "details": {
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "access_key_id": "F4QI79CBBN****",
+        "age_days": 2287
+      },
+      "timestamp": "2025-08-18T02:17:33.252699"
+    },
+    {
+      "id": "IAM-003",
+      "severity": "HIGH",
+      "message": "Access Key sin rotación por 723 días",
+      "details": {
+        "user_name": "VeeamBackup_Huawei",
+        "access_key_id": "PBQPK4AZ7C****",
+        "age_days": 723
+      },
+      "timestamp": "2025-08-18T02:17:34.476323"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "MEDIUM",
+      "message": "Política de contraseñas débil: longitud mínima 6",
+      "details": {
+        "current_length": 6,
+        "required_length": 12
+      },
+      "timestamp": "2025-08-18T02:17:35.211031"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "MEDIUM",
+      "message": "Política de contraseñas requiere solo 2 tipos de caracteres",
+      "details": {
+        "current_requirement": 2,
+        "recommended_requirement": 3,
+        "description": "A password must contain at least two of the following: uppercase letters, lowercase letters, digits, and special characters."
+      },
+      "timestamp": "2025-08-18T02:17:35.211260"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "HIGH",
+      "message": "Contraseñas sin expiración configurada",
+      "details": {
+        "current_setting": "Las contraseñas nunca expiran"
+      },
+      "timestamp": "2025-08-18T02:17:35.211432"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "LOW",
+      "message": "Historial de contraseñas insuficiente: 1",
+      "details": {
+        "current_history": 1,
+        "recommended_history": 12
+      },
+      "timestamp": "2025-08-18T02:17:35.211569"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "LOW",
+      "message": "Sin edad mínima de contraseña configurada",
+      "details": {
+        "current_setting": 0,
+        "recommended_setting": 1,
+        "impact": "Permite cambios de contraseña inmediatos repetidos"
+      },
+      "timestamp": "2025-08-18T02:17:35.211700"
+    },
+    {
+      "id": "IAM-004",
+      "severity": "LOW",
+      "message": "Permite muchos caracteres idénticos consecutivos: 0",
+      "details": {
+        "current_setting": 0,
+        "recommended_setting": 3,
+        "risk": "Facilita contraseñas débiles como \"aaaaaa\""
+      },
+      "timestamp": "2025-08-18T02:17:35.211893"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: ConectorCloud",
+      "details": {
+        "user_id": "2d5502377631460c9601244670a8aa1c",
+        "user_name": "ConectorCloud",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.890913"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: diegogarone",
+      "details": {
+        "user_id": "08450e873d00f5051fefc01364c4b18b",
+        "user_name": "diegogarone",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891077"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: emilianosilva",
+      "details": {
+        "user_id": "ab66dc6fc98745bfa87f539d8e64aca2",
+        "user_name": "emilianosilva",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891195"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: Florencia Pavon",
+      "details": {
+        "user_id": "e84771c7285a47939e6895479962ddd0",
+        "user_name": "Florencia Pavon",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891340"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: globo",
+      "details": {
+        "user_id": "5ade0315e9ba4045b063df938541c286",
+        "user_name": "globo",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891420"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: Julian Vazzano",
+      "details": {
+        "user_id": "0563f1d7034343cfa595eeb58b633b99",
+        "user_name": "Julian Vazzano",
+        "permissions_source": "group:power_user"
+      },
+      "timestamp": "2025-08-18T02:17:41.891524"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: Nicolas Alcorta",
+      "details": {
+        "user_id": "7b342f3b84144b048b37ade414729bf7",
+        "user_name": "Nicolas Alcorta",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891723"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: Nicolas Villafane",
+      "details": {
+        "user_id": "0e3c90608486441a87cfd710156eab73",
+        "user_name": "Nicolas Villafane",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891845"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: SManoni",
+      "details": {
+        "user_id": "8cb2fc59f63a4af3ab47710e48b5b551",
+        "user_name": "SManoni",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.891999"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+      "details": {
+        "user_id": "6b31f9905d88499985c003f0db251a05",
+        "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+        "permissions_source": "group:admin"
+      },
+      "timestamp": "2025-08-18T02:17:41.892142"
+    },
+    {
+      "id": "IAM-001",
+      "severity": "CRITICAL",
+      "message": "Usuario con privilegios de administrador: VeeamBackup_Huawei",
+      "details": {
+        "user_id": "affb4d6b5a13438a869b0d5ab6df958d",
+        "user_name": "VeeamBackup_Huawei",
+        "permissions_source": "group:power_user"
+      },
+      "timestamp": "2025-08-18T02:17:41.892256"
+    },
+    {
+      "id": "IAM-020",
+      "severity": "MEDIUM",
+      "message": "11 usuarios administradores sin límites de permisos",
+      "details": {
+        "users": [
+          "ConectorCloud",
+          "diegogarone",
+          "emilianosilva",
+          "Florencia Pavon",
+          "globo"
+        ],
+        "total": 11
+      },
+      "timestamp": "2025-08-18T02:17:47.691557"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cbc_partneragent_hwc83871270",
+      "details": {
+        "agency_name": "cbc_partneragent_hwc83871270",
+        "trust_domain": "hwc83871270",
+        "description": null
+      },
+      "timestamp": "2025-08-18T02:17:48.100788"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cce_admin_trust",
+      "details": {
+        "agency_name": "cce_admin_trust",
+        "trust_domain": "op_svc_cce",
+        "description": "Create by CCE Team"
+      },
+      "timestamp": "2025-08-18T02:17:48.101173"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: CESAgentAutoConfigAgency",
+      "details": {
+        "agency_name": "CESAgentAutoConfigAgency",
+        "trust_domain": "op_svc_ecs",
+        "description": ""
+      },
+      "timestamp": "2025-08-18T02:17:48.101363"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: cts_admin_trust",
+      "details": {
+        "agency_name": "cts_admin_trust",
+        "trust_domain": "op_svc_CTS",
+        "description": "Created by CTS. To ensure that services run properly, do not delete this agency."
+      },
+      "timestamp": "2025-08-18T02:17:48.101519"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: PrendeApagaAgency",
+      "details": {
+        "agency_name": "PrendeApagaAgency",
+        "trust_domain": "op_svc_cff",
+        "description": "Creada para apagado y encendido programado de ECS con function graph"
+      },
+      "timestamp": "2025-08-18T02:17:48.101660"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: prueba",
+      "details": {
+        "agency_name": "prueba",
+        "trust_domain": "op_svc_cff",
+        "description": ""
+      },
+      "timestamp": "2025-08-18T02:17:48.101798"
+    },
+    {
+      "id": "IAM-016",
+      "severity": "MEDIUM",
+      "message": "Agency con acceso desde dominio externo: ssa_admin_trust",
+      "details": {
+        "agency_name": "ssa_admin_trust",
+        "trust_domain": "op_svc_ssa",
+        "description": "Created by SA Service."
+      },
+      "timestamp": "2025-08-18T02:17:48.101931"
+    },
+    {
+      "id": "IAM-011",
+      "severity": "HIGH",
+      "message": "11 cuentas privilegiadas requieren verificación de logging detallado",
+      "details": {
+        "admin_users": [
+          "ConectorCloud",
+          "diegogarone",
+          "emilianosilva",
+          "Florencia Pavon",
+          "globo",
+          "Julian Vazzano",
+          "Nicolas Alcorta",
+          "Nicolas Villafane",
+          "SManoni",
+          "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+          "VeeamBackup_Huawei"
+        ],
+        "recommendation": "Configurar CTS con retención extendida para accesos administrativos"
+      },
+      "timestamp": "2025-08-18T02:17:48.514395"
+    },
+    {
+      "id": "IAM-015",
+      "severity": "LOW",
+      "message": "20 recursos IAM sin seguir convención de nombres",
+      "details": {
+        "users_non_compliant": 15,
+        "groups_non_compliant": 5,
+        "sample_users": [
+          "Christian Vazquez",
+          "ConectorCloud",
+          "dcabral",
+          "diegogarone",
+          "emilianosilva"
+        ],
+        "recommendation": "Establecer y documentar convención de nombres estándar"
+      },
+      "timestamp": "2025-08-18T02:17:48.514941"
+    },
+    {
+      "id": "IAM-024",
+      "severity": "HIGH",
+      "message": "Verificación de auditoría de cambios IAM requerida",
+      "details": {
+        "critical_actions": [
+          "iam:users:create",
+          "iam:users:delete",
+          "iam:policies:attach",
+          "iam:roles:create",
+          "iam:groups:addUser"
+        ],
+        "recommendation": "Configurar alertas en CTS para todos los cambios IAM críticos"
+      },
+      "timestamp": "2025-08-18T02:17:48.515100"
+    },
+    {
+      "id": "IAM-025",
+      "severity": "CRITICAL",
+      "message": "1 cuentas genéricas o compartidas detectadas",
+      "details": {
+        "users": [
+          "prueba.iis"
+        ],
+        "recommendation": "Eliminar cuentas compartidas y crear usuarios nominales individuales"
+      },
+      "timestamp": "2025-08-18T02:17:48.515600"
+    },
+    {
+      "id": "IAM-026",
+      "severity": "HIGH",
+      "message": "11 cuentas privilegiadas sin gestión PIM/PAM",
+      "details": {
+        "users": [
+          "ConectorCloud",
+          "diegogarone",
+          "emilianosilva",
+          "Florencia Pavon",
+          "globo",
+          "Julian Vazzano",
+          "Nicolas Alcorta",
+          "Nicolas Villafane",
+          "SManoni",
+          "us_gustavo-dpetrasso-acamuzzigas-dcom-dar"
+        ],
+        "total": 11,
+        "recommendation": "Implementar solución PIM para gestión de cuentas administrativas"
+      },
+      "timestamp": "2025-08-18T02:17:48.515744"
+    },
+    {
+      "id": "IAM-028",
+      "severity": "HIGH",
+      "message": "No se detectaron cuentas de emergencia (break-glass)",
+      "details": {
+        "recommendation": "Crear procedimiento break-glass con cuenta de emergencia monitoreada"
+      },
+      "timestamp": "2025-08-18T02:17:48.515874"
+    },
+    {
+      "id": "IAM-029",
+      "severity": "MEDIUM",
+      "message": "Gestión de certificados requiere verificación manual",
+      "details": {
+        "areas_to_check": [
+          "SSL/TLS certificates",
+          "API certificates",
+          "Service certificates"
+        ],
+        "recommendation": "Implementar gestión centralizada de certificados con rotación automática"
+      },
+      "timestamp": "2025-08-18T02:17:48.515999"
+    },
+    {
+      "id": "IAM-030",
+      "severity": "LOW",
+      "message": "Métricas IAM básicas disponibles, se requiere dashboard de monitoreo",
+      "details": {
+        "current_metrics": {
+          "total_users": 16,
+          "mfa_enabled": 0,
+          "inactive_users": 0,
+          "privileged_accounts": 11,
+          "groups": 5,
+          "policies": 3
+        },
+        "recommendation": "Implementar dashboard con KPIs de seguridad IAM y tendencias"
+      },
+      "timestamp": "2025-08-18T02:17:48.516101"
+    },
+    {
+      "id": "6fa2bd5e8f9b",
+      "severity": "CRITICA",
+      "message": "Usuarios con Privilegios Administrativos Excesivos",
+      "details": "Usuarios con permisos de administrador sin justificación de negocio",
+      "timestamp": "2025-08-18T02:17:49.270408"
+    },
+    {
+      "id": "09f247c6ba60",
+      "severity": "ALTA",
+      "message": "Políticas de Contraseñas Débiles",
+      "details": "Política de contraseñas no cumple con estándares mínimos",
+      "timestamp": "2025-08-18T02:17:49.270505"
+    },
+    {
+      "id": "8ee47a0ae4d2",
+      "severity": "BAJA",
+      "message": "Grupos sin Políticas Asociadas",
+      "details": "Grupos de usuarios creados sin políticas definidas",
+      "timestamp": "2025-08-18T02:17:49.270596"
+    },
+    {
+      "id": "261eb78cb972",
+      "severity": "ALTA",
+      "message": "Ausencia de Proceso de Onboarding/Offboarding",
+      "details": "Sin proceso formal para alta y baja de usuarios",
+      "timestamp": "2025-08-18T02:17:49.270678"
+    },
+    {
+      "id": "f1dced47bbc3",
+      "severity": "ALTA",
+      "message": "Sin Registro de Accesos Privilegiados",
+      "details": "Accesos administrativos sin logging detallado",
+      "timestamp": "2025-08-18T02:17:49.270792"
+    },
+    {
+      "id": "0a6333a0ba43",
+      "severity": "MEDIA",
+      "message": "Sin Revisión Periódica de Permisos",
+      "details": "Ausencia de revisión trimestral de permisos y accesos",
+      "timestamp": "2025-08-18T02:17:49.270905"
+    },
+    {
+      "id": "ea0d9d90a01b",
+      "severity": "BAJA",
+      "message": "Sin Política de Naming Convention",
+      "details": "Ausencia de convención de nombres para recursos IAM",
+      "timestamp": "2025-08-18T02:17:49.271202"
+    },
+    {
+      "id": "707082a0b2cb",
+      "severity": "ALTA",
+      "message": "Sin Federación de Identidades",
+      "details": "No uso de federación con IdP corporativo (SAML/OIDC)",
+      "timestamp": "2025-08-18T02:17:49.271332"
+    },
+    {
+      "id": "bef8f1aed79f",
+      "severity": "MEDIA",
+      "message": "Sin Control de Sesiones Concurrentes",
+      "details": "Usuarios pueden tener múltiples sesiones activas sin límite",
+      "timestamp": "2025-08-18T02:17:49.271446"
+    },
+    {
+      "id": "070fd77d71e2",
+      "severity": "ALTA",
+      "message": "Ausencia de Privileged Access Management",
+      "details": "Sin solución PAM para gestión de accesos privilegiados",
+      "timestamp": "2025-08-18T02:17:49.271528"
+    },
+    {
+      "id": "7f18d9b55c0c",
+      "severity": "ALTA",
+      "message": "Tokens de API sin Expiración",
+      "details": "Tokens de API con tiempo de vida excesivo o sin expiración",
+      "timestamp": "2025-08-18T02:17:49.271588"
+    },
+    {
+      "id": "eb0cc298473d",
+      "severity": "ALTA",
+      "message": "Sin Auditoría de Cambios IAM",
+      "details": "Cambios en IAM sin aprobación ni registro de auditoría",
+      "timestamp": "2025-08-18T02:17:49.271634"
+    },
+    {
+      "id": "0be77fee45c3",
+      "severity": "ALTA",
+      "message": "Sin Gestión de Identidades Privilegiadas",
+      "details": "Cuentas admin sin gestión especial PIM/PAM",
+      "timestamp": "2025-08-18T02:17:49.271795"
+    },
+    {
+      "id": "5a6e51d62c6e",
+      "severity": "ALTA",
+      "message": "Sin Break-Glass Procedure",
+      "details": "Ausencia de procedimiento de acceso de emergencia",
+      "timestamp": "2025-08-18T02:17:49.271934"
+    },
+    {
+      "id": "d5e28a80792b",
+      "severity": "MEDIA",
+      "message": "Certificados sin Gestión Centralizada",
+      "details": "Certificados digitales gestionados de forma descentralizada",
+      "timestamp": "2025-08-18T02:17:49.272041"
+    },
+    {
+      "id": "d21249c43297",
+      "severity": "BAJA",
+      "message": "Sin Métricas de Uso IAM",
+      "details": "Ausencia de KPIs y métricas sobre uso del sistema IAM",
+      "timestamp": "2025-08-18T02:17:49.272154"
+    }
+  ],
+  "statistics": {
+    "total_users": 16,
+    "total_groups": 5,
+    "total_roles": 16,
+    "total_policies": 3,
+    "total_access_keys": 9,
+    "users_without_mfa": 1,
+    "service_accounts_without_mfa": 1,
+    "mfa_compliance_rate": 93.75,
+    "old_access_keys": 0,
+    "users_with_temp_passwords": 14,
+    "inactive_users": 0,
+    "service_accounts": 1,
+    "privileged_accounts": 11,
+    "unused_access_keys": 0,
+    "findings_by_severity": {
+      "CRITICAL": 24,
+      "HIGH": 33,
+      "MEDIUM": 11,
+      "LOW": 6
+    },
+    "top_risks": [
+      {
+        "risk": "Usuario administrador sin MFA: ConectorCloud",
+        "severity": "CRITICAL"
+      },
+      {
+        "risk": "Usuario con acceso administrador: ConectorCloud",
+        "severity": "CRITICAL"
+      },
+      {
+        "risk": "Usuario con acceso a múltiples servicios privilegiados: ConectorCloud",
+        "severity": "HIGH"
+      },
+      {
+        "risk": "Usuario con permisos excesivos: ConectorCloud",
+        "severity": "HIGH"
+      },
+      {
+        "risk": "Usuario con acceso administrador: diegogarone",
+        "severity": "CRITICAL"
+      }
+    ],
+    "users_without_groups": 0,
+    "password_policy_compliant": false
+  },
+  "timestamp": "2025-08-18T02:16:54.742248",
+  "vulnerabilities": [
+    {
+      "id": "6fa2bd5e8f9b",
+      "code": "IAM-001",
+      "title": "Usuarios con Privilegios Administrativos Excesivos",
+      "description": "Usuarios con permisos de administrador sin justificación de negocio",
+      "type": "authorization",
+      "severity": "CRITICA",
+      "cvss_score": 9.1,
+      "cve_ids": [],
+      "affected_resources": [
+        {
+          "type": "iam_user",
+          "identifiers": [
+            "ConectorCloud",
+            "diegogarone",
+            "emilianosilva",
+            "Florencia Pavon",
+            "globo",
+            "Julian Vazzano",
+            "Nicolas Alcorta",
+            "Nicolas Villafane",
+            "SManoni",
+            "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "VeeamBackup_Huawei"
+          ]
+        }
+      ],
+      "evidence": {
+        "privileged_users": [
+          {
+            "user_name": "ConectorCloud",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "diegogarone",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "emilianosilva",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Florencia Pavon",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "globo",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Julian Vazzano",
+            "source": "group:power_user"
+          },
+          {
+            "user_name": "Nicolas Alcorta",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "Nicolas Villafane",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "SManoni",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "us_gustavo-dpetrasso-acamuzzigas-dcom-dar",
+            "source": "group:admin"
+          },
+          {
+            "user_name": "VeeamBackup_Huawei",
+            "source": "group:power_user"
+          }
+        ],
+        "total_count": 11
+      },
+      "remediation": {
+        "steps": [
+          "Implementar principio de menor privilegio",
+          "Crear roles específicos para funciones",
+          "Revisar y reducir permisos administrativos",
+          "Implementar acceso justo a tiempo (JIT)"
+        ],
+        "effort_hours": 8,
+        "priority": "CRITICA",
+        "time_days": 7
+      },
+      "references": [
+        "CIS 1.15",
+        "ISO 27001 A.9.2.3",
+        "NIST PR.AC-4"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270408",
+      "frameworks": {
+        "CIS": "CIS 1.15",
+        "ISO": "ISO 27001 A.9.2.3",
+        "NIST": "NIST PR.AC-4"
+      }
+    },
+    {
+      "id": "09f247c6ba60",
+      "code": "IAM-004",
+      "title": "Políticas de Contraseñas Débiles",
+      "description": "Política de contraseñas no cumple con estándares mínimos",
+      "type": "authentication",
+      "severity": "ALTA",
+      "cvss_score": 7.1,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se encontró política de contraseñas configurada"
+      },
+      "remediation": {
+        "steps": [
+          "Configurar política: mínimo 12 caracteres con complejidad"
+        ],
+        "effort_hours": 4,
+        "priority": "ALTA",
+        "time_days": 7
+      },
+      "references": [
+        "CIS 1.1",
+        "ISO 27001 A.9.4.3",
+        "NIST PR.AC-1"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270505",
+      "frameworks": {
+        "CIS": "CIS 1.1",
+        "ISO": "ISO 27001 A.9.4.3",
+        "NIST": "NIST PR.AC-1"
+      }
+    },
+    {
+      "id": "8ee47a0ae4d2",
+      "code": "IAM-008",
+      "title": "Grupos sin Políticas Asociadas",
+      "description": "Grupos de usuarios creados sin políticas definidas",
+      "type": "configuration",
+      "severity": "BAJA",
+      "cvss_score": 3.1,
+      "cve_ids": [],
+      "affected_resources": [
+        {
+          "type": "iam_group",
+          "identifiers": [
+            "Iplan",
+            "ECS ReadOnlyAccess-Start-Reset-Stop",
+            "Cloud-Eye-Lectura",
+            "power_user",
+            "admin"
+          ]
+        }
+      ],
+      "evidence": {
+        "empty_groups": [
+          "Iplan",
+          "ECS ReadOnlyAccess-Start-Reset-Stop",
+          "Cloud-Eye-Lectura",
+          "power_user",
+          "admin"
+        ]
+      },
+      "remediation": {
+        "steps": [
+          "Asignar políticas apropiadas o eliminar grupos vacíos"
+        ],
+        "effort_hours": 2,
+        "priority": "BAJA",
+        "time_days": 60
+      },
+      "references": [
+        "CIS 1.14",
+        "ISO 27001 A.9.1.1",
+        NaN
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270596",
+      "frameworks": {
+        "CIS": "CIS 1.14",
+        "ISO": "ISO 27001 A.9.1.1",
+        "NIST": NaN
+      }
+    },
+    {
+      "id": "261eb78cb972",
+      "code": "IAM-009",
+      "title": "Ausencia de Proceso de Onboarding/Offboarding",
+      "description": "Sin proceso formal para alta y baja de usuarios",
+      "type": "operational",
+      "severity": "ALTA",
+      "cvss_score": 7.2,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "users_without_proper_onboarding": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "description": "Usuarios nuevos sin grupos asignados"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar proceso formal de gestión de identidades"
+        ],
+        "effort_hours": 24,
+        "priority": "ALTA",
+        "time_days": 14
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.2.1",
+        "NIST PR.AC-1"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270678",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.2.1",
+        "NIST": "NIST PR.AC-1"
+      }
+    },
+    {
+      "id": "f1dced47bbc3",
+      "code": "IAM-011",
+      "title": "Sin Registro de Accesos Privilegiados",
+      "description": "Accesos administrativos sin logging detallado",
+      "type": "logging",
+      "severity": "ALTA",
+      "cvss_score": 7.8,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó configuración de auditoría para accesos privilegiados"
+      },
+      "remediation": {
+        "steps": [
+          "Habilitar logging completo para accesos privilegiados"
+        ],
+        "effort_hours": 6,
+        "priority": "ALTA",
+        "time_days": 7
+      },
+      "references": [
+        "CIS 1.12",
+        "ISO 27001 A.12.4.1",
+        "NIST DE.CM-3"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270792",
+      "frameworks": {
+        "CIS": "CIS 1.12",
+        "ISO": "ISO 27001 A.12.4.1",
+        "NIST": "NIST DE.CM-3"
+      }
+    },
+    {
+      "id": "0a6333a0ba43",
+      "code": "IAM-013",
+      "title": "Sin Revisión Periódica de Permisos",
+      "description": "Ausencia de revisión trimestral de permisos y accesos",
+      "type": "operational",
+      "severity": "MEDIA",
+      "cvss_score": 6.2,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se encontró evidencia de revisión periódica de permisos"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar revisión trimestral de access review"
+        ],
+        "effort_hours": 16,
+        "priority": "MEDIA",
+        "time_days": 30
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.2.5",
+        "NIST PR.AC-1"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.270905",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.2.5",
+        "NIST": "NIST PR.AC-1"
+      }
+    },
+    {
+      "id": "ea0d9d90a01b",
+      "code": "IAM-015",
+      "title": "Sin Política de Naming Convention",
+      "description": "Ausencia de convención de nombres para recursos IAM",
+      "type": "operational",
+      "severity": "BAJA",
+      "cvss_score": 3.5,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "non_compliant_count": 16,
+        "samples": [
+          {
+            "type": "user",
+            "name": ""
+          },
+          {
+            "type": "user",
+            "name": ""
+          },
+          {
+            "type": "user",
+            "name": ""
+          },
+          {
+            "type": "user",
+            "name": ""
+          },
+          {
+            "type": "user",
+            "name": ""
+          }
+        ]
+      },
+      "remediation": {
+        "steps": [
+          "Establecer y documentar convención de nombres"
+        ],
+        "effort_hours": 8,
+        "priority": "BAJA",
+        "time_days": 60
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.12.1.1",
+        "NIST ID.AM-1"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271202",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.12.1.1",
+        "NIST": "NIST ID.AM-1"
+      }
+    },
+    {
+      "id": "707082a0b2cb",
+      "code": "IAM-017",
+      "title": "Sin Federación de Identidades",
+      "description": "No uso de federación con IdP corporativo (SAML/OIDC)",
+      "type": "configuration",
+      "severity": "ALTA",
+      "cvss_score": 6.8,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó configuración de federación de identidades"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar federación con Active Directory/LDAP"
+        ],
+        "effort_hours": 40,
+        "priority": "ALTA",
+        "time_days": 21
+      },
+      "references": [
+        "CIS 1.21",
+        "ISO 27001 A.9.2.1",
+        "NIST PR.AC-6"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271332",
+      "frameworks": {
+        "CIS": "CIS 1.21",
+        "ISO": "ISO 27001 A.9.2.1",
+        "NIST": "NIST PR.AC-6"
+      }
+    },
+    {
+      "id": "bef8f1aed79f",
+      "code": "IAM-019",
+      "title": "Sin Control de Sesiones Concurrentes",
+      "description": "Usuarios pueden tener múltiples sesiones activas sin límite",
+      "type": "configuration",
+      "severity": "MEDIA",
+      "cvss_score": 5.9,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó límite de sesiones concurrentes"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar límite de sesiones concurrentes"
+        ],
+        "effort_hours": 8,
+        "priority": "MEDIA",
+        "time_days": 30
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.4.2",
+        "NIST PR.AC-7"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271446",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.4.2",
+        "NIST": "NIST PR.AC-7"
+      }
+    },
+    {
+      "id": "070fd77d71e2",
+      "code": "IAM-020",
+      "title": "Ausencia de Privileged Access Management",
+      "description": "Sin solución PAM para gestión de accesos privilegiados",
+      "type": "configuration",
+      "severity": "ALTA",
+      "cvss_score": 7.6,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó implementación de Privileged Access Management"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar solución PAM o JIT access"
+        ],
+        "effort_hours": 32,
+        "priority": "ALTA",
+        "time_days": 14
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.2.3",
+        "NIST PR.AC-4"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271528",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.2.3",
+        "NIST": "NIST PR.AC-4"
+      }
+    },
+    {
+      "id": "7f18d9b55c0c",
+      "code": "IAM-021",
+      "title": "Tokens de API sin Expiración",
+      "description": "Tokens de API con tiempo de vida excesivo o sin expiración",
+      "type": "authentication",
+      "severity": "ALTA",
+      "cvss_score": 7.3,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó configuración de expiración para tokens de API"
+      },
+      "remediation": {
+        "steps": [
+          "Configurar expiración máxima de 12 horas para tokens"
+        ],
+        "effort_hours": 6,
+        "priority": "ALTA",
+        "time_days": 7
+      },
+      "references": [
+        "CIS 1.22",
+        "ISO 27001 A.9.4.3",
+        "NIST PR.AC-1"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271588",
+      "frameworks": {
+        "CIS": "CIS 1.22",
+        "ISO": "ISO 27001 A.9.4.3",
+        "NIST": "NIST PR.AC-1"
+      }
+    },
+    {
+      "id": "eb0cc298473d",
+      "code": "IAM-024",
+      "title": "Sin Auditoría de Cambios IAM",
+      "description": "Cambios en IAM sin aprobación ni registro de auditoría",
+      "type": "logging",
+      "severity": "ALTA",
+      "cvss_score": 7.2,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó auditoría activa para cambios en IAM"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar workflow de aprobación para cambios IAM"
+        ],
+        "effort_hours": 12,
+        "priority": "ALTA",
+        "time_days": 7
+      },
+      "references": [
+        "CIS 3.1",
+        "ISO 27001 A.12.4.1",
+        "NIST DE.AE-3"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271634",
+      "frameworks": {
+        "CIS": "CIS 3.1",
+        "ISO": "ISO 27001 A.12.4.1",
+        "NIST": "NIST DE.AE-3"
+      }
+    },
+    {
+      "id": "0be77fee45c3",
+      "code": "IAM-026",
+      "title": "Sin Gestión de Identidades Privilegiadas",
+      "description": "Cuentas admin sin gestión especial PIM/PAM",
+      "type": "configuration",
+      "severity": "ALTA",
+      "cvss_score": 7.9,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó sistema de gestión de identidades privilegiadas"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar PIM para cuentas administrativas"
+        ],
+        "effort_hours": 24,
+        "priority": "ALTA",
+        "time_days": 14
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.2.3",
+        "NIST PR.AC-4"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271795",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.2.3",
+        "NIST": "NIST PR.AC-4"
+      }
+    },
+    {
+      "id": "5a6e51d62c6e",
+      "code": "IAM-028",
+      "title": "Sin Break-Glass Procedure",
+      "description": "Ausencia de procedimiento de acceso de emergencia",
+      "type": "operational",
+      "severity": "ALTA",
+      "cvss_score": 7.0,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectaron cuentas de emergencia (break-glass)"
+      },
+      "remediation": {
+        "steps": [
+          "Crear procedimiento break-glass para emergencias"
+        ],
+        "effort_hours": 8,
+        "priority": "ALTA",
+        "time_days": 7
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.9.1.2",
+        "NIST RS.AN-5"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.271934",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.9.1.2",
+        "NIST": "NIST RS.AN-5"
+      }
+    },
+    {
+      "id": "d5e28a80792b",
+      "code": "IAM-029",
+      "title": "Certificados sin Gestión Centralizada",
+      "description": "Certificados digitales gestionados de forma descentralizada",
+      "type": "configuration",
+      "severity": "MEDIA",
+      "cvss_score": 6.1,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectó gestión centralizada de certificados"
+      },
+      "remediation": {
+        "steps": [
+          "Centralizar gestión de certificados digitales"
+        ],
+        "effort_hours": 20,
+        "priority": "MEDIA",
+        "time_days": 30
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.10.1.2",
+        "NIST PR.DS-2"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.272041",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.10.1.2",
+        "NIST": "NIST PR.DS-2"
+      }
+    },
+    {
+      "id": "d21249c43297",
+      "code": "IAM-030",
+      "title": "Sin Métricas de Uso IAM",
+      "description": "Ausencia de KPIs y métricas sobre uso del sistema IAM",
+      "type": "monitoring",
+      "severity": "BAJA",
+      "cvss_score": 3.8,
+      "cve_ids": [],
+      "affected_resources": [],
+      "evidence": {
+        "message": "No se detectaron métricas de uso IAM configuradas"
+      },
+      "remediation": {
+        "steps": [
+          "Implementar dashboard con métricas IAM"
+        ],
+        "effort_hours": 12,
+        "priority": "BAJA",
+        "time_days": 60
+      },
+      "references": [
+        NaN,
+        "ISO 27001 A.12.1.3",
+        "NIST DE.DP-4"
+      ],
+      "discovered_date": "2025-08-18T02:17:49.272154",
+      "frameworks": {
+        "CIS": NaN,
+        "ISO": "ISO 27001 A.12.1.3",
+        "NIST": "NIST DE.DP-4"
+      }
+    }
+  ],
+  "vulnerability_summary": {
+    "total_vulnerabilities": 16,
+    "by_severity": {
+      "CRITICA": 1,
+      "ALTA": 9,
+      "MEDIA": 3,
+      "BAJA": 3
+    },
+    "by_type": {
+      "authorization": 1,
+      "authentication": 2,
+      "configuration": 6,
+      "operational": 4,
+      "logging": 2,
+      "monitoring": 1
+    }
+  }
+}

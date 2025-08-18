@@ -1,0 +1,682 @@
+{
+  "execution_info": {
+    "timestamp": "2025-08-12T02:16:04.757614",
+    "mode": "full",
+    "args": {
+      "collect_only": false,
+      "analyze_only": false,
+      "input": null,
+      "check_evs_only": false,
+      "check_obs_only": false,
+      "check_kms_only": false,
+      "check_backups_only": false,
+      "check_snapshots_only": false,
+      "region": null,
+      "skip_regions": null,
+      "output": null,
+      "simple_output": false,
+      "verbose": false,
+      "quiet": false,
+      "no_confirm": false,
+      "no_color": false,
+      "timeout": 30,
+      "csv_path": "security_references.csv"
+    }
+  },
+  "collection_data": {
+    "evs_volumes": {
+      "LA-Santiago": [
+        {
+          "id": "evs-la-santiago-***-000",
+          "name": "volume-prod-000",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-000",
+          "created_at": "2025-05-14T02:16:04.940697",
+          "attached_to": "ecs-***-000",
+          "backup_policy_id": "backup-policy-***-000",
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-001",
+          "name": "volume-dev-001",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-05-04T02:16:04.940709",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-002",
+          "name": "volume-test-002",
+          "size": 500,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-04-24T02:16:04.940718",
+          "attached_to": "ecs-***-002",
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-003",
+          "name": "volume-prod-003",
+          "size": 1000,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-003",
+          "created_at": "2025-04-14T02:16:04.940723",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-004",
+          "name": "volume-dev-004",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-04-04T02:16:04.940727",
+          "attached_to": "ecs-***-004",
+          "backup_policy_id": "backup-policy-***-004",
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-005",
+          "name": "volume-test-005",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-03-25T02:16:04.940732",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-006",
+          "name": "volume-prod-006",
+          "size": 500,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-006",
+          "created_at": "2025-03-15T02:16:04.940735",
+          "attached_to": "ecs-***-006",
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-007",
+          "name": "volume-dev-007",
+          "size": 1000,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-03-05T02:16:04.940739",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-008",
+          "name": "volume-test-008",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-02-23T02:16:04.940742",
+          "attached_to": "ecs-***-008",
+          "backup_policy_id": "backup-policy-***-008",
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-santiago-***-009",
+          "name": "volume-prod-009",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-009",
+          "created_at": "2025-02-13T02:16:04.940746",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        }
+      ],
+      "LA-Buenos Aires1": [
+        {
+          "id": "evs-la-buenos aires1-***-000",
+          "name": "volume-prod-000",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-000",
+          "created_at": "2025-05-14T02:16:04.941092",
+          "attached_to": "ecs-***-000",
+          "backup_policy_id": "backup-policy-***-000",
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-001",
+          "name": "volume-dev-001",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-05-04T02:16:04.941100",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-002",
+          "name": "volume-test-002",
+          "size": 500,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-04-24T02:16:04.941105",
+          "attached_to": "ecs-***-002",
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-003",
+          "name": "volume-prod-003",
+          "size": 1000,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-003",
+          "created_at": "2025-04-14T02:16:04.941111",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-004",
+          "name": "volume-dev-004",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-04-04T02:16:04.941114",
+          "attached_to": "ecs-***-004",
+          "backup_policy_id": "backup-policy-***-004",
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-005",
+          "name": "volume-test-005",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-03-25T02:16:04.941119",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-006",
+          "name": "volume-prod-006",
+          "size": 500,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-006",
+          "created_at": "2025-03-15T02:16:04.941122",
+          "attached_to": "ecs-***-006",
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-007",
+          "name": "volume-dev-007",
+          "size": 1000,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-03-05T02:16:04.941125",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": false,
+          "tags": {
+            "environment": "dev",
+            "criticality": "medium"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-008",
+          "name": "volume-test-008",
+          "size": 100,
+          "status": "in-use",
+          "encrypted": false,
+          "encryption_key_id": null,
+          "created_at": "2025-02-23T02:16:04.941128",
+          "attached_to": "ecs-***-008",
+          "backup_policy_id": "backup-policy-***-008",
+          "has_snapshots": false,
+          "tags": {
+            "environment": "test",
+            "criticality": "low"
+          }
+        },
+        {
+          "id": "evs-la-buenos aires1-***-009",
+          "name": "volume-prod-009",
+          "size": 200,
+          "status": "in-use",
+          "encrypted": true,
+          "encryption_key_id": "kms-key-***-009",
+          "created_at": "2025-02-13T02:16:04.941134",
+          "attached_to": null,
+          "backup_policy_id": null,
+          "has_snapshots": true,
+          "tags": {
+            "environment": "prod",
+            "criticality": "high"
+          }
+        }
+      ]
+    },
+    "obs_buckets": {
+      "LA-Santiago": [
+        {
+          "name": "camuzzi-backup-***",
+          "region": "LA-Santiago",
+          "created_at": "2024-08-12T02:16:04.940808",
+          "is_public": false,
+          "versioning_enabled": false,
+          "encryption": {
+            "enabled": true,
+            "type": "KMS",
+            "key_id": "kms-key-***-obs"
+          },
+          "lifecycle_rules": [],
+          "access_logging_enabled": false,
+          "cross_region_replication": null,
+          "tags": {
+            "purpose": "backup",
+            "criticality": "high"
+          },
+          "acl": "private",
+          "size_bytes": 107374182400,
+          "object_count": 1500
+        }
+      ]
+    },
+    "kms_keys": {
+      "LA-Santiago": [
+        {
+          "id": "kms-key-la-santiago-***-000",
+          "alias": "key-evs-encryption",
+          "state": "Enabled",
+          "created_at": "2025-02-13T02:16:04.940853",
+          "rotation_enabled": true,
+          "rotation_interval_days": 90,
+          "last_rotation": "2025-07-13T02:16:04.940856",
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 5
+        },
+        {
+          "id": "kms-key-la-santiago-***-001",
+          "alias": "key-obs-encryption",
+          "state": "Enabled",
+          "created_at": "2025-01-14T02:16:04.940861",
+          "rotation_enabled": false,
+          "rotation_interval_days": null,
+          "last_rotation": null,
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 10
+        },
+        {
+          "id": "kms-key-la-santiago-***-002",
+          "alias": "key-backup-encryption",
+          "state": "Enabled",
+          "created_at": "2024-12-15T02:16:04.940865",
+          "rotation_enabled": false,
+          "rotation_interval_days": null,
+          "last_rotation": null,
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 15
+        }
+      ],
+      "LA-Buenos Aires1": [
+        {
+          "id": "kms-key-la-buenos aires1-***-000",
+          "alias": "key-evs-encryption",
+          "state": "Enabled",
+          "created_at": "2025-02-13T02:16:04.941185",
+          "rotation_enabled": true,
+          "rotation_interval_days": 90,
+          "last_rotation": "2025-07-13T02:16:04.941219",
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 5
+        },
+        {
+          "id": "kms-key-la-buenos aires1-***-001",
+          "alias": "key-obs-encryption",
+          "state": "Enabled",
+          "created_at": "2025-01-14T02:16:04.941226",
+          "rotation_enabled": false,
+          "rotation_interval_days": null,
+          "last_rotation": null,
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 10
+        },
+        {
+          "id": "kms-key-la-buenos aires1-***-002",
+          "alias": "key-backup-encryption",
+          "state": "Enabled",
+          "created_at": "2024-12-15T02:16:04.941230",
+          "rotation_enabled": false,
+          "rotation_interval_days": null,
+          "last_rotation": null,
+          "algorithm": "AES_256",
+          "usage": [
+            "ENCRYPT_DECRYPT"
+          ],
+          "protected_resources_count": 15
+        }
+      ]
+    },
+    "backup_policies": {
+      "LA-Santiago": [
+        {
+          "id": "backup-policy-la-santiago-***-000",
+          "name": "policy-daily-backup",
+          "enabled": true,
+          "schedule": {
+            "frequency": "daily",
+            "time": "02:00",
+            "retention_days": 7
+          },
+          "resources_count": 10,
+          "last_execution": "2025-08-12T02:16:04.940919",
+          "status": "active"
+        },
+        {
+          "id": "backup-policy-la-santiago-***-001",
+          "name": "policy-weekly-backup",
+          "enabled": true,
+          "schedule": {
+            "frequency": "weekly",
+            "time": "02:00",
+            "retention_days": 30
+          },
+          "resources_count": 20,
+          "last_execution": "2025-08-11T02:16:04.940926",
+          "status": "active"
+        }
+      ],
+      "LA-Buenos Aires1": [
+        {
+          "id": "backup-policy-la-buenos aires1-***-000",
+          "name": "policy-daily-backup",
+          "enabled": true,
+          "schedule": {
+            "frequency": "daily",
+            "time": "02:00",
+            "retention_days": 7
+          },
+          "resources_count": 10,
+          "last_execution": "2025-08-12T02:16:04.941304",
+          "status": "active"
+        },
+        {
+          "id": "backup-policy-la-buenos aires1-***-001",
+          "name": "policy-weekly-backup",
+          "enabled": true,
+          "schedule": {
+            "frequency": "weekly",
+            "time": "02:00",
+            "retention_days": 30
+          },
+          "resources_count": 20,
+          "last_execution": "2025-08-11T02:16:04.941311",
+          "status": "active"
+        }
+      ]
+    },
+    "backup_vaults": {
+      "LA-Santiago": [
+        {
+          "id": "vault-la-santiago-***-001",
+          "name": "production-backup-vault",
+          "type": "VBS",
+          "immutability_enabled": false,
+          "worm_policy": null,
+          "capacity_used_gb": 500,
+          "backup_count": 150,
+          "created_at": "2025-01-24T02:16:04.940930",
+          "encryption": {
+            "enabled": true,
+            "key_id": "kms-key-***-vault"
+          }
+        }
+      ],
+      "LA-Buenos Aires1": [
+        {
+          "id": "vault-la-buenos aires1-***-001",
+          "name": "production-backup-vault",
+          "type": "VBS",
+          "immutability_enabled": false,
+          "worm_policy": null,
+          "capacity_used_gb": 500,
+          "backup_count": 150,
+          "created_at": "2025-01-24T02:16:04.941314",
+          "encryption": {
+            "enabled": true,
+            "key_id": "kms-key-***-vault"
+          }
+        }
+      ]
+    },
+    "snapshots": {
+      "LA-Santiago": [
+        {
+          "id": "snapshot-la-santiago-***-000",
+          "name": "snapshot-manual-000",
+          "volume_id": "evs-***-000",
+          "size_gb": 100,
+          "encrypted": true,
+          "created_at": "2025-08-12T02:16:04.940990",
+          "type": "manual",
+          "status": "available"
+        },
+        {
+          "id": "snapshot-la-santiago-***-001",
+          "name": "snapshot-auto-001",
+          "volume_id": "evs-***-001",
+          "size_gb": 200,
+          "encrypted": false,
+          "created_at": "2025-08-05T02:16:04.940998",
+          "type": "automatic",
+          "status": "available"
+        },
+        {
+          "id": "snapshot-la-santiago-***-002",
+          "name": "snapshot-backup-002",
+          "volume_id": "evs-***-002",
+          "size_gb": 150,
+          "encrypted": true,
+          "created_at": "2025-07-29T02:16:04.941002",
+          "type": "backup",
+          "status": "available"
+        }
+      ],
+      "LA-Buenos Aires1": [
+        {
+          "id": "snapshot-la-buenos aires1-***-000",
+          "name": "snapshot-manual-000",
+          "volume_id": "evs-***-000",
+          "size_gb": 100,
+          "encrypted": true,
+          "created_at": "2025-08-12T02:16:04.941356",
+          "type": "manual",
+          "status": "available"
+        },
+        {
+          "id": "snapshot-la-buenos aires1-***-001",
+          "name": "snapshot-auto-001",
+          "volume_id": "evs-***-001",
+          "size_gb": 200,
+          "encrypted": false,
+          "created_at": "2025-08-05T02:16:04.941361",
+          "type": "automatic",
+          "status": "available"
+        },
+        {
+          "id": "snapshot-la-buenos aires1-***-002",
+          "name": "snapshot-backup-002",
+          "volume_id": "evs-***-002",
+          "size_gb": 150,
+          "encrypted": true,
+          "created_at": "2025-07-29T02:16:04.941364",
+          "type": "backup",
+          "status": "available"
+        }
+      ]
+    },
+    "findings": [
+      {
+        "code": "STO-001",
+        "severity": "CRITICAL",
+        "title": "Vol\u00famenes EVS sin Cifrado",
+        "affected_resources": 12,
+        "region": "Multiple",
+        "recommendation": "Habilitar cifrado en todos los vol\u00famenes EVS"
+      },
+      {
+        "code": "STO-003",
+        "severity": "MEDIUM",
+        "title": "Ausencia de Versionado en OBS",
+        "affected_resources": 1,
+        "region": "LA-Santiago",
+        "recommendation": "Habilitar versionado en buckets cr\u00edticos"
+      },
+      {
+        "code": "STO-006",
+        "severity": "HIGH",
+        "title": "KMS Keys sin Rotaci\u00f3n",
+        "affected_resources": 4,
+        "region": "Multiple",
+        "recommendation": "Configurar rotaci\u00f3n autom\u00e1tica de llaves KMS"
+      },
+      {
+        "code": "STO-010",
+        "severity": "CRITICAL",
+        "title": "Vaults de Backup sin Inmutabilidad",
+        "affected_resources": 2,
+        "region": "Multiple",
+        "recommendation": "Activar inmutabilidad (WORM) en vaults de backup"
+      }
+    ],
+    "statistics": {
+      "total_evs_volumes": 251,
+      "total_obs_buckets": 1,
+      "total_ims_images": 3,
+      "encrypted_volumes": 8,
+      "unencrypted_volumes": 12,
+      "public_buckets": 0,
+      "versioned_buckets": 0,
+      "volumes_with_backup": 6,
+      "kms_keys_rotated": 2,
+      "kms_keys_not_rotated": 4,
+      "backup_vaults_immutable": 0,
+      "collection_timestamp": "2025-08-12T02:16:04.940532",
+      "findings_count": 4,
+      "critical_findings": 2,
+      "high_findings": 1,
+      "encryption_coverage": 40.0,
+      "backup_coverage": 30.0
+    },
+    "collection_timestamp": "2025-08-12T02:16:04.940630"
+  }
+}

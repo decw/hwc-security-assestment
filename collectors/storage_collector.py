@@ -32,6 +32,8 @@ except ImportError:
     HUAWEI_SDK_AVAILABLE = False
     print("⚠️ SDK de Huawei no disponible - usando modo simulación")
 
+from config.settings import HUAWEI_ACCESS_KEY, HUAWEI_SECRET_KEY
+
 
 class StorageCollector:
     """Colector de información de almacenamiento de Huawei Cloud"""
@@ -97,8 +99,8 @@ class StorageCollector:
             self.logger.info("Usando modo simulación - SDK no disponible")
             return None
 
-        ak = os.getenv('HUAWEI_ACCESS_KEY')
-        sk = os.getenv('HUAWEI_SECRET_KEY')
+        ak = HUAWEI_ACCESS_KEY
+        sk = HUAWEI_SECRET_KEY
 
         if not ak or not sk:
             self.logger.warning(

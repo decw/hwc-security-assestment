@@ -21,6 +21,9 @@ from typing import Dict, Optional
 # Agregar el directorio raíz al path para importaciones
 sys.path.append(str(Path(__file__).parent.parent))
 
+# Ahora sí podemos importar los módulos locales
+from utils.storage_report_generator import StorageReportGenerator
+
 
 def print_banner():
     """Imprimir banner del script"""
@@ -167,8 +170,8 @@ Ejemplos de uso:
     parser.add_argument(
         '--csv-path',
         type=str,
-        default='security_references.csv',
-        help='Ruta al archivo security_references.csv (default: security_references.csv)'
+        default='utils/security_references.csv',
+        help='Ruta al archivo security_references.csv (default: utils/security_references.csv)'
     )
 
     return parser
@@ -408,6 +411,7 @@ async def run_analysis(data: Dict, args) -> Optional[Dict]:
     try:
         # Importar el analizador
         from analyzers.vulnerability_analyzer_storage import StorageVulnerabilityAnalyzer
+        from utils.storage_report_generator import StorageReportGenerator
 
         # Crear analizador con ruta del CSV personalizada si se proporciona
         analyzer = StorageVulnerabilityAnalyzer(csv_path=args.csv_path)
@@ -576,6 +580,16 @@ async def main():
                     f"   Coverage de cifrado: {stats.get('encryption_coverage', 0)}%")
                 print(
                     f"   Coverage de backup: {stats.get('backup_coverage', 0)}%")
+
+            # Generar reportes en reports/storage/
+            if analysis_results:
+                report_generator = StorageReportGenerator()
+                report_paths = report_generator.generate_all_reports(
+                    collection_data,
+                    analysis_results,
+                    csv_path='utils/security_references.csv'
+                )
+                print(f"📁 Reportes detallados generados en: reports/storage/")
 
         else:
             print_colored("❌ No se pudieron recolectar datos",
