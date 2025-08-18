@@ -762,14 +762,30 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
 
 ### 🔍 Detalle de Access Keys
 
-| Usuario | Estado | Edad (días) | Último Uso |
-|---------|--------|-------------|------------|
+| Usuario | Estado | Edad (días) | Fecha Creación | Último Uso |
+|---------|--------|-------------|----------------|------------|
 """
 
         for key in access_keys:  # CAMBIO: Remover [:10]
             user_name = key.get('user_name', 'N/A')
             status = "✅" if key.get('status') == 'active' else "❌"
             age = key.get('age_days', 0)
+
+            # NUEVO: Mostrar fecha de creación
+            created_at = key.get('created_at', '')
+            if created_at:
+                try:
+                    from datetime import datetime
+                    if 'T' in created_at:
+                        dt = datetime.fromisoformat(
+                            created_at.replace('Z', '+00:00'))
+                        creation_date = dt.strftime('%Y-%m-%d')
+                    else:
+                        creation_date = created_at[:10]
+                except:
+                    creation_date = str(created_at)[:10]
+            else:
+                creation_date = 'Sin datos'
 
             # CORREGIDO: Mostrar timestamp del último uso
             last_used_data = key.get('last_used', {})
@@ -782,6 +798,12 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
                         dt = datetime.fromisoformat(
                             timestamp.replace('Z', '+00:00'))
                         last_used = dt.strftime('%Y-%m-%d')
+
+                        # VERIFICACIÓN: Si last_used es igual a creation_date, marcar como sospechoso
+                        if last_used == creation_date:
+                            # Marcar como posible fecha de creación
+                            last_used = f"{last_used} ⚠️"
+
                     except:
                         # Tomar solo los primeros 10 caracteres (fecha)
                         last_used = timestamp[:10]
@@ -790,8 +812,7 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
             else:
                 last_used = 'Nunca'
 
-            # REMOVIDO: Ya no incluir la columna de servicio
-            content += f"| {user_name} | {status} | {age} | {last_used} |\n"
+            content += f"| {user_name} | {status} | {age} | {creation_date} | {last_used} |\n"
 
         # Eliminar mensaje de truncamiento (líneas 722-723)
         # if len(access_keys) > 10:
@@ -804,23 +825,28 @@ Las políticas predefinidas del sistema están implícitas en los roles asignado
             'age_days', 0) > 90 and k.get('status') == 'active']
         if old_keys:
             content += "**Access Keys Antiguas (>90 días):**\n"
-            for key in old_keys:  # CAMBIO: Remover [:5]
+            for key in old_keys:  # CAMBIO: Remover [:5] para mostrar todas
                 content += f"- {key.get('user_name', 'N/A')} ({key.get('age_days', 0)} días)\n"
             # REMOVIDO: Eliminar mensaje de truncamiento
-            # if len(old_keys) > 5:
-            #     content += f"- ... y {len(old_keys) - 5} keys más\n"
             content += "\n"
 
-        # Keys sin uso
-        unused_keys = [k for k in access_keys if not k.get(
-            'last_used') and k.get('age_days', 0) > 30]
+        # Keys sin uso - CORREGIDO para verificar timestamp vacío
+        unused_keys = []
+        for k in access_keys:
+            last_used_data = k.get('last_used', {})
+            if isinstance(last_used_data, dict):
+                timestamp = last_used_data.get('timestamp', '')
+                # Key sin uso si timestamp está vacío Y tiene más de 30 días
+                if not timestamp and k.get('age_days', 0) > 30:
+                    unused_keys.append(k)
+            elif not last_used_data and k.get('age_days', 0) > 30:
+                # Si last_used es None/False
+                unused_keys.append(k)
+
         if unused_keys:
             content += "**Access Keys Sin Uso (>30 días):**\n"
-            for key in unused_keys:  # CAMBIO: Remover [:5]
+            for key in unused_keys:
                 content += f"- {key.get('user_name', 'N/A')} ({key.get('age_days', 0)} días)\n"
-            # REMOVIDO: Eliminar mensaje de truncamiento
-            # if len(unused_keys) > 5:
-            #     content += f"- ... y {len(unused_keys) - 5} keys más\n"
             content += "\n"
 
         content += "---\n\n"

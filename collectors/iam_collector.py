@@ -283,7 +283,7 @@ class IAMCollector:
                 try:
                     detailed_info = await self._get_user_details(user.id)
                     user_info.update(detailed_info)
-                    
+
                     # CORREGIDO: Sobrescribir campos básicos con información detallada si está disponible
                     if detailed_info.get('last_login_time'):
                         user_info['last_login_time'] = detailed_info['last_login_time']
@@ -291,8 +291,9 @@ class IAMCollector:
                         user_info['create_time'] = detailed_info['create_time']
                     if detailed_info.get('email'):
                         user_info['email'] = detailed_info['email']
-                    
-                    self.logger.debug(f"Información detallada actualizada para {user.name}")
+
+                    self.logger.debug(
+                        f"Información detallada actualizada para {user.name}")
 
                 except Exception as e:
                     self.logger.debug(
@@ -346,11 +347,13 @@ class IAMCollector:
                 'xdomain_id': getattr(user, 'xdomain_id', None),
                 'xdomain_type': getattr(user, 'xdomain_type', None)
             })
-            
-            self.logger.debug(f"Detalles obtenidos para {user_id}: last_login_time = {details.get('last_login_time')}")
-            
+
+            self.logger.debug(
+                f"Detalles obtenidos para {user_id}: last_login_time = {details.get('last_login_time')}")
+
         except Exception as e:
-            self.logger.debug(f"Error obteniendo detalles del usuario {user_id}: {str(e)}")
+            self.logger.debug(
+                f"Error obteniendo detalles del usuario {user_id}: {str(e)}")
 
         return details
 
@@ -1443,16 +1446,27 @@ class IAMCollector:
             request.access_key = access_key_id
             response = self.client.show_permanent_access_key(request)
 
-            if hasattr(response.credential, 'last_use_time'):
-                return {
-                    'timestamp': response.credential.last_use_time,
-                    'service': getattr(response.credential, 'service', 'unknown'),
-                    'region': getattr(response.credential, 'region', 'unknown')
-                }
+            if hasattr(response.credential, 'last_use_time') and response.credential.last_use_time:
+                # CORREGIDO: Solo retornar si hay fecha real de último uso
+                last_use_time = response.credential.last_use_time
+                
+                # Verificar que no sea igual a la fecha de creación
+                created_time = getattr(response.credential, 'create_time', None)
+                if last_use_time != created_time:
+                    return {
+                        'timestamp': last_use_time,
+                        'service': getattr(response.credential, 'service', 'unknown'),
+                        'region': getattr(response.credential, 'region', 'unknown')
+                    }
         except:
             pass
 
-        return None
+        # CORREGIDO: Retornar timestamp vacío en lugar de fecha de creación
+        return {
+            'timestamp': '',
+            'service': 'unknown',
+            'region': 'unknown'
+        }
 
     async def _check_access_key_security(self, key_info: Dict, user: Dict):
         """Verificar seguridad de access keys"""
@@ -2403,10 +2417,23 @@ class IAMCollector:
             )
 
         # Contar access keys antiguas y sin uso
+        stats['old_access_keys'] = 0
+        stats['unused_access_keys'] = 0
+
         for key in results['access_keys']:
-            if key['age_days'] > 90 and key.get('status') == 'active':
+            # Keys antiguas (>90 días y activas)
+            if key.get('age_days', 0) > 90 and key.get('status') == 'active':
                 stats['old_access_keys'] += 1
-            if not key.get('last_used') and key['age_days'] > 30:
+            
+            # CORREGIDO: Keys sin uso (timestamp vacío y >30 días)
+            last_used_data = key.get('last_used', {})
+            if isinstance(last_used_data, dict):
+                timestamp = last_used_data.get('timestamp', '')
+            else:
+                timestamp = last_used_data or ''
+            
+            # Key sin uso si no tiene timestamp y tiene más de 30 días
+            if not timestamp and key.get('age_days', 0) > 30:
                 stats['unused_access_keys'] += 1
 
         # Contar usuarios con contraseñas temporales

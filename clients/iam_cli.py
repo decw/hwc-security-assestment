@@ -683,6 +683,43 @@ def generate_comprehensive_report(combined_data: Dict, base_output_file: str):
         print(f"⚠️ Error generando reporte completo: {e}")
 
 
+def ask_for_emergency_account():
+    """Preguntar al usuario sobre cuenta de emergencia"""
+    print("\n" + "="*60)
+    print("🚨 VERIFICACIÓN DE CUENTA DE EMERGENCIA")
+    print("="*60)
+    print("No se detectó automáticamente una cuenta de emergencia (break-glass).")
+    print("Una cuenta de emergencia es crítica para acceso en caso de fallos del sistema principal.")
+    print()
+
+    response = input(
+        "¿Existe una cuenta de emergencia configurada? (s/n): ").lower().strip()
+
+    if response in ['s', 'si', 'sí', 'y', 'yes']:
+        print("\n📝 Por favor, proporcione los detalles de la cuenta de emergencia:")
+        emergency_user = input("Nombre de la cuenta de emergencia: ").strip()
+
+        if emergency_user:
+            # Verificar si el usuario existe en la lista
+            print(f"✅ Cuenta de emergencia registrada: {emergency_user}")
+            return {
+                'exists': True,
+                'account_name': emergency_user,
+                'manually_specified': True,
+                'verification_method': 'user_input'
+            }
+        else:
+            print("❌ Nombre no proporcionado")
+            return {'exists': False, 'manually_specified': True}
+    else:
+        print("⚠️ Se registrará como 'sin cuenta de emergencia'")
+        return {
+            'exists': False,
+            'manually_specified': True,
+            'verification_method': 'user_confirmed_none'
+        }
+
+
 async def main():
     """Función principal"""
     # Configurar parser de argumentos
@@ -762,7 +799,11 @@ async def main():
         # Ejecutar análisis si no es solo recolección
         analysis_results = None
         if not args.collect_only:
-            print("\n Iniciando análisis de vulnerabilidades...")
+            # Verificar cuentas de emergencia antes del análisis
+            emergency_info = ask_for_emergency_account()
+            results['emergency_account_info'] = emergency_info
+
+            print("\n🔍 Iniciando análisis de vulnerabilidades...")
             analysis_results, error = await run_analysis(results, args)
 
             if error:
