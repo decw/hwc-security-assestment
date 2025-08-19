@@ -143,6 +143,11 @@ Ejemplos de uso:
         action='store_true',
         help='Ejecutar sin realizar cambios ni guardar archivos'
     )
+    general_group.add_argument(
+        '--simulate-missing-resources',
+        action='store_true',
+        help='Simular recursos faltantes (VPN/DC) basado en inventario para testing completo'
+    )
 
     return parser
 
@@ -170,7 +175,8 @@ async def run_collection(args):
     try:
         # Importar el colector
         from collectors.network_collector import NetworkCollector
-        collector = NetworkCollector()
+        collector = NetworkCollector(
+            simulate_missing_resources=args.simulate_missing_resources)
 
         print("✅ Colector Network inicializado correctamente")
 
@@ -587,29 +593,31 @@ def generate_comprehensive_report(combined_data: Dict, base_output_file: str, ar
     """Generar reporte completo con datos de recolección y análisis"""
     try:
         from utils.network_report_generator import NetworkReportGenerator
-        
+
         # Validar datos
         validated_data = validate_and_fix_network_data(combined_data)
-        
+
         # Crear el generador de reportes
         report_generator = NetworkReportGenerator(validated_data)
-        
+
         # Obtener directorio
         reports_dir = Path("reports/network")
         reports_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Usar el método que SÍ existe
-        report_files = report_generator.generate_complete_report(str(reports_dir))
-        
+        report_files = report_generator.generate_complete_report(
+            str(reports_dir))
+
         print("\n📊 Reportes de Network generados:")
         for name, path in report_files.items():
             if Path(path).exists():
                 size = Path(path).stat().st_size
-                size_str = f"{size/1024:.1f} KB" if size < 1024*1024 else f"{size/(1024*1024):.1f} MB"
+                size_str = f"{size/1024:.1f} KB" if size < 1024 * \
+                    1024 else f"{size/(1024*1024):.1f} MB"
                 print(f"   📋 {name.title()}: {Path(path).name} ({size_str})")
-        
+
         return report_files
-        
+
     except Exception as e:
         print(f"⚠️ Error generando reportes: {e}")
         if args.verbose:

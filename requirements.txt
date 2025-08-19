@@ -20,7 +20,7 @@ huaweicloudsdkrds        # Relational Database Service
 #agregado dcabral
 huaweicloudsdkcsbs       # Cloud Backup Service
 huaweicloudsdkvbs       # Volume Backup Service
-
+huaweicloudsdkvpcep     # Virtual Private Cloud Endpoint Service
 huaweicloudsdksmn       # Simple Message Notification
 huaweicloudsdkhss       # Host Security Service
 huaweicloudsdkiamaccessanalyzer
